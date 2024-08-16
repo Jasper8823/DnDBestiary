@@ -5,8 +5,10 @@ import jakarta.persistence.Id;
 
 @Entity
 public class CharClass {
+
     @Id
     private String name;
+
     private String HP_dice;
 
     public void setName(String name) {

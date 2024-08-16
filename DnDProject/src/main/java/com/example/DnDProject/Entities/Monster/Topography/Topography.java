@@ -5,7 +5,8 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Topography {
-    @Id
+
+    @Id //describes the type of terrain in which the battle will take place
     private String name;
 
     public void setName(String name) {

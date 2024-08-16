@@ -5,7 +5,9 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Class_Weakness {
-    @Id
+
+    @Id //some monsters may have an disadvantage in combat against a character of a certain class
+        //example: paladin will have an easy time fighting the undead
     private int id;
 
     public void setId(int id) {

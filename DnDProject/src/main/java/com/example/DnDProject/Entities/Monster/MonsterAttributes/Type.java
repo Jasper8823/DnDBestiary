@@ -5,6 +5,7 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Type {
+
     @Id
     private String name;
 

@@ -5,8 +5,10 @@ import jakarta.persistence.Id;
 
 @Entity
 public class DamageType {
+
     @Id
     private int Id;
+
     private String name;
 
     public void setdId(int dId) {

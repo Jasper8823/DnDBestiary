@@ -2,33 +2,50 @@ package com.example.DnDProject.Entities.Monster;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+
 @Entity
 public class Monster {
+
     @Id
     private int id;
     private String name;
+
     private int armor_class;
+
+    //speed types
     private int speed;
     private int swim_speed;
     private int fly_speed;
+
+    //calculated (x*y)/2+z
     private int avg_HP;
+    //has form of xdy+z, where x - number of roll, y - maximum number, z - permanent bonus
     private String calc_HP;
+
+    //monster attributes
     private int strength;
     private int dexterity;
     private int charisma;
     private int intelligence;
     private int wisdom;
     private int constitution;
+
     private int perception;
     private int skill_bonus;
+
+    //monster attributes bonus
     private int strength_bonus;
     private int dexterity_bonus;
     private int charisma_bonus;
     private int intelligence_bonus;
     private int wisdom_bonus;
     private int constitution_bonus;
+
     private String features;
     private String description;
+
+
+
     public void setId(int id) {
         this.id = id;
     }

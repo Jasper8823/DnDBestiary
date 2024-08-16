@@ -5,7 +5,8 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Habitat {
-    @Id
+
+    @Id //describes the locations and biomes in which the monster is most often found
     private int id;
 
     public void setId(int id) {

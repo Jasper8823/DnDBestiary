@@ -5,8 +5,10 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Danger {
+
     @Id
     private int degree;
+
     private int ExpGain;
 
     public void setDegree(int degree) {

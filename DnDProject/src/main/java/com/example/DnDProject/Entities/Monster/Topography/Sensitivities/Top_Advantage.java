@@ -5,7 +5,9 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Top_Advantage {
-    @Id
+
+    @Id //describes what type of terrain the monster will have an advantage
+        //example: long-range units will have an easier fighting in open terrain
     private int id;
 
     public void setId(int id) {
