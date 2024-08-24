@@ -1,13 +1,24 @@
-package com.example.DnDProject.Entities.Class.Race;
+package com.example.DnDProject.Entities.Race;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class RaceAbility {
     @Id
     private String name;
     private String description;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "race_name")
+    private Race race;
+
+    public Race getRace() {
+        return race;
+    }
+
+    public void setRace(Race race) {
+        this.race = race;
+    }
 
     public String getName() {
         return name;
@@ -23,5 +34,5 @@ public class RaceAbility {
 
     public void setDescription(String description) {
         this.description = description;
-    }
+    }//Getters and Setters
 }

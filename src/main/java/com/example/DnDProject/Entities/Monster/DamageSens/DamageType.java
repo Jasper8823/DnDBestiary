@@ -25,5 +25,5 @@ public class DamageType {
 
     public String getName() {
         return name;
-    }
+    }//Getters and Setters
 }

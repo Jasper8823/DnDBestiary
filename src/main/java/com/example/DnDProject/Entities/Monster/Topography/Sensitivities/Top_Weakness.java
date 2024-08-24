@@ -16,5 +16,5 @@ public class Top_Weakness {
 
     public int getId() {
         return id;
-    }
+    }//Getters and Setters
 }

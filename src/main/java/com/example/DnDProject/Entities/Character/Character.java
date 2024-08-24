@@ -9,15 +9,18 @@ public class Character {
     private int id;
     private String name;
     private int level;
+
+    //Character's attributes
     private int strength;
     private int dexterity;
     private int charisma;
     private int intelligence;
     private int wisdom;
     private int constitution;
+
+
     private int speed;
     private int hp;
-    private String race;
 
     public int getId() {
         return id;
@@ -105,13 +108,6 @@ public class Character {
 
     public void setHp(int hp) {
         this.hp = hp;
-    }
+    } // Getters and Setters
 
-    public String getRace() {
-        return race;
-    }
-
-    public void setRace(String race) {
-        this.race = race;
-    }
 }

@@ -1,7 +1,7 @@
 package com.example.DnDProject.Entities.Spell;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.example.DnDProject.Entities.Race.Race;
+import jakarta.persistence.*;
 
 @Entity
 public class Spell {
@@ -11,13 +11,28 @@ public class Spell {
 
     private int level;
 
+    //Spell features
     private String duration;
     private boolean concentration;
     private String concentDura;
     private int distance;
     private String target;
     private int prepareMoves;
+
+
     private String description;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "spellType_name")
+    private SpellType spellType;
+
+    public SpellType getSpellType() {
+        return spellType;
+    }
+
+    public void setSpellType(SpellType spellType) {
+        this.spellType = spellType;
+    }
 
     public String getName() {
         return name;
@@ -89,5 +104,5 @@ public class Spell {
 
     public void setDescription(String description) {
         this.description = description;
-    }
+    }//Getters and Setters
 }

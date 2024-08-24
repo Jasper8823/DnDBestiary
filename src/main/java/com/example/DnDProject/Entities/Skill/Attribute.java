@@ -1,4 +1,4 @@
-package com.example.DnDProject.Entities.Spell;
+package com.example.DnDProject.Entities.Skill;
 
 import com.example.DnDProject.Entities.Race.RaceAbility;
 import jakarta.persistence.CascadeType;
@@ -10,18 +10,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class SpellType {
+public class Attribute {
     @Id
     private String name;
-    @OneToMany(mappedBy = "spellType", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Spell> spells = new ArrayList<>();
+    @OneToMany(mappedBy = "attribute", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Skill> skills = new ArrayList<>();
 
-    public List<Spell> getSpells() {
-        return spells;
+    public List<Skill> getSkills() {
+        return skills;
     }
 
-    public void setSpells(List<Spell> spells) {
-        this.spells = spells;
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
     }
 
     public String getName() {
@@ -30,5 +30,5 @@ public class SpellType {
 
     public void setName(String name) {
         this.name = name;
-    }//Getters and Setters
+    }
 }

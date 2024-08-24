@@ -16,5 +16,5 @@ public class ImmunityStatus {
 
     public int getId() {
         return Id;
-    }
+    }//Getters and Setters
 }

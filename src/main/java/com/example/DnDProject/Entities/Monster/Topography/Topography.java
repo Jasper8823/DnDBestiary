@@ -15,5 +15,5 @@ public class Topography {
 
     public String getName() {
         return name;
-    }
+    }//Getters and Setters
 }

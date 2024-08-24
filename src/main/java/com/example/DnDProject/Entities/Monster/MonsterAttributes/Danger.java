@@ -25,5 +25,5 @@ public class Danger {
 
     public int getExpGain() {
         return ExpGain;
-    }
+    }//Getters and Setters
 }

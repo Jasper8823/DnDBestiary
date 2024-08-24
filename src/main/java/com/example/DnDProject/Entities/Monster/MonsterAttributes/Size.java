@@ -15,5 +15,5 @@ public class Size {
 
     public String getName() {
         return name;
-    }
+    }//Getters and Setters
 }

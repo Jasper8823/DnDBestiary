@@ -1,4 +1,4 @@
-package com.example.DnDProject.Entities.Item;
+package com.example.DnDProject.Entities.Race;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -9,18 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Rarity {
+public class Race {
     @Id
     private String name;
-    @OneToMany(mappedBy = "rarity", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Item> items = new ArrayList<>();
+    @OneToMany(mappedBy = "race", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<RaceAbility> abilities = new ArrayList<>();
 
-    public List<Item> getItems() {
-        return items;
+    public List<RaceAbility> getAbilities() {
+        return abilities;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
+    public void setAbilities(List<RaceAbility> abilities) {
+        this.abilities = abilities;
     }
 
     public String getName() {

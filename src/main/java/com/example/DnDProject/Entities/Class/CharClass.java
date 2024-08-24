@@ -1,7 +1,8 @@
 package com.example.DnDProject.Entities.Class;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class CharClass {
@@ -11,6 +12,11 @@ public class CharClass {
 
     private String HP_dice;
 
+    // One-to-Many relationship with ClassAbility
+    @OneToMany(mappedBy = "charClass", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ClassAbility> abilities = new ArrayList<>();
+
+    // Getters and Setters
     public void setName(String name) {
         this.name = name;
     }
@@ -26,4 +32,13 @@ public class CharClass {
     public String getHP_dice() {
         return HP_dice;
     }
+
+    public List<ClassAbility> getAbilities() {
+        return abilities;
+    }
+
+    public void setAbilities(List<ClassAbility> abilities) {
+        this.abilities = abilities;
+    }
+
 }

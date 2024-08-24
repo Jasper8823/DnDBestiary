@@ -16,5 +16,5 @@ public class Top_Advantage {
 
     public int getId() {
         return id;
-    }
+    }//Getters and Setters
 }

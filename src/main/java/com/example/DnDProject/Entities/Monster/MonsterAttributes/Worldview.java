@@ -15,5 +15,5 @@ public class Worldview {
 
     public String getName() {
         return name;
-    }
+    }//Getters and Setters
 }

@@ -15,5 +15,5 @@ public class Habitat {
 
     public int getId() {
         return id;
-    }
+    }//Getters and Setters
 }

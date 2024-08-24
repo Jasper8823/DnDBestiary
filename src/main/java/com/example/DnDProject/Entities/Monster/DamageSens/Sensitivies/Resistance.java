@@ -16,5 +16,5 @@ public class Resistance {
 
     public int getId() {
         return Id;
-    }
+    }//Getters and Setters
 }

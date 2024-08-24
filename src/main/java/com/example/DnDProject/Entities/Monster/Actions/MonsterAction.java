@@ -34,5 +34,5 @@ public class MonsterAction {
 
     public int getId() {
         return id;
-    }
+    }//Getters and Setters
 }

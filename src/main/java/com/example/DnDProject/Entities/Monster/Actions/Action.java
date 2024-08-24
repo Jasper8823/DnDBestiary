@@ -15,5 +15,5 @@ public class Action {
 
     public String getName() {
         return name;
-    }
+    }//Getters and Setters
 }

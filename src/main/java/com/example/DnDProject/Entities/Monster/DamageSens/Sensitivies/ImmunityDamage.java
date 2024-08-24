@@ -16,5 +16,5 @@ public class ImmunityDamage {
 
     public int getId() {
         return Id;
-    }
+    }//Getters and Setters
 }

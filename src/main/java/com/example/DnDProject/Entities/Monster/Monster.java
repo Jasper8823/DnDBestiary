@@ -19,7 +19,7 @@ public class Monster {
 
     //calculated (x*y)/2+z
     private int avg_HP;
-    //has form of xdy+z, where x - number of roll, y - maximum number, z - permanent bonus
+    //has form of xDy+z, where x - number of roll, y - maximum number, z - permanent bonus
     private String calc_HP;
 
     //monster attributes
@@ -43,8 +43,6 @@ public class Monster {
 
     private String features;
     private String description;
-
-
 
     public void setId(int id) {
         this.id = id;
@@ -236,5 +234,5 @@ public class Monster {
 
     public String getDescription() {
         return description;
-    }
+    } //Getters and Setters
 }
