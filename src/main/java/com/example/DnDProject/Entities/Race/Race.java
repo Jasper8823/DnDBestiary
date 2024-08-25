@@ -1,9 +1,13 @@
 package com.example.DnDProject.Entities.Race;
 
-import jakarta.persistence.CascadeType;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +16,9 @@ import java.util.List;
 public class Race {
     @Id
     private String name;
-    @OneToMany(mappedBy = "race", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<RaceAbility> abilities = new ArrayList<>();
+    @OneToMany(mappedBy = "race", orphanRemoval = true)
+    @Cascade(CascadeType.ALL)
+     private List<RaceAbility> abilities = new ArrayList<>();
 
     public List<RaceAbility> getAbilities() {
         return abilities;

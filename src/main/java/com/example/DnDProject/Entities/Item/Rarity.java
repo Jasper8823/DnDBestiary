@@ -1,9 +1,13 @@
 package com.example.DnDProject.Entities.Item;
 
-import jakarta.persistence.CascadeType;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +16,8 @@ import java.util.List;
 public class Rarity {
     @Id
     private String name;
-    @OneToMany(mappedBy = "rarity", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "rarity", orphanRemoval = true)
+    @Cascade(CascadeType.ALL)
     private List<Item> items = new ArrayList<>();
 
     public List<Item> getItems() {

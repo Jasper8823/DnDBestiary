@@ -1,12 +1,27 @@
 package com.example.DnDProject.Entities.Monster;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.example.DnDProject.Entities.Monster.Location.Location;
+import com.example.DnDProject.Entities.MtoMConnections.MonsterAction;
+import com.example.DnDProject.Entities.Monster.DamageType.DamageType;
+import com.example.DnDProject.Entities.Monster.MonsterAttributes.Danger;
+import com.example.DnDProject.Entities.Monster.MonsterAttributes.Size;
+import com.example.DnDProject.Entities.Monster.MonsterAttributes.Type;
+import com.example.DnDProject.Entities.Monster.MonsterAttributes.Worldview;
+import com.example.DnDProject.Entities.Monster.StatusSens.ImmunityStatus;
+import com.example.DnDProject.Entities.Monster.Topography.Sensitivities.Top_Advantage;
+import com.example.DnDProject.Entities.Monster.Topography.Sensitivities.Top_Weakness;
+import jakarta.persistence.*;
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.CascadeType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Monster {
 
     @Id
+    @GeneratedValue()
     private int id;
     private String name;
 
@@ -43,6 +58,85 @@ public class Monster {
 
     private String features;
     private String description;
+
+    @ManyToMany()
+    @Cascade(CascadeType.ALL)
+    @JoinTable(
+            name = "immunityDamage",
+            joinColumns = { @JoinColumn(name = "monster_id") },
+            inverseJoinColumns = { @JoinColumn(name = "damageType_id") }
+    )
+    private List<DamageType> immunityDamageList = new ArrayList<>();//some monsters may not take damage of a certain type at all
+                                                                    //example: all elementals do not take poison damage
+    @ManyToMany()
+    @Cascade(CascadeType.ALL)
+    @JoinTable(
+            name = "resistance",
+            joinColumns = { @JoinColumn(name = "monster_id") },
+            inverseJoinColumns = { @JoinColumn(name = "damageType_id") }
+    )
+    private List<DamageType> resistanceList = new ArrayList<>();//some monsters may have resistance to damage of a certain type
+                                                                //example: demons take half the damage
+
+    @ManyToMany()
+    @Cascade(CascadeType.ALL)
+    @JoinTable(
+            name = "vulnerability",
+            joinColumns = { @JoinColumn(name = "monster_id") },
+            inverseJoinColumns = { @JoinColumn(name = "damageType_id") }
+    )
+    private List<DamageType> vulnerabilityList = new ArrayList<>();//some monsters may have a vulnerability to certain types of damage
+    //example: skeletons taking double damage with crushing attacks
+    // Sensitivities connections
+
+
+
+     @OneToMany(mappedBy = "monster", orphanRemoval = true)
+    @Cascade(CascadeType.ALL)
+    @Fetch(FetchMode.SELECT)
+    private List<MonsterAction> monsterActions = new ArrayList<>();//actions connection
+
+    @ManyToMany()
+    @Cascade(CascadeType.ALL)
+    @JoinTable(
+            name = "habitat",
+            joinColumns = { @JoinColumn(name = "monster_id") },
+            inverseJoinColumns = { @JoinColumn(name = "location_name") }
+    )
+    private List<Location> habitats = new ArrayList<>();//describes the locations and biomes in which the monster is most often found
+    //habitat connection
+
+    @OneToMany(mappedBy = "monster", orphanRemoval = true)
+    @Cascade(CascadeType.ALL)
+    @Fetch(FetchMode.SELECT)
+    private List<ImmunityStatus> immunityStatusList = new ArrayList<>();//status connection
+
+    @OneToMany(mappedBy = "monster", orphanRemoval = true)
+    @Cascade(CascadeType.ALL)
+    @Fetch(FetchMode.SELECT)
+    private List<Top_Advantage> topAdvantages = new ArrayList<>();
+
+    @OneToMany(mappedBy = "monster", orphanRemoval = true)
+    @Cascade(CascadeType.ALL)
+    @Fetch(FetchMode.SELECT)
+    private List<Top_Weakness> topWeaknesses = new ArrayList<>();//Topography connections
+
+    @ManyToOne
+    @JoinColumn(name = "danger_name", nullable = false)
+    @Fetch(FetchMode.SELECT)
+    private Danger danger;
+    @ManyToOne
+    @JoinColumn(name = "size_name", nullable = false)
+    @Fetch(FetchMode.SELECT)
+    private Size size;
+    @ManyToOne
+    @JoinColumn(name = "type_name", nullable = false)
+    @Fetch(FetchMode.SELECT)
+    private Type type;
+    @ManyToOne
+    @JoinColumn(name = "worldview_name", nullable = false)
+    @Fetch(FetchMode.SELECT)
+    private Worldview worldview;//Attributes connections
 
     public void setId(int id) {
         this.id = id;

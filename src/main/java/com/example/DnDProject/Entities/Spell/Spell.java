@@ -1,7 +1,8 @@
 package com.example.DnDProject.Entities.Spell;
 
-import com.example.DnDProject.Entities.Race.Race;
 import jakarta.persistence.*;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
 
 @Entity
 public class Spell {
@@ -22,7 +23,7 @@ public class Spell {
 
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "spellType_name")
     private SpellType spellType;
 

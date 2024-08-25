@@ -1,10 +1,12 @@
 package com.example.DnDProject.Entities.Spell;
 
-import com.example.DnDProject.Entities.Race.RaceAbility;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +15,8 @@ import java.util.List;
 public class SpellType {
     @Id
     private String name;
-    @OneToMany(mappedBy = "spellType", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "spellType", orphanRemoval = true)
+    @Cascade(CascadeType.ALL)
     private List<Spell> spells = new ArrayList<>();
 
     public List<Spell> getSpells() {

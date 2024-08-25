@@ -1,6 +1,8 @@
 package com.example.DnDProject.Entities.Item;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
 
 @Entity
 public class Item {
@@ -9,10 +11,11 @@ public class Item {
     private String description;
     private boolean configurable;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "itemType_name")
     private ItemType itemType;
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne
     @JoinColumn(name = "rarity_name")
     private Rarity rarity;
 

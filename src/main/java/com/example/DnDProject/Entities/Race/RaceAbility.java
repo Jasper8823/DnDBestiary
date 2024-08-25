@@ -1,6 +1,8 @@
 package com.example.DnDProject.Entities.Race;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
 
 @Entity
 public class RaceAbility {
@@ -8,7 +10,7 @@ public class RaceAbility {
     private String name;
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "race_name")
     private Race race;
 

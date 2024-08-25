@@ -1,10 +1,13 @@
 package com.example.DnDProject.Entities.Item;
 
-import com.example.DnDProject.Entities.Spell.Spell;
-import jakarta.persistence.CascadeType;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +16,8 @@ import java.util.List;
 public class ItemType {
     @Id
     private String name;
-    @OneToMany(mappedBy = "itemType", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "itemType", orphanRemoval = true)
+    @Cascade(CascadeType.ALL)
     private List<Item> items = new ArrayList<>();
 
     public List<Item> getItems() {

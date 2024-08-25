@@ -1,6 +1,11 @@
 package com.example.DnDProject.Entities.Class;
 
-import jakarta.persistence.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
+
+import javax.persistence.*;
 
 @Entity
 public class ClassAbility {
@@ -11,34 +16,34 @@ public class ClassAbility {
     private String description;
     private int level;
 
-    // Many-to-One relationship with CharClass
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "charclass_name")
+    @JoinColumn(name = "charclass_name", nullable = false)
+    @Fetch(FetchMode.SELECT)
     private CharClass charClass;
 
     // Getters and Setters
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
         return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public int getLevel() {
         return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     public CharClass getCharClass() {
@@ -49,4 +54,3 @@ public class ClassAbility {
         this.charClass = charClass;
     }
 }
-

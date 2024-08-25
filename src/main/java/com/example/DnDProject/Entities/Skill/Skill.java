@@ -1,14 +1,19 @@
 package com.example.DnDProject.Entities.Skill;
 
-import com.example.DnDProject.Entities.Race.Race;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
 
 @Entity
 public class Skill {
     @Id
     private String name;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "attribute_name")
+
+    @ManyToOne
+    @JoinColumn(name = "attribute_name", nullable = false)
+    @Fetch(FetchMode.SELECT)
     private Attribute attribute;
 
     public Attribute getAttribute() {
@@ -25,5 +30,6 @@ public class Skill {
 
     public void setName(String name) {
         this.name = name;
-    } //Getters and Setters
+    }
 }
+

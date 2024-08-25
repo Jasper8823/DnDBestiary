@@ -1,11 +1,15 @@
 package com.example.DnDProject.Entities.Skill;
 
-import com.example.DnDProject.Entities.Race.RaceAbility;
-import jakarta.persistence.CascadeType;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +17,10 @@ import java.util.List;
 public class Attribute {
     @Id
     private String name;
-    @OneToMany(mappedBy = "attribute", cascade = CascadeType.ALL, orphanRemoval = true)
+
+    @OneToMany(mappedBy = "attribute", orphanRemoval = true)
+    @Cascade(CascadeType.ALL)
+    @Fetch(FetchMode.SELECT)
     private List<Skill> skills = new ArrayList<>();
 
     public List<Skill> getSkills() {

@@ -1,6 +1,6 @@
-package com.example.DnDProject.Entities.Monster.MonsterAttributes;
+package com.example.DnDProject.Entities.Monster.Action;
 
-import com.example.DnDProject.Entities.Monster.Monster;
+import com.example.DnDProject.Entities.MtoMConnections.MonsterAction;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -10,15 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Worldview {
+public class Action {
 
     @Id
     private String name;
-    @OneToMany(mappedBy = "worldview", orphanRemoval = true)
+
+    @OneToMany(mappedBy = "action", orphanRemoval = true)
     @Cascade(CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.EXTRA)
     @Fetch(FetchMode.SELECT)
-    private List<Monster> monsters = new ArrayList<>();
+    private List<MonsterAction> monsterActions = new ArrayList<>();
     public void setName(String name) {
         this.name = name;
     }
