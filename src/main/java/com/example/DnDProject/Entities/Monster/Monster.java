@@ -86,7 +86,7 @@ public class Monster {
             inverseJoinColumns = { @JoinColumn(name = "damageType_id") }
     )
     private List<DamageType> vulnerabilityList = new ArrayList<>();//some monsters may have a vulnerability to certain types of damage
-    //example: skeletons taking double damage with crushing attacks
+                                                                    //example: skeletons taking double damage with crushing attacks
     // Sensitivities connections
 
 
