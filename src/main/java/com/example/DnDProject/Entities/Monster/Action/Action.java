@@ -1,9 +1,7 @@
 package com.example.DnDProject.Entities.Monster.Action;
 
 import com.example.DnDProject.Entities.MtoMConnections.MonsterAction;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import javax.persistence.*;
 import org.hibernate.annotations.*;
 
 import java.util.ArrayList;
@@ -16,8 +14,6 @@ public class Action {
     private String name;
 
     @OneToMany(mappedBy = "action", orphanRemoval = true)
-    @Cascade(CascadeType.ALL)
-    @Fetch(FetchMode.SELECT)
     private List<MonsterAction> monsterActions = new ArrayList<>();
     public void setName(String name) {
         this.name = name;

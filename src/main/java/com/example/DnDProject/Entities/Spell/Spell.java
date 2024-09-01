@@ -1,8 +1,12 @@
 package com.example.DnDProject.Entities.Spell;
 
-import jakarta.persistence.*;
-import org.hibernate.annotations.LazyToOne;
-import org.hibernate.annotations.LazyToOneOption;
+import com.example.DnDProject.Entities.Monster.DamageType.DamageType;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Spell {
@@ -14,18 +18,27 @@ public class Spell {
 
     //Spell features
     private String duration;
+
     private boolean concentration;
     private String concentDura;
     private int distance;
     private String target;
     private int prepareMoves;
 
-
     private String description;
 
     @ManyToOne
     @JoinColumn(name = "spellType_name")
     private SpellType spellType;
+
+    @ManyToMany()
+    @Cascade(CascadeType.ALL)
+    @JoinTable(
+            name = "vulnerability",
+            joinColumns = { @JoinColumn(name = "monster_id") },
+            inverseJoinColumns = { @JoinColumn(name = "damageType_id") }
+    )
+    private List<DamageType> vulnerabilityList = new ArrayList<>();
 
     public SpellType getSpellType() {
         return spellType;

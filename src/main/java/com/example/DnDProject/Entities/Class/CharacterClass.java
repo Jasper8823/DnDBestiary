@@ -1,18 +1,14 @@
 package com.example.DnDProject.Entities.Class;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
+import com.example.DnDProject.Entities.Monster.Monster;
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class CharClass {
+public class CharacterClass {
 
     @Id
     private String name;
@@ -21,8 +17,15 @@ public class CharClass {
 
     @OneToMany(mappedBy = "charClass", orphanRemoval = true)
     @Fetch(FetchMode.SELECT)
-    @Cascade(CascadeType.ALL)
     private List<ClassAbility> abilities = new ArrayList<>();
+
+
+
+
+    @ManyToMany(mappedBy = "classAdvList")
+    private List<Monster> monsters_advC = new ArrayList<>();
+    @ManyToMany(mappedBy = "classWeakList")
+    private List<Monster> monsters_weakC = new ArrayList<>();
 
     // Getters and Setters
     public String getName() {

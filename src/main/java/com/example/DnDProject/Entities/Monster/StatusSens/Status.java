@@ -1,9 +1,7 @@
 package com.example.DnDProject.Entities.Monster.StatusSens;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import org.hibernate.annotations.*;
+import com.example.DnDProject.Entities.Monster.Monster;
+import javax.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +12,8 @@ public class Status {
     @Id
     private int Id;
 
-    @OneToMany(mappedBy = "status", orphanRemoval = true)
-    @Cascade(CascadeType.ALL)
-    @Fetch(FetchMode.SELECT)
-    @LazyCollection(LazyCollectionOption.EXTRA)
-    private List<ImmunityStatus> immunityStatusList = new ArrayList<>();
+    @ManyToMany(mappedBy = "immunityStatusList")
+    private List<Monster> monster_imS =  new ArrayList<>();
     public void setId(int id) {
         this.Id = id;
     }

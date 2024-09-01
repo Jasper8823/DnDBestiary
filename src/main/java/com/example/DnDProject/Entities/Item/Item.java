@@ -1,8 +1,6 @@
 package com.example.DnDProject.Entities.Item;
 
-import jakarta.persistence.*;
-import org.hibernate.annotations.LazyToOne;
-import org.hibernate.annotations.LazyToOneOption;
+import javax.persistence.*;
 
 @Entity
 public class Item {

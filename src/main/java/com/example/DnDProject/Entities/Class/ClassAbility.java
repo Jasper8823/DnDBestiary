@@ -2,8 +2,6 @@ package com.example.DnDProject.Entities.Class;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.LazyToOne;
-import org.hibernate.annotations.LazyToOneOption;
 
 import javax.persistence.*;
 
@@ -19,7 +17,7 @@ public class ClassAbility {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "charclass_name", nullable = false)
     @Fetch(FetchMode.SELECT)
-    private CharClass charClass;
+    private CharacterClass characterClass;
 
     // Getters and Setters
     public String getName() {
@@ -46,11 +44,11 @@ public class ClassAbility {
         this.level = level;
     }
 
-    public CharClass getCharClass() {
-        return charClass;
+    public CharacterClass getCharClass() {
+        return characterClass;
     }
 
-    public void setCharClass(CharClass charClass) {
-        this.charClass = charClass;
+    public void setCharClass(CharacterClass characterClass) {
+        this.characterClass = characterClass;
     }
 }

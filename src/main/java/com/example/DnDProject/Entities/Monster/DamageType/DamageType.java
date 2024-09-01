@@ -1,9 +1,7 @@
 package com.example.DnDProject.Entities.Monster.DamageType;
 
 import com.example.DnDProject.Entities.Monster.Monster;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import javax.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,9 +1,7 @@
 package com.example.DnDProject.Entities.Monster.MonsterAttributes;
 
 import com.example.DnDProject.Entities.Monster.Monster;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import javax.persistence.*;
 import org.hibernate.annotations.*;
 
 import java.util.ArrayList;
@@ -15,8 +13,6 @@ public class Worldview {
     @Id
     private String name;
     @OneToMany(mappedBy = "worldview", orphanRemoval = true)
-    @Cascade(CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.EXTRA)
     @Fetch(FetchMode.SELECT)
     private List<Monster> monsters = new ArrayList<>();
     public void setName(String name) {

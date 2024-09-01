@@ -1,16 +1,18 @@
 package com.example.DnDProject.Entities.Monster;
 
+
+import com.example.DnDProject.Entities.Class.CharacterClass;
 import com.example.DnDProject.Entities.Monster.Location.Location;
+import com.example.DnDProject.Entities.Monster.StatusSens.Status;
+import com.example.DnDProject.Entities.Monster.Topography.Topography;
 import com.example.DnDProject.Entities.MtoMConnections.MonsterAction;
 import com.example.DnDProject.Entities.Monster.DamageType.DamageType;
 import com.example.DnDProject.Entities.Monster.MonsterAttributes.Danger;
 import com.example.DnDProject.Entities.Monster.MonsterAttributes.Size;
 import com.example.DnDProject.Entities.Monster.MonsterAttributes.Type;
 import com.example.DnDProject.Entities.Monster.MonsterAttributes.Worldview;
-import com.example.DnDProject.Entities.Monster.StatusSens.ImmunityStatus;
-import com.example.DnDProject.Entities.Monster.Topography.Sensitivities.Top_Advantage;
-import com.example.DnDProject.Entities.Monster.Topography.Sensitivities.Top_Weakness;
-import jakarta.persistence.*;
+
+import javax.persistence.*;
 import org.hibernate.annotations.*;
 import org.hibernate.annotations.CascadeType;
 
@@ -24,9 +26,7 @@ public class Monster {
     @GeneratedValue()
     private int id;
     private String name;
-
     private int armor_class;
-
     //speed types
     private int speed;
     private int swim_speed;
@@ -87,14 +87,16 @@ public class Monster {
     )
     private List<DamageType> vulnerabilityList = new ArrayList<>();//some monsters may have a vulnerability to certain types of damage
                                                                     //example: skeletons taking double damage with crushing attacks
-    // Sensitivities connections
 
-
-
-     @OneToMany(mappedBy = "monster", orphanRemoval = true)
+    @ManyToMany()
     @Cascade(CascadeType.ALL)
-    @Fetch(FetchMode.SELECT)
-    private List<MonsterAction> monsterActions = new ArrayList<>();//actions connection
+    @JoinTable(
+            name = "immunity_status",
+            joinColumns = { @JoinColumn(name = "monster_id") },
+            inverseJoinColumns = { @JoinColumn(name = "status_id") }
+    )
+    private List<Status> immunityStatusList = new ArrayList<>();
+    // Sensitivities connections
 
     @ManyToMany()
     @Cascade(CascadeType.ALL)
@@ -106,20 +108,47 @@ public class Monster {
     private List<Location> habitats = new ArrayList<>();//describes the locations and biomes in which the monster is most often found
     //habitat connection
 
-    @OneToMany(mappedBy = "monster", orphanRemoval = true)
+    @ManyToMany()
     @Cascade(CascadeType.ALL)
-    @Fetch(FetchMode.SELECT)
-    private List<ImmunityStatus> immunityStatusList = new ArrayList<>();//status connection
+    @JoinTable(
+            name = "class_adv",
+            joinColumns = { @JoinColumn(name = "monster_id") },
+            inverseJoinColumns = { @JoinColumn(name = "class_name") }
+    )
 
-    @OneToMany(mappedBy = "monster", orphanRemoval = true)
-    @Cascade(CascadeType.ALL)
-    @Fetch(FetchMode.SELECT)
-    private List<Top_Advantage> topAdvantages = new ArrayList<>();
+    private List<CharacterClass> classAdvList = new ArrayList<>();
 
+    @ManyToMany()
+    @Cascade(CascadeType.ALL)
+    @JoinTable(
+            name = "class_weak",
+            joinColumns = { @JoinColumn(name = "monster_id") },
+            inverseJoinColumns = { @JoinColumn(name = "class_name") }
+    )
+    private List<CharacterClass> classWeakList = new ArrayList<>();//Class connections
     @OneToMany(mappedBy = "monster", orphanRemoval = true)
     @Cascade(CascadeType.ALL)
     @Fetch(FetchMode.SELECT)
-    private List<Top_Weakness> topWeaknesses = new ArrayList<>();//Topography connections
+    private List<MonsterAction> monsterActions = new ArrayList<>();//actions connection
+
+
+    @ManyToMany()
+    @Cascade(CascadeType.ALL)
+    @JoinTable(
+            name = "topography_weak",
+            joinColumns = { @JoinColumn(name = "monster_id") },
+            inverseJoinColumns = { @JoinColumn(name = "topography_name") }
+    )
+
+    private List<Topography> topographyWeakList = new ArrayList<>();
+    @ManyToMany()
+    @Cascade(CascadeType.ALL)
+    @JoinTable(
+            name = "topography_adv",
+            joinColumns = { @JoinColumn(name = "monster_id") },
+            inverseJoinColumns = { @JoinColumn(name = "topography_name") }
+    )
+    private List<Topography> topographyAdvList = new ArrayList<>();//Topography connections
 
     @ManyToOne
     @JoinColumn(name = "danger_name", nullable = false)

@@ -1,7 +1,6 @@
 package com.example.DnDProject.Entities.Character;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Character {

@@ -2,10 +2,7 @@ package com.example.DnDProject.Entities.MtoMConnections;
 
 import com.example.DnDProject.Entities.Monster.Action.Action;
 import com.example.DnDProject.Entities.Monster.Monster;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class MonsterAction {

@@ -1,15 +1,9 @@
 package com.example.DnDProject.Entities.Skill;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +13,6 @@ public class Attribute {
     private String name;
 
     @OneToMany(mappedBy = "attribute", orphanRemoval = true)
-    @Cascade(CascadeType.ALL)
     @Fetch(FetchMode.SELECT)
     private List<Skill> skills = new ArrayList<>();
 
