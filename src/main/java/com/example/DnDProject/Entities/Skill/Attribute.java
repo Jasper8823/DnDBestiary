@@ -1,5 +1,8 @@
 package com.example.DnDProject.Entities.Skill;
 
+import com.example.DnDProject.Entities.Character.Character;
+import com.example.DnDProject.Entities.Class.CharacterClass;
+import com.example.DnDProject.Entities.MtoMConnections.RaceAttribute;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -15,6 +18,17 @@ public class Attribute {
     @OneToMany(mappedBy = "attribute", orphanRemoval = true)
     @Fetch(FetchMode.SELECT)
     private List<Skill> skills = new ArrayList<>();
+
+    @ManyToMany()
+    @JoinTable(
+            name = "att_char",
+            joinColumns = { @JoinColumn(name = "att_name") },
+            inverseJoinColumns = { @JoinColumn(name = "class_name") }
+    )
+    private List<CharacterClass> att_classList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "attribute", orphanRemoval = true)
+    private List<RaceAttribute> raceAttributeList = new ArrayList<>();
 
     public List<Skill> getSkills() {
         return skills;

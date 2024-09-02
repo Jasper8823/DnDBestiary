@@ -1,6 +1,12 @@
 package com.example.DnDProject.Entities.Item;
 
+import com.example.DnDProject.Entities.Character.Character;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Item {
@@ -16,6 +22,14 @@ public class Item {
     @ManyToOne
     @JoinColumn(name = "rarity_name")
     private Rarity rarity;
+
+    @ManyToMany()
+    @JoinTable(
+            name = "item_char",
+            joinColumns = { @JoinColumn(name = "item_name") },
+            inverseJoinColumns = { @JoinColumn(name = "character_id") }
+    )
+    private List<Character> item_charList = new ArrayList<>();
 
     public ItemType getItemType() {
         return itemType;

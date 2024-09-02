@@ -1,5 +1,7 @@
 package com.example.DnDProject.Entities.Spell;
 
+import com.example.DnDProject.Entities.Character.Character;
+import com.example.DnDProject.Entities.Class.CharacterClass;
 import com.example.DnDProject.Entities.Monster.DamageType.DamageType;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -32,13 +34,20 @@ public class Spell {
     private SpellType spellType;
 
     @ManyToMany()
-    @Cascade(CascadeType.ALL)
     @JoinTable(
-            name = "vulnerability",
-            joinColumns = { @JoinColumn(name = "monster_id") },
-            inverseJoinColumns = { @JoinColumn(name = "damageType_id") }
+            name = "spell_class",
+            joinColumns = { @JoinColumn(name = "spellname") },
+            inverseJoinColumns = { @JoinColumn(name = "class_name") }
     )
-    private List<DamageType> vulnerabilityList = new ArrayList<>();
+    private List<CharacterClass> spell_classList = new ArrayList<>();
+
+    @ManyToMany()
+    @JoinTable(
+            name = "spell_char",
+            joinColumns = { @JoinColumn(name = "spellname") },
+            inverseJoinColumns = { @JoinColumn(name = "character_id") }
+    )
+    private List<Character> spell_charList = new ArrayList<>();
 
     public SpellType getSpellType() {
         return spellType;

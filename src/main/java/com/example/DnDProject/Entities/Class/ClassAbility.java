@@ -14,10 +14,9 @@ public class ClassAbility {
     private String description;
     private int level;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "charclass_name", nullable = false)
-    @Fetch(FetchMode.SELECT)
-    private CharacterClass characterClass;
+    @ManyToOne
+    @JoinColumn(name = "class_name")
+    private CharacterClass charClass;
 
     // Getters and Setters
     public String getName() {
@@ -44,11 +43,4 @@ public class ClassAbility {
         this.level = level;
     }
 
-    public CharacterClass getCharClass() {
-        return characterClass;
-    }
-
-    public void setCharClass(CharacterClass characterClass) {
-        this.characterClass = characterClass;
-    }
 }

@@ -1,6 +1,14 @@
 package com.example.DnDProject.Entities.Character;
 
+import com.example.DnDProject.Entities.BackStory.Backstory;
+import com.example.DnDProject.Entities.Class.CharacterClass;
+import com.example.DnDProject.Entities.Race.Race;
+import com.example.DnDProject.Entities.Skill.Skill;
+import com.example.DnDProject.Entities.Spell.Spell;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Character {
@@ -20,6 +28,29 @@ public class Character {
 
     private int speed;
     private int hp;
+
+
+    @ManyToMany(mappedBy = "spell_charList")
+    private List<Spell> spell_charList = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "item_charList")
+    private List<Spell> item_charList = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "skill_charList")
+    private List<Skill> skill_charList = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "class_name")
+    private CharacterClass charClass;
+
+    @ManyToOne
+    @JoinColumn(name = "race_name")
+    private Race race;
+
+    @ManyToOne
+    @JoinColumn(name = "backstory_name")
+    private Backstory backstory;
+
 
     public int getId() {
         return id;

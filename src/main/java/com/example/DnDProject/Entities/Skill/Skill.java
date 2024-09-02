@@ -1,8 +1,15 @@
 package com.example.DnDProject.Entities.Skill;
 
 import javax.persistence.*;
+
+import com.example.DnDProject.Entities.BackStory.Backstory;
+import com.example.DnDProject.Entities.Character.Character;
+import com.example.DnDProject.Entities.Spell.Spell;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Skill {
@@ -13,6 +20,16 @@ public class Skill {
     @JoinColumn(name = "attribute_name", nullable = false)
     @Fetch(FetchMode.SELECT)
     private Attribute attribute;
+
+    @ManyToMany(mappedBy = "back_skillList")
+    private List<Backstory> back_skillList = new ArrayList<>();
+    @ManyToMany()
+    @JoinTable(
+            name = "skill_char",
+            joinColumns = { @JoinColumn(name = "skill_name") },
+            inverseJoinColumns = { @JoinColumn(name = "character_id") }
+    )
+    private List<Character> skill_charList = new ArrayList<>();
 
     public Attribute getAttribute() {
         return attribute;
