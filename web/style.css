@@ -86,6 +86,7 @@ body{
 }
 
 #nameLabel{
+    box-shadow: 1px 1px 2px black;
     position: relative;
     font-size: 2em;
     display: inline-block;
@@ -93,13 +94,17 @@ body{
 }
 
 .AttCharBox{
+    box-shadow: 1px 1px 2px black;
     position: relative;
     display: inline-block;
     margin: 10px;
     left: 370px;
+    height: 83px;
 }
 
 .AttCharLabel{
+    margin-bottom: 0px;
+    text-align: center;
     position: relative;
     font-size: 2em;
     display: block;
@@ -108,6 +113,7 @@ body{
 }
 
 .AttCharText{
+    text-align: center;
     position: relative;
     font-size: 2em;
     margin-bottom: 10px;
@@ -116,3 +122,130 @@ body{
     display: block;
 }
 
+#speed{
+    display: inline-block;
+    width: 200px;
+    height: 80px;
+    position: absolute;
+    left: 10px;
+    top: 100px;
+}
+
+.SpeedText{
+    font-size: 2em;
+    font-family: sans-serif;
+}
+
+.SpeedLabel{
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    accent-color: rgb(0, 255, 0);
+    color: white;
+    left: 100px;
+    cursor: pointer;
+}
+
+.SpeedLabelV{
+    position: absolute;
+    right: 0px;
+    width: 50px;
+    height: 28px;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+#hp{
+    display: inline-block;
+    position: absolute;
+    top: 200px;
+    width: 270px;
+    left:10px;
+    height: 50px;
+}
+
+#hpTitle{
+    text-decoration: none;
+    font-size: 1.5em;
+    display: inline-block;
+}
+
+.HPLabel{
+    display: inline-block;
+    width: 50px;
+    height: 20px;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.NDLabel{
+    width: 30px;
+}
+
+.hpText{
+    display: inline-block;
+    font-size: 1.5em;
+}
+
+#Choice{
+    position: absolute;
+    top:10px;
+    left: 1130px;
+    width: 460px;
+}
+
+.ChoiceLabel{
+    display: block;
+    position: relative;
+    width: 90px;
+    font-size: 1.2em;
+    height: 30px;
+}
+
+.ChoiceText{
+    text-align: center;
+    font-size: 1.5em;
+    display: block;
+    font-family: sans-serif;
+    position: relative;
+
+}
+
+.ChoiceBox{
+    display: inline-block;
+    margin: 10px;
+}
+
+#text{
+    position: absolute;
+    top:270px;
+    left: 10px;
+    width: 700px;
+    height: 400px;
+}
+
+.TextBox{
+    margin: 110px;
+    margin-top: 0px;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+}
+
+.TextText{
+    font-size: 1.5em;
+    font-family: sans-serif;
+    font-family: sans-serif;
+    display: block;
+    text-align: center;
+}
+
+.TextLabel{
+    position: relative;
+    display: block;
+    font-family: sans-serif;
+    box-shadow: 2px 2px 3px black;
+    left: -100px;
+    width: 300px;
+    height: 300px;
+}

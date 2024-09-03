@@ -21,11 +21,6 @@
             <input type="text" id="nameLabel" placeholder="Name" required><br>
         </div>
 
-        <div id="AC" class="AttCharBox">
-            <label for="ACLabel" class="AttCharText">AC</label>
-            <input type="number" id="ACLabel" class="AttCharLabel" min="0" value="10"><br>
-        </div>
-
         <div id="ST" class="AttCharBox">
             <label for="STLabel" class="AttCharText">ST</label>
             <input type="number" id="STLabel" class="AttCharLabel" min="0" value="10"><br>
@@ -54,6 +49,146 @@
         <div id="CH" class="AttCharBox">
             <label for="CHLabel" class="AttCharText">CH</label>
             <input type="number" id="CHLabel" class="AttCharLabel"  class="AttCharLabel" min="0" value="10"><br>
+        </div>
+        
+        <div id="PC" class="AttCharBox">
+            <label for="PCLabel" class="AttCharText">PC</label>
+            <input type="number" id="PCLabel" class="AttCharLabel"  class="AttCharLabel" min="0" value="10"><br>
+        </div>
+        
+        <div id="AC" class="AttCharBox">
+            <label for="ACLabel" class="AttCharText">AC</label>
+            <input type="number" id="ACLabel" class="AttCharLabel" min="0" value="10"><br>
+        </div>
+
+        <br>
+
+        <div id="STB" class="AttCharBox">
+            <label for="STBLabel" class="AttCharText">STB</label>
+            <input type="number" id="STBLabel" class="AttCharLabel" min="0" value="0"><br>
+        </div>
+
+        <div id="DXB" class="AttCharBox">
+            <label for="DXBLabel" class="AttCharText">DXB</label>
+            <input type="number" id="DXBLabel" class="AttCharLabel" min="0" value="0"><br>
+        </div>
+
+        <div id="BBB" class="AttCharBox">
+            <label for="BBBLabel" class="AttCharText">BBB</label>
+            <input type="number" id="BBBLabel" class="AttCharLabel" min="0" value="0"><br>
+        </div>
+
+        <div id="INB" class="AttCharBox">
+            <label for="INBLabel" class="AttCharText">INB</label>
+            <input type="number" id="INBLabel" class="AttCharLabel" min="0" value="0"><br>
+        </div>
+
+        <div id="WIB" class="AttCharBox">
+            <label for="WIBLabel" class="AttCharText">WIB</label>
+            <input type="number" id="WIBLabel" class="AttCharLabel" min="0" value="0"><br>
+        </div>
+
+        <div id="CHB" class="AttCharBox">
+            <label for="CHBLabel" class="AttCharText">CHB</label>
+            <input type="number" id="CHBLabel" class="AttCharLabel"  class="AttCharLabel" min="0" value="0"><br>
+        </div>
+
+        <div id="SKB" class="AttCharBox">
+            <label for="SKBLabel" class="AttCharText">SKB</label>
+            <input type="number" id="SKBLabel" class="AttCharLabel"  class="AttCharLabel" min="0" value="0"><br>
+        </div>
+
+        <div id="speed">
+            <div id="WS" class="SpCharBox">
+                <label for="WalkSpeed" class="SpeedText">WalkS</label>
+                <input type="checkbox" id="WalkSpeed" class="SpeedLabel">
+                <input type="number" id="WSV" class="SpeedLabelV" min="0" value="30"><br>
+            </div>
+            
+            <div id="SS" class="SpCharBox">
+                <label for="SwimSpeed" class="SpeedText">SwimS</label>
+                <input type="checkbox" id="SwimSpeed" class="SpeedLabel">
+                <input type="number" id="SSV" class="SpeedLabelV"  min="0" value="30"><br>
+            </div>
+            
+            <div id="FS" class="SpCharBox">
+                <label for="FlySpeed" class="SpeedText">FlyS</label>
+                <input type="checkbox" id="FlySpeed" class="SpeedLabel">
+                <input type="number" id="FSV" class="SpeedLabelV" min="0" value="30"><br>
+            </div>
+        </div>
+            
+        <div id="hp">
+            <h3 id="hpTitle">HP:  </h3>
+            
+            <input type="number" id="NDLabel" class="HPLabel" min="0" value="1">
+            
+            <p class="hpText">d</p>
+
+            <input type="number" id="DVLabel" class="HPLabel" min="4" value="10">
+            
+            <p class="hpText"> + </p>
+
+            <input type="number" id="PBLabel" class="HPLabel" min="0" value="5">
+
+        </div>
+        
+        <div id="Choice">
+
+            <div class="ChoiceBox">
+                <label for="typeLabel" class="ChoiceText">Type</label>
+                <select id="typeLabel" class="ChoiceLabel">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+
+            <div class="ChoiceBox">
+                <label for="WWLabel" class="ChoiceText">WorldV</label>
+                <select id="WWLabel" class="ChoiceLabel">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+
+            <div class="ChoiceBox">
+                <label for="SizeLabel" class="ChoiceText">Size</label>
+                <select id="SizeLabel" class="ChoiceLabel">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+
+            <div class="ChoiceBox">
+                <label for="SizeLabel" class="ChoiceText">Danger</label>
+                <select id="SizeLabel" class="ChoiceLabel">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div id = "text">
+
+            <div class="TextBox">
+
+                <label for="features" class="TextText">features</label>
+                <textarea id="features" class="TextLabel" row = "60" cols = "40"></textarea>
+
+            </div>
+
+            <div class="TextBox">
+                
+                <label for="description" class="TextText">description</label>
+                <textarea id="description" class="TextLabel"row = "60" cols = "40"></textarea>
+
+            </div>
+
         </div>
 
     </div>
