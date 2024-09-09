@@ -249,3 +249,284 @@ body{
     width: 300px;
     height: 300px;
 }
+
+#relations{
+    position: absolute;
+    top:270px;
+    left: 700px;
+    width: 300px;
+    height: 100px;
+}
+
+.RelText{
+    position: absolute;
+    display: block;
+    font-family: sans-serif;
+    font-size: 1.5em;
+}
+
+.RelChoice{
+    position: absolute;
+    display: block;
+    font-family: sans-serif;
+    font-size: 1.5em;
+    width: 130px;
+    height: 30px;
+}
+
+#DamgType{
+    top:55px;
+    left: 130px;
+}
+
+#RelButtonD{
+    top:10px;
+    left: 130px;
+}
+
+#RelBoxM{
+    position: relative;
+    display: inline-block;
+    width: 120px;
+    height: auto;
+}
+
+.RelBox{
+    display: block;
+}
+
+.RelTextDT{
+    font-family: sans-serif;
+    font-size: 1.5em;
+}
+
+.RelLabelDT{
+    position: absolute;
+    width: 20%;
+    height: 2em;
+    right: 0px;
+}
+
+#RelButtonS{
+    top:10px;
+    left: 380px;
+}
+
+.RelButton{
+    position: absolute;
+    display: block;
+    font-family: sans-serif;
+    font-size: 1.2em;
+    border: 1px solid black;
+    border-radius: 6px;
+    background-color: antiquewhite;
+    box-shadow: 3px 2px 2px;
+    width: 130px;
+    height: 30px;
+}
+
+.RelButton:hover{
+    background-color: rgb(255, 187, 109);
+}
+
+.RelButton:active{
+    background-color: rgb(243, 145, 33);
+}
+
+
+#StatTypeText{
+    top:55px;
+    left: 310px;
+}
+
+#StatType{
+    top:55px;
+    left: 380px;
+}
+
+
+#RelButtonL{
+    top:10px;
+    left: 650px;
+}
+
+#LocationTypeText{
+    top:55px;
+    left: 555px;
+}
+
+#LocationType{
+    top:55px;
+    left: 650px;
+}
+
+#TopogBoxM{
+    position: absolute;
+    display: inline-block;
+    width: 120px;
+    top: 145px;
+    left: 0px;
+    height: auto;
+}
+
+.TopogBox{
+    display: block;
+}
+
+.TopogTextDT{
+    font-family: sans-serif;
+    font-size: 1.5em;
+}
+
+.TopogLabelDT{
+    position: absolute;
+    width: 20%;
+    height: 2em;
+    right: 0px;
+}
+
+#TopogType{
+    top:210px;
+    left: 130px;
+}
+
+#RelButtonT{
+    top:145px;
+    left: 130px;
+}
+
+
+#TopogTypeText{
+    top:210px;
+    left: 0px;
+}
+
+#ClassRelBoxM{
+    position: absolute;
+    display: inline-block;
+    width: 120px;
+    top: 145px;
+    left: 310px;
+    height: auto;
+}
+
+.ClassRelBox{
+    display: block;
+}
+
+.ClassRelTextDT{
+    font-family: sans-serif;
+    font-size: 1.5em;
+}
+
+.ClassRelLabelDT{
+    position: absolute;
+    width: 20%;
+    height: 2em;
+    right: 0px;
+}
+
+#ClassRelType{
+    top:210px;
+    left: 440px;
+}
+
+#RelButtonC{
+    top:145px;
+    left: 440px;
+}
+
+#ClassRelTypeText{
+    top:210px;
+    left: 310px;
+}
+
+#Action{
+    display: block;
+    position: absolute;
+    top: 550px;
+    left: 700px;
+    width: 700px;
+    height: 350px;
+}
+
+#ActionTitle{
+    position: relative;
+    font-size: 2em;
+    margin: 0px;
+    margin-right: 0px;
+    font-family: sans-serif;
+    display: inline-block;
+}
+
+
+#AnameText{
+    position: relative;
+    font-size: 1.2em;
+    margin-right: 0px;
+    font-family: sans-serif;
+    display: inline-block;
+}
+
+
+
+#AnameLabel{
+    box-shadow: 1px 1px 2px black;
+    position: relative;
+    font-size: 1.2em;
+    display: inline-block;
+    width: 200px;
+}
+
+#AnameType{
+    top:36px;
+    left:280px;
+}
+
+.AinfoBox{
+    margin: 110px;
+    margin-top: 0px;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+}
+
+.AinfoText{
+    font-size: 1.5em;
+    font-family: sans-serif;
+    font-family: sans-serif;
+    display: block;
+    text-align: center;
+}
+
+.AinfoLabel{
+    position: relative;
+    display: block;
+    font-family: sans-serif;
+    box-shadow: 2px 2px 3px black;
+    left: -100px;
+    width: 400px;
+    height: 240px;
+}
+
+
+.IsLegendText{
+    position: absolute;
+    font-size: 2em;
+    font-family: sans-serif;
+    margin-right: 0px;
+    left: 450px;
+    top: 300px;
+}
+
+.IsLegendLabel{
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    accent-color: rgb(0, 255, 0);
+    color: white;
+    margin-left: 0px;
+    left: 590px;
+    top: 300px;
+    cursor: pointer;
+}
