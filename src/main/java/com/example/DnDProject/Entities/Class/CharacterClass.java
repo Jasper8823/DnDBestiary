@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Entity
 public class CharacterClass {
 
@@ -16,6 +17,15 @@ public class CharacterClass {
     private String name;
 
     private String HP_dice;
+
+    // Self-referencing many-to-one relationship (Parent Class)
+    @ManyToOne
+    @JoinColumn(name = "parent_name") // Foreign key referencing itself
+    private CharacterClass parentClass;
+
+    // Self-referencing one-to-many relationship (Child Classes)
+    @OneToMany(mappedBy = "parentClass")
+    private List<CharacterClass> childClasses = new ArrayList<>();
 
     @OneToMany(mappedBy = "charClass", orphanRemoval = true)
     @Fetch(FetchMode.SELECT)
@@ -27,6 +37,7 @@ public class CharacterClass {
 
     @ManyToMany(mappedBy = "classAdvList")
     private List<Monster> monsters_advC = new ArrayList<>();
+
     @ManyToMany(mappedBy = "classWeakList")
     private List<Monster> monsters_weakC = new ArrayList<>();
 
@@ -51,6 +62,22 @@ public class CharacterClass {
 
     public void setHP_dice(String HP_dice) {
         this.HP_dice = HP_dice;
+    }
+
+    public CharacterClass getParentClass() {
+        return parentClass;
+    }
+
+    public void setParentClass(CharacterClass parentClass) {
+        this.parentClass = parentClass;
+    }
+
+    public List<CharacterClass> getChildClasses() {
+        return childClasses;
+    }
+
+    public void setChildClasses(List<CharacterClass> childClasses) {
+        this.childClasses = childClasses;
     }
 
 }
