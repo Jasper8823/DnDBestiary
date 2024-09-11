@@ -1,11 +1,12 @@
 package com.example.DnDProject.Entities.Monster.Action;
 
 import com.example.DnDProject.Entities.MtoMConnections.MonsterAction;
-import javax.persistence.*;
+import jakarta.persistence.Entity;
 import org.hibernate.annotations.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import jakarta.persistence.*;
 
 @Entity
 public class Action {

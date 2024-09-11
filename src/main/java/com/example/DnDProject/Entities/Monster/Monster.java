@@ -12,12 +12,15 @@ import com.example.DnDProject.Entities.Monster.MonsterAttributes.Size;
 import com.example.DnDProject.Entities.Monster.MonsterAttributes.Type;
 import com.example.DnDProject.Entities.Monster.MonsterAttributes.Worldview;
 
-import javax.persistence.*;
+
+import jakarta.persistence.Entity;
 import org.hibernate.annotations.*;
 import org.hibernate.annotations.CascadeType;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import jakarta.persistence.*;
 
 @Entity
 public class Monster {

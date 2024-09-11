@@ -7,14 +7,17 @@
 
         <!-- Database connection settings -->
         <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
-        <property name="hibernate.connection.url">jdbc:sqlserver://DESKTOP-K6I7727\\SQLEXPRESS02;databaseName=mydb;encrypt=true;trustServerCertificate=true;</property>
 
-        <!-- Automatically update schema -->
+        <property name="hibernate.connection.url">jdbc:sqlserver://...\\InstanceName:1433;databaseName=dbname;encrypt=true;trustServerCertificate=true;</property>
+        <property name="hibernate.connection.username">username</property>
+        <property name="hibernate.connection.password">password</property>
+
         <property name="hibernate.hbm2ddl.auto">update</property>
-
-        <!-- Show SQL in console -->
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
+
+<!--        <mapping class="com.example.DnDProject.Test.FakePlayer"/>-->
+
 
         <!-- Entity Mappings -->
         <!-- BackStory -->
@@ -59,8 +62,5 @@
         <!-- Spell -->
         <mapping class="com.example.DnDProject.Entities.Spell.Spell"/>
         <mapping class="com.example.DnDProject.Entities.Spell.SpellType"/>
-
-
-
     </session-factory>
 </hibernate-configuration>

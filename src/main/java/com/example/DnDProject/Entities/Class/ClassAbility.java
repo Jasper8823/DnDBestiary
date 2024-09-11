@@ -1,9 +1,8 @@
 package com.example.DnDProject.Entities.Class;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import jakarta.persistence.Entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class ClassAbility {

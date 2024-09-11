@@ -1,10 +1,10 @@
 package com.example.DnDProject.Entities.Item;
 
 
-import javax.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import jakarta.persistence.*;
 
 @Entity
 public class Rarity {
