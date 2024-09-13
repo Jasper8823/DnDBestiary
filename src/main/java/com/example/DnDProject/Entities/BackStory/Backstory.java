@@ -3,9 +3,10 @@ package com.example.DnDProject.Entities.BackStory;
 import com.example.DnDProject.Entities.Character.Character;
 import com.example.DnDProject.Entities.Skill.Skill;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import jakarta.persistence.*;
 
 @Entity
 public class Backstory {

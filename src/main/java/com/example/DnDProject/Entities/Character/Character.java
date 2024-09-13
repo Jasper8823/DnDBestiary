@@ -6,9 +6,9 @@ import com.example.DnDProject.Entities.Race.Race;
 import com.example.DnDProject.Entities.Skill.Skill;
 import com.example.DnDProject.Entities.Spell.Spell;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import jakarta.persistence.*;
 
 @Entity
 public class Character {

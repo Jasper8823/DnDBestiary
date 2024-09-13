@@ -5,7 +5,7 @@ import com.example.DnDProject.Entities.Monster.Monster;
 import com.example.DnDProject.Entities.Race.Race;
 import com.example.DnDProject.Entities.Skill.Attribute;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class RaceAttribute {

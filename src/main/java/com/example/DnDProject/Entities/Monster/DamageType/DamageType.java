@@ -1,10 +1,10 @@
 package com.example.DnDProject.Entities.Monster.DamageType;
 
 import com.example.DnDProject.Entities.Monster.Monster;
-import javax.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import jakarta.persistence.*;
 
 @Entity
 public class DamageType {

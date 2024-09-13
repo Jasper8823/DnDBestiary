@@ -2,13 +2,12 @@ package com.example.DnDProject.Entities.Spell;
 
 import com.example.DnDProject.Entities.Character.Character;
 import com.example.DnDProject.Entities.Class.CharacterClass;
-import com.example.DnDProject.Entities.Monster.DamageType.DamageType;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
+import jakarta.persistence.Entity;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import jakarta.persistence.*;
 
 @Entity
 public class Spell {

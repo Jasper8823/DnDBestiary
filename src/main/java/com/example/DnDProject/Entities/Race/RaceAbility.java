@@ -1,6 +1,7 @@
 package com.example.DnDProject.Entities.Race;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
 @Entity
 public class RaceAbility {
     @Id

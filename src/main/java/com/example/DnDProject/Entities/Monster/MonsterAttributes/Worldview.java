@@ -1,11 +1,13 @@
 package com.example.DnDProject.Entities.Monster.MonsterAttributes;
 
 import com.example.DnDProject.Entities.Monster.Monster;
-import javax.persistence.*;
+import jakarta.persistence.Entity;
 import org.hibernate.annotations.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import jakarta.persistence.*;
 
 @Entity
 public class Worldview {

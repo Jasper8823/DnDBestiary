@@ -1,10 +1,12 @@
 package com.example.DnDProject.Entities.Monster.StatusSens;
 
 import com.example.DnDProject.Entities.Monster.Monster;
-import javax.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import jakarta.persistence.*;
+import jakarta.persistence.Entity;
 
 @Entity
 public class Status {

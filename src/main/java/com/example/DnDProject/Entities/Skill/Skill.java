@@ -1,15 +1,17 @@
 package com.example.DnDProject.Entities.Skill;
 
-import javax.persistence.*;
 
 import com.example.DnDProject.Entities.BackStory.Backstory;
 import com.example.DnDProject.Entities.Character.Character;
 import com.example.DnDProject.Entities.Spell.Spell;
+import jakarta.persistence.Entity;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import jakarta.persistence.*;
 
 @Entity
 public class Skill {
