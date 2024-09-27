@@ -1,15 +1,14 @@
 package com.example.DnDProject.Entities.Class;
 
+import com.example.DnDProject.Entities.Character.Character;
 import com.example.DnDProject.Entities.Monster.Monster;
-import com.example.DnDProject.Entities.Skill.Attribute;
+import com.example.DnDProject.Entities.Attribute.Attribute;
 import com.example.DnDProject.Entities.Spell.Spell;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import org.hibernate.annotations.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import jakarta.persistence.*;
 
 @Entity
 public class CharacterClass {

@@ -13,13 +13,13 @@ public class DamageType {
     private int Id;
     private String name;
 
-    @ManyToMany(mappedBy = "immunityDamageList")
+    @ManyToMany(mappedBy = "immunityList")
     private List<Monster> monster_imD =  new ArrayList<>();
 
     @ManyToMany(mappedBy = "resistanceList")
     private List<Monster> monster_res =  new ArrayList<>();
 
-    @ManyToMany(mappedBy = "vulnerabilityDamageList")
+    @ManyToMany(mappedBy = "vulnerabilityList")
     private List<Monster> monster_vul =  new ArrayList<>();//Sensitivities connections
 
     public void setdId(int dId) {

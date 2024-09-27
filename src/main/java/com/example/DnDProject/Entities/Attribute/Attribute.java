@@ -1,8 +1,9 @@
-package com.example.DnDProject.Entities.Skill;
+package com.example.DnDProject.Entities.Attribute;
 
 import com.example.DnDProject.Entities.Character.Character;
 import com.example.DnDProject.Entities.Class.CharacterClass;
 import com.example.DnDProject.Entities.MtoMConnections.RaceAttribute;
+import com.example.DnDProject.Entities.Skill.Skill;
 import jakarta.persistence.Entity;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;

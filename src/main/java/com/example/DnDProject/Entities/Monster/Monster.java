@@ -61,7 +61,22 @@ public class Monster {
 
     private String features;
     private String description;
-
+    @ManyToOne
+    @JoinColumn(name = "danger_name", nullable = false)
+    @Fetch(FetchMode.SELECT)
+    private Danger danger;
+    @ManyToOne
+    @JoinColumn(name = "size_name", nullable = false)
+    @Fetch(FetchMode.SELECT)
+    private Size size;
+    @ManyToOne
+    @JoinColumn(name = "type_name", nullable = false)
+    @Fetch(FetchMode.SELECT)
+    private Type type;
+    @ManyToOne
+    @JoinColumn(name = "worldview_name", nullable = false)
+    @Fetch(FetchMode.SELECT)
+    private Worldview worldview;//Attributes connections
     @ManyToMany()
     @Cascade(CascadeType.ALL)
     @JoinTable(
@@ -69,7 +84,7 @@ public class Monster {
             joinColumns = { @JoinColumn(name = "monster_id") },
             inverseJoinColumns = { @JoinColumn(name = "damageType_id") }
     )
-    private List<DamageType> immunityDamageList = new ArrayList<>();//some monsters may not take damage of a certain type at all
+    private List<DamageType> immunityList = new ArrayList<>();//some monsters may not take damage of a certain type at all
                                                                     //example: all elementals do not take poison damage
     @ManyToMany()
     @Cascade(CascadeType.ALL)
@@ -153,22 +168,7 @@ public class Monster {
     )
     private List<Topography> topographyAdvList = new ArrayList<>();//Topography connections
 
-    @ManyToOne
-    @JoinColumn(name = "danger_name", nullable = false)
-    @Fetch(FetchMode.SELECT)
-    private Danger danger;
-    @ManyToOne
-    @JoinColumn(name = "size_name", nullable = false)
-    @Fetch(FetchMode.SELECT)
-    private Size size;
-    @ManyToOne
-    @JoinColumn(name = "type_name", nullable = false)
-    @Fetch(FetchMode.SELECT)
-    private Type type;
-    @ManyToOne
-    @JoinColumn(name = "worldview_name", nullable = false)
-    @Fetch(FetchMode.SELECT)
-    private Worldview worldview;//Attributes connections
+
 
     public void setId(int id) {
         this.id = id;

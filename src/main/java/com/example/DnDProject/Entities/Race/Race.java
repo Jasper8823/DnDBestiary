@@ -1,7 +1,7 @@
 package com.example.DnDProject.Entities.Race;
 
 
-import com.example.DnDProject.Entities.MtoMConnections.MonsterAction;
+import com.example.DnDProject.Entities.Character.Character;
 import com.example.DnDProject.Entities.MtoMConnections.RaceAttribute;
 
 
@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.*;
-import jakarta.persistence.Entity;
 
 @Entity
 public class Race {

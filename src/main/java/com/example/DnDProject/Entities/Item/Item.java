@@ -2,8 +2,6 @@ package com.example.DnDProject.Entities.Item;
 
 import com.example.DnDProject.Entities.Character.Character;
 import jakarta.persistence.Entity;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 import java.util.ArrayList;
 import java.util.List;

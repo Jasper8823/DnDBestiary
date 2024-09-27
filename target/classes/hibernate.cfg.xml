@@ -7,9 +7,8 @@
 
         <!-- Database connection settings -->
         <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
-        <!--    <property name="hibernate.connection.url">jdbc:sqlserver://DESKTOP-K6I7727\\SQLEXPRESS02;databaseName=mydb;encrypt=true;trustServerCertificate=true;</property>-->
 
-        <property name="hibernate.connection.url">jdbc:sqlserver://DESKTOP-QIEQGCN\\InstanceName:1433;databaseName=mydb;encrypt=true;trustServerCertificate=true;</property>
+        <property name="hibernate.connection.url">jdbc:sqlserver://DESKTOP-K6I7727\\InstanceName:1433;databaseName=mydb;encrypt=true;trustServerCertificate=true;</property>
         <property name="hibernate.connection.username">sqlcoadmin</property>
         <property name="hibernate.connection.password">123123123</property>
 
@@ -17,60 +16,61 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
 
-        <mapping class="com.example.DnDProject.Test.FakePlayer"/>
+        <!-- Monster Attributes -->
+        <mapping class="com.example.DnDProject.Entities.Monster.MonsterAttributes.Danger"/>
+        <mapping class="com.example.DnDProject.Entities.Monster.MonsterAttributes.Size"/>
+        <mapping class="com.example.DnDProject.Entities.Monster.MonsterAttributes.Type"/>
+        <mapping class="com.example.DnDProject.Entities.Monster.MonsterAttributes.Worldview"/>
 
-        <!--        &lt;!&ndash; Automatically update schema &ndash;&gt;-->
-        <!--        <property name="hibernate.hbm2ddl.auto">update</property>-->
+        <!-- Monster Entity -->
+        <mapping class="com.example.DnDProject.Entities.Monster.Monster"/>
 
-        <!--        &lt;!&ndash; Show SQL in console &ndash;&gt;-->
-        <!--        <property name="hibernate.show_sql">true</property>-->
-        <!--        <property name="hibernate.format_sql">true</property>-->
+        <!-- Damage Types Related to Monsters -->
+        <mapping class="com.example.DnDProject.Entities.Monster.DamageType.DamageType"/>
 
-        <!--        &lt;!&ndash; Entity Mappings &ndash;&gt;-->
-        <!--        &lt;!&ndash; BackStory &ndash;&gt;-->
-        <!--        <mapping class="com.example.DnDProject.Entities.BackStory.Backstory"/>-->
+        <!-- Status Effects Related to Monsters -->
+        <mapping class="com.example.DnDProject.Entities.Monster.StatusSens.Status"/>
 
-        <!--        &lt;!&ndash; Character &ndash;&gt;-->
-        <!--        <mapping class="com.example.DnDProject.Entities.Character.Character"/>-->
+        <!-- Monster Actions -->
+        <mapping class="com.example.DnDProject.Entities.Monster.Action.Action"/>
 
-        <!--        &lt;!&ndash; Class &ndash;&gt;-->
-        <!--        <mapping class="com.example.DnDProject.Entities.Class.CharacterClass"/>-->
-        <!--        <mapping class="com.example.DnDProject.Entities.Class.ClassAbility"/>-->
+        <!-- Monster Location -->
+        <mapping class="com.example.DnDProject.Entities.Monster.Location.Location"/>
 
-        <!--        &lt;!&ndash; Item &ndash;&gt;-->
-        <!--        <mapping class="com.example.DnDProject.Entities.Item.Item"/>-->
-        <!--        <mapping class="com.example.DnDProject.Entities.Item.ItemType"/>-->
-        <!--        <mapping class="com.example.DnDProject.Entities.Item.Rarity"/>-->
+        <!-- Monster Topography -->
+        <mapping class="com.example.DnDProject.Entities.Monster.Topography.Topography"/>
 
-        <!--        &lt;!&ndash; Monster &ndash;&gt;-->
-        <!--        <mapping class="com.example.DnDProject.Entities.Monster.Action.Action"/>-->
-        <!--        <mapping class="com.example.DnDProject.Entities.Monster.DamageType.DamageType"/>-->
-        <!--        <mapping class="com.example.DnDProject.Entities.Monster.Location.Location"/>-->
-        <!--        <mapping class="com.example.DnDProject.Entities.Monster.MonsterAttributes.Danger"/>-->
-        <!--        <mapping class="com.example.DnDProject.Entities.Monster.MonsterAttributes.Size"/>-->
-        <!--        <mapping class="com.example.DnDProject.Entities.Monster.MonsterAttributes.Type"/>-->
-        <!--        <mapping class="com.example.DnDProject.Entities.Monster.MonsterAttributes.Worldview"/>-->
-        <!--        <mapping class="com.example.DnDProject.Entities.Monster.StatusSens.Status"/>-->
-        <!--        <mapping class="com.example.DnDProject.Entities.Monster.Topography.Topography"/>-->
-        <!--        <mapping class="com.example.DnDProject.Entities.Monster.Monster"/>-->
+        <!-- Many-to-Many Connections for Monster Actions -->
+        <mapping class="com.example.DnDProject.Entities.MtoMConnections.MonsterAction"/>
 
-        <!--        &lt;!&ndash; MtoMConnections &ndash;&gt;-->
-        <!--        <mapping class="com.example.DnDProject.Entities.MtoMConnections.MonsterAction"/>-->
-        <!--        <mapping class="com.example.DnDProject.Entities.MtoMConnections.RaceAttribute"/>-->
+        <!-- Spell Related Entities -->
+        <mapping class="com.example.DnDProject.Entities.Spell.SpellType"/>
+        <mapping class="com.example.DnDProject.Entities.Spell.Spell"/>
 
-        <!--        &lt;!&ndash; Race &ndash;&gt;-->
-        <!--        <mapping class="com.example.DnDProject.Entities.Race.Race"/>-->
-        <!--        <mapping class="com.example.DnDProject.Entities.Race.RaceAbility"/>-->
+        <!-- Item Related Entities -->
+        <mapping class="com.example.DnDProject.Entities.Item.ItemType"/>
+        <mapping class="com.example.DnDProject.Entities.Item.Rarity"/>
+        <mapping class="com.example.DnDProject.Entities.Item.Item"/>
 
-        <!--        &lt;!&ndash; Skill &ndash;&gt;-->
-        <!--        <mapping class="com.example.DnDProject.Entities.Skill.Attribute"/>-->
-        <!--        <mapping class="com.example.DnDProject.Entities.Skill.Skill"/>-->
+        <!-- Race Related Entities -->
+        <mapping class="com.example.DnDProject.Entities.Race.Race"/>
+        <mapping class="com.example.DnDProject.Entities.Race.RaceAbility"/>
+        <mapping class="com.example.DnDProject.Entities.Attribute.Attribute"/>
 
-        <!--        &lt;!&ndash; Spell &ndash;&gt;-->
-        <!--        <mapping class="com.example.DnDProject.Entities.Spell.Spell"/>-->
-        <!--        <mapping class="com.example.DnDProject.Entities.Spell.SpellType"/>-->
+        <!-- Many-to-Many Connections for Race Attributes -->
+        <mapping class="com.example.DnDProject.Entities.MtoMConnections.RaceAttribute"/>
 
+        <!-- Skill Related Entities -->
+        <mapping class="com.example.DnDProject.Entities.Skill.Skill"/>
 
+        <!-- BackStory Entities -->
+        <mapping class="com.example.DnDProject.Entities.BackStory.Backstory"/>
 
+        <!-- Class Related Entities -->
+        <mapping class="com.example.DnDProject.Entities.Class.ClassAbility"/>
+        <mapping class="com.example.DnDProject.Entities.Class.CharacterClass"/>
+
+        <!-- Character Entity -->
+        <mapping class="com.example.DnDProject.Entities.Character.Character"/>
     </session-factory>
 </hibernate-configuration>
