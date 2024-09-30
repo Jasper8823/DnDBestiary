@@ -62,21 +62,25 @@ public class Monster {
     private String features;
     private String description;
     @ManyToOne
-    @JoinColumn(name = "danger_name", nullable = false)
+    @JoinColumn(name = "danger_name", nullable = true) // Changed to nullable = true
     @Fetch(FetchMode.SELECT)
     private Danger danger;
+
     @ManyToOne
-    @JoinColumn(name = "size_name", nullable = false)
+    @JoinColumn(name = "size_name", nullable = true) // Changed to nullable = true
     @Fetch(FetchMode.SELECT)
     private Size size;
+
     @ManyToOne
-    @JoinColumn(name = "type_name", nullable = false)
+    @JoinColumn(name = "type_name", nullable = true) // Changed to nullable = true
     @Fetch(FetchMode.SELECT)
     private Type type;
+
     @ManyToOne
-    @JoinColumn(name = "worldview_name", nullable = false)
+    @JoinColumn(name = "worldview_name", nullable = true) // Changed to nullable = true
     @Fetch(FetchMode.SELECT)
-    private Worldview worldview;//Attributes connections
+    private Worldview worldview; // Attributes connections
+
     @ManyToMany()
     @Cascade(CascadeType.ALL)
     @JoinTable(
@@ -84,8 +88,8 @@ public class Monster {
             joinColumns = { @JoinColumn(name = "monster_id") },
             inverseJoinColumns = { @JoinColumn(name = "damageType_id") }
     )
-    private List<DamageType> immunityList = new ArrayList<>();//some monsters may not take damage of a certain type at all
-                                                                    //example: all elementals do not take poison damage
+    private List<DamageType> immunityList = new ArrayList<>(); // Some monsters may not take damage of a certain type at all
+
     @ManyToMany()
     @Cascade(CascadeType.ALL)
     @JoinTable(
@@ -93,8 +97,7 @@ public class Monster {
             joinColumns = { @JoinColumn(name = "monster_id") },
             inverseJoinColumns = { @JoinColumn(name = "damageType_id") }
     )
-    private List<DamageType> resistanceList = new ArrayList<>();//some monsters may have resistance to damage of a certain type
-                                                                //example: demons take half the damage
+    private List<DamageType> resistanceList = new ArrayList<>(); // Some monsters may have resistance to damage of a certain type
 
     @ManyToMany()
     @Cascade(CascadeType.ALL)
@@ -103,8 +106,7 @@ public class Monster {
             joinColumns = { @JoinColumn(name = "monster_id") },
             inverseJoinColumns = { @JoinColumn(name = "damageType_id") }
     )
-    private List<DamageType> vulnerabilityList = new ArrayList<>();//some monsters may have a vulnerability to certain types of damage
-                                                                    //example: skeletons taking double damage with crushing attacks
+    private List<DamageType> vulnerabilityList = new ArrayList<>(); // Some monsters may have a vulnerability to certain types of damage
 
     @ManyToMany()
     @Cascade(CascadeType.ALL)
@@ -114,7 +116,8 @@ public class Monster {
             inverseJoinColumns = { @JoinColumn(name = "status_id") }
     )
     private List<Status> immunityStatusList = new ArrayList<>();
-    // Sensitivities connections
+
+// Sensitivities connections
 
     @ManyToMany()
     @Cascade(CascadeType.ALL)
@@ -123,8 +126,9 @@ public class Monster {
             joinColumns = { @JoinColumn(name = "monster_id") },
             inverseJoinColumns = { @JoinColumn(name = "location_name") }
     )
-    private List<Location> habitats = new ArrayList<>();//describes the locations and biomes in which the monster is most often found
-    //habitat connection
+    private List<Location> habitats = new ArrayList<>(); // Describes the locations and biomes in which the monster is most often found
+
+// Habitat connection
 
     @ManyToMany()
     @Cascade(CascadeType.ALL)
@@ -133,7 +137,6 @@ public class Monster {
             joinColumns = { @JoinColumn(name = "monster_id") },
             inverseJoinColumns = { @JoinColumn(name = "class_name") }
     )
-
     private List<CharacterClass> classAdvList = new ArrayList<>();
 
     @ManyToMany()
@@ -143,12 +146,12 @@ public class Monster {
             joinColumns = { @JoinColumn(name = "monster_id") },
             inverseJoinColumns = { @JoinColumn(name = "class_name") }
     )
-    private List<CharacterClass> classWeakList = new ArrayList<>();//Class connections
+    private List<CharacterClass> classWeakList = new ArrayList<>(); // Class connections
+
     @OneToMany(mappedBy = "monster", orphanRemoval = true)
     @Cascade(CascadeType.ALL)
     @Fetch(FetchMode.SELECT)
-    private List<MonsterAction> monsterActions = new ArrayList<>();//actions connection
-
+    private List<MonsterAction> monsterActions = new ArrayList<>(); // Actions connection
 
     @ManyToMany()
     @Cascade(CascadeType.ALL)
@@ -157,8 +160,8 @@ public class Monster {
             joinColumns = { @JoinColumn(name = "monster_id") },
             inverseJoinColumns = { @JoinColumn(name = "topography_name") }
     )
-
     private List<Topography> topographyWeakList = new ArrayList<>();
+
     @ManyToMany()
     @Cascade(CascadeType.ALL)
     @JoinTable(
@@ -166,9 +169,120 @@ public class Monster {
             joinColumns = { @JoinColumn(name = "monster_id") },
             inverseJoinColumns = { @JoinColumn(name = "topography_name") }
     )
-    private List<Topography> topographyAdvList = new ArrayList<>();//Topography connections
+    private List<Topography> topographyAdvList = new ArrayList<>(); // Topography connections
 
 
+    public Danger getDanger() {
+        return danger;
+    }
+
+    public void setDanger(Danger danger) {
+        this.danger = danger;
+    }
+
+    public Size getSize() {
+        return size;
+    }
+
+    public void setSize(Size size) {
+        this.size = size;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public Worldview getWorldview() {
+        return worldview;
+    }
+
+    public void setWorldview(Worldview worldview) {
+        this.worldview = worldview;
+    }
+
+    public List<DamageType> getImmunityList() {
+        return immunityList;
+    }
+
+    public void setImmunityList(List<DamageType> immunityList) {
+        this.immunityList = immunityList;
+    }
+
+    public List<DamageType> getResistanceList() {
+        return resistanceList;
+    }
+
+    public void setResistanceList(List<DamageType> resistanceList) {
+        this.resistanceList = resistanceList;
+    }
+
+    public List<DamageType> getVulnerabilityList() {
+        return vulnerabilityList;
+    }
+
+    public void setVulnerabilityList(List<DamageType> vulnerabilityList) {
+        this.vulnerabilityList = vulnerabilityList;
+    }
+
+    public List<Status> getImmunityStatusList() {
+        return immunityStatusList;
+    }
+
+    public void setImmunityStatusList(List<Status> immunityStatusList) {
+        this.immunityStatusList = immunityStatusList;
+    }
+
+    public List<Location> getHabitats() {
+        return habitats;
+    }
+
+    public void setHabitats(List<Location> habitats) {
+        this.habitats = habitats;
+    }
+
+    public List<CharacterClass> getClassAdvList() {
+        return classAdvList;
+    }
+
+    public void setClassAdvList(List<CharacterClass> classAdvList) {
+        this.classAdvList = classAdvList;
+    }
+
+    public List<CharacterClass> getClassWeakList() {
+        return classWeakList;
+    }
+
+    public void setClassWeakList(List<CharacterClass> classWeakList) {
+        this.classWeakList = classWeakList;
+    }
+
+    public List<MonsterAction> getMonsterActions() {
+        return monsterActions;
+    }
+
+    public void setMonsterActions(List<MonsterAction> monsterActions) {
+        this.monsterActions = monsterActions;
+    }
+
+    public List<Topography> getTopographyWeakList() {
+        return topographyWeakList;
+    }
+
+    public void setTopographyWeakList(List<Topography> topographyWeakList) {
+        this.topographyWeakList = topographyWeakList;
+    }
+
+    public List<Topography> getTopographyAdvList() {
+        return topographyAdvList;
+    }
+
+    public void setTopographyAdvList(List<Topography> topographyAdvList) {
+        this.topographyAdvList = topographyAdvList;
+    }
 
     public void setId(int id) {
         this.id = id;

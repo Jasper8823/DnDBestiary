@@ -14,14 +14,6 @@ public class FakePlayer {
     private Integer level;
     private String name;
 
-    // Many Players can have many Pillows
-    @ManyToMany
-    @JoinTable(
-            name = "player_pillow", // Name of the join table
-            joinColumns = @JoinColumn(name = "player_id"), // Foreign key for Player
-            inverseJoinColumns = @JoinColumn(name = "pillow_id") // Foreign key for Pillow
-    )
-    private List<Pillow> pillows = new ArrayList<>();
 
     // Getters and Setters
     public Long getId() {
@@ -48,11 +40,4 @@ public class FakePlayer {
         this.name = name;
     }
 
-    public List<Pillow> getPillows() {
-        return pillows;
-    }
-
-    public void setPillows(List<Pillow> pillows) {
-        this.pillows = pillows;
-    }
 }
