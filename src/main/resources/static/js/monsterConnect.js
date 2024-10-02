@@ -1,19 +1,26 @@
-// Assuming this JavaScript is attached to the Vaadin view properly
+// monsterConnect.js
 
-function callPrintName() {
-    // Access the Vaadin component and invoke the server-side method
-    const vaadinElement = document.querySelector('vaadin-vertical-layout');
+// Wait for the DOM to load
+document.addEventListener('DOMContentLoaded', () => {
+    const submitButton = document.getElementById('SubmitButton');
 
-    if (vaadinElement && vaadinElement.$server) {
-        vaadinElement.$server.printName("Nigro");
-    } else {
-        console.error("Server object or Vaadin element not found!");
-    }
-}
+    // Add an event listener for the click event
+    submitButton.addEventListener('click', () => {
+        onSubmitButtonClick(); // Call your function when the button is clicked
+    });
+});
 
-SubmitButton.onclick = function() {
-    // Call the printName method in WebPageOpener
-    callPrintName();
+// Function to handle the button click
+function onSubmitButtonClick() {
+    const nameToSend = "Nigro"; // The word you want to send
 
-    console.log("I am working");
+    // Send the word to the Java backend
+    fetch('http://localhost:8080/hello', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'text/plain', // Set content type to plain text
+        },
+        body: nameToSend,// Send the plain string directly
+    })
+
 }

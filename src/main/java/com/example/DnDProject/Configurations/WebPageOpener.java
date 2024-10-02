@@ -24,9 +24,4 @@ public class WebPageOpener implements CommandLineRunner {
         }
     }
 
-    // Method that can be called from client-side JavaScript
-    @ClientCallable
-    public void printName(String name) {
-        System.out.println("Hello, " + name);
-    }
 }
