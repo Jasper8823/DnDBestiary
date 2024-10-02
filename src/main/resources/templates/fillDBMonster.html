@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DnDBestiary filler</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="links">
+    <h1 >▶</h1>
+    <div class="dropp">
+        <a href="fillDBMonster.html">Monster</a>
+        <a href="fillDBAbility.html">Ability</a>
+        <a href="fillDBSpell.html">Spell</a>
+        <a href="fillDBItem.html">Item</a>
+    </div>
+</div>
+<div id="fill">
+    <div id="name">
+        <label for="nameLabel" id="nameText">Name</label>
+        <input type="text" id="nameLabel" placeholder="Name" required><br>
+    </div>
+
+    <div id="ST" class="AttCharBox">
+        <label for="STLabel" class="AttCharText">ST</label>
+        <input type="number" id="STLabel" class="AttCharLabel" min="0" value="10"><br>
+    </div>
+
+    <div id="DX" class="AttCharBox">
+        <label for="DXLabel" class="AttCharText">DX</label>
+        <input type="number" id="DXLabel" class="AttCharLabel" min="0" value="10"><br>
+    </div>
+
+    <div id="BB" class="AttCharBox">
+        <label for="BBLabel" class="AttCharText">BB</label>
+        <input type="number" id="BBLabel" class="AttCharLabel" min="0" value="10"><br>
+    </div>
+
+    <div id="IN" class="AttCharBox">
+        <label for="INLabel" class="AttCharText">IN</label>
+        <input type="number" id="INLabel" class="AttCharLabel" min="0" value="10"><br>
+    </div>
+
+    <div id="WI" class="AttCharBox">
+        <label for="WILabel" class="AttCharText">WI</label>
+        <input type="number" id="WILabel" class="AttCharLabel" min="0" value="10"><br>
+    </div>
+
+    <div id="CH" class="AttCharBox">
+        <label for="CHLabel" class="AttCharText">CH</label>
+        <input type="number" id="CHLabel" class="AttCharLabel"  min="0" value="10"><br>
+    </div>
+
+    <div id="PC" class="AttCharBox">
+        <label for="PCLabel" class="AttCharText">PC</label>
+        <input type="number" id="PCLabel" class="AttCharLabel" min="0" value="10"><br>
+    </div>
+
+    <div id="AC" class="AttCharBox">
+        <label for="ACLabel" class="AttCharText">AC</label>
+        <input type="number" id="ACLabel" class="AttCharLabel" min="0" value="10"><br>
+    </div>
+
+    <br>
+
+    <div id="STB" class="AttCharBox">
+        <label for="STBLabel" class="AttCharText">STB</label>
+        <input type="number" id="STBLabel" class="AttCharLabel" min="0" value="0"><br>
+    </div>
+
+    <div id="DXB" class="AttCharBox">
+        <label for="DXBLabel" class="AttCharText">DXB</label>
+        <input type="number" id="DXBLabel" class="AttCharLabel" min="0" value="0"><br>
+    </div>
+
+    <div id="BBB" class="AttCharBox">
+        <label for="BBBLabel" class="AttCharText">BBB</label>
+        <input type="number" id="BBBLabel" class="AttCharLabel" min="0" value="0"><br>
+    </div>
+
+    <div id="INB" class="AttCharBox">
+        <label for="INBLabel" class="AttCharText">INB</label>
+        <input type="number" id="INBLabel" class="AttCharLabel" min="0" value="0"><br>
+    </div>
+
+    <div id="WIB" class="AttCharBox">
+        <label for="WIBLabel" class="AttCharText">WIB</label>
+        <input type="number" id="WIBLabel" class="AttCharLabel" min="0" value="0"><br>
+    </div>
+
+    <div id="CHB" class="AttCharBox">
+        <label for="CHBLabel" class="AttCharText">CHB</label>
+        <input type="number" id="CHBLabel" class="AttCharLabel" min="0" value="0"><br>
+    </div>
+
+    <div id="SKB" class="AttCharBox">
+        <label for="SKBLabel" class="AttCharText">SKB</label>
+        <input type="number" id="SKBLabel" class="AttCharLabel" min="0" value="0"><br>
+    </div>
+
+    <div id="speed">
+        <div id="WS" class="SpCharBox">
+            <label for="WalkSpeed" class="SpeedText">WalkS</label>
+            <input type="checkbox" id="WalkSpeed" class="SpeedLabel">
+            <label for="WSV"></label><input type="number" id="WSV" class="SpeedLabelV" min="0" value="30"><br>
+        </div>
+
+        <div id="SS" class="SpCharBox">
+            <label for="SwimSpeed" class="SpeedText">SwimS</label>
+            <input type="checkbox" id="SwimSpeed" class="SpeedLabel">
+            <label for="SSV"></label><input type="number" id="SSV" class="SpeedLabelV" min="0" value="30"><br>
+        </div>
+
+        <div id="FS" class="SpCharBox">
+            <label for="FlySpeed" class="SpeedText">FlyS</label>
+            <input type="checkbox" id="FlySpeed" class="SpeedLabel">
+            <label for="FSV"></label><input type="number" id="FSV" class="SpeedLabelV" min="0" value="30"><br>
+        </div>
+    </div>
+
+    <div id="hp">
+        <h3 id="hpTitle">HP:  </h3>
+
+        <label for="NDLabel"></label><input type="number" id="NDLabel" class="HPLabel" min="0" value="1">
+
+        <p class="hpText">d</p>
+
+        <label for="DVLabel"></label><input type="number" id="DVLabel" class="HPLabel" min="4" value="10">
+
+        <p class="hpText"> + </p>
+
+        <label for="PBLabel"></label><input type="number" id="PBLabel" class="HPLabel" min="0" value="5">
+
+    </div>
+
+    <div id="Choice">
+
+        <div class="ChoiceBox">
+            <label for="typeLabel" class="ChoiceText">Type</label>
+            <select id="typeLabel" class="ChoiceLabel">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+
+        <div class="ChoiceBox">
+            <label for="WWLabel" class="ChoiceText">WorldV</label>
+            <select id="WWLabel" class="ChoiceLabel">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+
+        <div class="ChoiceBox">
+            <label for="SizeLabel" class="ChoiceText">Size</label>
+            <select id="SizeLabel" class="ChoiceLabel">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+
+        <div class="ChoiceBox">
+            <label for="DangerLabel" class="ChoiceText">Danger</label>
+            <select id="DangerLabel" class="ChoiceLabel">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div id = "text">
+
+        <div class="TextBox">
+
+            <label for="features" class="TextText">features</label>
+            <textarea id="features" class="TextLabel" rows="60" cols = "40"></textarea>
+
+        </div>
+
+        <div class="TextBox">
+
+            <label for="description" class="TextText">description</label>
+            <textarea id="description" class="TextLabel" rows="60" cols = "40"></textarea>
+
+        </div>
+
+    </div>
+
+    <div id = "relations">
+
+        <div id="RelBoxM">
+
+            <div class="RelBox">
+                <label for="Resist" class="RelTextDT">Resist</label>
+                <input type="radio" class="RelLabelDT" id ="Resist" name = "title">
+            </div>
+
+            <div class="RelBox">
+                <label for="Vulner" class="RelTextDT">Vulner</label>
+                <input type="radio" class="RelLabelDT" id ="Vulner" name = "title">
+            </div>
+
+            <div class="RelBox">
+                <label for="ImmunD" class="RelTextDT">ImmunD</label>
+                <input type="radio" class="RelLabelDT" id ="ImmunD" name = "title"><br>
+            </div>
+
+        </div>
+
+        <button id="RelButtonD" class="RelButton">Add</button>
+
+        <label for="DamgType"></label><select id="DamgType" class="RelChoice">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+
+
+        <button id="RelButtonS" class="RelButton">Add</button>
+
+        <label for="StatType" id="StatTypeText" class="RelText">Status</label>
+
+        <select id="StatType" class="RelChoice">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+
+        <button id="RelButtonL" class="RelButton">Add</button>
+
+        <label for= "LocationType" id="LocationTypeText" class="RelText">Location</label>
+        <select id="LocationType" class="RelChoice">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+
+        <div id="TopogBoxM">
+
+            <div class="TopogBox">
+                <label for="TAdv" class="TopogTextDT">Adv</label>
+                <input type="radio" class="TopogLabelDT" id ="TAdv" name = "title">
+            </div>
+
+            <div class="TopogBox">
+                <label for="TDAdv" class="TopogTextDT">DAdv</label>
+                <input type="radio" class="TopogLabelDT" id ="TDAdv" name = "title">
+            </div>
+
+        </div>
+
+        <button id="RelButtonT" class="RelButton">Add</button>
+
+        <label for= "TopogType" id="TopogTypeText" class="RelText">Topography</label>
+        <select id="TopogType" class="RelChoice">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+
+        <div id="ClassRelBoxM">
+
+            <div class="ClassRelBox">
+                <label for="CAdv" class="ClassRelTextDT">Adv</label>
+                <input type="radio" class="ClassRelLabelDT" id ="CAdv" name = "title">
+            </div>
+
+            <div class="ClassRelBox">
+                <label for="CDAdv" class="ClassRelTextDT">DAdv</label>
+                <input type="radio" class="ClassRelLabelDT" id ="CDAdv" name = "title">
+            </div>
+
+        </div>
+
+        <button id="RelButtonC" class="RelButton">Add</button>
+
+        <label for= "ClassRelType" id="ClassRelTypeText" class="RelText">ClassRel</label>
+        <select id="ClassRelType" class="RelChoice">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+
+    </div>
+
+    <div id="Action">
+        <p id="ActionTitle">Action</p>
+
+
+        <div id="Aname">
+            <label for="AnameLabel" id="AnameText">Name</label>
+            <input type="text" id="AnameLabel" placeholder="Name" required><br>
+
+            <label for="AnameType"></label><select id= "AnameType" class="RelChoice">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+
+        </div>
+
+        <div class="AinfoBox">
+
+            <label for="Ainfo" class="AinfoText">Info</label>
+            <textarea id="Ainfo" class="AinfoLabel" rows="60" cols = "40"></textarea>
+
+        </div>
+
+        <label for="IsLegend" class="IsLegendText">IsLegend</label>
+        <input type="checkbox" id="IsLegend" class="IsLegendLabel">
+
+    </div>
+
+    <button id="SubmitButton">Submit</button>
+
+    <script th:src="@{/js/monsterConnect.js}"></script>
+</div>
+</body>
+</html>
