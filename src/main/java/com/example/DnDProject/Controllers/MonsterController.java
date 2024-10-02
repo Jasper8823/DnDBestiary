@@ -15,16 +15,16 @@ public class MonsterController {
     @Autowired
     private MonsterService monsterService;
 
-    @GetMapping("/FillDBMonster")
+    @GetMapping("/fillDBMonster")
     public String createMonsterForm(Model model) {
         model.addAttribute("monsterDTO", new MonsterDTO());
-        return "FillDBMonster";
+        return "fillDBMonster";
     }
 
-    @PostMapping("/FillDBMonster")
+    @PostMapping("/fillDBMonster")
     public String saveMonster(@ModelAttribute MonsterDTO monsterDTO, Model model) {
         monsterService.saveMonster(monsterDTO);
         model.addAttribute("message", "Monster created successfully!");
-        return "FillDBMonster"; // Return to the form
+        return "fillDBMonster"; // Return to the form
     }
 }
