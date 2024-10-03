@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @Controller
 public class MonsterController {
 
@@ -33,4 +35,13 @@ public class MonsterController {
     public void hello(@RequestBody String name) {
         System.out.println("Hello " + name); // Print to console
     }
+
+    @PostMapping("/monsterPush")
+    public ResponseEntity<String> monsterPush(@RequestBody Map<String, Object> monster) {
+
+        System.out.println("Received monster data: " + monster);
+
+        return ResponseEntity.ok("Monster received successfully!");
+    }
+
 }

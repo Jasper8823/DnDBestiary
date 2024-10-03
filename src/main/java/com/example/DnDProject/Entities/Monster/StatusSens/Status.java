@@ -23,4 +23,5 @@ public class Status {
     public int getId() {
         return Id;
     }//Getters and Setters
+
 }

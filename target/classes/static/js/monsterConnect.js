@@ -17,18 +17,18 @@ document.getElementById("RelButtonD").addEventListener('click', () => {
 
 document.getElementById("RelButtonT").addEventListener('click', () => {
     if(document.getElementById("TAdv").checked){
-        damageType.push("+"+document.getElementById("TopogType").value);
+        topographyType.push("+"+document.getElementById("TopogType").value);
     }else{
-        damageType.push("-"+document.getElementById("TopogType").value);
+        topographyType.push("-"+document.getElementById("TopogType").value);
     }
 });
 
 document.getElementById("RelButtonS").addEventListener('click', () => {
-    topographyType.push(document.getElementById("StatType").value)
+    statusType.push(document.getElementById("StatType").value)
 });
 
 document.getElementById("RelButtonL").addEventListener('click', () => {
-    topographyType.push(document.getElementById("LocationType").value)
+    locationType.push(document.getElementById("LocationType").value)
 });
 
 document.getElementById("RelButtonC").addEventListener('click', () => {
@@ -41,8 +41,8 @@ document.getElementById("RelButtonC").addEventListener('click', () => {
 
 document.getElementById("ActionButton").addEventListener('click', () => {
     actionList.push(action = {aname: document.getElementById("AnameLabel").value === "" ? document.getElementById("AnameType").value : document.getElementById("AnameLabel").value,
-                              info: document.getElementById("Ainfo").value,
-                              Legend: document.getElementById("IsLegend").chacked ? true: false});
+        info: document.getElementById("Ainfo").value,
+        Legend: document.getElementById("IsLegend").checked ? true: false});
 });
 
 
@@ -87,7 +87,7 @@ document.getElementById("SubmitButton").addEventListener('click', () => {
 
         damageType: damageType,
         topographyType: topographyType,
-        classType: classType, 
+        classType: classType,
         statusType: statusType,
         locationType: locationType,
 
@@ -124,9 +124,9 @@ function monsterPush(monster) {
     fetch('http://localhost:8080/monsterPush', {
         method: 'POST',
         headers: {
-            'Content-Type': 'text/plain',
+            'Content-Type': 'application/json',
         },
-        body: monster,
+        body: JSON.stringify(monster),
     })
 
 }
