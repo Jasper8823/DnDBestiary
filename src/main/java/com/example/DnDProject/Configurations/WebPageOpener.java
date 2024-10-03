@@ -1,7 +1,5 @@
 package com.example.DnDProject.Configurations;
 
-import com.vaadin.flow.component.ClientCallable;
-import com.vaadin.flow.component.dependency.JavaScript;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
