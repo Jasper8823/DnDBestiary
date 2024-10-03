@@ -3,13 +3,17 @@ server:
   port: 8080
 spring:
   thymeleaf:
-    prefix: classpath:/templates/ # Directory where Thymeleaf templates are located
+    prefix: classpath:/web/ # Directory where Thymeleaf templates are located
     suffix: .html # File extension for the templates
   datasource:
-    url: jdbc:sqlserver://DESKTOP-K6I7727\\InstanceName:1433;databaseName=mydb;encrypt=true;trustServerCertificate=true;
-    username: sqlcoadmin
+    url: jdbc:sqlserver://DESKTOP-QIEQGCN\\InstanceName:1433;databaseName=mydb;encrypt=true;trustServerCertificate=true;      #DESKTOP-K6I7727
+    username: sqlcoadmin                                                                                                      #DESKTOP-QIEQGCN
     password: 123123123
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  web:
+    resources:
+      cache:
+        period: 0
 jpa:
     hibernate:
       ddl-auto: update

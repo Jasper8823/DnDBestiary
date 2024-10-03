@@ -9,10 +9,10 @@
 <div class="links">
     <h1 >▶</h1>
     <div class="dropp">
-        <a href="FillDBMonster.html">Monster</a>
-        <a href="FillDBAbility.html">Ability</a>
-        <a href="FillDBSpell.html">Spell</a>
-        <a href="FillDBItem.html">Item</a>
+        <a href="fillDBMonster.html">Monster</a>
+        <a href="fillDBAbility.html">Ability</a>
+        <a href="fillDBSpell.html">Spell</a>
+        <a href="fillDBItem.html">Item</a>
     </div>
 </div>
 <div id="fill">
@@ -214,11 +214,12 @@
 
         <button id="RelButtonD" class="RelButton">Add</button>
 
-        <label for="DamgType"></label><select id="DamgType" class="RelChoice">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-    </select>
+        <label for="DamgType"></label>
+        <select id="DamgType" class="RelChoice">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
 
 
         <button id="RelButtonS" class="RelButton">Add</button>
@@ -314,11 +315,14 @@
         <label for="IsLegend" class="IsLegendText">IsLegend</label>
         <input type="checkbox" id="IsLegend" class="IsLegendLabel">
 
+        
+        <button id="ActionButton">Add</button>
+
     </div>
 
     <button id="SubmitButton">Submit</button>
-
-    <script th:src="@{/js/MonsterConnect.js}"></script>
+    
+    <script th:src="@{/js/monsterConnect.js}"></script>
 </div>
 </body>
 </html>
