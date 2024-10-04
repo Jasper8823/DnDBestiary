@@ -41,8 +41,8 @@ document.getElementById("RelButtonC").addEventListener('click', () => {
 
 document.getElementById("ActionButton").addEventListener('click', () => {
     actionList.push(action = {aname: document.getElementById("AnameLabel").value === "" ? document.getElementById("AnameType").value : document.getElementById("AnameLabel").value,
-        info: document.getElementById("Ainfo").value,
-        Legend: document.getElementById("IsLegend").chacked ? true: false});
+                              info: document.getElementById("Ainfo").value,
+                              Legend: document.getElementById("IsLegend").chacked ? true: false});
 });
 
 
@@ -87,7 +87,7 @@ document.getElementById("SubmitButton").addEventListener('click', () => {
 
         damageType: damageType,
         topographyType: topographyType,
-        classType: classType,
+        classType: classType, 
         statusType: statusType,
         locationType: locationType,
 
