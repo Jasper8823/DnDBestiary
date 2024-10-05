@@ -1,0 +1,171 @@
+INSERT INTO dbo.Size (name)
+VALUES ('tiny'),
+	   ('small'),
+	   ('medium'),
+	   ('large'),
+	   ('huge'),
+	   ('colossal'),
+	   ('sstiny'),
+	   ('mstiny'),
+	   ('lstiny'),
+	   ('lssmall'),
+	   ('lsmedium');
+
+INSERT INTO dbo.Danger (degree, ExpGain)
+VALUES (100, 10),
+    (108, 25),
+       (104, 50),
+       (102, 100), 
+    (1, 200),
+       (2, 450),
+       (3, 700), 
+    (4, 1100),
+       (5, 1800),
+       (6, 2300), 
+    (7, 2900),
+       (8, 3900),
+       (9, 5000), 
+    (10, 5900),
+       (11, 7200),
+       (12, 8400), 
+    (13, 10000),
+       (14, 11500),
+       (15, 13000), 
+    (16, 15000),
+       (17, 18000),
+       (18, 20000), 
+    (19, 22000),
+       (20, 25000),
+       (21, 33000), 
+    (22, 41000),
+       (23, 50000),
+       (24, 62000), 
+    (25, 75000),
+       (26, 90000),
+       (27, 105000), 
+    (28, 120000),
+       (29, 135000),
+       (30, 155000);
+
+
+
+INSERT INTO dbo.Type (name)
+VALUES 
+('aberration'),
+('giant'),
+('humanoid'),
+('dragon'),
+('beast'),
+('demon'),
+('construct'),
+('monster'),
+('celestial'),
+('undead'),
+('plant'),
+('ooze'),
+('pixie'),
+('elemental');
+
+
+INSERT INTO dbo.WorldView (name)
+VALUES
+('lawful_good'),
+('neutral_good'),
+('chaotic_good'),
+('lawful_neutral'),
+('true_neutral'),
+('chaotic_neutral'),
+('lawful_evil'),
+('neutral_evil'),
+('chaotic_evil'),
+('noWV');
+
+
+INSERT INTO dbo.DamageType (name)
+VALUES
+('piercing'),
+('bludgeoning'),
+('slashing'),
+('cold'),
+('fire'),
+('lightning'),
+('thunder'),
+('poison'),
+('acid'),
+('necrotic'),
+('radiant'),
+('force'),
+('psychic');
+
+
+INSERT INTO dbo.Attribute (name)
+VALUES
+('strength'),
+('dexterity'),
+('constitution'),
+('intelligence'),
+('wisdom'),
+('charisma');
+
+
+INSERT INTO dbo.Status (name)
+VALUES
+('blinded'),
+('charmed'),
+('deafened'),
+('frightened'),
+('grappled'),
+('incapacitated'),
+('invisible'),
+('paralyzed'),
+('petrified'),
+('poisoned'),
+('prone'),
+( 'restrained'),
+('stunned'),
+('unconscious'),
+('exhaustion');
+
+
+INSERT INTO dbo.Location (name) 
+VALUES ('arctic'),
+('swamp'),
+('city'),
+('mountains'),
+('forest'),
+('meadow'),
+('coast'),
+('underwater'),
+('underground'),
+('desert'),
+('hills');
+
+
+INSERT INTO dbo.Topography (Name) VALUES 
+('open_space'),
+('semi_opened_space'),
+('closed_space'),
+('low_permeability'),
+('middle_permeability'),
+('high_permeability'),
+('low_altitude'),
+('middle_altitude'),
+('high_altitude'),
+('low_visibility'),
+('middle_visibility'),
+('high_visibility');
+
+INSERT INTO CharacterClass (name, hp_dice, parent_name) 
+VALUES 
+('barbarian', 'd12', NULL),
+('bard', 'd8', NULL),
+('cleric', 'd8', NULL),
+('druid', 'd8', NULL),
+('fighter', 'd10', NULL),
+('monk', 'd8', NULL),
+('paladin', 'd10', NULL),
+('ranger', 'd10', NULL),
+('rogue', 'd8', NULL),
+('sorcerer', 'd6', NULL),
+('warlock', 'd8', NULL),
+('wizard', 'd6', NULL);

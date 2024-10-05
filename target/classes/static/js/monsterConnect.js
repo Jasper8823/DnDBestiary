@@ -14,7 +14,7 @@ document.getElementById("RelButtonD").addEventListener('click', () => {
         damageRes.push(document.getElementById("DamgType").value);
     }else if(document.getElementById("Vulner").checked){
         damageVul.push(document.getElementById("DamgType").value);
-    }else{
+    }else if(document.getElementById("Vulner").checked){
         damageImm.push(document.getElementById("DamgType").value);
     }
 });
@@ -22,7 +22,7 @@ document.getElementById("RelButtonD").addEventListener('click', () => {
 document.getElementById("RelButtonT").addEventListener('click', () => {
     if(document.getElementById("TAdv").checked){
         topographyAdv.push(document.getElementById("TopogType").value);
-    }else{
+    }else if(document.getElementById("TDAdv").checked){
         topographyDAdv.push(document.getElementById("TopogType").value);
     }
 });
@@ -38,7 +38,7 @@ document.getElementById("RelButtonL").addEventListener('click', () => {
 document.getElementById("RelButtonC").addEventListener('click', () => {
     if(document.getElementById("CAdv").checked){
         classAdv.push(document.getElementById("ClassRelType").value);
-    }else{
+    }else if(document.getElementById("CDAdv").checked){
         classDAdv.push(document.getElementById("ClassRelType").value);
     }
 });
