@@ -12,16 +12,17 @@ import jakarta.persistence.Entity;
 public class Status {
 
     @Id
-    private int Id;
+    private String name;
 
     @ManyToMany(mappedBy = "immunityStatusList")
-    private List<Monster> monster_imS =  new ArrayList<>();
-    public void setId(int id) {
-        this.Id = id;
+    private List<Monster> monster_imS = new ArrayList<>();
+
+    public String getName() {
+        return name;
     }
 
-    public int getId() {
-        return Id;
-    }//Getters and Setters
+    public void setName(String name) {
+        this.name = name;
+    }
 
 }

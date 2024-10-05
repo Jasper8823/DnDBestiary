@@ -28,7 +28,7 @@ public class MonsterController {
     public String saveMonster(@ModelAttribute MonsterDTO monsterDTO, Model model) {
         monsterService.saveMonster(monsterDTO);
         model.addAttribute("message", "Monster created successfully!");
-        return "fillDBMonster"; // Return to the form
+        return "fillDBMonster";
     }
     @PostMapping(value = "/hello")
     @ResponseBody
@@ -37,7 +37,8 @@ public class MonsterController {
     }
 
     @PostMapping("/monsterPush")
-    public ResponseEntity<String> monsterPush(@RequestBody Map<String, Object> monster) {
+    @ResponseBody
+    public ResponseEntity<String> monsterPush(@RequestBody MonsterDTO monster) {
 
         System.out.println("Received monster data: " + monster);
 

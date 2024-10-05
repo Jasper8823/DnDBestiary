@@ -1,10 +1,5 @@
 package com.example.DnDProject.DTOs;
 
-import com.example.DnDProject.Entities.Class.CharacterClass;
-import com.example.DnDProject.Entities.Monster.Location.Location;
-import com.example.DnDProject.Entities.Monster.StatusSens.Status;
-import com.example.DnDProject.Entities.Monster.Topography.Topography;
-import com.example.DnDProject.Entities.Monster.DamageType.DamageType;
 import com.example.DnDProject.Entities.Monster.MonsterAttributes.Danger;
 import com.example.DnDProject.Entities.Monster.MonsterAttributes.Size;
 import com.example.DnDProject.Entities.Monster.MonsterAttributes.Type;
@@ -14,16 +9,19 @@ import com.example.DnDProject.Entities.MtoMConnections.MonsterAction;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MonsterDTO {
 
-    private int id;
+public class MonsterDTO {
     private String name;
+
     private int armor_class;
-    private int speed;
+
+    private int walk_speed;
     private int swim_speed;
     private int fly_speed;
-    private int avg_HP;
-    private String calc_HP;
+
+    private int numberofdice;
+    private int dicetype;
+    private int passivebonus;
 
     // Monster attributes
     private int strength;
@@ -31,45 +29,42 @@ public class MonsterDTO {
     private int charisma;
     private int intelligence;
     private int wisdom;
-    private int constitution;
+    private int bodybuild;
+
     private int perception;
     private int skill_bonus;
+
     private int strength_bonus;
     private int dexterity_bonus;
     private int charisma_bonus;
     private int intelligence_bonus;
     private int wisdom_bonus;
-    private int constitution_bonus;
+    private int bodybuild_bonus;
 
     private String features;
     private String description;
 
-    private Danger danger; // Nullable
-    private Size size; // Nullable
-    private Type type; // Nullable
-    private Worldview worldview; // Nullable
+    private String danger; // Nullable
+    private String size; // Nullable
+    private String type; // Nullable
+    private String worldview; // Nullable
 
     // Connections
-    private List<DamageType> immunityList = new ArrayList<>(); // Nullable
-    private List<DamageType> resistanceList = new ArrayList<>(); // Nullable
-    private List<DamageType> vulnerabilityList = new ArrayList<>(); // Nullable
-    private List<Status> immunityStatusList = new ArrayList<>(); // Nullable
-    private List<Location> habitats = new ArrayList<>(); // Nullable
-    private List<CharacterClass> classAdvList = new ArrayList<>(); // Nullable
-    private List<CharacterClass> classWeakList = new ArrayList<>(); // Nullable
-    private List<MonsterAction> monsterActions = new ArrayList<>(); // Nullable
-    private List<Topography> topographyWeakList = new ArrayList<>(); // Nullable
-    private List<Topography> topographyAdvList = new ArrayList<>(); // Nullable
+    private List<String> immunityList = new ArrayList<>(); // Nullable
+    private List<String> resistanceList = new ArrayList<>(); // Nullable
+    private List<String> vulnerabilityList = new ArrayList<>(); // Nullable
 
-    // Getters and Setters
+    private List<String> immunityStatusList = new ArrayList<>(); // Nullable
 
-    public int getId() {
-        return id;
-    }
+    private List<String> habitats = new ArrayList<>(); // Nullable
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    private List<String> classAdvList = new ArrayList<>(); // Nullable
+    private List<String> classWeakList = new ArrayList<>(); // Nullable
+
+    private List<ActionDTO> actions = new ArrayList<>(); // Nullable
+
+    private List<String> topographyWeakList = new ArrayList<>(); // Nullable
+    private List<String> topographyAdvList = new ArrayList<>(); // Nullable
 
     public String getName() {
         return name;
@@ -87,12 +82,12 @@ public class MonsterDTO {
         this.armor_class = armor_class;
     }
 
-    public int getSpeed() {
-        return speed;
+    public int getWalk_speed() {
+        return walk_speed;
     }
 
-    public void setSpeed(int speed) {
-        this.speed = speed;
+    public void setWalk_speed(int walk_speed) {
+        this.walk_speed = walk_speed;
     }
 
     public int getSwim_speed() {
@@ -111,20 +106,28 @@ public class MonsterDTO {
         this.fly_speed = fly_speed;
     }
 
-    public int getAvg_HP() {
-        return avg_HP;
+    public int getNumberofdice() {
+        return numberofdice;
     }
 
-    public void setAvg_HP(int avg_HP) {
-        this.avg_HP = avg_HP;
+    public void setNumberofdice(int numberofdice) {
+        this.numberofdice = numberofdice;
     }
 
-    public String getCalc_HP() {
-        return calc_HP;
+    public int getDicetype() {
+        return dicetype;
     }
 
-    public void setCalc_HP(String calc_HP) {
-        this.calc_HP = calc_HP;
+    public void setDicetype(int dicetype) {
+        this.dicetype = dicetype;
+    }
+
+    public int getPassivebonus() {
+        return passivebonus;
+    }
+
+    public void setPassivebonus(int passivebonus) {
+        this.passivebonus = passivebonus;
     }
 
     public int getStrength() {
@@ -167,12 +170,12 @@ public class MonsterDTO {
         this.wisdom = wisdom;
     }
 
-    public int getConstitution() {
-        return constitution;
+    public int getBodybuild() {
+        return bodybuild;
     }
 
-    public void setConstitution(int constitution) {
-        this.constitution = constitution;
+    public void setBodybuild(int bodybuild) {
+        this.bodybuild = bodybuild;
     }
 
     public int getPerception() {
@@ -231,12 +234,12 @@ public class MonsterDTO {
         this.wisdom_bonus = wisdom_bonus;
     }
 
-    public int getConstitution_bonus() {
-        return constitution_bonus;
+    public int getBodybuild_bonus() {
+        return bodybuild_bonus;
     }
 
-    public void setConstitution_bonus(int constitution_bonus) {
-        this.constitution_bonus = constitution_bonus;
+    public void setBodybuild_bonus(int bodybuild_bonus) {
+        this.bodybuild_bonus = bodybuild_bonus;
     }
 
     public String getFeatures() {
@@ -255,115 +258,160 @@ public class MonsterDTO {
         this.description = description;
     }
 
-    public Danger getDanger() {
+    public String getDanger() {
         return danger;
     }
 
-    public void setDanger(Danger danger) {
+    public void setDanger(String danger) {
         this.danger = danger;
     }
 
-    public Size getSize() {
+    public String getSize() {
         return size;
     }
 
-    public void setSize(Size size) {
+    public void setSize(String  size) {
         this.size = size;
     }
 
-    public Type getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(String type) {
         this.type = type;
     }
 
-    public Worldview getWorldview() {
+    public String getWorldview() {
         return worldview;
     }
 
-    public void setWorldview(Worldview worldview) {
+    public void setWorldview(String worldview) {
         this.worldview = worldview;
     }
 
-    public List<DamageType> getImmunityList() {
+    public List<String> getImmunityList() {
         return immunityList;
     }
 
-    public void setImmunityList(List<DamageType> immunityList) {
+    public void setImmunityList(List<String> immunityList) {
         this.immunityList = immunityList;
     }
 
-    public List<DamageType> getResistanceList() {
+    public List<String> getResistanceList() {
         return resistanceList;
     }
 
-    public void setResistanceList(List<DamageType> resistanceList) {
+    public void setResistanceList(List<String> resistanceList) {
         this.resistanceList = resistanceList;
     }
 
-    public List<DamageType> getVulnerabilityList() {
+    public List<String> getVulnerabilityList() {
         return vulnerabilityList;
     }
 
-    public void setVulnerabilityList(List<DamageType> vulnerabilityList) {
+    public void setVulnerabilityList(List<String> vulnerabilityList) {
         this.vulnerabilityList = vulnerabilityList;
     }
 
-    public List<Status> getImmunityStatusList() {
+    public List<String> getImmunityStatusList() {
         return immunityStatusList;
     }
 
-    public void setImmunityStatusList(List<Status> immunityStatusList) {
+    public void setImmunityStatusList(List<String> immunityStatusList) {
         this.immunityStatusList = immunityStatusList;
     }
 
-    public List<Location> getHabitats() {
+    public List<String> getHabitats() {
         return habitats;
     }
 
-    public void setHabitats(List<Location> habitats) {
+    public void setHabitats(List<String> habitats) {
         this.habitats = habitats;
     }
 
-    public List<CharacterClass> getClassAdvList() {
+    public List<String> getClassAdvList() {
         return classAdvList;
     }
 
-    public void setClassAdvList(List<CharacterClass> classAdvList) {
+    public void setClassAdvList(List<String> classAdvList) {
         this.classAdvList = classAdvList;
     }
 
-    public List<CharacterClass> getClassWeakList() {
+    public List<String> getClassWeakList() {
         return classWeakList;
     }
 
-    public void setClassWeakList(List<CharacterClass> classWeakList) {
+    public void setClassWeakList(List<String> classWeakList) {
         this.classWeakList = classWeakList;
     }
 
-    public List<MonsterAction> getMonsterActions() {
-        return monsterActions;
+    public List<ActionDTO> getActions() {
+        return actions;
     }
 
-    public void setMonsterActions(List<MonsterAction> monsterActions) {
-        this.monsterActions = monsterActions;
+    public void setActions(List<ActionDTO> actions) {
+        this.actions = actions;
     }
 
-    public List<Topography> getTopographyWeakList() {
+    public List<String> getTopographyWeakList() {
         return topographyWeakList;
     }
 
-    public void setTopographyWeakList(List<Topography> topographyWeakList) {
+    public void setTopographyWeakList(List<String> topographyWeakList) {
         this.topographyWeakList = topographyWeakList;
     }
 
-    public List<Topography> getTopographyAdvList() {
+    public List<String> getTopographyAdvList() {
         return topographyAdvList;
     }
 
-    public void setTopographyAdvList(List<Topography> topographyAdvList) {
+    public void setTopographyAdvList(List<String> topographyAdvList) {
         this.topographyAdvList = topographyAdvList;
     }
+
+    @Override
+    public String toString() {
+        return "Monster{" +
+                "name='" + name + '\'' +
+                ", armor_class=" + armor_class +
+                ", walk_speed=" + walk_speed +
+                ", swim_speed=" + swim_speed +
+                ", fly_speed=" + fly_speed +
+                ", numberofdice=" + numberofdice +
+                ", dicetype=" + dicetype +
+                ", passivebonus=" + passivebonus +
+                ", strength=" + strength +
+                ", dexterity=" + dexterity +
+                ", charisma=" + charisma +
+                ", intelligence=" + intelligence +
+                ", wisdom=" + wisdom +
+                ", bodybuild=" + bodybuild +
+                ", perception=" + perception +
+                ", skill_bonus=" + skill_bonus +
+                ", strength_bonus=" + strength_bonus +
+                ", dexterity_bonus=" + dexterity_bonus +
+                ", charisma_bonus=" + charisma_bonus +
+                ", intelligence_bonus=" + intelligence_bonus +
+                ", wisdom_bonus=" + wisdom_bonus +
+                ", bodybuild_bonus=" + bodybuild_bonus +
+                ", features='" + features + '\'' +
+                ", description='" + description + '\'' +
+                ", danger=" + danger +
+                ", size=" + size +
+                ", type=" + type +
+                ", worldview=" + worldview +
+                ", immunityList=" + immunityList +
+                ", resistanceList=" + resistanceList +
+                ", vulnerabilityList=" + vulnerabilityList +
+                ", immunityStatusList=" + immunityStatusList +
+                ", habitats=" + habitats +
+                ", classAdvList=" + classAdvList +
+                ", classWeakList=" + classWeakList +
+                ", actions=" + actions +
+                ", topographyWeakList=" + topographyWeakList +
+                ", topographyAdvList=" + topographyAdvList +
+                '}';
+    }
+
 }

@@ -113,7 +113,7 @@ public class Monster {
     @JoinTable(
             name = "immunity_status",
             joinColumns = { @JoinColumn(name = "monster_id") },
-            inverseJoinColumns = { @JoinColumn(name = "status_id") }
+            inverseJoinColumns = { @JoinColumn(name = "status_name") }
     )
     private List<Status> immunityStatusList = new ArrayList<>();
 

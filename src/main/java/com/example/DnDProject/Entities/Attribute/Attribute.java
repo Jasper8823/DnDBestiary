@@ -23,7 +23,7 @@ public class Attribute {
 
     @ManyToMany()
     @JoinTable(
-            name = "att_char",
+            name = "att_class",
             joinColumns = { @JoinColumn(name = "att_name") },
             inverseJoinColumns = { @JoinColumn(name = "class_name") }
     )
