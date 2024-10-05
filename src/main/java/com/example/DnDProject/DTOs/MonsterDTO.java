@@ -1,11 +1,5 @@
 package com.example.DnDProject.DTOs;
 
-import com.example.DnDProject.Entities.Monster.MonsterAttributes.Danger;
-import com.example.DnDProject.Entities.Monster.MonsterAttributes.Size;
-import com.example.DnDProject.Entities.Monster.MonsterAttributes.Type;
-import com.example.DnDProject.Entities.Monster.MonsterAttributes.Worldview;
-import com.example.DnDProject.Entities.MtoMConnections.MonsterAction;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,27 +38,27 @@ public class MonsterDTO {
     private String features;
     private String description;
 
-    private String danger; // Nullable
-    private String size; // Nullable
-    private String type; // Nullable
-    private String worldview; // Nullable
+    private String danger;
+    private String size;
+    private String type;
+    private String worldview;
 
     // Connections
-    private List<String> immunityList = new ArrayList<>(); // Nullable
-    private List<String> resistanceList = new ArrayList<>(); // Nullable
-    private List<String> vulnerabilityList = new ArrayList<>(); // Nullable
+    private List<String> immunityList = new ArrayList<>();
+    private List<String> resistanceList = new ArrayList<>();
+    private List<String> vulnerabilityList = new ArrayList<>();
 
-    private List<String> immunityStatusList = new ArrayList<>(); // Nullable
+    private List<String> immunityStatusList = new ArrayList<>();
 
-    private List<String> habitats = new ArrayList<>(); // Nullable
+    private List<String> habitats = new ArrayList<>();
 
-    private List<String> classAdvList = new ArrayList<>(); // Nullable
-    private List<String> classWeakList = new ArrayList<>(); // Nullable
+    private List<String> classAdvList = new ArrayList<>();
+    private List<String> classWeakList = new ArrayList<>();
 
-    private List<ActionDTO> actions = new ArrayList<>(); // Nullable
+    private List<ActionDTO> actions = new ArrayList<>();
 
-    private List<String> topographyWeakList = new ArrayList<>(); // Nullable
-    private List<String> topographyAdvList = new ArrayList<>(); // Nullable
+    private List<String> topographyWeakList = new ArrayList<>();
+    private List<String> topographyAdvList = new ArrayList<>();
 
     public String getName() {
         return name;

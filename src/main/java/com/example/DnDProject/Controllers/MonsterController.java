@@ -19,29 +19,15 @@ public class MonsterController {
     private MonsterService monsterService;
 
     @GetMapping("/fillDBMonster")
-    public String createMonsterForm(Model model) {
-        model.addAttribute("monsterDTO", new MonsterDTO());
+    public String createMonsterForm() {
         return "fillDBMonster";
     }
 
-    @PostMapping("/fillDBMonster")
-    public String saveMonster(@ModelAttribute MonsterDTO monsterDTO, Model model) {
-        monsterService.saveMonster(monsterDTO);
-        model.addAttribute("message", "Monster created successfully!");
-        return "fillDBMonster";
-    }
-    @PostMapping(value = "/hello")
-    @ResponseBody
-    public void hello(@RequestBody String name) {
-        System.out.println("Hello " + name); // Print to console
-    }
 
     @PostMapping("/monsterPush")
     @ResponseBody
     public ResponseEntity<String> monsterPush(@RequestBody MonsterDTO monster) {
-
-        System.out.println("Received monster data: " + monster);
-
+//        monsterService.saveMonster(monster);
         return ResponseEntity.ok("Monster received successfully!");
     }
 
