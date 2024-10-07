@@ -1,6 +1,5 @@
 package com.example.DnDProject.Entities.Skill;
 
-
 import com.example.DnDProject.Entities.Attribute.Attribute;
 import com.example.DnDProject.Entities.BackStory.Backstory;
 import com.example.DnDProject.Entities.Character.Character;
@@ -14,8 +13,10 @@ import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "skill")
 public class Skill {
     @Id
+    @Column(name = "name")
     private String name;
 
     @ManyToOne
@@ -25,6 +26,7 @@ public class Skill {
 
     @ManyToMany(mappedBy = "back_skillList")
     private List<Backstory> back_skillList = new ArrayList<>();
+
     @ManyToMany()
     @JoinTable(
             name = "skill_char",
@@ -49,4 +51,3 @@ public class Skill {
         this.name = name;
     }
 }
-

@@ -3,6 +3,8 @@ package com.example.DnDProject.Entities.Spell;
 import com.example.DnDProject.Entities.Character.Character;
 import com.example.DnDProject.Entities.Class.CharacterClass;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Column;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,22 +12,36 @@ import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "spell")
 public class Spell {
 
     @Id
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "level")
     private int level;
 
-    //Spell features
+    // Spell features
+    @Column(name = "duration")
     private String duration;
 
+    @Column(name = "concentration")
     private boolean concentration;
+
+    @Column(name = "concentDura")
     private String concentDura;
+
+    @Column(name = "distance")
     private int distance;
+
+    @Column(name = "target")
     private String target;
+
+    @Column(name = "prepareMoves")
     private int prepareMoves;
 
+    @Column(name = "description")
     private String description;
 
     @ManyToOne
@@ -126,5 +142,5 @@ public class Spell {
 
     public void setDescription(String description) {
         this.description = description;
-    }//Getters and Setters
+    }
 }

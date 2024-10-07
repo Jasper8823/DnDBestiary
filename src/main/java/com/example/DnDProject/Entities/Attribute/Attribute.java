@@ -13,8 +13,10 @@ import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "attribute")
 public class Attribute {
     @Id
+    @Column(name = "name")
     private String name;
 
     @OneToMany(mappedBy = "attribute", orphanRemoval = true)

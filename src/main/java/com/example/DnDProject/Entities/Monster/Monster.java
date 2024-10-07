@@ -87,7 +87,7 @@ public class Monster {
     @JoinTable(
             name = "immunityDamage",
             joinColumns = { @JoinColumn(name = "monster_id") },
-            inverseJoinColumns = { @JoinColumn(name = "damageType_id") }
+            inverseJoinColumns = { @JoinColumn(name = "damage_type_name") }
     )
     private List<DamageType> immunityList = new ArrayList<>(); // Some monsters may not take damage of a certain type at all
 
@@ -96,7 +96,7 @@ public class Monster {
     @JoinTable(
             name = "resistance",
             joinColumns = { @JoinColumn(name = "monster_id") },
-            inverseJoinColumns = { @JoinColumn(name = "damageType_id") }
+            inverseJoinColumns = { @JoinColumn(name = "damage_type_name") }
     )
     private List<DamageType> resistanceList = new ArrayList<>(); // Some monsters may have resistance to damage of a certain type
 
@@ -105,7 +105,7 @@ public class Monster {
     @JoinTable(
             name = "vulnerability",
             joinColumns = { @JoinColumn(name = "monster_id") },
-            inverseJoinColumns = { @JoinColumn(name = "damageType_id") }
+            inverseJoinColumns = { @JoinColumn(name = "damage_type_name") }
     )
     private List<DamageType> vulnerabilityList = new ArrayList<>(); // Some monsters may have a vulnerability to certain types of damage
 

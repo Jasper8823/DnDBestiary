@@ -2,6 +2,7 @@ package com.example.DnDProject.Entities.Monster.MonsterAttributes;
 
 import com.example.DnDProject.Entities.Monster.Monster;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import org.hibernate.annotations.*;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "worldview")
 public class Worldview {
 
     @Id

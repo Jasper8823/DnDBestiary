@@ -2,16 +2,22 @@ package com.example.DnDProject.Entities.Item;
 
 import com.example.DnDProject.Entities.Character.Character;
 import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import jakarta.persistence.*;
 
 @Entity
+@Table(name = "item")
 public class Item {
     @Id
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "description")
     private String description;
+
+    @Column(name = "configurable")
     private boolean configurable;
 
     @ManyToOne
@@ -68,5 +74,5 @@ public class Item {
 
     public void setConfigurable(boolean configurable) {
         this.configurable = configurable;
-    }//Getters and Setters
+    }
 }

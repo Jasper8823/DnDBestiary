@@ -1,0 +1,577 @@
+.links{
+    height: 40%;
+    width: 1.5%;
+    background-color: rgb(255, 159, 159);
+    top: 0px;
+    left: 0px;
+    margin: 0px;
+    position: fixed;
+    z-index: 10;
+    box-shadow: 2px 2px 5px black;
+}
+
+.links .dropp{
+    background-color:rgb(255, 180, 180);
+    left: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    margin: 0px;
+    width: 180px;
+    display: none;
+    box-shadow: 2px 2px 5px black;
+    z-index: 11;
+}
+
+.links:hover .dropp{
+    display:block;
+}
+
+.links h1{
+    margin: auto 0;
+    top: 45%;
+    position: absolute;
+    z-index: 12;
+}
+
+.dropp a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    position: relative;
+    margin: 0px;
+    height: 25%;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    font-size: 2em;
+}
+
+.dropp a:hover{
+    color: rgb(28, 0, 54);
+    background-color: rgb(255, 152, 152);
+}
+
+body{
+    background-color: rgb(235, 235, 235);
+}
+
+#fill{
+    position: fixed;
+    top: 0px;
+    margin: 0px;
+    width: 98.3%;
+    right: 0px;
+    height: 100%;
+    border: solid black 2px;
+    z-index: 5;
+}
+
+#name{
+    position: relative;
+    display: block;
+    top: 10px;
+    position: absolute;
+}
+
+#nameText{
+    position: relative;
+    font-size: 2em;
+    margin: 10px;
+    margin-right: 0px;
+    font-family: sans-serif;
+    display: inline-block;
+}
+
+#nameLabel{
+    box-shadow: 1px 1px 2px black;
+    position: relative;
+    font-size: 2em;
+    display: inline-block;
+    width: 250px;
+}
+
+.AttCharBox{
+    box-shadow: 1px 1px 2px black;
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+    left: 370px;
+    height: 83px;
+}
+
+.AttCharLabel{
+    margin-bottom: 0px;
+    text-align: center;
+    position: relative;
+    font-size: 2em;
+    display: block;
+    width: 60px;
+    height: 30px;
+}
+
+.AttCharText{
+    text-align: center;
+    position: relative;
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-align: center;
+    font-family: sans-serif;
+    display: block;
+}
+
+#speed{
+    display: inline-block;
+    width: 200px;
+    height: 80px;
+    position: absolute;
+    left: 10px;
+    top: 100px;
+}
+
+.SpeedText{
+    font-size: 2em;
+    font-family: sans-serif;
+}
+
+.SpeedLabel{
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    accent-color: rgb(0, 255, 0);
+    color: white;
+    left: 100px;
+    cursor: pointer;
+}
+
+.SpeedLabelV{
+    position: absolute;
+    right: 0px;
+    width: 50px;
+    height: 28px;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+#hp{
+    display: inline-block;
+    position: absolute;
+    top: 200px;
+    width: 270px;
+    left:10px;
+    height: 50px;
+}
+
+#hpTitle{
+    text-decoration: none;
+    font-size: 1.5em;
+    display: inline-block;
+}
+
+.HPLabel{
+    display: inline-block;
+    width: 50px;
+    height: 20px;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.NDLabel{
+    width: 30px;
+}
+
+.hpText{
+    display: inline-block;
+    font-size: 1.5em;
+}
+
+#Choice{
+    position: absolute;
+    top:10px;
+    left: 1130px;
+    width: 460px;
+}
+
+.ChoiceLabel{
+    display: block;
+    position: relative;
+    width: 90px;
+    font-size: 1.2em;
+    height: 30px;
+}
+
+.ChoiceText{
+    text-align: center;
+    font-size: 1.5em;
+    display: block;
+    font-family: sans-serif;
+    position: relative;
+
+}
+
+.ChoiceBox{
+    display: inline-block;
+    margin: 10px;
+}
+
+#text{
+    position: absolute;
+    top:270px;
+    left: 10px;
+    width: 700px;
+    height: 400px;
+}
+
+.TextBox{
+    margin: 110px;
+    margin-top: 0px;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+}
+
+.TextText{
+    font-size: 1.5em;
+    font-family: sans-serif;
+    font-family: sans-serif;
+    display: block;
+    text-align: center;
+}
+
+.TextLabel{
+    position: relative;
+    display: block;
+    font-family: sans-serif;
+    box-shadow: 2px 2px 3px black;
+    left: -100px;
+    width: 300px;
+    height: 300px;
+}
+
+#relations{
+    position: absolute;
+    top:270px;
+    left: 700px;
+    width: 300px;
+    height: 100px;
+}
+
+.RelText{
+    position: absolute;
+    display: block;
+    font-family: sans-serif;
+    font-size: 1.5em;
+}
+
+.RelChoice{
+    position: absolute;
+    display: block;
+    font-family: sans-serif;
+    font-size: 1.5em;
+    width: 130px;
+    height: 30px;
+}
+
+#DamgType{
+    top:55px;
+    left: 130px;
+}
+
+#RelButtonD{
+    top:10px;
+    left: 130px;
+}
+
+#RelBoxM{
+    position: relative;
+    display: inline-block;
+    width: 120px;
+    height: auto;
+}
+
+.RelBox{
+    display: block;
+}
+
+.RelTextDT{
+    font-family: sans-serif;
+    font-size: 1.5em;
+}
+
+.RelLabelDT{
+    position: absolute;
+    width: 20%;
+    height: 2em;
+    right: 0px;
+}
+
+#RelButtonS{
+    top:10px;
+    left: 380px;
+}
+
+.RelButton{
+    position: absolute;
+    display: block;
+    font-family: sans-serif;
+    font-size: 1.2em;
+    border: 1px solid black;
+    border-radius: 6px;
+    background-color: antiquewhite;
+    box-shadow: 3px 2px 2px;
+    width: 130px;
+    height: 30px;
+}
+
+.RelButton:hover{
+    background-color: rgb(255, 187, 109);
+}
+
+.RelButton:active{
+    background-color: rgb(243, 145, 33);
+}
+
+
+#StatTypeText{
+    top:55px;
+    left: 310px;
+}
+
+#StatType{
+    top:55px;
+    left: 380px;
+}
+
+
+#RelButtonL{
+    top:10px;
+    left: 650px;
+}
+
+#LocationTypeText{
+    top:55px;
+    left: 555px;
+}
+
+#LocationType{
+    top:55px;
+    left: 650px;
+}
+
+#TopogBoxM{
+    position: absolute;
+    display: inline-block;
+    width: 120px;
+    top: 145px;
+    left: 0px;
+    height: auto;
+}
+
+.TopogBox{
+    display: block;
+}
+
+.TopogTextDT{
+    font-family: sans-serif;
+    font-size: 1.5em;
+}
+
+.TopogLabelDT{
+    position: absolute;
+    width: 20%;
+    height: 2em;
+    right: 0px;
+}
+
+#TopogType{
+    top:210px;
+    left: 130px;
+}
+
+#RelButtonT{
+    top:145px;
+    left: 130px;
+}
+
+
+#TopogTypeText{
+    top:210px;
+    left: 0px;
+}
+
+#ClassRelBoxM{
+    position: absolute;
+    display: inline-block;
+    width: 120px;
+    top: 145px;
+    left: 310px;
+    height: auto;
+}
+
+.ClassRelBox{
+    display: block;
+}
+
+.ClassRelTextDT{
+    font-family: sans-serif;
+    font-size: 1.5em;
+}
+
+.ClassRelLabelDT{
+    position: absolute;
+    width: 20%;
+    height: 2em;
+    right: 0px;
+}
+
+#ClassRelType{
+    top:210px;
+    left: 440px;
+}
+
+#RelButtonC{
+    top:145px;
+    left: 440px;
+}
+
+#ClassRelTypeText{
+    top:210px;
+    left: 310px;
+}
+
+#Action{
+    display: block;
+    position: absolute;
+    top: 550px;
+    left: 700px;
+    width: 700px;
+    height: 350px;
+}
+
+#ActionTitle{
+    position: relative;
+    font-size: 2em;
+    margin: 0px;
+    margin-right: 0px;
+    font-family: sans-serif;
+    display: inline-block;
+}
+
+
+#AnameText{
+    position: relative;
+    font-size: 1.2em;
+    margin-right: 0px;
+    font-family: sans-serif;
+    display: inline-block;
+}
+
+
+
+#AnameLabel{
+    box-shadow: 1px 1px 2px black;
+    position: relative;
+    font-size: 1.2em;
+    display: inline-block;
+    width: 200px;
+}
+
+#AnameType{
+    top:36px;
+    left:280px;
+}
+
+.AinfoBox{
+    margin: 110px;
+    margin-top: 0px;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+}
+
+.AinfoText{
+    font-size: 1.5em;
+    font-family: sans-serif;
+    font-family: sans-serif;
+    display: block;
+    text-align: center;
+}
+
+.AinfoLabel{
+    position: relative;
+    display: block;
+    font-family: sans-serif;
+    box-shadow: 2px 2px 3px black;
+    left: -100px;
+    width: 400px;
+    height: 240px;
+}
+
+
+.IsLegendText{
+    position: absolute;
+    font-size: 2em;
+    font-family: sans-serif;
+    margin-right: 0px;
+    left: 450px;
+    top: 300px;
+}
+
+.IsLegendLabel{
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    accent-color: rgb(0, 255, 0);
+    color: white;
+    margin-left: 0px;
+    left: 590px;
+    top: 300px;
+    cursor: pointer;
+}
+
+#ActionButton{
+    position: absolute;
+    display: block;
+    font-family: sans-serif;
+    font-size: 1.2em;
+    border: 1px solid black;
+    border-radius: 6px;
+    background-color: antiquewhite;
+    box-shadow: 3px 2px 2px;
+    width: 130px;
+    height: 30px;
+    left: 450px;
+    top: 260px;
+}
+
+#ActionButton:hover{
+    background-color: rgb(255, 187, 109);
+}
+
+#ActionButton:active{
+    background-color: rgb(243, 145, 33);
+}
+
+#SubmitButton{
+    height: 80px;
+    width: 200px;
+    background-color: rgb(96, 96, 255);
+    border-radius: 10%;
+    right: 240px;
+    bottom: 40px;
+    position: fixed;
+    font-size: 2em;
+    color: white;
+    box-shadow: 3px 3px 3px black;
+}
+
+#SubmitButton:hover{
+    background-color: rgb(51, 51, 255);
+}
+
+#SubmitButton:active{
+    background-color: rgb(0, 0, 255);
+    box-shadow: 3px 2px 2px black;
+}

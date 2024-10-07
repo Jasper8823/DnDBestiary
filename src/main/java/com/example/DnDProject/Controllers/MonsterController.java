@@ -26,8 +26,8 @@ public class MonsterController {
 
     @PostMapping("/monsterPush")
     @ResponseBody
-    public ResponseEntity<String> monsterPush(@RequestBody MonsterDTO monster) {
-//        monsterService.saveMonster(monster);
+    public ResponseEntity<String> monsterPush(@RequestBody MonsterDTO monster) throws Throwable {
+        monsterService.saveMonster(monster);
         return ResponseEntity.ok("Monster received successfully!");
     }
 

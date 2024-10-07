@@ -5,25 +5,27 @@ import com.example.DnDProject.Entities.Monster.Monster;
 import com.example.DnDProject.Entities.Attribute.Attribute;
 import com.example.DnDProject.Entities.Spell.Spell;
 import jakarta.persistence.*;
+import jakarta.persistence.Table;
 import org.hibernate.annotations.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "class")
 public class CharacterClass {
 
     @Id
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "hp_dice")
     private String HP_dice;
 
-    // Self-referencing many-to-one relationship (Parent Class)
     @ManyToOne
     @JoinColumn(name = "parent_name") // Foreign key referencing itself
     private CharacterClass parentClass;
 
-    // Self-referencing one-to-many relationship (Child Classes)
     @OneToMany(mappedBy = "parentClass")
     private List<CharacterClass> childClasses = new ArrayList<>();
 
@@ -47,7 +49,6 @@ public class CharacterClass {
     @ManyToMany(mappedBy = "spell_classList")
     private List<Spell> spell_classList = new ArrayList<>();
 
-    // Getters and Setters
     public String getName() {
         return name;
     }
@@ -80,4 +81,51 @@ public class CharacterClass {
         this.childClasses = childClasses;
     }
 
+    public List<ClassAbility> getAbilityList() {
+        return abilityList;
+    }
+
+    public void setAbilityList(List<ClassAbility> abilityList) {
+        this.abilityList = abilityList;
+    }
+
+    public List<Character> getCharacterList() {
+        return characterList;
+    }
+
+    public void setCharacterList(List<Character> characterList) {
+        this.characterList = characterList;
+    }
+
+    public List<Monster> getMonstersAdvC() {
+        return monsters_advC;
+    }
+
+    public void setMonstersAdvC(List<Monster> monsters_advC) {
+        this.monsters_advC = monsters_advC;
+    }
+
+    public List<Monster> getMonstersWeakC() {
+        return monsters_weakC;
+    }
+
+    public void setMonstersWeakC(List<Monster> monsters_weakC) {
+        this.monsters_weakC = monsters_weakC;
+    }
+
+    public List<Attribute> getAttClassList() {
+        return att_classList;
+    }
+
+    public void setAttClassList(List<Attribute> att_classList) {
+        this.att_classList = att_classList;
+    }
+
+    public List<Spell> getSpellClassList() {
+        return spell_classList;
+    }
+
+    public void setSpellClassList(List<Spell> spell_classList) {
+        this.spell_classList = spell_classList;
+    }
 }

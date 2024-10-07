@@ -9,8 +9,10 @@ import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "backstory")
 public class Backstory {
     @Id
+    @Column(name = "name")
     private String name;
 
     @ManyToMany()
