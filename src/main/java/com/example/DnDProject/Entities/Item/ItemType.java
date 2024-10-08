@@ -1,14 +1,16 @@
 package com.example.DnDProject.Entities.Item;
 
-
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import jakarta.persistence.*;
 
 @Entity
+@Table(name = "item_type")
 public class ItemType {
     @Id
+    @Column(name = "name")
     private String name;
+
     @OneToMany(mappedBy = "itemType", orphanRemoval = true)
     private List<Item> items = new ArrayList<>();
 
@@ -26,5 +28,5 @@ public class ItemType {
 
     public void setName(String name) {
         this.name = name;
-    }//Getters and Setters
+    }
 }

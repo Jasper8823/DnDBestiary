@@ -5,12 +5,17 @@ import com.example.DnDProject.Entities.Monster.Monster;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "monster_action")
 public class MonsterAction {
 
     @Id
+    @Column(name = "id")
     private int id;
 
+    @Column(name = "is_legendary")
     private boolean isLegendary;
+
+    @Column(name = "information")
     private String information;
 
     @ManyToOne
@@ -20,7 +25,6 @@ public class MonsterAction {
     @ManyToOne
     @JoinColumn(name = "action_name")
     private Action action;
-
 
     public void setLegendary(boolean legendary) {
         isLegendary = legendary;
@@ -44,5 +48,5 @@ public class MonsterAction {
 
     public int getId() {
         return id;
-    }//Getters and Setters
+    }
 }

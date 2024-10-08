@@ -7,10 +7,10 @@ import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "damage_type")
 public class DamageType {
 
     @Id
-    private int Id;
     private String name;
 
     @ManyToMany(mappedBy = "immunityList")
@@ -22,16 +22,8 @@ public class DamageType {
     @ManyToMany(mappedBy = "vulnerabilityList")
     private List<Monster> monster_vul =  new ArrayList<>();//Sensitivities connections
 
-    public void setdId(int dId) {
-        this.Id = dId;
-    }
-
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getdId() {
-        return Id;
     }
 
     public String getName() {

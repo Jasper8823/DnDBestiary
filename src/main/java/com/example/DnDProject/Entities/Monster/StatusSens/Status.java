@@ -6,12 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.*;
-import jakarta.persistence.Entity;
 
 @Entity
+@Table(name = "status")
 public class Status {
 
     @Id
+    @Column(name = "name")
     private String name;
 
     @ManyToMany(mappedBy = "immunityStatusList")
@@ -24,5 +25,4 @@ public class Status {
     public void setName(String name) {
         this.name = name;
     }
-
 }

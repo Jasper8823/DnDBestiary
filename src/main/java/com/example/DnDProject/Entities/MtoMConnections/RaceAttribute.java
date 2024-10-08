@@ -6,9 +6,13 @@ import com.example.DnDProject.Entities.Attribute.Attribute;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "race_attribute")
 public class RaceAttribute {
     @Id
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "modif_value")
     private int modifValue;
 
     @ManyToOne
@@ -18,6 +22,7 @@ public class RaceAttribute {
     @ManyToOne
     @JoinColumn(name = "att_name")
     private Attribute attribute;
+
     public int getId() {
         return id;
     }

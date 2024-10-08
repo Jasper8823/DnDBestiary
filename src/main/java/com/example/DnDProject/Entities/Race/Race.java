@@ -1,9 +1,7 @@
 package com.example.DnDProject.Entities.Race;
 
-
 import com.example.DnDProject.Entities.Character.Character;
 import com.example.DnDProject.Entities.MtoMConnections.RaceAttribute;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,11 +9,14 @@ import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "race")
 public class Race {
     @Id
+    @Column(name = "name")
     private String name;
+
     @OneToMany(mappedBy = "race", orphanRemoval = true)
-     private List<RaceAbility> abilities = new ArrayList<>();
+    private List<RaceAbility> abilities = new ArrayList<>();
 
     @OneToMany(mappedBy = "race", orphanRemoval = true)
     private List<Character> characters = new ArrayList<>();
@@ -37,5 +38,5 @@ public class Race {
 
     public void setName(String name) {
         this.name = name;
-    }//Getters and Setters
+    }
 }

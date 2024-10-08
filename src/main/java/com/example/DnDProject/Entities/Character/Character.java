@@ -12,24 +12,41 @@ import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "character")
 public class Character {
     @Id
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "level")
     private int level;
 
-    //Character's attributes
+    @Column(name = "strength")
     private int strength;
+
+    @Column(name = "dexterity")
     private int dexterity;
+
+    @Column(name = "charisma")
     private int charisma;
+
+    @Column(name = "intelligence")
     private int intelligence;
+
+    @Column(name = "wisdom")
     private int wisdom;
+
+    @Column(name = "constitution")
     private int constitution;
 
-
+    @Column(name = "speed")
     private int speed;
-    private int hp;
 
+    @Column(name = "hp")
+    private int hp;
 
     @ManyToMany(mappedBy = "spell_charList")
     private List<Spell> spell_charList = new ArrayList<>();
@@ -51,7 +68,6 @@ public class Character {
     @ManyToOne
     @JoinColumn(name = "backstory_name")
     private Backstory backstory;
-
 
     public int getId() {
         return id;
@@ -139,6 +155,5 @@ public class Character {
 
     public void setHp(int hp) {
         this.hp = hp;
-    } // Getters and Setters
-
+    }
 }

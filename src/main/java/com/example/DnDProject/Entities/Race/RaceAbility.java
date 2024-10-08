@@ -3,9 +3,13 @@ package com.example.DnDProject.Entities.Race;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "race_ability")
 public class RaceAbility {
     @Id
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "description")
     private String description;
 
     @ManyToOne
@@ -34,5 +38,5 @@ public class RaceAbility {
 
     public void setDescription(String description) {
         this.description = description;
-    }//Getters and Setters
+    }
 }

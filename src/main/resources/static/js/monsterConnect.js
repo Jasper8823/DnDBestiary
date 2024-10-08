@@ -105,30 +105,9 @@ document.getElementById("SubmitButton").addEventListener('click', () => {
 
         actions: actionList
     }
-
-    console.log(monster.name);
-    console.log(monster.strength);
-    console.log(monster.dexterity);
-    console.log(monster.bodybuild);
-    console.log(monster.intelligence);
-    console.log(monster.wisdom);
-    console.log(monster.charisma);
-    onSubmitButtonClick(monster.name);
-
     monsterPush(monster);
 });
 
-function onSubmitButtonClick(name) {
-
-    fetch('http://localhost:8080/hello', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'text/plain',
-        },
-        body: name,
-    })
-
-}
 
 function monsterPush(monster) {
 

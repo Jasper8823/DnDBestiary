@@ -14,6 +14,7 @@ public class Danger {
 
     @Id
     private int degree;
+    @Column(name = "exp_gain")
     private int ExpGain;
 
     @OneToMany(mappedBy = "danger", orphanRemoval = true)
