@@ -9,6 +9,7 @@ import jakarta.persistence.*;
 public class MonsterAction {
 
     @Id
+    @GeneratedValue()
     @Column(name = "id")
     private int id;
 
@@ -48,5 +49,21 @@ public class MonsterAction {
 
     public int getId() {
         return id;
+    }
+
+    public Monster getMonster() {
+        return monster;
+    }
+
+    public void setMonster(Monster monster) {
+        this.monster = monster;
+    }
+
+    public Action getAction() {
+        return action;
+    }
+
+    public void setAction(Action action) {
+        this.action = action;
     }
 }

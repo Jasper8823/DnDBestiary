@@ -3,7 +3,7 @@ package com.example.DnDProject.DTOs;
 public class ActionDTO {
     private String name;
     private String info;
-    private String legend;
+    private boolean legend;
 
 
     // Getters and Setters
@@ -23,11 +23,11 @@ public class ActionDTO {
         this.info = info;
     }
 
-    public String getLegend() {
+    public boolean getLegend() {
         return legend;
     }
 
-    public void setLegend(String legend) {
+    public void setLegend(boolean legend) {
         this.legend = legend;
     }
 

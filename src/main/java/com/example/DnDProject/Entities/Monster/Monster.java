@@ -85,7 +85,7 @@ public class Monster {
     @ManyToMany()
     @Cascade(CascadeType.ALL)
     @JoinTable(
-            name = "immunityDamage",
+            name = "immunity_damage",
             joinColumns = { @JoinColumn(name = "monster_id") },
             inverseJoinColumns = { @JoinColumn(name = "damage_type_name") }
     )

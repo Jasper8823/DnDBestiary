@@ -115,7 +115,7 @@ document.getElementById("ActionButtonS").addEventListener('click', () => {
 document.getElementById("ActionButton").addEventListener('click', () => {
     actionList.push(ActionDTO = {name: document.getElementById("AnameLabel").value === "" ? document.getElementById("AnameType").value : document.getElementById("AnameLabel").value,
                               info: document.getElementById("Ainfo").value,
-                              legend: document.getElementById("IsLegend").checked ? "true": "false"});
+                              legend: document.getElementById("IsLegend").checked});
 });
 
 

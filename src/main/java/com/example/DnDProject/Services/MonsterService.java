@@ -1,7 +1,10 @@
 package com.example.DnDProject.Services;
 
+import com.example.DnDProject.DTOs.ActionDTO;
 import com.example.DnDProject.DTOs.MonsterDTO;
+import com.example.DnDProject.Entities.Monster.Action.Action;
 import com.example.DnDProject.Entities.Monster.Monster;
+import com.example.DnDProject.Entities.MtoMConnections.MonsterAction;
 import com.example.DnDProject.Repositories.Class.CharacterClassRepository;
 import com.example.DnDProject.Repositories.Monster.Action.ActionRepository;
 import com.example.DnDProject.Repositories.Monster.DamageType.DamageTypeRepository;
@@ -63,7 +66,7 @@ public class MonsterService {
     private CharacterClassRepository classRepo;
 
 
-    public Monster saveMonster(MonsterDTO dto) throws Throwable {
+    public void saveMonster(MonsterDTO dto){
         Monster monster = new Monster();
 
         monster.setName(dto.getName());
@@ -121,7 +124,10 @@ public class MonsterService {
 
         monster.setClassAdvList(fetchList(dto.getClassAdvList(),classRepo));
         monster.setClassWeakList(fetchList(dto.getClassWeakList(),classRepo));
-        return repo.save(monster);
+
+        repo.save(monster);
+        fetchActionsList(dto.getActions(),monster);
+
     }
 
     private <T> List<T> fetchList(List<String> ids, JpaRepository repository) {
@@ -131,6 +137,25 @@ public class MonsterService {
             optionalEntity.ifPresent(resultList::add);
         }
         return resultList;
+    }
+
+    private void fetchActionsList(List<ActionDTO> actions, Monster monster) {
+        for (ActionDTO actionDTO : actions) {
+            MonsterAction monsterAction = new MonsterAction();
+            monsterAction.setInformation(actionDTO.getInfo());
+            monsterAction.setLegendary(actionDTO.getLegend());
+
+            if(!actionRepo.existsById(actionDTO.getName())) {
+                Action action = new Action();
+                action.setName(actionDTO.getName());
+                actionRepo.save(action);
+                monsterAction.setAction(action);
+            }else{
+                monsterAction.setAction(actionRepo.findById(actionDTO.getName()).get());
+            }
+            monsterAction.setMonster(monster);
+            monsterActionRepo.save(monsterAction);
+        }
     }
 
 }

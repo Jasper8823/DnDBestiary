@@ -9,6 +9,7 @@ import jakarta.persistence.*;
 @Table(name = "race_attribute")
 public class RaceAttribute {
     @Id
+    @GeneratedValue()
     @Column(name = "id")
     private int id;
 
