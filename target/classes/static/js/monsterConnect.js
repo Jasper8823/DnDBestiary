@@ -9,14 +9,39 @@ let locationType = [];
 let statusType = [];
 let actionList = [];
 
+document.getElementById("RelButtonRD").addEventListener('click', () => {
+    damageRes = [];
+    damageImm = [];
+    damageVul = [];
+});
+
+document.getElementById("RelButtonSD").addEventListener('click', () => {
+    console.log('Imm:'+damageImm);
+    console.log('Vul:'+damageVul);
+    console.log('Rea:'+damageRes);
+});
+
 document.getElementById("RelButtonD").addEventListener('click', () => {
     if(document.getElementById("Resist").checked){
         damageRes.push(document.getElementById("DamgType").value);
     }else if(document.getElementById("Vulner").checked){
         damageVul.push(document.getElementById("DamgType").value);
-    }else if(document.getElementById("Vulner").checked){
+    }else if(document.getElementById("ImmunD").checked){
         damageImm.push(document.getElementById("DamgType").value);
     }
+});
+
+
+
+
+document.getElementById("RelButtonRT").addEventListener('click', () => {
+    topographyAdv = [];
+    topographyDAdv = [];
+});
+
+document.getElementById("RelButtonST").addEventListener('click', () => {
+    console.log('Topog adv:'+topographyAdv);
+    console.log('Topog Dadv:'+topographyDAdv);
 });
 
 document.getElementById("RelButtonT").addEventListener('click', () => {
@@ -27,12 +52,46 @@ document.getElementById("RelButtonT").addEventListener('click', () => {
     }
 });
 
+
+
+
+document.getElementById("RelButtonRS").addEventListener('click', () => {
+    statusType = [];
+});
+
+document.getElementById("RelButtonSS").addEventListener('click', () => {
+    console.log('Status:'+statusType);
+});
+
 document.getElementById("RelButtonS").addEventListener('click', () => {
     statusType.push(document.getElementById("StatType").value)
 });
 
+
+
+
+document.getElementById("RelButtonRL").addEventListener('click', () => {
+    locationType = [];
+});
+
+document.getElementById("RelButtonSL").addEventListener('click', () => {
+    console.log('Location:'+locationType);
+});
+
 document.getElementById("RelButtonL").addEventListener('click', () => {
     locationType.push(document.getElementById("LocationType").value)
+});
+
+
+
+document.getElementById("RelButtonRC").addEventListener('click', () => {
+    classAdv = [];
+    classDAdv = [];
+});
+
+document.getElementById("RelButtonSC").addEventListener('click', () => {
+    console.log('Class adv:'+classAdv);
+    console.log('Class Dadv:'+classDAdv);
 });
 
 document.getElementById("RelButtonC").addEventListener('click', () => {
@@ -41,6 +100,16 @@ document.getElementById("RelButtonC").addEventListener('click', () => {
     }else if(document.getElementById("CDAdv").checked){
         classDAdv.push(document.getElementById("ClassRelType").value);
     }
+});
+
+
+
+document.getElementById("ActionButtonR").addEventListener('click', () => {
+    actionList=[];
+});
+
+document.getElementById("ActionButtonS").addEventListener('click', () => {
+    console.log('actions:'+actionList);
 });
 
 document.getElementById("ActionButton").addEventListener('click', () => {
