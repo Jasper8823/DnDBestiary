@@ -2,18 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>DnDBestiary filler</title>
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" th:href="@{/css/istyle.css}">
+    <title>Item</title>
 </head>
 <body>
     <div class="links">
         <h1 >▶</h1>
         <div class="dropp">
-            <a href="fillDBMonster.html">Monster</a>
-            <a href="fillDBAbility.html">Ability</a>
-            <a href="fillDBSpell.html">Spell</a>
-            <a href="fillDBItem.html">Item</a>
+            <button id="GetMonster">Monster</button>
+            <button id="GetAbility">Ability</button>
+            <button id="GetSpell">Spell</button>
+            <button id="GetItem">Item</button>
         </div>
     </div>
+
+    <div id="fill">
+        <div id="name">
+            <label for="nameLabel" id="nameText">Name</label>
+            <input type="text" id="nameLabel" placeholder="Name" required><br>
+        </div>
+
+        <label for="Configurable" id="ConfigurableT">Configurable</label>
+        <input type="checkbox" id="Configurable">
+
+        <div class="ChoiceBox">
+            <label for="typeLabel" class="ChoiceText" id="typeLabelT">Type</label>
+            <select id="typeLabel" class="ChoiceLabel">
+                <option value="aberration">aberration</option>
+                <option value="giant">giant</option>
+                <option value="humanoid">humanoid</option>
+                <option value="dragon">dragon</option>
+                <option value="beast">beast</option>
+                <option value="demon">demon</option>
+                <option value="construct">construct</option>
+                <option value="monster">monster</option>
+                <option value="celestial">celestial</option>
+                <option value="undead">undead</option>
+                <option value="plant">plant</option>
+                <option value="ooze">ooze</option>
+                <option value="pixie">pixie</option>
+                <option value="elemental">elemental</option>
+            </select>
+        </div>
+
+        <div class="ChoiceBox">
+            <label for="rarityLabel" class="ChoiceText" id="rarityLabelT">Rarity</label>
+            <select id="rarityLabel" class="ChoiceLabel">
+                <option value="lawful_good">lawful good</option>
+                <option value="neutral_good">neutral good</option>
+                <option value="chaotic_good">chaotic good</option>
+                <option value="lawful_neutral">lawful neutral</option>
+                <option value="true_neutral">true neutral</option>
+                <option value="chaotic_neutral">chaotic neutral</option>
+                <option value="lawful_evil">lawful evil</option>
+                <option value="neutral_evil">neutral evil</option>
+                <option value="chaotic_evil">chaotic evil</option>
+                <option value="noWV">noWV</option>
+            </select>
+        </div>
+
+        <label for="description" class="TextText" id="descriptionT">description</label>
+        <textarea id="description" class="TextLabel" rows="60" cols = "40"></textarea>
+    </div>
+
+    <button id="SubmitButton">Submit</button>
+
+    <script th:src="@{/js/itemConnect.js}"></script>
 </body>
 </html>

@@ -1,10 +1,9 @@
-# Server configuration
 server:
   port: 8080
 spring:
   thymeleaf:
-    prefix: classpath:/web/ # Directory where Thymeleaf templates are located
-    suffix: .html # File extension for the templates
+    prefix: classpath:/web/
+    suffix: .html
   datasource:
     url: jdbc:sqlserver://DESKTOP-K6I7727\\InstanceName:1433;databaseName=mydb;encrypt=true;trustServerCertificate=true;
     username: sqlcoadmin     #DESKTOP-QIEQGCN #DESKTOP-K6I7727
