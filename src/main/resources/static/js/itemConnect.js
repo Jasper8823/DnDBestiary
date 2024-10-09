@@ -1,35 +1,26 @@
+document.getElementById("SubmitButton").addEventListener('click', () => {
+    const item = {
+        name: document.getElementById("nameLabel").value,
+
+        description: document.getElementById("description").value,
+        configurable: document.getElementById("Configurable").checked,
+        item_type_name: document.getElementById("typeLabel").value,
+        rarity_name: document.getElementById("rarityLabel").value,
+    }
+    itemPush(item);
+});
 
 
+function itemPush(item) {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    fetch('http://localhost:8080/itemPush', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(item,null,2),
+    })
+}
 
 
 document.getElementById("GetSpell").addEventListener( 'click',() =>{

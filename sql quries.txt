@@ -169,3 +169,83 @@ VALUES
 ('sorcerer', 'd6', NULL),
 ('warlock', 'd8', NULL),
 ('wizard', 'd6', NULL);
+
+INSERT INTO dbo.rarity (name)
+VALUES
+('common'),
+('uncommon'),
+('rare'),
+('veryRare'),
+('legendary'),
+('artifact');
+
+INSERT INTO dbo.item_type (name)
+VALUES
+('armor'),
+('weapon'),
+('potion'),
+('ring'),
+('rod'),
+('scroll'),
+('staff'),
+('wand'),
+('wondrous item'),
+('ammunition'),
+('wonderous figurine'),
+('instrument'),
+('tome'),
+('clothing'),
+('jewelry'),
+('tools'),
+('mount');
+
+INSERT INTO dbo.class (name, hp_dice, parent_name)
+VALUES
+('path_of_the_berserker', 'd12', 'barbarian'),
+('path_of_the_totem_warrior', 'd12', 'barbarian'),
+
+('college_of_valor', 'd8', 'bard'),
+('college_of_knowledge', 'd8', 'bard'),
+
+('life_domain', 'd8', 'cleric'),
+('knowledge_domain', 'd8', 'cleric'),
+('trickery_domain', 'd8', 'cleric'),
+('nature_domain', 'd8', 'cleric'),
+('light_domain', 'd8', 'cleric'),
+
+('circle_of_the_land', 'd8', 'druid'),
+('circle_of_the_moon', 'd8', 'druid'),
+
+('master_of_martial_arts', 'd10', 'fighter'),
+('mystic_knight', 'd10', 'fighter'),
+('champion', 'd10', 'fighter'),
+
+('way_of_the_open_hand', 'd8', 'monk'),
+('way_of_the_four_elements', 'd8', 'monk'),
+('way_of_shadow', 'd8', 'monk'),
+
+('oath_of_devotion', 'd10', 'paladin'),
+('oath_of_vengeance', 'd10', 'paladin'),
+('oath_of_the_ancients', 'd10', 'paladin'),
+
+('hunter', 'd10', 'ranger'),
+('beast_master', 'd10', 'ranger'),
+
+('thief', 'd8', 'rogue'),
+('assassin', 'd8', 'rogue'),
+('arcane_trickster', 'd8', 'rogue'),
+
+('dragon_bloodline', 'd6', 'sorcerer'),
+('wild_magic', 'd6', 'sorcerer'),
+
+('the_archfey', 'd8', 'warlock'),
+('the_fiend', 'd8', 'warlock'),
+('the_great_old_one', 'd8', 'warlock'),
+
+('school_of_illusion', 'd6', 'wizard'),
+('school_of_conjuration', 'd6', 'wizard'),
+('school_of_necromancy', 'd6', 'wizard'),
+('school_of_abjuration', 'd6', 'wizard'),
+('school_of_enchantment', 'd6', 'wizard'),
+('school_of_transmutation', 'd6', 'wizard'),
+('school_of_divination', 'd6', 'wizard');
