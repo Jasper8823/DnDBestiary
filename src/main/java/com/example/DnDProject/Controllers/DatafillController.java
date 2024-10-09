@@ -1,5 +1,6 @@
 package com.example.DnDProject.Controllers;
 
+import com.example.DnDProject.DTOs.ClassAbilityDTO;
 import com.example.DnDProject.DTOs.ItemDTO;
 import com.example.DnDProject.DTOs.MonsterDTO;
 import com.example.DnDProject.DTOs.SpellDTO;
@@ -41,5 +42,12 @@ public class DatafillController {
     public ResponseEntity<String> itemPush(@RequestBody ItemDTO itemDTO){
         datafillService.saveItem(itemDTO);
         return ResponseEntity.ok("Item received successfully!");
+    }
+
+    @PostMapping("/classAbilityPush")
+    @ResponseBody
+    public ResponseEntity<String> classAbilityPush(@RequestBody ClassAbilityDTO abilityDTO){
+        datafillService.saveClassAbility(abilityDTO);
+        return ResponseEntity.ok("ClassAbility received successfully!");
     }
 }

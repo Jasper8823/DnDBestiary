@@ -67,6 +67,7 @@
         <mapping class="com.example.DnDProject.Entities.BackStory.Backstory"/>
 
         <!-- Class Related Entities -->
+        <mapping class="com.example.DnDProject.Entities.Class.SpellSlots"/>
         <mapping class="com.example.DnDProject.Entities.Class.ClassAbility"/>
         <mapping class="com.example.DnDProject.Entities.Class.CharacterClass"/>
 

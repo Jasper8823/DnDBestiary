@@ -1,9 +1,7 @@
 package com.example.DnDProject.Services;
 
-import com.example.DnDProject.DTOs.ActionDTO;
-import com.example.DnDProject.DTOs.ItemDTO;
-import com.example.DnDProject.DTOs.MonsterDTO;
-import com.example.DnDProject.DTOs.SpellDTO;
+import com.example.DnDProject.DTOs.*;
+import com.example.DnDProject.Entities.Class.ClassAbility;
 import com.example.DnDProject.Entities.Item.Item;
 import com.example.DnDProject.Entities.Item.ItemType;
 import com.example.DnDProject.Entities.Item.Rarity;
@@ -12,6 +10,8 @@ import com.example.DnDProject.Entities.Monster.Monster;
 import com.example.DnDProject.Entities.MtoMConnections.MonsterAction;
 import com.example.DnDProject.Entities.Spell.Spell;
 import com.example.DnDProject.Repositories.Class.CharacterClassRepository;
+import com.example.DnDProject.Repositories.Class.ClassAbilityRepository;
+import com.example.DnDProject.Repositories.Item.ItemRepository;
 import com.example.DnDProject.Repositories.Item.ItemTypeRepository;
 import com.example.DnDProject.Repositories.Item.RarityRepository;
 import com.example.DnDProject.Repositories.Monster.Action.ActionRepository;
@@ -26,6 +26,7 @@ import com.example.DnDProject.Repositories.Monster.StatusSens.StatusRepository;
 import com.example.DnDProject.Repositories.Monster.Topography.TopographyRepository;
 import com.example.DnDProject.Repositories.MtoMConnections.MonsterActionRepository;
 import com.example.DnDProject.Repositories.Spell.SpellRepository;
+import com.example.DnDProject.Repositories.Spell.SpellTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,7 @@ public class DatafillService {
     @Autowired
     private MonsterRepository repo;
 
+    //Monster attributes repositories
     @Autowired
     private DangerRepository dangerRepo;
     @Autowired
@@ -49,34 +51,41 @@ public class DatafillService {
     @Autowired
     private WorldviewRepository worldviewRepo;
 
-
+    //Action repositories
     @Autowired
     private ActionRepository actionRepo;
+    @Autowired
+    private MonsterActionRepository monsterActionRepo;
 
-
+    //Status and damagetype repositories
     @Autowired
     private StatusRepository statusRepo;
     @Autowired
     private DamageTypeRepository damageTypeRepo;
 
-
+    //Location repositories
     @Autowired
     private LocationRepository locationRepo;
     @Autowired
     private TopographyRepository topographyRepo;
 
-    @Autowired
-    private MonsterActionRepository monsterActionRepo;
-
+    //Class repositories
     @Autowired
     private CharacterClassRepository classRepo;
+    @Autowired
+    private ClassAbilityRepository cabilityRepo;
 
+    //Spell repositories
+    @Autowired
+    private SpellTypeRepository spellTypeRepo;
     @Autowired
     private SpellRepository spellRepo;
 
+    //Item repositories
+    @Autowired
+    private ItemRepository itemRepo;
     @Autowired
     private RarityRepository rarityRepo;
-
     @Autowired
     private ItemTypeRepository itemTypeRepo;
 
@@ -159,6 +168,8 @@ public class DatafillService {
         spell.setDuration(dto.getDuration());
 
         spell.setSpell_classList(fetchList(dto.getSpell_classList(),classRepo));
+        spell.setSpellType(spellTypeRepo.findById(dto.getSpellTypename()).get());
+
         spellRepo.save(spell);
     }
     public void saveItem(ItemDTO dto){
@@ -170,6 +181,19 @@ public class DatafillService {
 
         item.setRarity(rarityRepo.findById(dto.getRarity_name()).get());
         item.setItemType(itemTypeRepo.findById(dto.getItem_type_name()).get());
+
+        itemRepo.save(item);
+    }
+
+    public void saveClassAbility(ClassAbilityDTO dto) {
+        ClassAbility ability = new ClassAbility();
+        ability.setName(dto.getName());
+        ability.setLevel(dto.getLevel());
+        ability.setDescription(dto.getDescription());
+
+        ability.setCharClass(classRepo.findById(dto.getClassName()).get());
+
+        cabilityRepo.save(ability);
     }
 
     private <T> List<T> fetchList(List<String> ids, JpaRepository repository) {
