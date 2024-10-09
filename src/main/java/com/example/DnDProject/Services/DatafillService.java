@@ -1,11 +1,19 @@
 package com.example.DnDProject.Services;
 
 import com.example.DnDProject.DTOs.ActionDTO;
+import com.example.DnDProject.DTOs.ItemDTO;
 import com.example.DnDProject.DTOs.MonsterDTO;
+import com.example.DnDProject.DTOs.SpellDTO;
+import com.example.DnDProject.Entities.Item.Item;
+import com.example.DnDProject.Entities.Item.ItemType;
+import com.example.DnDProject.Entities.Item.Rarity;
 import com.example.DnDProject.Entities.Monster.Action.Action;
 import com.example.DnDProject.Entities.Monster.Monster;
 import com.example.DnDProject.Entities.MtoMConnections.MonsterAction;
+import com.example.DnDProject.Entities.Spell.Spell;
 import com.example.DnDProject.Repositories.Class.CharacterClassRepository;
+import com.example.DnDProject.Repositories.Item.ItemTypeRepository;
+import com.example.DnDProject.Repositories.Item.RarityRepository;
 import com.example.DnDProject.Repositories.Monster.Action.ActionRepository;
 import com.example.DnDProject.Repositories.Monster.DamageType.DamageTypeRepository;
 import com.example.DnDProject.Repositories.Monster.Location.LocationRepository;
@@ -17,19 +25,17 @@ import com.example.DnDProject.Repositories.Monster.MonsterRepository;
 import com.example.DnDProject.Repositories.Monster.StatusSens.StatusRepository;
 import com.example.DnDProject.Repositories.Monster.Topography.TopographyRepository;
 import com.example.DnDProject.Repositories.MtoMConnections.MonsterActionRepository;
-import com.example.DnDProject.Repositories.MtoMConnections.RaceAttributeRepository;
+import com.example.DnDProject.Repositories.Spell.SpellRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
-public class MonsterService {
+public class DatafillService {
 
     @Autowired
     private MonsterRepository repo;
@@ -64,6 +70,15 @@ public class MonsterService {
 
     @Autowired
     private CharacterClassRepository classRepo;
+
+    @Autowired
+    private SpellRepository spellRepo;
+
+    @Autowired
+    private RarityRepository rarityRepo;
+
+    @Autowired
+    private ItemTypeRepository itemTypeRepo;
 
 
     public void saveMonster(MonsterDTO dto){
@@ -128,6 +143,33 @@ public class MonsterService {
         repo.save(monster);
         fetchActionsList(dto.getActions(),monster);
 
+    }
+    public void saveSpell(SpellDTO dto){
+        Spell spell = new Spell();
+
+        spell.setName(dto.getName());
+
+        spell.setConcentDura(dto.getConcentDura());
+        spell.setConcentration(dto.isConcentration());
+        spell.setLevel(dto.getLevel());
+        spell.setDistance(dto.getDistance());
+        spell.setTarget(dto.getTarget());
+        spell.setDescription(dto.getDescription());
+        spell.setPrepareMoves(dto.getPrepareMoves());
+        spell.setDuration(dto.getDuration());
+
+        spell.setSpell_classList(fetchList(dto.getSpell_classList(),classRepo));
+        spellRepo.save(spell);
+    }
+    public void saveItem(ItemDTO dto){
+        Item item = new Item();
+
+        item.setName(dto.getName());
+        item.setConfigurable(dto.isConfigurable());
+        item.setDescription(dto.getDescription());
+
+        item.setRarity(rarityRepo.findById(dto.getRarity_name()).get());
+        item.setItemType(itemTypeRepo.findById(dto.getItem_type_name()).get());
     }
 
     private <T> List<T> fetchList(List<String> ids, JpaRepository repository) {

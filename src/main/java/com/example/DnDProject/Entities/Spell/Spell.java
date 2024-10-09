@@ -26,6 +26,22 @@ public class Spell {
     @Column(name = "duration")
     private String duration;
 
+    public List<CharacterClass> getSpell_classList() {
+        return spell_classList;
+    }
+
+    public void setSpell_classList(List<CharacterClass> spell_classList) {
+        this.spell_classList = spell_classList;
+    }
+
+    public List<Character> getSpell_charList() {
+        return spell_charList;
+    }
+
+    public void setSpell_charList(List<Character> spell_charList) {
+        this.spell_charList = spell_charList;
+    }
+
     @Column(name = "concentration")
     private boolean concentration;
 
