@@ -4,6 +4,7 @@ import com.example.DnDProject.Entities.Character.Character;
 import com.example.DnDProject.Entities.Monster.Monster;
 import com.example.DnDProject.Entities.Attribute.Attribute;
 import com.example.DnDProject.Entities.Spell.Spell;
+
 import jakarta.persistence.*;
 import jakarta.persistence.Table;
 import org.hibernate.annotations.*;
@@ -36,6 +37,10 @@ public class CharacterClass {
     @OneToMany(mappedBy = "charClass", orphanRemoval = true)
     @Fetch(FetchMode.SELECT)
     private List<Character> characterList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "charClass", orphanRemoval = true)
+    @Fetch(FetchMode.SELECT)
+    private List<SpellSlots> spellSlotsList = new ArrayList<>();
 
     @ManyToMany(mappedBy = "classAdvList")
     private List<Monster> monsters_advC = new ArrayList<>();
@@ -126,6 +131,46 @@ public class CharacterClass {
     }
 
     public void setSpellClassList(List<Spell> spell_classList) {
+        this.spell_classList = spell_classList;
+    }
+
+    public List<SpellSlots> getSpellSlotsList() {
+        return spellSlotsList;
+    }
+
+    public void setSpellSlotsList(List<SpellSlots> spellSlotsList) {
+        this.spellSlotsList = spellSlotsList;
+    }
+
+    public List<Monster> getMonsters_advC() {
+        return monsters_advC;
+    }
+
+    public void setMonsters_advC(List<Monster> monsters_advC) {
+        this.monsters_advC = monsters_advC;
+    }
+
+    public List<Monster> getMonsters_weakC() {
+        return monsters_weakC;
+    }
+
+    public void setMonsters_weakC(List<Monster> monsters_weakC) {
+        this.monsters_weakC = monsters_weakC;
+    }
+
+    public List<Attribute> getAtt_classList() {
+        return att_classList;
+    }
+
+    public void setAtt_classList(List<Attribute> att_classList) {
+        this.att_classList = att_classList;
+    }
+
+    public List<Spell> getSpell_classList() {
+        return spell_classList;
+    }
+
+    public void setSpell_classList(List<Spell> spell_classList) {
         this.spell_classList = spell_classList;
     }
 }
