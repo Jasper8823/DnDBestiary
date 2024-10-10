@@ -3,7 +3,7 @@ package com.example.DnDProject.Entities.Monster;
 
 import com.example.DnDProject.Entities.Class.CharacterClass;
 import com.example.DnDProject.Entities.Monster.Location.Location;
-import com.example.DnDProject.Entities.Monster.StatusSens.Status;
+import com.example.DnDProject.Entities.Monster.Status.Status;
 import com.example.DnDProject.Entities.Monster.Topography.Topography;
 import com.example.DnDProject.Entities.MtoMConnections.MonsterAction;
 import com.example.DnDProject.Entities.Monster.DamageType.DamageType;
@@ -19,7 +19,6 @@ import org.hibernate.annotations.CascadeType;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import jakarta.persistence.*;
 

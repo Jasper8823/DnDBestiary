@@ -170,6 +170,11 @@ public class DatafillService {
         spell.setSpell_classList(fetchList(dto.getSpell_classList(),classRepo));
         spell.setSpellType(spellTypeRepo.findById(dto.getSpellTypename()).get());
 
+
+        spell.setSpell_statusList(fetchList(dto.getStatus_names(),statusRepo));
+        spell.setSpell_damTypeList(fetchList(dto.getDamageType_names(),damageTypeRepo));
+        spell.setSpell_classList(fetchList(dto.getClass_names(),classRepo));
+
         spellRepo.save(spell);
     }
     public void saveItem(ItemDTO dto){
@@ -182,6 +187,10 @@ public class DatafillService {
         item.setRarity(rarityRepo.findById(dto.getRarityName()).get());
         item.setItemType(itemTypeRepo.findById(dto.getItemTypeName()).get());
 
+        item.setItem_charList(null);
+
+        item.setItem_statusList(fetchList(dto.getStatus_names(),statusRepo));
+        item.setItem_damTypeList(fetchList(dto.getDamageType_names(),damageTypeRepo));
         itemRepo.save(item);
     }
 

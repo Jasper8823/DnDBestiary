@@ -29,7 +29,7 @@
         <mapping class="com.example.DnDProject.Entities.Monster.DamageType.DamageType"/>
 
         <!-- Status Effects Related to Monsters -->
-        <mapping class="com.example.DnDProject.Entities.Monster.StatusSens.Status"/>
+        <mapping class="com.example.DnDProject.Entities.Monster.Status.Status"/>
 
         <!-- Monster Actions -->
         <mapping class="com.example.DnDProject.Entities.Monster.Action.Action"/>
@@ -48,6 +48,7 @@
         <mapping class="com.example.DnDProject.Entities.Spell.Spell"/>
 
         <!-- Item Related Entities -->
+        <mapping class="com.example.DnDProject.Entities.Item.SubType"/>
         <mapping class="com.example.DnDProject.Entities.Item.ItemType"/>
         <mapping class="com.example.DnDProject.Entities.Item.Rarity"/>
         <mapping class="com.example.DnDProject.Entities.Item.Item"/>
@@ -65,6 +66,8 @@
 
         <!-- BackStory Entities -->
         <mapping class="com.example.DnDProject.Entities.BackStory.Backstory"/>
+
+        <mapping class="com.example.DnDProject.Entities.Trait.Trait"/>
 
         <!-- Class Related Entities -->
         <mapping class="com.example.DnDProject.Entities.Class.SpellSlots"/>

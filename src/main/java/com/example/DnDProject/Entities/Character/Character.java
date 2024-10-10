@@ -3,6 +3,7 @@ package com.example.DnDProject.Entities.Character;
 import com.example.DnDProject.Entities.BackStory.Backstory;
 import com.example.DnDProject.Entities.Class.CharacterClass;
 import com.example.DnDProject.Entities.Item.Item;
+import com.example.DnDProject.Entities.Trait.Trait;
 import com.example.DnDProject.Entities.Race.Race;
 import com.example.DnDProject.Entities.Skill.Skill;
 import com.example.DnDProject.Entities.Spell.Spell;
@@ -47,6 +48,9 @@ public class Character {
 
     @Column(name = "hp")
     private int hp;
+
+    @ManyToMany(mappedBy = "trait_charList")
+    private List<Trait> trait_charList = new ArrayList<>();
 
     @ManyToMany(mappedBy = "spell_charList")
     private List<Spell> spell_charList = new ArrayList<>();
