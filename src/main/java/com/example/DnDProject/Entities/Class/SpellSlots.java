@@ -17,8 +17,8 @@ public class SpellSlots {
     private int lvl7;
     private int lvl8;
     private int lvl9;
-    private int plotNum;
-    private int spellNum;
+    private int plot_num;
+    private int spell_num;
 
 
     @ManyToOne
@@ -114,20 +114,20 @@ public class SpellSlots {
         this.lvl9 = lvl9;
     }
 
-    public int getPlotNum() {
-        return plotNum;
+    public int getPlot_num() {
+        return plot_num;
     }
 
-    public void setPlotNum(int plotNum) {
-        this.plotNum = plotNum;
+    public void setPlot_num(int plot_num) {
+        this.plot_num = plot_num;
     }
 
-    public int getSpellNum() {
-        return spellNum;
+    public int getSpell_num() {
+        return spell_num;
     }
 
-    public void setSpellNum(int spellNum) {
-        this.spellNum = spellNum;
+    public void setSpell_num(int spell_num) {
+        this.spell_num = spell_num;
     }
 
     public CharacterClass getCharClass() {

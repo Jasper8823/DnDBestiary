@@ -47,7 +47,7 @@ public class Spell {
     @Column(name = "concentration")
     private boolean concentration;
 
-    @Column(name = "concentDura")
+    @Column(name = "concent_duration")
     private String concentDura;
 
     @Column(name = "distance")
@@ -56,20 +56,20 @@ public class Spell {
     @Column(name = "target")
     private String target;
 
-    @Column(name = "prepareMoves")
+    @Column(name = "prepare_moves")
     private int prepareMoves;
 
     @Column(name = "description")
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "spellType_name")
+    @JoinColumn(name = "spell_type_name")
     private SpellType spellType;
 
     @ManyToMany()
     @JoinTable(
             name = "spell_class",
-            joinColumns = { @JoinColumn(name = "spellname") },
+            joinColumns = { @JoinColumn(name = "spell_name") },
             inverseJoinColumns = { @JoinColumn(name = "class_name") }
     )
     private List<CharacterClass> spell_classList = new ArrayList<>();
@@ -77,7 +77,7 @@ public class Spell {
     @ManyToMany()
     @JoinTable(
             name = "spell_char",
-            joinColumns = { @JoinColumn(name = "spellname") },
+            joinColumns = { @JoinColumn(name = "spell_name") },
             inverseJoinColumns = { @JoinColumn(name = "character_id") }
     )
     private List<Character> spell_charList = new ArrayList<>();
@@ -85,7 +85,7 @@ public class Spell {
     @ManyToMany()
     @JoinTable(
             name = "spell_damtype",
-            joinColumns = { @JoinColumn(name = "spellname") },
+            joinColumns = { @JoinColumn(name = "spell_name") },
             inverseJoinColumns = { @JoinColumn(name = "dam_type_name") }
     )
     private List<DamageType> spell_damTypeList = new ArrayList<>();
@@ -93,7 +93,7 @@ public class Spell {
     @ManyToMany()
     @JoinTable(
             name = "spell_status",
-            joinColumns = { @JoinColumn(name = "spellname") },
+            joinColumns = { @JoinColumn(name = "spell_name") },
             inverseJoinColumns = { @JoinColumn(name = "status_name") }
     )
     private List<Status> spell_statusList = new ArrayList<>();

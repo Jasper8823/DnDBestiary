@@ -1,9 +1,10 @@
 document.getElementById("SubmitButton").addEventListener('click', () => {
+    console.log("rhb");
     const ability = {
         name: document.getElementById("nameLabel").value,
 
         description: document.getElementById("description").value,
-        level: document.getElementById("levelLabel").value.parseInt(),
+        level: parseInt(document.getElementById("levelLabel").value),
         className: document.getElementById("ClassLabel").value,
     }
     abilityPush(ability);
@@ -12,7 +13,7 @@ document.getElementById("SubmitButton").addEventListener('click', () => {
 
 function abilityPush(ability) {
 
-    fetch('http://localhost:8080/abilityPush', {
+    fetch('http://localhost:8080/classAbilityPush', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

@@ -14,6 +14,7 @@ import com.example.DnDProject.Repositories.Class.ClassAbilityRepository;
 import com.example.DnDProject.Repositories.Item.ItemRepository;
 import com.example.DnDProject.Repositories.Item.ItemTypeRepository;
 import com.example.DnDProject.Repositories.Item.RarityRepository;
+import com.example.DnDProject.Repositories.Item.SubTypeRepository;
 import com.example.DnDProject.Repositories.Monster.Action.ActionRepository;
 import com.example.DnDProject.Repositories.Monster.DamageType.DamageTypeRepository;
 import com.example.DnDProject.Repositories.Monster.Location.LocationRepository;
@@ -82,6 +83,8 @@ public class DatafillService {
     private SpellRepository spellRepo;
 
     //Item repositories
+    @Autowired
+    private SubTypeRepository subTypeRepo;
     @Autowired
     private ItemRepository itemRepo;
     @Autowired
@@ -184,13 +187,15 @@ public class DatafillService {
         item.setConfigurable(dto.isConfigurable());
         item.setDescription(dto.getDescription());
 
-        item.setRarity(rarityRepo.findById(dto.getRarityName()).get());
-        item.setItemType(itemTypeRepo.findById(dto.getItemTypeName()).get());
+        item.setRarity(rarityRepo.findById(dto.getRarity_name()).get());
+        item.setItemType(itemTypeRepo.findById(dto.getItem_type_name()).get());
 
         item.setItem_charList(null);
 
-        item.setItem_statusList(fetchList(dto.getStatus_names(),statusRepo));
-        item.setItem_damTypeList(fetchList(dto.getDamageType_names(),damageTypeRepo));
+        item.setSubType(subTypeRepo.findById(dto.getSubtype()).get());
+
+        item.setItem_statusList(fetchList(dto.getStatusList(),statusRepo));
+        item.setItem_damTypeList(fetchList(dto.getDamageTList(),damageTypeRepo));
         itemRepo.save(item);
     }
 
@@ -201,7 +206,6 @@ public class DatafillService {
         ability.setDescription(dto.getDescription());
 
         ability.setCharClass(classRepo.findById(dto.getClassName()).get());
-
         cabilityRepo.save(ability);
     }
 

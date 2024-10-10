@@ -43,14 +43,14 @@ document.getElementById("SubmitButton").addEventListener('click', () => {
         name: document.getElementById("nameLabel").value,
 
         description: document.getElementById("description").value,
-        level: document.getElementById("levelLabel").value.parseInt(),
+        level: parseInt(document.getElementById("levelLabel").value),
         spellTypename: document.getElementById("TypeLabel").value,
         duration: document.getElementById("durationLabel").value,
         concentDura: document.getElementById("concDurationLabel").value,
-        distance: document.getElementById("distanceLabel").value.parseInt(),
+        distance: parseInt(document.getElementById("distanceLabel").value),
         concentration: document.getElementById("concentration").checked,
         target: document.getElementById("targetLabel").value,
-        prepareMoves: document.getElementById("prepMovesLabel").value.parseInt(),
+        prepareMoves: parseInt(document.getElementById("prepMovesLabel").value),
         spell_classList: classSpellList,
     }
     spellPush(spell);

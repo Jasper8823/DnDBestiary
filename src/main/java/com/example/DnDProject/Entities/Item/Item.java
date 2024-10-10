@@ -27,7 +27,7 @@ public class Item {
     private ItemType itemType;
 
     @ManyToOne
-    @JoinColumn(name = "subType_name")
+    @JoinColumn(name = "sub_type_name")
     private SubType subType;
 
     @ManyToOne

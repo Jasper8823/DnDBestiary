@@ -21,7 +21,7 @@ public class SubType {
     @ManyToMany()
     @JoinTable(
             name = "class_proficiency",
-            joinColumns = { @JoinColumn(name = "subtype_name") },
+            joinColumns = { @JoinColumn(name = "sub_type_name") },
             inverseJoinColumns = { @JoinColumn(name = "class_name") }
     )
     private List<CharacterClass> classProfList = new ArrayList<>();

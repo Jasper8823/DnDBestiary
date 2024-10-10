@@ -1,13 +1,25 @@
 package com.example.DnDProject.DTOs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ItemDTO {
     private String name;
     private String description;
     private boolean configurable;
-    private String itemTypeName;
-    private String rarityName;
+    private String item_type_name;
+    private String rarity_name;
+    private String subtype;
+    private List<String> StatusList = new ArrayList<>();
+    private List<String> DamageTList = new ArrayList<>();
+
+    public String getSubtype() {
+        return subtype;
+    }
+
+    public void setSubtype(String subtype) {
+        this.subtype = subtype;
+    }
 
     public String getName() {
         return name;
@@ -33,19 +45,35 @@ public class ItemDTO {
         this.configurable = configurable;
     }
 
-    public String getItemTypeName() {
-        return itemTypeName;
+    public String getItem_type_name() {
+        return item_type_name;
     }
 
-    public String getRarityName() {
-        return rarityName;
+    public void setItem_type_name(String item_type_name) {
+        this.item_type_name = item_type_name;
     }
 
-    public void setItemTypeName(String itemTypeName) {
-        this.itemTypeName = itemTypeName;
+    public String getRarity_name() {
+        return rarity_name;
     }
 
-    public void setRarityName(String rarityName) {
-        this.rarityName = rarityName;
+    public void setRarity_name(String rarity_name) {
+        this.rarity_name = rarity_name;
+    }
+
+    public List<String> getStatusList() {
+        return StatusList;
+    }
+
+    public void setStatusList(List<String> statusList) {
+        StatusList = statusList;
+    }
+
+    public List<String> getDamageTList() {
+        return DamageTList;
+    }
+
+    public void setDamageTList(List<String> damageTList) {
+        DamageTList = damageTList;
     }
 }
