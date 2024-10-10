@@ -1,4 +1,7 @@
 let classSpellList = [];
+let StatusList = [];
+let DmgList = [];
+
 
 document.getElementById("RelButtonCSR").addEventListener('click', () => {
     classSpellList = [];
@@ -10,6 +13,30 @@ document.getElementById("RelButtonCSS").addEventListener('click', () => {
 
 document.getElementById("RelButtonCS").addEventListener('click', () => {
     statusType.push(document.getElementById("ClassSpell").value)
+});
+
+document.getElementById("RelButtonDR").addEventListener('click', () => {
+    DmgList = [];
+});
+
+document.getElementById("RelButtonDS").addEventListener('click', () => {
+    console.log('Damage:'+DmgList);
+});
+
+document.getElementById("RelButtonD").addEventListener('click', () => {
+    DmgList.push(document.getElementById("DamageType").value)
+});
+
+document.getElementById("RelButtonSR").addEventListener('click', () => {
+    StatusList = [];
+});
+
+document.getElementById("RelButtonSS").addEventListener('click', () => {
+    console.log('Status:'+StatusList);
+});
+
+document.getElementById("RelButtonS").addEventListener('click', () => {
+    StatusList.push(document.getElementById("StatusType").value)
 });
 
 document.getElementById("SubmitButton").addEventListener('click', () => {
@@ -25,7 +52,11 @@ document.getElementById("SubmitButton").addEventListener('click', () => {
         concentration: document.getElementById("concentration").checked,
         target: document.getElementById("targetLabel").value,
         prepareMoves: document.getElementById("prepMovesLabel").value.parseInt(),
+
         spell_classList: classSpellList,
+
+        DamageTList: DmgList,
+        StatusList: StatusList,
     }
     spellPush(spell);
 });

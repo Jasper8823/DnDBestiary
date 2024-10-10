@@ -177,7 +177,8 @@ VALUES
 ('rare'),
 ('veryRare'),
 ('legendary'),
-('artifact');
+('artifact'),
+('noConstRarity');
 
 INSERT INTO dbo.item_type (name)
 VALUES

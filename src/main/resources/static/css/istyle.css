@@ -163,6 +163,18 @@ body{
     position: absolute;
 }
 
+#subTypeLabel {
+    top: 36px;
+    left: 620px;
+    position: absolute;
+}
+
+#subTypeLabelT{
+    top:0px;
+    left:620px;
+    position: absolute;
+}
+
 #description{
     position: absolute;
     top:120px;
@@ -192,6 +204,145 @@ body{
     font-size: 2em;
     font-family: sans-serif;
 }
+
+.RelButton{
+    position: absolute;
+    display: block;
+    font-family: sans-serif;
+    font-size: 1.2em;
+    border: 1px solid black;
+    border-radius: 6px;
+    background-color: antiquewhite;
+    box-shadow: 3px 2px 2px;
+    width: 130px;
+    height: 25px;
+}
+
+.RelButtonR{
+    position: absolute;
+    display: block;
+    font-family: sans-serif;
+    font-size: 1.2em;
+    border: 1px solid black;
+    border-radius: 6px;
+    background-color: rgb(255, 146, 146);
+    box-shadow: 3px 2px 2px;
+    width: 130px;
+    height: 25px;
+}
+
+.RelButtonS{
+    position: absolute;
+    display: block;
+    font-family: sans-serif;
+    font-size: 1.2em;
+    border: 1px solid black;
+    border-radius: 6px;
+    background-color: rgb(213, 255, 146);
+    box-shadow: 3px 2px 2px;
+    width: 130px;
+    height: 25px;
+}
+
+
+.RelButtonR:hover{
+    background-color: rgb(255, 117, 117);
+}
+
+.RelButtonR:active{
+    background-color: rgb(255, 78, 78);
+    box-shadow: 1px 2px 2px;
+}
+
+
+.RelButtonS:hover{
+    background-color: rgb(199, 255, 108);
+}
+
+.RelButtonS:active{
+    background-color: rgb(180, 255, 60);
+    box-shadow: 1px 2px 2px;
+}
+
+.RelButton:hover{
+    background-color: rgb(255, 187, 109);
+}
+
+.RelButton:active{
+    background-color: rgb(243, 145, 33);
+    box-shadow: 1px 2px 2px;
+}
+
+.RelText{
+    position: absolute;
+    display: block;
+    font-family: sans-serif;
+    font-size: 1.5em;
+}
+
+.RelChoice{
+    position: absolute;
+    display: block;
+    font-family: sans-serif;
+    font-size: 1.5em;
+    width: 130px;
+    height: 30px;
+}
+
+#StatusTypeText{
+    position: absolute;
+    top:430px;
+    left:560px;
+}
+
+#DamageTypeText{
+    position: absolute;
+    top:280px;
+    left:560px;
+}
+
+#DamageType{
+    position: absolute;
+    top:280px;
+    left:650px;
+}
+
+#StatusType{
+    position: absolute;
+    top:430px;
+    left:650px;
+}
+
+#RelButtonDR{
+    top:190px;
+    left:650px;
+}
+
+#RelButtonDS{
+    top:220px;
+    left:650px;
+}
+
+#RelButtonD{
+    top:250px;
+    left:650px;
+}
+
+#RelButtonSR{
+    top:340px;
+    left:650px;
+}
+
+#RelButtonSS{
+    top:370px;
+    left:650px;
+}
+
+#RelButtonS{
+    top:400px;
+    left:650px;
+}
+
 
 #SubmitButton{
     height: 80px;

@@ -1,35 +1,25 @@
+document.getElementById("SubmitButton").addEventListener('click', () => {
+    const ability = {
+        name: document.getElementById("nameLabel").value,
+
+        description: document.getElementById("description").value,
+        level: document.getElementById("levelLabel").value.parseInt(),
+        className: document.getElementById("ClassLabel").value,
+    }
+    abilityPush(ability);
+});
 
 
+function abilityPush(ability) {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    fetch('http://localhost:8080/abilityPush', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(ability,null,2),
+    })
+}
 
 
 document.getElementById("GetSpell").addEventListener( 'click',() =>{

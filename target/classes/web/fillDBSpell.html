@@ -26,37 +26,30 @@
         <div class="ChoiceBox">
             <label for="levelLabel" class="ChoiceText" id="levelLabelT">Level</label>
             <select id="levelLabel" class="ChoiceLabel">
-                <option value="aberration">aberration</option>
-                <option value="giant">giant</option>
-                <option value="humanoid">humanoid</option>
-                <option value="dragon">dragon</option>
-                <option value="beast">beast</option>
-                <option value="demon">demon</option>
-                <option value="construct">construct</option>
-                <option value="monster">monster</option>
-                <option value="celestial">celestial</option>
-                <option value="undead">undead</option>
-                <option value="plant">plant</option>
-                <option value="ooze">ooze</option>
-                <option value="pixie">pixie</option>
-                <option value="elemental">elemental</option>
+                <option value="plot">plot</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
             </select>
         </div>
 
         <div class="ChoiceBox">
             <label for="TypeLabel" class="ChoiceText" id="TypeLabelT">Type</label>
             <select id="TypeLabel" class="ChoiceLabel">
-                <option value="tiny">tiny</option>
-                <option value="small">small</option>
-                <option value="medium">medium</option>
-                <option value="large">large</option>
-                <option value="huge">huge</option>
-                <option value="colossal">colossal</option>
-                <option value="sstiny">sstiny</option>
-                <option value="mstiny">mstiny</option>
-                <option value="lstiny">lstiny</option>
-                <option value="lssmall">lssmall</option>
-                <option value="lsmedium">lsmedium</option>
+                <option value="abjuration">Abjuration</option>
+                <option value="conjuration">Conjuration</option>
+                <option value="divination">Divination</option>
+                <option value="enchantment">Enchantment</option>
+                <option value="evocation">Evocation</option>
+                <option value="illusion">Illusion</option>
+                <option value="necromancy">Necromancy</option>
+                <option value="transmutation">Transmutation</option>
             </select>
         </div>
 
@@ -95,8 +88,22 @@
         <button id="RelButtonCSS" class="RelButtonS">Show</button>
         <button id="RelButtonCS" class="RelButton">Add</button>
 
-        <label for= "ClassSpell" id="ClassSpellText">Class</label>
-        <select id="ClassSpell">
+        <label for= "ClassSpell" id="ClassSpellText" class="RelText">Class</label>
+        <select id="ClassSpell" class="RelChoice">
+            <option value="bard">bard</option>
+            <option value="cleric">cleric</option>
+            <option value="druid">druid</option>
+            <option value="sorcerer">sorcerer</option>
+            <option value="warlock">warlock</option>
+            <option value="wizard">wizard</option>
+        </select>
+
+        <button id="RelButtonDR" class="RelButtonR">Reset</button>
+        <button id="RelButtonDS" class="RelButtonS">Show</button>
+        <button id="RelButtonD" class="RelButton">Add</button>
+
+        <label for= "DamageType" id="DamageTypeText" class="RelText">Dmg</label>
+        <select id="DamageType" class="RelChoice">
             <option value="piercing">piercing</option>
             <option value="bludgeoning">bludgeoning</option>
             <option value="slashing">slashing</option>
@@ -112,9 +119,31 @@
             <option value="psychic">psychic</option>
         </select>
 
-    </div>
+        <button id="RelButtonSR" class="RelButtonR">Reset</button>
+        <button id="RelButtonSS" class="RelButtonS">Show</button>
+        <button id="RelButtonS" class="RelButton">Add</button>
 
-    <button id="SubmitButton">Submit</button>
+        <label for= "StatusType" id="StatusTypeText" class="RelText">Status</label>
+        <select id="StatusType" class="RelChoice">
+            <option value="blinded">blinded</option>
+            <option value="charmed">charmed</option>
+            <option value="deafened">deafened</option>
+            <option value="frightened">frightened</option>
+            <option value="grappled">grappled</option>
+            <option value="incapacitated">incapacitated</option>
+            <option value="invisible">invisible</option>
+            <option value="paralyzed">paralyzed</option>
+            <option value="petrified">petrified</option>
+            <option value="poisoned">poisoned</option>
+            <option value="prone">prone</option>
+            <option value="restrained">restrained</option>
+            <option value="stunned">stunned</option>
+            <option value="unconscious">unconscious</option>
+            <option value="exhaustion">exhaustion</option>
+        </select>
+
+        <button id="SubmitButton">Submit</button>
+    </div>
 
     <script th:src="@{/js/spellConnect.js}"></script>
 </body>

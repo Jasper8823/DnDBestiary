@@ -10,7 +10,7 @@ public class WebPageOpener implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        openWebPage("http://localhost:8080/fillDBMonster");
+        openWebPage("http://localhost:8080/fillDBItem");
     }
 
     public void openWebPage(String url) {

@@ -1,35 +1,59 @@
+let StatusList = [];
+let DmgList = [];
+
+document.getElementById("RelButtonDR").addEventListener('click', () => {
+    DmgList = [];
+});
+
+document.getElementById("RelButtonDS").addEventListener('click', () => {
+    console.log('Damage:'+DmgList);
+});
+
+document.getElementById("RelButtonD").addEventListener('click', () => {
+    DmgList.push(document.getElementById("DamageType").value)
+});
+
+document.getElementById("RelButtonSR").addEventListener('click', () => {
+    StatusList = [];
+});
+
+document.getElementById("RelButtonSS").addEventListener('click', () => {
+    console.log('Status:'+StatusList);
+});
+
+document.getElementById("RelButtonS").addEventListener('click', () => {
+    StatusList.push(document.getElementById("StatusType").value)
+});
 
 
+document.getElementById("SubmitButton").addEventListener('click', () => {
+    console.log(document.getElementById("subTypeLabelLabel").value);
+    const item = {
+        name: document.getElementById("nameLabel").value,
+
+        description: document.getElementById("description").value,
+        configurable: document.getElementById("Configurable").checked,
+        item_type_name: document.getElementById("typeLabel").value,
+        rarity_name: document.getElementById("rarityLabel").value,
+        subType: document.getElementById("subTypeLabelLabel").value,
+
+        DamageTList: DmgList,
+        StatusList: StatusList,
+    }
+    itemPush(item);
+});
 
 
+function itemPush(item) {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    fetch('http://localhost:8080/itemPush', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(item,null,2),
+    })
+}
 
 
 document.getElementById("GetSpell").addEventListener( 'click',() =>{
