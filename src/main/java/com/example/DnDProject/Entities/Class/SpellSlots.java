@@ -17,6 +17,9 @@ public class SpellSlots {
     private int lvl7;
     private int lvl8;
     private int lvl9;
+    private int plotNum;
+    private int spellNum;
+
 
     @ManyToOne
     @JoinColumn(name = "class_name")
@@ -111,5 +114,28 @@ public class SpellSlots {
         this.lvl9 = lvl9;
     }
 
+    public int getPlotNum() {
+        return plotNum;
+    }
+
+    public void setPlotNum(int plotNum) {
+        this.plotNum = plotNum;
+    }
+
+    public int getSpellNum() {
+        return spellNum;
+    }
+
+    public void setSpellNum(int spellNum) {
+        this.spellNum = spellNum;
+    }
+
+    public CharacterClass getCharClass() {
+        return charClass;
+    }
+
+    public void setCharClass(CharacterClass charClass) {
+        this.charClass = charClass;
+    }
 }
 

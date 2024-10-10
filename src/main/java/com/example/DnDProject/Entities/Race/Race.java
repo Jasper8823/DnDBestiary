@@ -1,6 +1,7 @@
 package com.example.DnDProject.Entities.Race;
 
 import com.example.DnDProject.Entities.Character.Character;
+import com.example.DnDProject.Entities.Item.SubType;
 import com.example.DnDProject.Entities.MtoMConnections.RaceAttribute;
 
 import java.util.ArrayList;
@@ -23,6 +24,9 @@ public class Race {
 
     @OneToMany(mappedBy = "race", orphanRemoval = true)
     private List<RaceAttribute> raceAttributeList = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "raceProfList")
+    private List<SubType> raceProfList = new ArrayList<>();
 
     public List<RaceAbility> getAbilities() {
         return abilities;

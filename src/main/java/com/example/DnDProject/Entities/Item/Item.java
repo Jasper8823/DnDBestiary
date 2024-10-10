@@ -1,6 +1,8 @@
 package com.example.DnDProject.Entities.Item;
 
 import com.example.DnDProject.Entities.Character.Character;
+import com.example.DnDProject.Entities.Monster.DamageType.DamageType;
+import com.example.DnDProject.Entities.Monster.Status.Status;
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 
@@ -25,6 +27,10 @@ public class Item {
     private ItemType itemType;
 
     @ManyToOne
+    @JoinColumn(name = "subType_name")
+    private SubType subType;
+
+    @ManyToOne
     @JoinColumn(name = "rarity_name")
     private Rarity rarity;
 
@@ -35,6 +41,22 @@ public class Item {
             inverseJoinColumns = { @JoinColumn(name = "character_id") }
     )
     private List<Character> item_charList = new ArrayList<>();
+
+    @ManyToMany()
+    @JoinTable(
+            name = "item_dam_type",
+            joinColumns = { @JoinColumn(name = "item_name") },
+            inverseJoinColumns = { @JoinColumn(name = "dam_type_name") }
+    )
+    private List<DamageType> item_damTypeList = new ArrayList<>();
+
+    @ManyToMany()
+    @JoinTable(
+            name = "item_status",
+            joinColumns = { @JoinColumn(name = "item_name") },
+            inverseJoinColumns = { @JoinColumn(name = "status_name") }
+    )
+    private List<Status> item_statusList = new ArrayList<>();
 
     public ItemType getItemType() {
         return itemType;
@@ -74,5 +96,37 @@ public class Item {
 
     public void setConfigurable(boolean configurable) {
         this.configurable = configurable;
+    }
+
+    public SubType getSubType() {
+        return subType;
+    }
+
+    public void setSubType(SubType subType) {
+        this.subType = subType;
+    }
+
+    public List<Character> getItem_charList() {
+        return item_charList;
+    }
+
+    public void setItem_charList(List<Character> item_charList) {
+        this.item_charList = item_charList;
+    }
+
+    public List<DamageType> getItem_damTypeList() {
+        return item_damTypeList;
+    }
+
+    public void setItem_damTypeList(List<DamageType> item_damTypeList) {
+        this.item_damTypeList = item_damTypeList;
+    }
+
+    public List<Status> getItem_statusList() {
+        return item_statusList;
+    }
+
+    public void setItem_statusList(List<Status> item_statusList) {
+        this.item_statusList = item_statusList;
     }
 }

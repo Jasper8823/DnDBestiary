@@ -19,6 +19,33 @@ public class SpellDTO {
     private String target;
     private int prepareMoves;
     private String description;
+    private List<String> damageType_names = new ArrayList<>();
+    private List<String> status_names = new ArrayList<>();
+    private List<String> class_names = new ArrayList<>();
+
+    public List<String> getDamageType_names() {
+        return damageType_names;
+    }
+
+    public void setDamageType_names(List<String> damageType_names) {
+        this.damageType_names = damageType_names;
+    }
+
+    public List<String> getStatus_names() {
+        return status_names;
+    }
+
+    public void setStatus_names(List<String> status_names) {
+        this.status_names = status_names;
+    }
+
+    public List<String> getClass_names() {
+        return class_names;
+    }
+
+    public void setClass_names(List<String> class_names) {
+        this.class_names = class_names;
+    }
 
     private List<String> spell_classList = new ArrayList<>();
 
@@ -109,4 +136,5 @@ public class SpellDTO {
     public void setSpell_classList(List<String> spell_classList) {
         this.spell_classList = spell_classList;
     }
+
 }

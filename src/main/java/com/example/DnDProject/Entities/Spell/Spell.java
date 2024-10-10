@@ -2,6 +2,8 @@ package com.example.DnDProject.Entities.Spell;
 
 import com.example.DnDProject.Entities.Character.Character;
 import com.example.DnDProject.Entities.Class.CharacterClass;
+import com.example.DnDProject.Entities.Monster.DamageType.DamageType;
+import com.example.DnDProject.Entities.Monster.Status.Status;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
@@ -79,6 +81,22 @@ public class Spell {
             inverseJoinColumns = { @JoinColumn(name = "character_id") }
     )
     private List<Character> spell_charList = new ArrayList<>();
+
+    @ManyToMany()
+    @JoinTable(
+            name = "spell_damtype",
+            joinColumns = { @JoinColumn(name = "spellname") },
+            inverseJoinColumns = { @JoinColumn(name = "dam_type_name") }
+    )
+    private List<DamageType> spell_damTypeList = new ArrayList<>();
+
+    @ManyToMany()
+    @JoinTable(
+            name = "spell_status",
+            joinColumns = { @JoinColumn(name = "spellname") },
+            inverseJoinColumns = { @JoinColumn(name = "status_name") }
+    )
+    private List<Status> spell_statusList = new ArrayList<>();
 
     public SpellType getSpellType() {
         return spellType;
@@ -158,5 +176,21 @@ public class Spell {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<DamageType> getSpell_damTypeList() {
+        return spell_damTypeList;
+    }
+
+    public void setSpell_damTypeList(List<DamageType> spell_damTypeList) {
+        this.spell_damTypeList = spell_damTypeList;
+    }
+
+    public List<Status> getSpell_statusList() {
+        return spell_statusList;
+    }
+
+    public void setSpell_statusList(List<Status> spell_statusList) {
+        this.spell_statusList = spell_statusList;
     }
 }

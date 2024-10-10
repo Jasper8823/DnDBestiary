@@ -1,6 +1,7 @@
 package com.example.DnDProject.Entities.Class;
 
 import com.example.DnDProject.Entities.Character.Character;
+import com.example.DnDProject.Entities.Item.SubType;
 import com.example.DnDProject.Entities.Monster.Monster;
 import com.example.DnDProject.Entities.Attribute.Attribute;
 import com.example.DnDProject.Entities.Spell.Spell;
@@ -53,6 +54,9 @@ public class CharacterClass {
 
     @ManyToMany(mappedBy = "spell_classList")
     private List<Spell> spell_classList = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "classProfList")
+    private List<SubType> subtype_classList = new ArrayList<>();
 
     public String getName() {
         return name;
