@@ -27,15 +27,15 @@ document.getElementById("RelButtonS").addEventListener('click', () => {
 
 
 document.getElementById("SubmitButton").addEventListener('click', () => {
-    console.log(document.getElementById("subTypeLabelLabel").value);
+    console.log(document.getElementById("subTypeLabel").value);
     const item = {
         name: document.getElementById("nameLabel").value,
 
         description: document.getElementById("description").value,
         configurable: document.getElementById("Configurable").checked,
-        item_type_name: document.getElementById("typeLabel").value,
-        rarity_name: document.getElementById("rarityLabel").value,
-        subType: document.getElementById("subTypeLabelLabel").value,
+        itemTypeName: document.getElementById("typeLabel").value,
+        rarityName: document.getElementById("rarityLabel").value,
+        subType: document.getElementById("subTypeLabel").value,
 
         DamageTList: DmgList,
         StatusList: StatusList,

@@ -179,8 +179,8 @@ public class DatafillService {
         item.setConfigurable(dto.isConfigurable());
         item.setDescription(dto.getDescription());
 
-        item.setRarity(rarityRepo.findById(dto.getRarity_name()).get());
-        item.setItemType(itemTypeRepo.findById(dto.getItem_type_name()).get());
+        item.setRarity(rarityRepo.findById(dto.getRarityName()).get());
+        item.setItemType(itemTypeRepo.findById(dto.getItemTypeName()).get());
 
         itemRepo.save(item);
     }

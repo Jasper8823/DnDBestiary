@@ -1,7 +1,6 @@
 let classSpellList = [];
-let StatusList = [];
 let DmgList = [];
-
+let Status = [];
 
 document.getElementById("RelButtonCSR").addEventListener('click', () => {
     classSpellList = [];
@@ -52,11 +51,7 @@ document.getElementById("SubmitButton").addEventListener('click', () => {
         concentration: document.getElementById("concentration").checked,
         target: document.getElementById("targetLabel").value,
         prepareMoves: document.getElementById("prepMovesLabel").value.parseInt(),
-
         spell_classList: classSpellList,
-
-        DamageTList: DmgList,
-        StatusList: StatusList,
     }
     spellPush(spell);
 });

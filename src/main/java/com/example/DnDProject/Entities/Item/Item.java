@@ -21,7 +21,7 @@ public class Item {
     private boolean configurable;
 
     @ManyToOne
-    @JoinColumn(name = "itemType_name")
+    @JoinColumn(name = "item_type_name")
     private ItemType itemType;
 
     @ManyToOne

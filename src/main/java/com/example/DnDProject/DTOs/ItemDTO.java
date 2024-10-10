@@ -6,8 +6,8 @@ public class ItemDTO {
     private String name;
     private String description;
     private boolean configurable;
-    private String item_type_name;
-    private String rarity_name;
+    private String itemTypeName;
+    private String rarityName;
 
     public String getName() {
         return name;
@@ -33,19 +33,19 @@ public class ItemDTO {
         this.configurable = configurable;
     }
 
-    public String getItem_type_name() {
-        return item_type_name;
+    public String getItemTypeName() {
+        return itemTypeName;
     }
 
-    public void setItem_type_name(String item_type_name) {
-        this.item_type_name = item_type_name;
+    public String getRarityName() {
+        return rarityName;
     }
 
-    public String getRarity_name() {
-        return rarity_name;
+    public void setItemTypeName(String itemTypeName) {
+        this.itemTypeName = itemTypeName;
     }
 
-    public void setRarity_name(String rarity_name) {
-        this.rarity_name = rarity_name;
+    public void setRarityName(String rarityName) {
+        this.rarityName = rarityName;
     }
 }

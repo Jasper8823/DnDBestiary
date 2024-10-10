@@ -45,26 +45,30 @@ public class DatafillController {
 
 
     @GetMapping("/Monster")
-    public void Monster() {
+    public String Monster() {
         webPageOpener.openWebPage("http://localhost:8080/fillDBMonster");
+        return "fillDBMonster";
     }
 
 
     @GetMapping("/Spell")
-    public void Spell() {
+    public String Spell() {
         webPageOpener.openWebPage("http://localhost:8080/fillDBSpell");
+        return "fillDBMonster";
     }
 
 
     @GetMapping("/Item")
-    public void Item() {
+    public String Item() {
         webPageOpener.openWebPage("http://localhost:8080/fillDBItem");
+        return "fillDBMonster";
     }
 
 
     @GetMapping("/Ability")
-    public void Ability() {
+    public String Ability() {
         webPageOpener.openWebPage("http://localhost:8080/fillDBAbility");
+        return "fillDBMonster";
     }
 
 
