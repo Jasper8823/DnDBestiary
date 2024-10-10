@@ -251,7 +251,7 @@ VALUES
 ('school_of_transmutation', 'd6', 'wizard'),
 ('school_of_divination', 'd6', 'wizard');
 
-INSERT INTO dbo.skill (name, attribute_name) VALUES
+INSERT INTO dbo.skill (name, attribute_name) VALUES 
     ('Acrobatics', 'Dexterity'),
     ('Animal Handling', 'Wisdom'),
     ('Arcana', 'Intelligence'),
@@ -271,7 +271,7 @@ INSERT INTO dbo.skill (name, attribute_name) VALUES
     ('Stealth', 'Dexterity'),
     ('Survival', 'Wisdom');
 
-  INSERT INTO dbo.att_class (att_name, class_name) VALUES
+	INSERT INTO dbo.att_class (att_name, class_name) VALUES 
     ('strength', 'barbarian'),
     ('charisma', 'bard'),
     ('wisdom', 'cleric'),
@@ -289,7 +289,7 @@ INSERT INTO dbo.skill (name, attribute_name) VALUES
     ('charisma', 'warlock'),
     ('intelligence', 'wizard');
 
-  INSERT INTO dbo.backstory (name) VALUES
+	INSERT INTO dbo.backstory (name) VALUES 
     ('Acolyte'),
     ('Criminal'),
     ('Folk Hero'),
@@ -307,3 +307,31 @@ INSERT INTO dbo.skill (name, attribute_name) VALUES
     ('Feylost'),
     ('Recluse'),
     ('Far Traveler');
+
+	INSERT INTO dbo.subtype (name) VALUES 
+    ('sword'),
+    ('axe'),
+    ('bow'),
+    ('dagger'),
+    ('mace'),
+    ('spear'),
+    ('crossbow'),
+    ('staff'),
+    ('hammer'),
+    ('flail'),
+    ('scythe'),
+    ('whip'),
+    ('polearm'),
+    ('light_armor'),
+    ('medium_armor'),
+    ('heavy_armor'),
+    ('shield');
+	INSERT INTO dbo.spell_type (name) VALUES 
+    ('abjuration'),
+    ('conjuration'),
+    ('divination'),
+    ('enchantment'),
+    ('evocation'),
+    ('illusion'),
+    ('necromancy'),
+    ('transmutation');
