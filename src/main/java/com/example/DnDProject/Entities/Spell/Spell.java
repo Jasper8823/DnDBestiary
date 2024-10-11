@@ -18,48 +18,31 @@ import jakarta.persistence.*;
 public class Spell {
 
     @Id
-    @Column(name = "name")
+    @Column(name = "name",length = 32)
     private String name;
 
     @Column(name = "level")
     private int level;
 
     // Spell features
-    @Column(name = "duration")
+    @Column(name = "duration",length = 8)
     private String duration;
-
-    public List<CharacterClass> getSpell_classList() {
-        return spell_classList;
-    }
-
-    public void setSpell_classList(List<CharacterClass> spell_classList) {
-        this.spell_classList = spell_classList;
-    }
-
-    public List<Character> getSpell_charList() {
-        return spell_charList;
-    }
-
-    public void setSpell_charList(List<Character> spell_charList) {
-        this.spell_charList = spell_charList;
-    }
-
     @Column(name = "concentration")
     private boolean concentration;
 
-    @Column(name = "concent_duration")
+    @Column(name = "concent_duration",length = 8)
     private String concentDura;
 
     @Column(name = "distance")
     private int distance;
 
-    @Column(name = "target")
+    @Column(name = "target",length = 32)
     private String target;
 
     @Column(name = "prepare_moves")
     private int prepareMoves;
 
-    @Column(name = "description")
+    @Column(name = "description",length = 2048)
     private String description;
 
     @ManyToOne
@@ -193,4 +176,20 @@ public class Spell {
     public void setSpell_statusList(List<Status> spell_statusList) {
         this.spell_statusList = spell_statusList;
     }
+    public List<CharacterClass> getSpell_classList() {
+        return spell_classList;
+    }
+
+    public void setSpell_classList(List<CharacterClass> spell_classList) {
+        this.spell_classList = spell_classList;
+    }
+
+    public List<Character> getSpell_charList() {
+        return spell_charList;
+    }
+
+    public void setSpell_charList(List<Character> spell_charList) {
+        this.spell_charList = spell_charList;
+    }
+
 }

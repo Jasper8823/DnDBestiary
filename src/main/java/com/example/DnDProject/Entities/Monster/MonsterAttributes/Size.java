@@ -13,7 +13,7 @@ import java.util.List;
 public class Size {
 
     @Id
-    @Column(name = "name")
+    @Column(name = "name",length = 16)
     private String name;
 
     @OneToMany(mappedBy = "size", orphanRemoval = true)

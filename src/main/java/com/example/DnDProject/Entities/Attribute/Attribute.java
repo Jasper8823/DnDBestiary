@@ -16,7 +16,7 @@ import jakarta.persistence.*;
 @Table(name = "attribute")
 public class Attribute {
     @Id
-    @Column(name = "name")
+    @Column(name = "name",length = 16)
     private String name;
 
     @OneToMany(mappedBy = "attribute", orphanRemoval = true)

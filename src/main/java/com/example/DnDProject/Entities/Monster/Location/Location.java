@@ -7,11 +7,11 @@ import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "location") // Specify the table name
+@Table(name = "location")
 public class Location {
 
     @Id
-    @Column(name = "name") // Specify the column name
+    @Column(name = "name",length = 16)
     private String name;
 
     @ManyToMany(mappedBy = "habitats")

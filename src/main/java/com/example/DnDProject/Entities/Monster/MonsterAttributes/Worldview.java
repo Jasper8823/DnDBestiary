@@ -15,6 +15,7 @@ import jakarta.persistence.*;
 public class Worldview {
 
     @Id
+    @Column(name = "name",length = 16)
     private String name;
     @OneToMany(mappedBy = "worldview", orphanRemoval = true)
     @Fetch(FetchMode.SELECT)

@@ -19,7 +19,7 @@ public class Character {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "name")
+    @Column(name = "name",length = 32)
     private String name;
 
     @Column(name = "level")

@@ -18,10 +18,10 @@ import java.util.List;
 public class CharacterClass {
 
     @Id
-    @Column(name = "name")
+    @Column(name = "name",length = 32)
     private String name;
 
-    @Column(name = "hp_dice")
+    @Column(name = "hp_dice",length = 4)
     private String HP_dice;
 
     @ManyToOne

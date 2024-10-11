@@ -8,7 +8,7 @@ import java.util.List;
 @Table(name = "rarity")
 public class Rarity {
     @Id
-    @Column(name = "name")
+    @Column(name = "name",length = 16)
     private String name;
 
     @OneToMany(mappedBy = "rarity", orphanRemoval = true)

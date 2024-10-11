@@ -14,6 +14,7 @@ import jakarta.persistence.*;
 public class DamageType {
 
     @Id
+    @Column(name = "name",length = 16)
     private String name;
 
     @ManyToMany(mappedBy = "immunityList")

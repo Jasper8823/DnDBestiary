@@ -8,7 +8,7 @@ import java.util.List;
 @Table(name = "item_type")
 public class ItemType {
     @Id
-    @Column(name = "name")
+    @Column(name = "name",length = 32)
     private String name;
 
     @OneToMany(mappedBy = "itemType", orphanRemoval = true)

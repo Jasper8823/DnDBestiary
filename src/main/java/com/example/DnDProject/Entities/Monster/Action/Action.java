@@ -12,6 +12,7 @@ import jakarta.persistence.*;
 public class Action {
 
     @Id
+    @Column(name = "name",length = 16)
     private String name;
 
     @OneToMany(mappedBy = "action", orphanRemoval = true)

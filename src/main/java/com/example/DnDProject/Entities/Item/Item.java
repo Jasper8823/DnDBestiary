@@ -13,10 +13,10 @@ import java.util.List;
 @Table(name = "item")
 public class Item {
     @Id
-    @Column(name = "name")
+    @Column(name = "name",length = 32)
     private String name;
 
-    @Column(name = "description")
+    @Column(name = "description",length = 4096)
     private String description;
 
     @Column(name = "configurable")

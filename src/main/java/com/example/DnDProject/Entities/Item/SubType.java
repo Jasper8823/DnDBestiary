@@ -11,7 +11,7 @@ import java.util.List;
 @Table(name = "subtype")
 public class SubType {
     @Id
-    @Column(name = "name")
+    @Column(name = "name",length = 32)
     private String name;
 
     @OneToMany(mappedBy = "subType", orphanRemoval = true)

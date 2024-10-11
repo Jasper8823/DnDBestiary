@@ -8,10 +8,10 @@ import jakarta.persistence.*;
 public class ClassAbility {
 
     @Id
-    @Column(name = "name")
+    @Column(name = "name",length = 32)
     private String name;
 
-    @Column(name = "description")
+    @Column(name = "description",length = 1024)
     private String description;
 
     @Column(name = "level")

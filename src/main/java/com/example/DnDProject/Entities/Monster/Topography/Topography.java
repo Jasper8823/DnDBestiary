@@ -12,7 +12,7 @@ import jakarta.persistence.*;
 public class Topography {
 
     @Id
-    @Column(name = "name") //describes the type of terrain in which the battle will take place
+    @Column(name = "name",length = 32) //describes the type of terrain in which the battle will take place
     private String name;
 
     @ManyToMany(mappedBy = "topographyAdvList")

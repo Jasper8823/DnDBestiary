@@ -14,7 +14,7 @@ import jakarta.persistence.*;
 public class Status {
 
     @Id
-    @Column(name = "name")
+    @Column(name = "name",length = 16)
     private String name;
 
     @ManyToMany(mappedBy = "immunityStatusList")

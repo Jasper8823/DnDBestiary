@@ -17,7 +17,7 @@ import java.util.List;
 public class Type {
 
     @Id
-    @Column(name = "name")
+    @Column(name = "name",length = 16)
     private String name;
 
     @OneToMany(mappedBy = "type", orphanRemoval = true)

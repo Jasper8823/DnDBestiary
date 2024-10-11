@@ -28,6 +28,7 @@ public class Monster {
     @Id
     @GeneratedValue()
     private int id;
+    @Column(length = 32)
     private String name;
     private int armor_class;
     //speed types
@@ -38,6 +39,7 @@ public class Monster {
     //calculated (x*y)/2+z
     private int avg_HP;
     //has form of xDy+z, where x - number of roll, y - maximum number, z - permanent bonus
+    @Column(length = 16)
     private String calc_HP;
 
     //monster attributes
@@ -59,25 +61,27 @@ public class Monster {
     private int wisdom_bonus;
     private int constitution_bonus;
 
+    @Column(length = 2048)
     private String features;
+    @Column(length = 2048)
     private String description;
     @ManyToOne
-    @JoinColumn(name = "danger_name", nullable = true) // Changed to nullable = true
+    @JoinColumn(name = "danger_name")
     @Fetch(FetchMode.SELECT)
     private Danger danger;
 
     @ManyToOne
-    @JoinColumn(name = "size_name", nullable = true) // Changed to nullable = true
+    @JoinColumn(name = "size_name")
     @Fetch(FetchMode.SELECT)
     private Size size;
 
     @ManyToOne
-    @JoinColumn(name = "type_name", nullable = true) // Changed to nullable = true
+    @JoinColumn(name = "type_name")
     @Fetch(FetchMode.SELECT)
     private Type type;
 
     @ManyToOne
-    @JoinColumn(name = "worldview_name", nullable = true) // Changed to nullable = true
+    @JoinColumn(name = "worldview_name")
     @Fetch(FetchMode.SELECT)
     private Worldview worldview; // Attributes connections
 
