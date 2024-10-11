@@ -385,3 +385,327 @@ INSERT INTO dbo.skill (name, attribute_name) VALUES
     ('Half-Elf'),
     ('Half-Orc'),
     ('Tiefling');
+
+	INSERT INTO dbo.race (name) VALUES
+    ('Hill Dwarf'),
+    ('Mountain Dwarf'),
+    ('High Elf'),
+    ('Wood Elf'),
+    ('Dark Elf'),
+    ('Lightfoot Halfling'),
+    ('Stout Halfling'),
+    ('Human'),
+    ('Dragonborn'),
+    ('Forest Gnome'),
+    ('Rock Gnome'),
+    ('Half-Elf'),
+    ('Half-Orc'),
+    ('Tiefling');
+
+INSERT INTO dbo.race_ability (id, name, description, race_name) VALUES
+    (1, 'Darkvision', 'You have superior vision in darkness and dim light. You can see in dim light as if it were bright light up to 60 feet and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.', 'Hill Dwarf'),
+    (2, 'Dwarven Resilience', 'You have advantage on saving throws against poison, and you have resistance to poison damage.', 'Hill Dwarf'),
+    (3, 'Dwarven Combat Training', 'You are proficient with the battle axe, hand axe, light hammer, and warhammer.', 'Hill Dwarf'),
+    (4, 'Tool Proficiency', 'You are proficient with artisan tools of your choice: smith tools, brewer supplies, or mason tools.', 'Hill Dwarf'),
+    (5, 'Stonecunning', 'Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check.', 'Hill Dwarf'),
+    (6, 'Dwarven Toughness', 'Your hit point maximum increases by 1, and you gain an additional hit point every time you gain a level.', 'Hill Dwarf');
+
+-- Inserting abilities for Mountain Dwarf
+INSERT INTO dbo.race_ability (id, name, description, race_name) VALUES
+    (7, 'Darkvision', 'You have superior vision in darkness and dim light. You can see in dim light as if it were bright light up to 60 feet and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.', 'Mountain Dwarf'),
+    (8, 'Dwarven Resilience', 'You have advantage on saving throws against poison, and you have resistance to poison damage.', 'Mountain Dwarf'),
+    (9, 'Dwarven Combat Training', 'You are proficient with the battle axe, hand axe, light hammer, and warhammer.', 'Mountain Dwarf'),
+    (10, 'Tool Proficiency', 'You are proficient with artisan tools of your choice: smiths tools, brewers supplies, or masons tools.', 'Mountain Dwarf'),
+    (11, 'Stonecunning', 'Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check.', 'Mountain Dwarf'),
+    (12, 'Dwarven Armor Proficiency', 'You are proficient with light and medium armor.', 'Mountain Dwarf');
+
+-- Inserting abilities for High Elf
+INSERT INTO dbo.race_ability (id, name, description, race_name) VALUES
+    (13, 'Darkvision', 'You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray.', 'High Elf'),
+    (14, 'Keen Senses', 'You have proficiency in the Perception skill.', 'High Elf'),
+    (15, 'Fey Ancestry', 'You have advantage on saving throws against being charmed, and magic can’t put you to sleep.', 'High Elf'),
+    (16, 'Trance', 'Elves don’t need to sleep. Instead, they meditate deeply for 4 hours a day, gaining the same benefit that a human does from 8 hours of sleep.', 'High Elf'),
+    (17, 'Elf Weapon Training', 'You are proficient with the longsword, shortsword, shortbow, and longbow.', 'High Elf'),
+    (18, 'Cantrip', 'You know one cantrip of your choice from the wizard spell list. Intelligence is your spellcasting ability for it.', 'High Elf'),
+    (19, 'Extra Language', 'You can speak, read, and write one extra language of your choice.', 'High Elf');
+
+-- Inserting abilities for Wood Elf
+INSERT INTO dbo.race_ability (id, name, description, race_name) VALUES
+    (20, 'Darkvision', 'You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray.', 'Wood Elf'),
+    (21, 'Keen Senses', 'You have proficiency in the Perception skill.', 'Wood Elf'),
+    (22, 'Fey Ancestry', 'You have advantage on saving throws against being charmed, and magic can’t put you to sleep.', 'Wood Elf'),
+    (23, 'Trance', 'Elves don’t need to sleep. Instead, they meditate deeply for 4 hours a day, gaining the same benefit that a human does from 8 hours of sleep.', 'Wood Elf'),
+    (24, 'Fleet of Foot', 'Your base walking speed increases to 35 feet.', 'Wood Elf'),
+    (25, 'Mask of the Wild', 'You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena.', 'Wood Elf');
+
+-- Inserting abilities for Dark Elf (Drow)
+INSERT INTO dbo.race_ability (id, name, description, race_name) VALUES
+    (26, 'Darkvision', 'You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray.', 'Dark Elf'),
+    (27, 'Keen Senses', 'You have proficiency in the Perception skill.', 'Dark Elf'),
+    (28, 'Fey Ancestry', 'You have advantage on saving throws against being charmed, and magic can’t put you to sleep.', 'Dark Elf'),
+    (29, 'Trance', 'Elves don’t need to sleep. Instead, they meditate deeply for 4 hours a day, gaining the same benefit that a human does from 8 hours of sleep.', 'Dark Elf'),
+    (30, 'Superior Darkvision', 'Your darkvision has a radius of 120 feet.', 'Dark Elf'),
+    (31, 'Sunlight Sensitivity', 'You have disadvantage on attack rolls and on Wisdom (Perception) checks that rely on sight when you, the target of your attack, or whatever you are trying to perceive is in direct sunlight.', 'Dark Elf'),
+    (32, 'Drow Magic', 'You know the Dancing Lights cantrip. When you reach 3rd level, you can cast Faerie Fire once per day. When you reach 5th level, you can cast Darkness once per day.', 'Dark Elf'),
+    (33, 'Drow Weapon Training', 'You are proficient with the rapier, shortsword, and hand crossbow.', 'Dark Elf');
+
+-- Inserting abilities for Stout Halfling
+INSERT INTO dbo.race_ability (id, name, description, race_name) VALUES
+    (34, 'Lucky', 'If you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.', 'Stout Halfling'),
+    (35, 'Brave', 'You have advantage on saving throws against being frightened.', 'Stout Halfling'),
+    (36, 'Halfling Nimbleness', 'You can move through the space of any creature that is of a size larger than yours.', 'Stout Halfling'),
+    (37, 'Stout Resilience', 'You have advantage on saving throws against poison, and you have resistance to poison damage.', 'Stout Halfling');
+
+-- Inserting abilities for Lightfoot Halfling
+INSERT INTO dbo.race_ability (id, name, description, race_name) VALUES
+    (38, 'Lucky', 'If you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.', 'Lightfoot Halfling'),
+    (39, 'Brave', 'You have advantage on saving throws against being frightened.', 'Lightfoot Halfling'),
+    (40, 'Halfling Nimbleness', 'You can move through the space of any creature that is of a size larger than yours.', 'Lightfoot Halfling'),
+    (41, 'Naturally Stealthy', 'You can attempt to hide even when you are only lightly obscured by a creature that is at least one size larger than you.', 'Lightfoot Halfling');
+
+-- Inserting abilities for Dragonborn
+INSERT INTO dbo.race_ability (id, name, description, race_name) VALUES
+    (42, 'Draconic Ancestry', 'You gain a draconic heritage. Choose a type of dragon from the Draconic Ancestry table. You gain a breath weapon and resistance to damage of the type associated with that dragon type.', 'Dragonborn'),
+    (43, 'Breath Weapon', 'You can exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of your breath weapon.', 'Dragonborn');
+-- Inserting abilities for Gnome
+INSERT INTO dbo.race_ability (id, name, description, race_name) VALUES 
+    (101, 'Darkvision', 'You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray.', 'Forest Gnome'),
+    (102, 'Gnome Cunning', 'You have advantage on Intelligence, Wisdom, and Charisma saving throws against magic.', 'Forest Gnome'),
+    (103, 'Natural Illusion', 'You know the minor illusion cantrip. Intelligence is your spellcasting ability for it.', 'Forest Gnome'),
+    (104, 'Communication with Small Beasts', 'Through sounds and gestures, you can communicate simple ideas to Small or smaller beasts.', 'Forest Gnome');
+
+-- Inserting abilities for Rock Gnome
+INSERT INTO dbo.race_ability (id, name, description, race_name) VALUES 
+    (105, 'Darkvision', 'You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray.', 'Rock Gnome'),
+    (106, 'Gnome Cunning', 'You have advantage on Intelligence, Wisdom, and Charisma saving throws against magic.', 'Rock Gnome'),
+    (107, 'Artisan’s Knowledge', 'When you make an Intelligence (History) check related to magic items, alchemical objects, or technological devices, you can add twice your proficiency bonus instead of your normal proficiency bonus.', 'Rock Gnome'),
+    (108, 'Tinker', 'You are proficient with artisan’s tools (tinker’s tools). You can spend 1 hour and materials worth 10 gp to construct a Tiny clockwork device (AC 5, 1 HP) that ceases to function after 24 hours unless you spend 1 hour maintaining it. You can dismantle it to reclaim the materials. You can create one of the following: Clockwork Toy, Fire Starter, Music Box.', 'Rock Gnome');
+
+-- Inserting abilities for Half-Elf
+INSERT INTO dbo.race_ability (id, name, description, race_name) VALUES 
+    (109, 'Darkvision', 'Thanks to your elf blood, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray.', 'Half-Elf'),
+    (110, 'Fey Ancestry', 'You have advantage on saving throws against being charmed, and magic can’t put you to sleep.', 'Half-Elf'),
+    (111, 'Skill Versatility', 'You gain proficiency in two skills of your choice.', 'Half-Elf');
+
+-- Inserting abilities for Half-Orc
+INSERT INTO dbo.race_ability (id, name, description, race_name) VALUES 
+    (112, 'Darkvision', 'Thanks to your orc blood, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray.', 'Half-Orc'),
+    (113, 'Menacing', 'You gain proficiency in the Intimidation skill.', 'Half-Orc'),
+    (114, 'Relentless Endurance', 'When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can’t use this feature again until you finish a long rest.', 'Half-Orc'),
+    (115, 'Savage Attacks', 'When you score a critical hit with a melee weapon attack, you can roll one additional weapon damage die.', 'Half-Orc');
+
+-- Inserting abilities for Tiefling
+INSERT INTO dbo.race_ability (id, name, description, race_name) VALUES 
+    (116, 'Darkvision', 'Thanks to your infernal heritage, you can see in dim light as if it were bright light and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray.', 'Tiefling'),
+    (117, 'Hellish Resistance', 'You have resistance to fire damage.', 'Tiefling'),
+    (118, 'Infernal Legacy', 'You know the thaumaturgy cantrip. When you reach 3rd level, you can cast hellish rebuke once per day as a 2nd-level spell. When you reach 5th level, you can cast darkness once per day. Charisma is your spellcasting ability for these spells.', 'Tiefling');
+
+
+INSERT INTO dbo.SpellSlots(id, level, lvl1, lvl2, lvl3, lvl4, lvl5, lvl6, lvl7, lvl8, lvl9, plot_num, spell_num, class_name)
+VALUES
+(1, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 4, 'bard'),
+(2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 2, 5, 'bard'),
+(3, 3, 4, 2, 0, 0, 0, 0, 0, 0, 0, 2, 6, 'bard'),
+(4, 4, 4, 3, 0, 0, 0, 0, 0, 0, 0, 3, 7, 'bard'),
+(5, 5, 4, 3, 2, 0, 0, 0, 0, 0, 0, 3, 8, 'bard'),
+(6, 6, 4, 3, 3, 0, 0, 0, 0, 0, 0, 3, 9, 'bard'),
+(7, 7, 4, 3, 3, 1, 0, 0, 0, 0, 0, 3, 10, 'bard'),
+(8, 8, 4, 3, 3, 2, 0, 0, 0, 0, 0, 3, 11, 'bard'),
+(9, 9, 4, 3, 3, 3, 1, 0, 0, 0, 0, 4, 12, 'bard'),
+(10, 10, 4, 3, 3, 3, 2, 0, 0, 0, 0, 4, 14, 'bard'),
+(11, 11, 4, 3, 3, 3, 2, 1, 0, 0, 0, 4, 15, 'bard'),
+(12, 12, 4, 3, 3, 3, 2, 1, 0, 0, 0, 4, 15, 'bard'),
+(13, 13, 4, 3, 3, 3, 2, 1, 1, 0, 0, 4, 16, 'bard'),
+(14, 14, 4, 3, 3, 3, 2, 1, 1, 0, 0, 4, 18, 'bard'),
+(15, 15, 4, 3, 3, 3, 2, 1, 1, 1, 0, 4, 19, 'bard'),
+(16, 16, 4, 3, 3, 3, 2, 1, 1, 1, 0, 4, 19, 'bard'),
+(17, 17, 4, 3, 3, 3, 2, 1, 1, 1, 1, 4, 20, 'bard'),
+(18, 18, 4, 3, 3, 3, 3, 1, 1, 1, 1, 4, 22, 'bard'),
+(19, 19, 4, 3, 3, 3, 3, 2, 1, 1, 1, 4, 22, 'bard'),
+(20, 20, 4, 3, 3, 3, 3, 2, 2, 1, 1, 4, 22, 'bard'),
+(21, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 100, 'cleric'),
+(22, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 2, 100, 'cleric'),
+(23, 3, 4, 2, 0, 0, 0, 0, 0, 0, 0, 2, 100, 'cleric'),
+(24, 4, 4, 3, 0, 0, 0, 0, 0, 0, 0, 3, 100, 'cleric'),
+(25, 5, 4, 3, 2, 0, 0, 0, 0, 0, 0, 3, 100, 'cleric'),
+(26, 6, 4, 3, 3, 0, 0, 0, 0, 0, 0, 3, 100, 'cleric'),
+(27, 7, 4, 3, 3, 1, 0, 0, 0, 0, 0, 3, 100, 'cleric'),
+(28, 8, 4, 3, 3, 2, 0, 0, 0, 0, 0, 3, 100, 'cleric'),
+(29, 9, 4, 3, 3, 3, 1, 0, 0, 0, 0, 4, 100, 'cleric'),
+(30, 10, 4, 3, 3, 3, 2, 0, 0, 0, 0, 4, 100, 'cleric'),
+(31, 11, 4, 3, 3, 3, 2, 1, 0, 0, 0, 4, 100, 'cleric'),
+(32, 12, 4, 3, 3, 3, 2, 1, 0, 0, 0, 4, 100, 'cleric'),
+(33, 13, 4, 3, 3, 3, 2, 1, 1, 0, 0, 4, 100, 'cleric'),
+(34, 14, 4, 3, 3, 3, 2, 1, 1, 0, 0, 4, 100, 'cleric'),
+(35, 15, 4, 3, 3, 3, 2, 1, 1, 1, 0, 4, 100, 'cleric'),
+(36, 16, 4, 3, 3, 3, 2, 1, 1, 1, 0, 4, 100, 'cleric'),
+(37, 17, 4, 3, 3, 3, 2, 1, 1, 1, 1, 4, 100, 'cleric'),
+(38, 18, 4, 3, 3, 3, 3, 1, 1, 1, 1, 4, 100, 'cleric'),
+(39, 19, 4, 3, 3, 3, 3, 2, 1, 1, 1, 4, 100, 'cleric'),
+(40, 20, 4, 3, 3, 3, 3, 2, 2, 1, 1, 4, 100, 'cleric'),
+(41, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 100, 'druid'),
+(42, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 2, 100, 'druid'),
+(43, 3, 4, 2, 0, 0, 0, 0, 0, 0, 0, 2, 100, 'druid'),
+(44, 4, 4, 3, 0, 0, 0, 0, 0, 0, 0, 3, 100, 'druid'),
+(45, 5, 4, 3, 2, 0, 0, 0, 0, 0, 0, 3, 100, 'druid'),
+(46, 6, 4, 3, 3, 0, 0, 0, 0, 0, 0, 3, 100, 'druid'),
+(47, 7, 4, 3, 3, 1, 0, 0, 0, 0, 0, 3, 100, 'druid'),
+(48, 8, 4, 3, 3, 2, 0, 0, 0, 0, 0, 3, 100, 'druid'),
+(49, 9, 4, 3, 3, 3, 1, 0, 0, 0, 0, 4, 100, 'druid'),
+(50, 10, 4, 3, 3, 3, 2, 0, 0, 0, 0, 4, 100, 'druid'),
+(51, 11, 4, 3, 3, 3, 2, 1, 0, 0, 0, 4, 100, 'druid'),
+(52, 12, 4, 3, 3, 3, 2, 1, 0, 0, 0, 4, 100, 'druid'),
+(53, 13, 4, 3, 3, 3, 2, 1, 1, 0, 0, 4, 100, 'druid'),
+(54, 14, 4, 3, 3, 3, 2, 1, 1, 0, 0, 4, 100, 'druid'),
+(55, 15, 4, 3, 3, 3, 2, 1, 1, 1, 0, 4, 100, 'druid'),
+(56, 16, 4, 3, 3, 3, 2, 1, 1, 1, 0, 4, 100, 'druid'),
+(57, 17, 4, 3, 3, 3, 2, 1, 1, 1, 1, 4, 100, 'druid'),
+(58, 18, 4, 3, 3, 3, 3, 1, 1, 1, 1, 4, 100, 'druid'),
+(59, 19, 4, 3, 3, 3, 3, 2, 1, 1, 1, 4, 100, 'druid'),
+(60, 20, 4, 3, 3, 3, 3, 2, 2, 1, 1, 4, 100, 'druid'),
+(61, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 'paladin'),
+(62, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 'paladin'),
+(63, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 'paladin'),
+(64, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 'paladin'),
+(65, 5, 4, 2, 0, 0, 0, 0, 0, 0, 0, 0, 100, 'paladin'),
+(66, 6, 4, 2, 0, 0, 0, 0, 0, 0, 0, 0, 100, 'paladin'),
+(67, 7, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 100, 'paladin'),
+(68, 8, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 100, 'paladin'),
+(69, 9, 4, 3, 2, 0, 0, 0, 0, 0, 0, 0, 100, 'paladin'),
+(70, 10, 4, 3, 2, 0, 0, 0, 0, 0, 0, 0, 100, 'paladin'),
+(71, 11, 4, 3, 3, 0, 0, 0, 0, 0, 0, 0, 100, 'paladin'),
+(72, 12, 4, 3, 3, 0, 0, 0, 0, 0, 0, 0, 100, 'paladin'),
+(73, 13, 4, 3, 3, 1, 0, 0, 0, 0, 0, 0, 100, 'paladin'),
+(74, 14, 4, 3, 3, 1, 0, 0, 0, 0, 0, 0, 100, 'paladin'),
+(75, 15, 4, 3, 3, 2, 0, 0, 0, 0, 0, 0, 100, 'paladin'),
+(76, 16, 4, 3, 3, 2, 0, 0, 0, 0, 0, 0, 100, 'paladin'),
+(77, 17, 4, 3, 3, 3, 1, 0, 0, 0, 0, 0, 100, 'paladin'),
+(78, 18, 4, 3, 3, 3, 1, 0, 0, 0, 0, 0, 100, 'paladin'),
+(79, 19, 4, 3, 3, 3, 2, 0, 0, 0, 0, 0, 100, 'paladin'),
+(80, 20, 4, 3, 3, 3, 2, 0, 0, 0, 0, 0, 100, 'paladin'),
+(81, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 'ranger'),
+(82, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 'ranger'),
+(83, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 'ranger'),
+(84, 5, 4, 2, 0, 0, 0, 0, 0, 0, 0, 0, 5, 'ranger'),
+(85, 6, 4, 2, 0, 0, 0, 0, 0, 0, 0, 0, 6, 'ranger'),
+(86, 7, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 7, 'ranger'),
+(87, 8, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 8, 'ranger'),
+(88, 9, 4, 3, 2, 0, 0, 0, 0, 0, 0, 0, 9, 'ranger'),
+(89, 10, 4, 3, 2, 0, 0, 0, 0, 0, 0, 0, 10, 'ranger'),
+(90, 11, 4, 3, 3, 0, 0, 0, 0, 0, 0, 0, 11, 'ranger'),
+(91, 12, 4, 3, 3, 0, 0, 0, 0, 0, 0, 0, 12, 'ranger'),
+(92, 13, 4, 3, 3, 1, 0, 0, 0, 0, 0, 0, 13, 'ranger'),
+(93, 14, 4, 3, 3, 1, 0, 0, 0, 0, 0, 0, 14, 'ranger'),
+(94, 15, 4, 3, 3, 2, 0, 0, 0, 0, 0, 0, 15, 'ranger'),
+(95, 16, 4, 3, 3, 2, 0, 0, 0, 0, 0, 0, 16, 'ranger'),
+(96, 17, 4, 3, 3, 3, 1, 0, 0, 0, 0, 0, 17, 'ranger'),
+(97, 18, 4, 3, 3, 3, 1, 0, 0, 0, 0, 0, 18, 'ranger'),
+(98, 19, 4, 3, 3, 3, 2, 0, 0, 0, 0, 0, 19, 'ranger'),
+(99, 19, 4, 3, 3, 3, 2, 0, 0, 0, 0, 0, 19, 'ranger'),
+(100, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 4, 2, 'sorcerer'),
+(101, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 4, 3, 'sorcerer'),
+(102, 3, 4, 2, 0, 0, 0, 0, 0, 0, 0, 4, 4, 'sorcerer'),
+(103, 4, 4, 3, 0, 0, 0, 0, 0, 0, 0, 5, 5, 'sorcerer'),
+(104, 5, 4, 3, 2, 0, 0, 0, 0, 0, 0, 5, 6, 'sorcerer'),
+(105, 6, 4, 3, 3, 0, 0, 0, 0, 0, 0, 5, 7, 'sorcerer'),
+(106, 7, 4, 3, 3, 1, 0, 0, 0, 0, 0, 5, 8, 'sorcerer'),
+(107, 8, 4, 3, 3, 2, 0, 0, 0, 0, 0, 5, 9, 'sorcerer'),
+(108, 9, 4, 3, 3, 3, 1, 0, 0, 0, 0, 5, 10, 'sorcerer'),
+(109, 10, 4, 3, 3, 3, 2, 0, 0, 0, 0, 6, 11, 'sorcerer'),
+(110, 11, 4, 3, 3, 3, 2, 1, 0, 0, 0, 6, 12, 'sorcerer'),
+(111, 12, 4, 3, 3, 3, 2, 1, 0, 0, 0, 6, 12, 'sorcerer'),
+(112, 13, 4, 3, 3, 3, 2, 1, 1, 0, 0, 6, 13, 'sorcerer'),
+(113, 14, 4, 3, 3, 3, 2, 1, 1, 0, 0, 6, 13, 'sorcerer'),
+(114, 15, 4, 3, 3, 3, 2, 1, 1, 1, 0, 6, 14, 'sorcerer'),
+(115, 16, 4, 3, 3, 3, 2, 1, 1, 1, 0, 6, 14, 'sorcerer'),
+(116, 17, 4, 3, 3, 3, 2, 1, 1, 1, 1, 6, 15, 'sorcerer'),
+(117, 18, 4, 3, 3, 3, 3, 1, 1, 1, 1, 6, 15, 'sorcerer'),
+(118, 19, 4, 3, 3, 3, 3, 2, 1, 1, 1, 6, 15, 'sorcerer'),
+(119, 20, 4, 3, 3, 3, 3, 2, 2, 1, 1, 6, 15, 'sorcerer'),
+(120, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 'warlock'),
+(121, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 'warlock'),
+(122, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 4, 'warlock'),
+(123, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 5, 'warlock'),
+(124, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 6, 'warlock'),
+(125, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 7, 'warlock'),
+(126, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 8, 'warlock'),
+(127, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 9, 'warlock'),
+(128, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 10, 'warlock'),
+(129, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 10, 'warlock'),
+(130, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 11, 'warlock'),
+(131, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 11, 'warlock'),
+(132, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 12, 'warlock'),
+(133, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 12, 'warlock'),
+(134, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 13, 'warlock'),
+(135, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 13, 'warlock'),
+(136, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 14, 'warlock'),
+(137, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 14, 'warlock'),
+(138, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 15, 'warlock'),
+(139, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 15, 'warlock'),
+(140, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 'wizard'),
+(141, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 'wizard'),
+(142, 3, 4, 2, 0, 0, 0, 0, 0, 0, 0, 3, 0, 'wizard'),
+(143, 4, 4, 3, 0, 0, 0, 0, 0, 0, 0, 4, 0, 'wizard'),
+(144, 5, 4, 3, 2, 0, 0, 0, 0, 0, 0, 4, 0, 'wizard'),
+(145, 6, 4, 3, 3, 0, 0, 0, 0, 0, 0, 4, 0, 'wizard'),
+(146, 7, 4, 3, 3, 1, 0, 0, 0, 0, 0, 4, 0, 'wizard'),
+(147, 8, 4, 3, 3, 2, 0, 0, 0, 0, 0, 4, 0, 'wizard'),
+(148, 9, 4, 3, 3, 3, 1, 0, 0, 0, 0, 4, 0, 'wizard'),
+(149, 10, 4, 3, 3, 3, 2, 0, 0, 0, 0, 4, 0, 'wizard'),
+(150, 11, 4, 3, 3, 3, 2, 1, 0, 0, 0, 4, 0, 'wizard'),
+(151, 12, 4, 3, 3, 3, 2, 1, 0, 0, 0, 4, 0, 'wizard'),
+(152, 13, 4, 3, 3, 3, 2, 1, 1, 0, 0, 4, 0, 'wizard'),
+(153, 14, 4, 3, 3, 3, 2, 1, 1, 0, 0, 4, 0, 'wizard'),
+(154, 15, 4, 3, 3, 3, 2, 1, 1, 1, 0, 4, 0, 'wizard'),
+(155, 16, 4, 3, 3, 3, 2, 1, 1, 1, 0, 4, 0, 'wizard'),
+(156, 17, 4, 3, 3, 3, 2, 1, 1, 1, 1, 4, 0, 'wizard'),
+(157, 18, 4, 3, 3, 3, 3, 1, 1, 1, 1, 4, 0, 'wizard'),
+(158, 19, 4, 3, 3, 3, 3, 2, 1, 1, 1, 4, 0, 'wizard'),
+(159, 20, 4, 3, 3, 3, 3, 2, 2, 1, 1, 4, 0, 'wizard');
+
+
+
+
+INSERT INTO dbo.trait (name, description) VALUES
+('Actor', 'You are a master of mimicry and drama. You gain the following benefits: +1 to Charisma, Advantage on Charisma (Deception) and Charisma (Performance) checks when pretending to be someone else, and you can mimic the speech of another person after listening to them for at least 1 minute.'),
+('Athlete', 'You gain the following benefits: +1 to Strength or Dexterity, standing up from prone requires only 5 feet of movement, climbing doesn’t cost extra movement, and you can make a running long jump or a running high jump after moving only 5 feet on foot.'),
+('Alert', 'You gain a +5 bonus to initiative, you can’t be surprised while conscious, and other creatures don’t gain advantage on attack rolls against you as a result of being unseen by you.'),
+('War Caster', 'You have advantage on Constitution saving throws to maintain concentration on a spell, you can perform the somatic components of spells even when you have weapons or a shield in one or both hands, and when a hostile creature’s movement provokes an opportunity attack from you, you can use your reaction to cast a spell instead of making an opportunity attack.'),
+('Grappler', 'You gain advantage on attack rolls against a creature you are grappling, and you can try to pin a grappled creature using a second grapple check.'),
+('Lucky', 'You have 3 luck points. Whenever you make an attack roll, an ability check, or a saving throw, you can spend one luck point to roll an additional d20. You choose which of the d20s is used.'),
+('Mounted Combatant', 'You have advantage on melee attack rolls against unmounted creatures that are smaller than your mount, and when a creature attacks your mount, you can use your reaction to redirect the attack to yourself. If your mount succeeds on a Dexterity saving throw, it takes no damage on a successful save.'),
+('Observant', 'Increase your Intelligence or Wisdom score by 1, you can read lips, and you have a +5 bonus to your passive Wisdom (Perception) and passive Intelligence (Investigation).'),
+('Martial Adept', 'You gain proficiency with two maneuvers of your choice from the Battle Master archetype and one superiority die, which you can use to fuel those maneuvers.'),
+('Inspiring Leader', 'You can spend 10 minutes inspiring your companions, granting temporary hit points equal to your level + your Charisma modifier to up to 6 friendly creatures within 30 feet.'),
+('Savage Attacker', 'Once per turn when you roll damage for a melee weapon attack, you can reroll the weapon’s damage dice and use either total.'),
+('Tavern Brawler', 'You gain proficiency with improvised weapons, your unarmed strike uses a d4 for damage, you gain a +1 bonus to Strength or Constitution, and you can make a grapple attempt as a bonus action after hitting a creature with an unarmed strike or improvised weapon.'),
+('Lightly Armored', 'You gain proficiency with light armor.'),
+('Moderately Armored', 'You gain proficiency with medium armor and shields.'),
+('Heavily Armored', 'You gain proficiency with heavy armor.'),
+('Dual Wielder', 'You gain a +1 bonus to AC while you are wielding a separate melee weapon in each hand, and you can use two-weapon fighting even when the one-handed melee weapons you are wielding aren’t light.'),
+('Dungeon Delver', 'You gain advantage on saving throws to avoid or resist traps, advantage on Perception and Investigation checks made to detect traps, and you can search for traps while traveling at a normal pace.'),
+('Tough', 'Your hit point maximum increases by 2 for each level you have.'),
+('Healer', 'When you use a healer’s kit to stabilize a dying creature, that creature also regains 1 hit point. As an action, you can spend one use of a healer’s kit to restore hit points to a creature, restoring 1d6 + 4 hit points, plus additional hit points equal to the creature’s number of hit dice.'),
+('Polearm Master', 'You can make a bonus attack with the opposite end of a polearm you are wielding, dealing 1d4 bludgeoning damage. You can also make an opportunity attack when a creature enters your reach.'),
+('Weapon Master', 'Increase your Strength or Dexterity by 1 and gain proficiency with four weapons of your choice.'),
+('Great Weapon Master', 'When you score a critical hit or reduce a creature to 0 hit points with a melee attack using a heavy weapon, you can make another melee attack as a bonus action. Before you make a melee attack with a heavy weapon, you can choose to take a -5 penalty to the attack roll to add +10 to the attack’s damage.'),
+('Shield Master', 'You can shove a creature as a bonus action if you take the Attack action, add your shield’s AC bonus to Dexterity saving throws against effects that target only you, and if you make a successful Dexterity saving throw to take half damage, you can use your reaction to take no damage.'),
+('Medium Armor Master', 'When wearing medium armor, you can add your full Dexterity modifier (instead of a maximum of +2) to your AC, and you do not suffer disadvantage on Dexterity (Stealth) checks.'),
+('Heavy Armor Master', 'While you are wearing heavy armor, bludgeoning, piercing, and slashing damage that you take from non-magical weapons is reduced by 3.'),
+('Spell Sniper', 'When you cast a spell that requires an attack roll, the spell’s range is doubled. Your ranged spell attacks ignore half cover and three-quarters cover, and you learn one cantrip that requires an attack roll.'),
+('Sharpshooter', 'Attacking at long range doesn’t impose disadvantage on your ranged weapon attack rolls, your ranged weapon attacks ignore half cover and three-quarters cover, and before making a ranged weapon attack, you can choose to take a -5 penalty to the attack roll to add +10 to the damage roll.'),
+('Skulker', 'You can try to hide when you are lightly obscured, dim light doesn’t impose disadvantage on your Wisdom (Perception) checks, and if you miss with a ranged weapon attack while hidden, making the attack doesn’t reveal your position.'),
+('Defensive Duelist', 'When a creature hits you with a melee attack, you can use your reaction to add your proficiency bonus to your AC for that attack.'),
+('Prodigy', 'You gain proficiency in one skill, one tool, and one language of your choice, and you gain expertise with one skill you are proficient in.'),
+('Keen Mind', 'You gain +1 to Intelligence, you always know which way is north, you always know the number of hours left before the next sunrise or sunset, and you can accurately recall anything you have seen or heard within the past month.'),
+('Mobile', 'Your speed increases by 10 feet, and when you use the Dash action, difficult terrain doesn’t cost you extra movement. When you make a melee attack against a creature, you don’t provoke opportunity attacks from that creature for the rest of the turn, whether you hit or not.'),
+('Magic Initiate', 'Choose a class: bard, cleric, druid, sorcerer, warlock, or wizard. You learn two cantrips from that class’s spell list. You also learn one 1st-level spell from that same list, and you can cast it once per long rest without using a spell slot.'),
+('Skilled', 'You gain proficiency in any combination of three skills or tools of your choice.'),
+('Ritual Caster', 'You acquire a ritual book holding two 1st-level spells of your choice from one spellcasting class. You can cast a spell from your ritual book as a ritual if that spell has the ritual tag.'),
+('Resilient', 'Increase one ability score by 1, and you gain proficiency in saving throws using the chosen ability.'),
+('Sentinel', 'Creatures provoke opportunity attacks from you even if they take the Disengage action, you can use a reaction to make a melee attack against a creature that attacks someone near you, and when you hit a creature with an opportunity attack, the creature’s speed becomes 0.'),
+('Elemental Adept', 'When you roll damage for a spell you cast that deals a type of elemental damage, you can treat any 1 on a damage die as a 2. You also ignore resistance to the chosen damage type when you cast a spell.'),
+('Mage Slayer', 'When a creature within 5 feet of you casts a spell, you can use your reaction to make a melee weapon attack against it, and when you damage a creature concentrating on a spell, that creature has disadvantage on the saving throw to maintain its concentration.'),
+('Durable', 'Increase your Constitution by 1, and whenever you roll a hit die to regain hit points, the minimum number of hit points you regain equals twice your Constitution modifier.'),
+('Crossbow Expert', 'You don’t suffer disadvantage when making a ranged attack with a crossbow while within 5 feet of a hostile creature, you can make a bonus attack with a hand crossbow when you use the Attack action, and you can ignore the loading property of crossbows you are proficient with.'),
+('Linguist', 'You learn three languages of your choice, and you can create written ciphers that others can’t decipher unless they have magic or proficiency in Intelligence (Investigation).');
