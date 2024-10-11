@@ -13,7 +13,7 @@ import jakarta.persistence.*;
 @Table(name = "race")
 public class Race {
     @Id
-    @Column(name = "name")
+    @Column(name = "name",length = 32)
     private String name;
 
     @OneToMany(mappedBy = "race", orphanRemoval = true)

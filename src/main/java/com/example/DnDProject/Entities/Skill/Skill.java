@@ -16,7 +16,7 @@ import jakarta.persistence.*;
 @Table(name = "skill")
 public class Skill {
     @Id
-    @Column(name = "name",length = 16)
+    @Column(name = "name",length = 32)
     private String name;
 
     @ManyToOne

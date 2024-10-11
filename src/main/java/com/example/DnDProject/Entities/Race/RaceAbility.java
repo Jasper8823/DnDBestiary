@@ -6,10 +6,10 @@ import jakarta.persistence.*;
 @Table(name = "race_ability")
 public class RaceAbility {
     @Id
-    @Column(name = "name")
+    @Column(name = "name",length = 32)
     private String name;
 
-    @Column(name = "description")
+    @Column(name = "description",length = 1024)
     private String description;
 
     @ManyToOne
