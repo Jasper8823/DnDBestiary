@@ -6,10 +6,12 @@ import jakarta.persistence.*;
 @Table(name = "race_ability")
 public class RaceAbility {
     @Id
+    private int id;
+
     @Column(name = "name",length = 32)
     private String name;
 
-    @Column(name = "description",length = 1024)
+    @Column(name = "description",length = 2048)
     private String description;
 
     @ManyToOne
@@ -38,5 +40,13 @@ public class RaceAbility {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

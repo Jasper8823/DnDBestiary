@@ -43,4 +43,28 @@ public class Race {
     public void setName(String name) {
         this.name = name;
     }
+
+    public List<Character> getCharacters() {
+        return characters;
+    }
+
+    public void setCharacters(List<Character> characters) {
+        this.characters = characters;
+    }
+
+    public List<RaceAttribute> getRaceAttributeList() {
+        return raceAttributeList;
+    }
+
+    public void setRaceAttributeList(List<RaceAttribute> raceAttributeList) {
+        this.raceAttributeList = raceAttributeList;
+    }
+
+    public List<SubType> getRaceProfList() {
+        return raceProfList;
+    }
+
+    public void setRaceProfList(List<SubType> raceProfList) {
+        this.raceProfList = raceProfList;
+    }
 }
