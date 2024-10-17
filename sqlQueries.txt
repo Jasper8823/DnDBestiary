@@ -386,22 +386,6 @@ INSERT INTO dbo.skill (name, attribute_name) VALUES
     ('Half-Orc'),
     ('Tiefling');
 
-	INSERT INTO dbo.race (name) VALUES
-    ('Hill Dwarf'),
-    ('Mountain Dwarf'),
-    ('High Elf'),
-    ('Wood Elf'),
-    ('Dark Elf'),
-    ('Lightfoot Halfling'),
-    ('Stout Halfling'),
-    ('Human'),
-    ('Dragonborn'),
-    ('Forest Gnome'),
-    ('Rock Gnome'),
-    ('Half-Elf'),
-    ('Half-Orc'),
-    ('Tiefling');
-
 INSERT INTO dbo.race_ability (id, name, description, race_name) VALUES
     (1, 'Darkvision', 'You have superior vision in darkness and dim light. You can see in dim light as if it were bright light up to 60 feet and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.', 'Hill Dwarf'),
     (2, 'Dwarven Resilience', 'You have advantage on saving throws against poison, and you have resistance to poison damage.', 'Hill Dwarf'),
