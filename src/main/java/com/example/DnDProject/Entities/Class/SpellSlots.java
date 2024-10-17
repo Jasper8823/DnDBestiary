@@ -18,6 +18,7 @@ public class SpellSlots {
     private int lvl8;
     private int lvl9;
     private int plot_num;
+
     private int spell_num;
 
 
