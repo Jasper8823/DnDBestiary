@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/css/mstyle.css}">
     <title>Monster</title>
+    <script th:src="@{/js/monsterConnect.js}" async></script>
 </head>
-<body>
+<body><div id="body">
 <div class="links">
     <h1 >▶</h1>
     <div class="dropp">
@@ -368,7 +369,6 @@
         </select>
 
         <div id="ClassRelBoxM">
-
             <div class="ClassRelBox">
                 <label for="CAdv" class="ClassRelTextDT">Adv</label>
                 <input type="radio" class="ClassRelLabelDT" id ="CAdv" name = "title">
@@ -438,8 +438,6 @@
     </div>
 
     <button id="SubmitButton">Submit</button>
-    
-    <script th:src="@{/js/monsterConnect.js}"></script>
-</div>
+</div></div>
 </body>
 </html>
