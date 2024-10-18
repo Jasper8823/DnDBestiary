@@ -52,8 +52,21 @@ document.getElementById("SubmitButton").addEventListener('click', () => {
         target: document.getElementById("targetLabel").value,
         prepareMoves: parseInt(document.getElementById("prepMovesLabel").value),
         spell_classList: classSpellList,
+        damageType_names : DmgList,
+        status_names: Status
     }
     spellPush(spell);
+    classSpellList = [];
+    DmgList = [];
+    Status = [];
+    document.getElementById("nameLabel").value = '';
+    document.getElementById("description").value = '';
+    document.getElementById("targetLabel").value = '';
+    document.getElementById("durationLabel").value = '';
+    document.getElementById("concDurationLabel").value = '';
+    document.getElementById("concentration").checked = false;
+    document.getElementById("prepMovesLabel").value = '';
+    document.getElementById("distanceLabel").value = '';
 });
 
 

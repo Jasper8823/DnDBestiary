@@ -117,6 +117,9 @@ document.getElementById("ActionButton").addEventListener('click', () => {
     actionList.push(ActionDTO = {name: document.getElementById("AnameLabel").value === "" ? document.getElementById("AnameType").value : document.getElementById("AnameLabel").value,
                               info: document.getElementById("Ainfo").value,
                               legend: document.getElementById("IsLegend").checked});
+    document.getElementById("AnameLabel").value = "";
+    document.getElementById("Ainfo").value = '';
+    document.getElementById("IsLegend").checked = false;
 });
 
 
@@ -176,6 +179,47 @@ document.getElementById("SubmitButton").addEventListener('click', () => {
         actions: actionList
     }
     monsterPush(monster);
+    damageRes = [];
+    damageVul = [];
+    damageImm = [];
+    topographyAdv = [];
+    topographyDAdv = [];
+    classAdv = [];
+    classDAdv = [];
+    locationType = [];
+    statusType = [];
+    actionList = [];
+    document.getElementById("nameLabel").value ='';
+    document.getElementById("STLabel").value = 10;
+    document.getElementById("DXLabel").value = 10;
+    document.getElementById("BBLabel").value= 10;
+    document.getElementById("INLabel").value= 10;
+    document.getElementById("WILabel").value= 10;
+    document.getElementById("CHLabel").value= 10;
+
+    document.getElementById("PCLabel").value= 10;
+    document.getElementById("ACLabel").value= 10;
+    document.getElementById("SKBLabel").value= 0;
+    document.getElementById("STBLabel").value= 0;
+    document.getElementById("DXBLabel").value= 0;
+    document.getElementById("BBBLabel").value= 0;
+    document.getElementById("INBLabel").value= 0;
+    document.getElementById("WIBLabel").value= 0;
+    document.getElementById("CHBLabel").value= 0;
+
+    document.getElementById("WalkSpeed").checked = false;
+    document.getElementById("WSV").value = 30;
+    document.getElementById("SwimSpeed").checked = false;
+    document.getElementById("SSV").value = 30;
+    document.getElementById("FlySpeed").checked = false;
+    document.getElementById("FSV").value = 30;
+
+    document.getElementById("NDLabel").value = 1;
+    document.getElementById("DVLabel").value = 10;
+    document.getElementById("PBLabel").value = 5;
+
+    document.getElementById("features").value = '';
+    document.getElementById("description").value = '';
 });
 
 
