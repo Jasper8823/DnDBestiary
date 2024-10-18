@@ -5,7 +5,7 @@ spring:
     prefix: classpath:/web/
     suffix: .html
   datasource:
-      url: .;
+      url: ;
       driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
   web:
     resources:

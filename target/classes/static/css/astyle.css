@@ -54,7 +54,25 @@
     background-color: rgb(255, 152, 152);
 }
 body{
-    background-color: rgb(235, 235, 235);
+    background: linear-gradient(to bottom right, rgb(114, 210, 255), 3%, rgb(255, 238, 213), 94%, rgb(157, 224, 255));
+    height: 100vh;
+    margin: 0;
+}
+
+textarea{
+    background-color: rgb(255, 252, 247);
+}
+
+select{
+    background-color: rgb(255, 252, 247);
+}
+
+input{
+    background-color: rgb(255, 252, 247);
+}
+
+input[type='radio']{
+    color: rgb(255, 252, 247);
 }
 
 #fill{
@@ -64,7 +82,6 @@ body{
     width: 98.3%;
     right: 0px;
     height: 100%;
-    border: solid black 2px;
     z-index: 5;
 }
 
