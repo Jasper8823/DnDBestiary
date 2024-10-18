@@ -1,5 +1,7 @@
 package com.example.DnDProject.DTOs;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,20 +46,25 @@ public class MonsterDTO {
     private String worldview;
 
     // Connections
+    @JsonProperty("immunityList")
     private List<String> immunityList = new ArrayList<>();
+    @JsonProperty("resistanceList")
     private List<String> resistanceList = new ArrayList<>();
+    @JsonProperty("vulnerabilityList")
     private List<String> vulnerabilityList = new ArrayList<>();
-
+    @JsonProperty("immunityStatusList")
     private List<String> immunityStatusList = new ArrayList<>();
-
+    @JsonProperty("habitats")
     private List<String> habitats = new ArrayList<>();
-
+    @JsonProperty("classAdvList")
     private List<String> classAdvList = new ArrayList<>();
+    @JsonProperty("classWeakList")
     private List<String> classWeakList = new ArrayList<>();
-
+    @JsonProperty("actions")
     private List<ActionDTO> actions = new ArrayList<>();
-
+    @JsonProperty("topographyWeakList")
     private List<String> topographyWeakList = new ArrayList<>();
+    @JsonProperty("topographyAdvList")
     private List<String> topographyAdvList = new ArrayList<>();
 
     public String getName() {

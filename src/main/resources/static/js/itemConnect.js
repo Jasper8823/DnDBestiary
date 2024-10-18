@@ -41,6 +41,7 @@ document.getElementById("SubmitButton").addEventListener('click', () => {
         DamageTList: DmgList,
         StatusList: StatusList,
     }
+
     itemPush(item);
     StatusList = [];
     DmgList = [];

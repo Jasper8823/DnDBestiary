@@ -27,9 +27,7 @@ document.getElementById("RelButtonS").addEventListener('click', () => {
 
 
 document.getElementById("SubmitButton").addEventListener('click', () => {
-    console.log(document.getElementById("subTypeLabel").value);
-    console.log(document.getElementById("rarityLabel").value);
-    console.log(document.getElementById("typeLabel").value);
+    console.log(DmgList);
 
     const item = {
         name: document.getElementById("nameLabel").value,
@@ -43,7 +41,13 @@ document.getElementById("SubmitButton").addEventListener('click', () => {
         DamageTList: DmgList,
         StatusList: StatusList,
     }
+
     itemPush(item);
+    StatusList = [];
+    DmgList = [];
+    document.getElementById("nameLabel").value = '';
+    document.getElementById("description").value = '';
+    document.getElementById("Configurable").checked = false;
 });
 
 

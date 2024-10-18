@@ -1,5 +1,6 @@
 package com.example.DnDProject.DTOs;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 
 import java.util.ArrayList;
@@ -19,8 +20,11 @@ public class SpellDTO {
     private String target;
     private int prepareMoves;
     private String description;
+    @JsonProperty("damageType_names")
     private List<String> damageType_names = new ArrayList<>();
+    @JsonProperty("status_names")
     private List<String> status_names = new ArrayList<>();
+    @JsonProperty("class_names")
     private List<String> class_names = new ArrayList<>();
 
     public List<String> getDamageType_names() {

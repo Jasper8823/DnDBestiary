@@ -33,6 +33,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -173,7 +174,6 @@ public class DatafillService {
         spell.setSpell_classList(fetchList(dto.getSpell_classList(),classRepo));
         spell.setSpellType(spellTypeRepo.findById(dto.getSpellTypename()).get());
 
-
         spell.setSpell_statusList(fetchList(dto.getStatus_names(),statusRepo));
         spell.setSpell_damTypeList(fetchList(dto.getDamageType_names(),damageTypeRepo));
         spell.setSpell_classList(fetchList(dto.getClass_names(),classRepo));
@@ -192,8 +192,9 @@ public class DatafillService {
 
         item.setItem_charList(null);
 
-        item.setSubType(subTypeRepo.findById(dto.getSubtype()).get());
-
+        if(dto.getItem_type_name().equals("weapon") || dto.getItem_type_name().equals("armor")) {
+            item.setSubType(subTypeRepo.findById(dto.getSubtype()).get());
+        }else item.setSubType(null);
         item.setItem_statusList(fetchList(dto.getStatusList(),statusRepo));
         item.setItem_damTypeList(fetchList(dto.getDamageTList(),damageTypeRepo));
         itemRepo.save(item);

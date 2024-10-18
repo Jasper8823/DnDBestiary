@@ -1,5 +1,7 @@
 package com.example.DnDProject.DTOs;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +12,9 @@ public class ItemDTO {
     private String item_type_name;
     private String rarity_name;
     private String subtype;
+    @JsonProperty("StatusList")
     private List<String> StatusList = new ArrayList<>();
+    @JsonProperty("DamageTList")
     private List<String> DamageTList = new ArrayList<>();
 
     public String getSubtype() {

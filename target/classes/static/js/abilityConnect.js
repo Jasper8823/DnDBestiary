@@ -8,6 +8,8 @@ document.getElementById("SubmitButton").addEventListener('click', () => {
         className: document.getElementById("ClassLabel").value,
     }
     abilityPush(ability);
+    document.getElementById("nameLabel").value = '';
+    document.getElementById("description").value = '';
 });
 
 

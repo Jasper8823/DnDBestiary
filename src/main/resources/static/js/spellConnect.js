@@ -11,7 +11,7 @@ document.getElementById("RelButtonCSS").addEventListener('click', () => {
 });
 
 document.getElementById("RelButtonCS").addEventListener('click', () => {
-    statusType.push(document.getElementById("ClassSpell").value)
+    classSpellList.push(document.getElementById("ClassSpell").value)
 });
 
 document.getElementById("RelButtonDR").addEventListener('click', () => {
@@ -27,15 +27,15 @@ document.getElementById("RelButtonD").addEventListener('click', () => {
 });
 
 document.getElementById("RelButtonSR").addEventListener('click', () => {
-    StatusList = [];
+    Status = [];
 });
 
 document.getElementById("RelButtonSS").addEventListener('click', () => {
-    console.log('Status:'+StatusList);
+    console.log('Status:'+Status);
 });
 
 document.getElementById("RelButtonS").addEventListener('click', () => {
-    StatusList.push(document.getElementById("StatusType").value)
+    Status.push(document.getElementById("StatusType").value)
 });
 
 document.getElementById("SubmitButton").addEventListener('click', () => {
@@ -51,7 +51,7 @@ document.getElementById("SubmitButton").addEventListener('click', () => {
         concentration: document.getElementById("concentration").checked,
         target: document.getElementById("targetLabel").value,
         prepareMoves: parseInt(document.getElementById("prepMovesLabel").value),
-        spell_classList: classSpellList,
+        class_names: classSpellList,
         damageType_names : DmgList,
         status_names: Status
     }

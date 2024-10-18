@@ -7,6 +7,7 @@
 
         <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
         <property name="hibernate.connection.url"></property>
+
         <!-- Hibernate dialect for SQL Server -->
         <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
