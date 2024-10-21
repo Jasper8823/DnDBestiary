@@ -86,9 +86,6 @@ document.getElementById("GetMonster").addEventListener('click', () => {
 document.getElementById("GetAbility").addEventListener('click', () => {
     window.location.href = 'fillDBAbility';
 });
-document.getElementById("GetSpell").addEventListener('click', () => {
-    window.location.href = 'fillDBSpell';
-});
 document.getElementById("GetItem").addEventListener('click', () => {
     window.location.href = 'fillDBItem';
 });

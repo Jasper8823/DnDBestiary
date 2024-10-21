@@ -48,3 +48,10 @@ DELETE FROM dbo.trait_char;
 DELETE FROM dbo.type;
 DELETE FROM dbo.vulnerability;
 DELETE FROM dbo.worldview;
+
+
+Exec deleteMonster @del_name = ''; Integer
+Exec deleteSpell @del_name = '';   String
+Exec deleteItem @del_name = '';    String
+Exec deleteAbility @del_name = ''; String
+
