@@ -646,8 +646,24 @@ VALUES
 (157, 18, 4, 3, 3, 3, 3, 1, 1, 1, 1, 4, 0, 'wizard'),
 (158, 19, 4, 3, 3, 3, 3, 2, 1, 1, 1, 4, 0, 'wizard'),
 (159, 20, 4, 3, 3, 3, 3, 2, 2, 1, 1, 4, 0, 'wizard');
-
-
+(160, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 'mystic_knight'),
+(161, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 2, 4, 'mystic_knight'),
+(162, 5, 3, 0, 0, 0, 0, 0, 0, 0, 0, 2, 4, 'mystic_knight'),
+(163, 6, 3, 0, 0, 0, 0, 0, 0, 0, 0, 2, 4, 'mystic_knight'),
+(164, 7, 4, 2, 0, 0, 0, 0, 0, 0, 0, 2, 5, 'mystic_knight'),
+(165, 8, 4, 2, 0, 0, 0, 0, 0, 0, 0, 2, 6, 'mystic_knight'),
+(166, 9, 4, 2, 0, 0, 0, 0, 0, 0, 0, 2, 6, 'mystic_knight'),
+(167, 10, 4, 3, 0, 0, 0, 0, 0, 0, 0, 3, 7, 'mystic_knight'),
+(168, 11, 4, 3, 0, 0, 0, 0, 0, 0, 0, 3, 8, 'mystic_knight'),
+(169, 12, 4, 3, 0, 0, 0, 0, 0, 0, 0, 3, 8, 'mystic_knight'),
+(170, 13, 4, 3, 2, 0, 0, 0, 0, 0, 0, 3, 9, 'mystic_knight'),
+(171, 14, 4, 3, 2, 0, 0, 0, 0, 0, 0, 3, 10, 'mystic_knight'),
+(172, 15, 4, 3, 2, 0, 0, 0, 0, 0, 0, 3, 10, 'mystic_knight'),
+(173, 16, 4, 3, 3, 0, 0, 0, 0, 0, 0, 3, 11, 'mystic_knight'),
+(174, 17, 4, 3, 3, 0, 0, 0, 0, 0, 0, 3, 11, 'mystic_knight'),
+(175, 18, 4, 3, 3, 0, 0, 0, 0, 0, 0, 3, 11, 'mystic_knight'),
+(176, 19, 4, 3, 3, 1, 0, 0, 0, 0, 0, 3, 12, 'mystic_knight'),
+(177, 20, 4, 3, 3, 1, 0, 0, 0, 0, 0, 3, 13, 'mystic_knight');
 
 
 INSERT INTO dbo.trait (name, description) VALUES
@@ -693,3 +709,59 @@ INSERT INTO dbo.trait (name, description) VALUES
 ('Durable', 'Increase your Constitution by 1, and whenever you roll a hit die to regain hit points, the minimum number of hit points you regain equals twice your Constitution modifier.'),
 ('Crossbow Expert', 'You don’t suffer disadvantage when making a ranged attack with a crossbow while within 5 feet of a hostile creature, you can make a bonus attack with a hand crossbow when you use the Attack action, and you can ignore the loading property of crossbows you are proficient with.'),
 ('Linguist', 'You learn three languages of your choice, and you can create written ciphers that others can’t decipher unless they have magic or proficiency in Intelligence (Investigation).');
+
+INSERT INTO dbo.race_attribute (id,modif_value,att_name,race_name) VALUES
+(1,2,'constitution','Mountain dwarf'),
+(2,2,'constitution','Hill dwarf'),
+(3,2,'strength','Mountain dwarf'),
+(4,1,'wisdom','Hill dwarf');
+
+INSERT INTO dbo.race_attribute (id,modif_value,att_name,race_name) VALUES
+(5,2,'dexterity','High Elf'),
+(6,2,'dexterity','Wood Elf'),
+(7,2,'dexterity','Dark Elf'),
+(8,1,'intelligence','High Elf'),
+(9,1,'wisdom','Wood Elf'),
+(10,1,'charisma','Dark Elf');
+
+INSERT INTO dbo.race_attribute (id,modif_value,att_name,race_name) VALUES
+(11,2,'dexterity','Lightfoot Halfling'),
+(12,2,'dexterity','Stout Halfling'),
+(13,1,'charisma','Lightfoot Halfling'),
+(14,1,'constitution','Stout Halfling');
+
+INSERT INTO dbo.race_attribute (id,modif_value,att_name,race_name) VALUES
+(15,1,'strength','Human'),
+(16,1,'dexterity','Human'),
+(17,1,'constitution','Human'),
+(18,1,'intelligence','Human'),
+(19,1,'wisdom','Human'),
+(20,1,'charisma','Human');
+
+INSERT INTO dbo.race_attribute (id,modif_value,att_name,race_name) VALUES
+(21,2,'strength','Dragonborn'),
+(22,1,'charisma','Dragonborn');
+
+INSERT INTO dbo.race_attribute (id,modif_value,att_name,race_name) VALUES
+(23,2,'intelligence','Forest Gnome'),
+(24,2,'intelligence','Rock Gnome'),
+(25,1,'dexterity','Forest Gnome'),
+(26,1,'constitution','Rock Gnome');
+
+INSERT INTO dbo.race_attribute (id,modif_value,att_name,race_name) VALUES
+(27,1,'strength','Half-Elf'),
+(28,1,'dexterity','Half-Elf'),
+(29,1,'constitution','Half-Elf'),
+(30,1,'intelligence','Half-Elf'),
+(31,1,'wisdom','Half-Elf'),
+(32,2,'charisma','Half-Elf');
+
+INSERT INTO dbo.race_attribute (id,modif_value,att_name,race_name) VALUES
+(34,2,'strength','Half-Orc'),
+(35,1,'constitution','Half-Orc');
+
+INSERT INTO dbo.race_attribute (id,modif_value,att_name,race_name) VALUES
+(36,1,'strength','Tiefling'),
+(37,2,'charisma','Tiefling');
+
+
