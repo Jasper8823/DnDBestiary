@@ -1,50 +1,38 @@
+
 document.getElementById("SubmitButton").addEventListener('click', () => {
-    console.log("rhb");
     const ability = {
         name: document.getElementById("nameLabel").value,
-
         description: document.getElementById("description").value,
         level: parseInt(document.getElementById("levelLabel").value),
         className: document.getElementById("ClassLabel").value,
-    }
+    };
+
     abilityPush(ability);
+
+    // Clear form fields after submission
     document.getElementById("nameLabel").value = '';
     document.getElementById("description").value = '';
 });
 
-
 function abilityPush(ability) {
-
     fetch('http://localhost:8080/classAbilityPush', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(ability,null,2),
+        body: JSON.stringify(ability, null, 2),
     })
 }
 
-
-document.getElementById("GetSpell").addEventListener( 'click',() =>{
-    fetch(`http://localhost:8080/Spell`, {
-        method: 'GET',
-    })
-})
-
-document.getElementById("GetMonster").addEventListener( 'click',() =>{
-    fetch(`http://localhost:8080/Monster`, {
-        method: 'GET',
-    })
-})
-
-document.getElementById("GetItem").addEventListener( 'click',() =>{
-    fetch(`http://localhost:8080/Item`, {
-        method: 'GET',
-    })
-})
-
-document.getElementById("GetAbility").addEventListener( 'click',() =>{
-    fetch(`http://localhost:8080/Ability`, {
-        method: 'GET',
-    })
-})
+document.getElementById("GetMonster").addEventListener('click', () => {
+    window.location.href = 'fillDBMonster';
+});
+document.getElementById("GetAbility").addEventListener('click', () => {
+    window.location.href = 'fillDBAbility';
+});
+document.getElementById("GetSpell").addEventListener('click', () => {
+    window.location.href = 'fillDBSpell';
+});
+document.getElementById("GetItem").addEventListener('click', () => {
+    window.location.href = 'fillDBItem';
+});

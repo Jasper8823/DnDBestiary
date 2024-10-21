@@ -1,6 +1,5 @@
 package com.example.DnDProject.Controllers;
 
-import com.example.DnDProject.Configurations.WebPageOpener;
 import com.example.DnDProject.DTOs.ClassAbilityDTO;
 import com.example.DnDProject.DTOs.ItemDTO;
 import com.example.DnDProject.DTOs.MonsterDTO;
@@ -16,8 +15,6 @@ public class DatafillController {
 
     @Autowired
     private DatafillService datafillService;
-
-    WebPageOpener webPageOpener = new WebPageOpener();
 
     @GetMapping("/fillDBMonster")
     public String createMonsterForm() {
@@ -40,35 +37,6 @@ public class DatafillController {
     @GetMapping("/fillDBAbility")
     public String createAbilityForm() {
         return "fillDBAbility";
-    }
-
-
-
-    @GetMapping("/Monster")
-    public String Monster() {
-        webPageOpener.openWebPage("http://localhost:8080/fillDBMonster");
-        return "fillDBMonster";
-    }
-
-
-    @GetMapping("/Spell")
-    public String Spell() {
-        webPageOpener.openWebPage("http://localhost:8080/fillDBSpell");
-        return "fillDBMonster";
-    }
-
-
-    @GetMapping("/Item")
-    public String Item() {
-        webPageOpener.openWebPage("http://localhost:8080/fillDBItem");
-        return "fillDBMonster";
-    }
-
-
-    @GetMapping("/Ability")
-    public String Ability() {
-        webPageOpener.openWebPage("http://localhost:8080/fillDBAbility");
-        return "fillDBMonster";
     }
 
 

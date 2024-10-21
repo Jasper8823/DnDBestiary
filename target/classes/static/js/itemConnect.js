@@ -62,27 +62,15 @@ function itemPush(item) {
     })
 }
 
-
-document.getElementById("GetSpell").addEventListener( 'click',() =>{
-    fetch(`http://localhost:8080/Spell`, {
-        method: 'GET',
-    })
-})
-
-document.getElementById("GetMonster").addEventListener( 'click',() =>{
-    fetch(`http://localhost:8080/Monster`, {
-        method: 'GET',
-    })
-})
-
-document.getElementById("GetItem").addEventListener( 'click',() =>{
-    fetch(`http://localhost:8080/Item`, {
-        method: 'GET',
-    })
-})
-
-document.getElementById("GetAbility").addEventListener( 'click',() =>{
-    fetch(`http://localhost:8080/Ability`, {
-        method: 'GET',
-    })
-})
+document.getElementById("GetMonster").addEventListener('click', () => {
+    window.location.href = 'fillDBMonster';
+});
+document.getElementById("GetAbility").addEventListener('click', () => {
+    window.location.href = 'fillDBAbility';
+});
+document.getElementById("GetSpell").addEventListener('click', () => {
+    window.location.href = 'fillDBSpell';
+});
+document.getElementById("GetItem").addEventListener('click', () => {
+    window.location.href = 'fillDBItem';
+});
