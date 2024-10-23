@@ -71,6 +71,3 @@ document.getElementById("GetAbility").addEventListener('click', () => {
 document.getElementById("GetSpell").addEventListener('click', () => {
     window.location.href = 'fillDBSpell';
 });
-document.getElementById("GetItem").addEventListener('click', () => {
-    window.location.href = 'fillDBItem';
-});

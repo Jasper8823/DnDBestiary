@@ -235,9 +235,7 @@ function monsterPush(monster) {
 
 }
 
-document.getElementById("GetMonster").addEventListener('click', () => {
-    window.location.href = 'fillDBMonster';
-});
+
 document.getElementById("GetAbility").addEventListener('click', () => {
     window.location.href = 'fillDBAbility';
 });
