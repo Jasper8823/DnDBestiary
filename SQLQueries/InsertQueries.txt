@@ -751,6 +751,37 @@ VALUES
     ('Half-Orc'),
     ('Tiefling');
 
+INSERT INTO dbo.race_proficiency (subtype_name, race_name)
+VALUES
+    ('battle axe', 'Hill Dwarf'),
+    ('hand axe', 'Hill Dwarf'),
+    ('light hammer', 'Hill Dwarf'),
+    ('warhammer', 'Hill Dwarf'),
+    ('battle axe', 'Mountain Dwarf'),
+    ('hand axe', 'Mountain Dwarf'),
+    ('light hammer', 'Mountain Dwarf'),
+    ('warhammer', 'Mountain Dwarf'),
+    ('padded armor', 'Mountain Dwarf'),
+    ('leather armor', 'Mountain Dwarf'),
+    ('studded leather armor', 'Mountain Dwarf'),
+    ('hide armor', 'Mountain Dwarf'),
+    ('chain shirt armor', 'Mountain Dwarf'),
+    ('scale mail armor', 'Mountain Dwarf'),
+    ('breastplate armor', 'Mountain Dwarf'),
+    ('half plate armor', 'Mountain Dwarf'),
+
+    ('rapier', 'Dark Elf'),
+    ('short sword', 'Dark Elf'),
+    ('hand crossbow', 'Dark Elf'),
+    ('long bow', 'High Elf'),
+    ('short bow', 'High Elf'),
+    ('long sword', 'High Elf'),
+    ('short sword', 'High Elf'),   
+    ('long bow', 'Wood Elf'),
+    ('short bow', 'Wood Elf'),
+    ('long sword', 'Wood Elf'),
+    ('short sword', 'Wood Elf')
+
 INSERT INTO dbo.race_ability (id, name, description, race_name) VALUES
     (1, 'Darkvision', 'You have superior vision in darkness and dim light. You can see in dim light as if it were bright light up to 60 feet and in darkness as if it were dim light. You cannot discern color in darkness, only shades of gray.', 'Hill Dwarf'),
     (2, 'Dwarven Resilience', 'You have advantage on saving throws against poison, and you have resistance to poison damage.', 'Hill Dwarf'),
