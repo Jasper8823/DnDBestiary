@@ -1,13 +1,12 @@
 package com.example.DnDProject.Services;
 
+
+import com.example.DnDProject.Exceptions.EntityNotFoundException;
+import com.example.DnDProject.UtilMethods.DataFetchUtil;
 import com.example.DnDProject.DTOs.*;
 import com.example.DnDProject.Entities.Class.ClassAbility;
 import com.example.DnDProject.Entities.Item.Item;
-import com.example.DnDProject.Entities.Item.ItemType;
-import com.example.DnDProject.Entities.Item.Rarity;
-import com.example.DnDProject.Entities.Monster.Action.Action;
 import com.example.DnDProject.Entities.Monster.Monster;
-import com.example.DnDProject.Entities.MtoMConnections.MonsterAction;
 import com.example.DnDProject.Entities.Spell.Spell;
 import com.example.DnDProject.Repositories.Class.CharacterClassRepository;
 import com.example.DnDProject.Repositories.Class.ClassAbilityRepository;
@@ -29,13 +28,7 @@ import com.example.DnDProject.Repositories.MtoMConnections.MonsterActionReposito
 import com.example.DnDProject.Repositories.Spell.SpellRepository;
 import com.example.DnDProject.Repositories.Spell.SpellTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class DatafillService {
@@ -93,6 +86,10 @@ public class DatafillService {
     @Autowired
     private ItemTypeRepository itemTypeRepo;
 
+    // Util Methods
+    @Autowired
+    private DataFetchUtil dfu;
+
 
     public void saveMonster(MonsterDTO dto){
         Monster monster = new Monster();
@@ -106,9 +103,8 @@ public class DatafillService {
         monster.setFly_speed(dto.getFly_speed());
 
         // Set HP fields
-        monster.setAvg_HP((dto.getNumberofdice()*dto.getDicetype())/2+dto.getPassivebonus());
-        monster.setCalc_HP(String.valueOf(dto.getNumberofdice()).concat("D").concat(String.valueOf(dto.getDicetype()))
-                +" + "+dto.getPassivebonus());
+        monster.setAvg_HP(dfu.calculateAvgHP(dto.getNumberofdice(), dto.getDicetype(), dto.getPassivebonus()));
+        monster.setCalc_HP(dfu.formatHPCalculation(dto.getNumberofdice(), dto.getDicetype(), dto.getPassivebonus()));
 
         // Set monster attributes
         monster.setStrength(dto.getStrength());
@@ -134,27 +130,31 @@ public class DatafillService {
         monster.setFeatures(dto.getFeatures());
         monster.setDescription(dto.getDescription());
 
-        monster.setDanger(dangerRepo.findById(dto.getDanger()).get());
-        monster.setType(typeRepo.findById(dto.getType()).get());
-        monster.setSize(sizeRepo.findById(dto.getSize()).get());
-        monster.setWorldview(worldviewRepo.findById(dto.getWorldview()).get());
+        monster.setDanger(dangerRepo.findById(dto.getDanger()).orElseThrow(() ->
+                new EntityNotFoundException("Danger not found with ID: " + dto.getDanger())));
+        monster.setType(typeRepo.findById(dto.getType()).orElseThrow(() ->
+                new EntityNotFoundException("Type not found with ID: " + dto.getType())));
+        monster.setSize(sizeRepo.findById(dto.getSize()).orElseThrow(() ->
+                new EntityNotFoundException("Size not found with ID: " + dto.getSize())));
+        monster.setWorldview(worldviewRepo.findById(dto.getWorldview()).orElseThrow(() ->
+                new EntityNotFoundException("Worldview not found with ID: " + dto.getWorldview())));
 
-        monster.setResistanceList(fetchList(dto.getResistanceList(),damageTypeRepo));
-        monster.setVulnerabilityList(fetchList(dto.getVulnerabilityList(),damageTypeRepo));
-        monster.setImmunityList(fetchList(dto.getImmunityList(),damageTypeRepo));
+        monster.setResistanceList(dfu.fetchList(dto.getResistanceList(),damageTypeRepo));
+        monster.setVulnerabilityList(dfu.fetchList(dto.getVulnerabilityList(),damageTypeRepo));
+        monster.setImmunityList(dfu.fetchList(dto.getImmunityList(),damageTypeRepo));
 
-        monster.setImmunityStatusList(fetchList(dto.getImmunityStatusList(),statusRepo));
+        monster.setImmunityStatusList(dfu.fetchList(dto.getImmunityStatusList(),statusRepo));
 
-        monster.setHabitats(fetchList(dto.getHabitats(),locationRepo));
+        monster.setHabitats(dfu.fetchList(dto.getHabitats(),locationRepo));
 
-        monster.setTopographyAdvList(fetchList(dto.getTopographyAdvList(),topographyRepo));
-        monster.setTopographyWeakList(fetchList(dto.getTopographyWeakList(),topographyRepo));
+        monster.setTopographyAdvList(dfu.fetchList(dto.getTopographyAdvList(),topographyRepo));
+        monster.setTopographyWeakList(dfu.fetchList(dto.getTopographyWeakList(),topographyRepo));
 
-        monster.setClassAdvList(fetchList(dto.getClassAdvList(),classRepo));
-        monster.setClassWeakList(fetchList(dto.getClassWeakList(),classRepo));
+        monster.setClassAdvList(dfu.fetchList(dto.getClassAdvList(),classRepo));
+        monster.setClassWeakList(dfu.fetchList(dto.getClassWeakList(),classRepo));
 
         repo.save(monster);
-        fetchActionsList(dto.getActions(),monster);
+        dfu.fetchActionsList(dto.getActions(),monster);
 
     }
     public void saveSpell(SpellDTO dto){
@@ -171,12 +171,13 @@ public class DatafillService {
         spell.setPrepareMoves(dto.getPrepareMoves());
         spell.setDuration(dto.getDuration());
 
-        spell.setSpell_classList(fetchList(dto.getSpell_classList(),classRepo));
-        spell.setSpellType(spellTypeRepo.findById(dto.getSpellTypename()).get());
+        spell.setSpell_classList(dfu.fetchList(dto.getSpell_classList(),classRepo));
+        spell.setSpellType(spellTypeRepo.findById(dto.getSpellTypename()).orElseThrow(() ->
+                new EntityNotFoundException("Spell Type not found with name: " + dto.getSpellTypename())));
 
-        spell.setSpell_statusList(fetchList(dto.getStatus_names(),statusRepo));
-        spell.setSpell_damTypeList(fetchList(dto.getDamageType_names(),damageTypeRepo));
-        spell.setSpell_classList(fetchList(dto.getClass_names(),classRepo));
+        spell.setSpell_statusList(dfu.fetchList(dto.getStatus_names(),statusRepo));
+        spell.setSpell_damTypeList(dfu.fetchList(dto.getDamageType_names(),damageTypeRepo));
+        spell.setSpell_classList(dfu.fetchList(dto.getClass_names(),classRepo));
 
         spellRepo.save(spell);
     }
@@ -187,16 +188,19 @@ public class DatafillService {
         item.setConfigurable(dto.isConfigurable());
         item.setDescription(dto.getDescription());
 
-        item.setRarity(rarityRepo.findById(dto.getRarity_name()).get());
-        item.setItemType(itemTypeRepo.findById(dto.getItem_type_name()).get());
+        item.setRarity(rarityRepo.findById(dto.getRarity_name()).orElseThrow(() ->
+                new EntityNotFoundException("Rarity not found with name: " + dto.getRarity_name())));
+        item.setItemType(itemTypeRepo.findById(dto.getItem_type_name()).orElseThrow(() ->
+                new EntityNotFoundException("Item Type not found with name: " + dto.getItem_type_name())));
 
         item.setItem_charList(null);
 
-        if(dto.getItem_type_name().equals("weapon") || dto.getItem_type_name().equals("armor")) {
-            item.setSubType(subTypeRepo.findById(dto.getSubtype()).get());
-        }else item.setSubType(null);
-        item.setItem_statusList(fetchList(dto.getStatusList(),statusRepo));
-        item.setItem_damTypeList(fetchList(dto.getDamageTList(),damageTypeRepo));
+        System.out.println(dto.getItem_type_name()+" "+dto.getSubtype());
+
+        item = dfu.setItemSubType(item, dto.getItem_type_name(), dto.getSubtype());
+
+        item.setItem_statusList(dfu.fetchList(dto.getStatusList(),statusRepo));
+        item.setItem_damTypeList(dfu.fetchList(dto.getDamageTList(),damageTypeRepo));
         itemRepo.save(item);
     }
 
@@ -206,36 +210,9 @@ public class DatafillService {
         ability.setLevel(dto.getLevel());
         ability.setDescription(dto.getDescription());
 
-        ability.setCharClass(classRepo.findById(dto.getClassName()).get());
+        ability.setCharClass(classRepo.findById(dto.getClassName()).orElseThrow(() ->
+                new EntityNotFoundException("Character Class not found with name: " + dto.getClassName())));
         cabilityRepo.save(ability);
-    }
-
-    private <T> List<T> fetchList(List<String> ids, JpaRepository repository) {
-        List<T> resultList = new ArrayList<>();
-        for (String id : ids) {
-            Optional<T> optionalEntity = repository.findById(id);
-            optionalEntity.ifPresent(resultList::add);
-        }
-        return resultList;
-    }
-
-    private void fetchActionsList(List<ActionDTO> actions, Monster monster) {
-        for (ActionDTO actionDTO : actions) {
-            MonsterAction monsterAction = new MonsterAction();
-            monsterAction.setInformation(actionDTO.getInfo());
-            monsterAction.setLegendary(actionDTO.getLegend());
-
-            if(!actionRepo.existsById(actionDTO.getName())) {
-                Action action = new Action();
-                action.setName(actionDTO.getName());
-                actionRepo.save(action);
-                monsterAction.setAction(action);
-            }else{
-                monsterAction.setAction(actionRepo.findById(actionDTO.getName()).get());
-            }
-            monsterAction.setMonster(monster);
-            monsterActionRepo.save(monsterAction);
-        }
     }
 
 }
