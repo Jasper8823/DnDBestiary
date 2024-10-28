@@ -16,6 +16,8 @@ public class Race {
     @Column(name = "name",length = 32)
     private String name;
 
+
+    //One-to-many connections
     @OneToMany(mappedBy = "race", orphanRemoval = true)
     private List<RaceAbility> abilities = new ArrayList<>();
 
@@ -25,9 +27,13 @@ public class Race {
     @OneToMany(mappedBy = "race", orphanRemoval = true)
     private List<RaceAttribute> raceAttributeList = new ArrayList<>();
 
+
+    //Many-to-many connections
     @ManyToMany(mappedBy = "raceProfList")
     private List<SubType> raceProfList = new ArrayList<>();
 
+
+    //Getters and Setters
     public List<RaceAbility> getAbilities() {
         return abilities;
     }
@@ -56,9 +62,7 @@ public class Race {
         return raceAttributeList;
     }
 
-    public void setRaceAttributeList(List<RaceAttribute> raceAttributeList) {
-        this.raceAttributeList = raceAttributeList;
-    }
+    public void setRaceAttributeList(List<RaceAttribute> raceAttributeList) {this.raceAttributeList = raceAttributeList;}
 
     public List<SubType> getRaceProfList() {
         return raceProfList;

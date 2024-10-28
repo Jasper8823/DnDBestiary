@@ -17,11 +17,14 @@ public class Action {
 
     @OneToMany(mappedBy = "action", orphanRemoval = true)
     private List<MonsterAction> monsterActions = new ArrayList<>();
+
+
+    //Getters and Setters
     public void setName(String name) {
         this.name = name;
     }
 
     public String getName() {
         return name;
-    }//Getters and Setters
+    }
 }

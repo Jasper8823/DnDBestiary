@@ -27,10 +27,13 @@ import com.example.DnDProject.Repositories.Monster.Topography.TopographyReposito
 import com.example.DnDProject.Repositories.MtoMConnections.MonsterActionRepository;
 import com.example.DnDProject.Repositories.Spell.SpellRepository;
 import com.example.DnDProject.Repositories.Spell.SpellTypeRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 @Service
+@Validated
 public class DatafillService {
 
     @Autowired
@@ -91,6 +94,7 @@ public class DatafillService {
     private DataFetchUtil dfu;
 
 
+    @Transactional
     public void saveMonster(MonsterDTO dto){
         Monster monster = new Monster();
 
@@ -157,6 +161,7 @@ public class DatafillService {
         dfu.fetchActionsList(dto.getActions(),monster);
 
     }
+    @Transactional
     public void saveSpell(SpellDTO dto){
         Spell spell = new Spell();
 
@@ -181,6 +186,7 @@ public class DatafillService {
 
         spellRepo.save(spell);
     }
+    @Transactional
     public void saveItem(ItemDTO dto){
         Item item = new Item();
 
@@ -203,8 +209,8 @@ public class DatafillService {
         item.setItem_damTypeList(dfu.fetchList(dto.getDamageTList(),damageTypeRepo));
         itemRepo.save(item);
     }
-
-    public void saveClassAbility(ClassAbilityDTO dto) {
+    @Transactional
+    public void saveClassAbility( ClassAbilityDTO dto) {
         ClassAbility ability = new ClassAbility();
         ability.setName(dto.getName());
         ability.setLevel(dto.getLevel());

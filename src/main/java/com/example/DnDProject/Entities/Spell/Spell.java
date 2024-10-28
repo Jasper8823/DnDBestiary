@@ -24,31 +24,29 @@ public class Spell {
     @Column(name = "level")
     private int level;
 
-    // Spell features
     @Column(name = "duration",length = 8)
     private String duration;
     @Column(name = "concentration")
     private boolean concentration;
-
     @Column(name = "concent_duration",length = 8)
     private String concentDura;
-
     @Column(name = "distance")
     private int distance;
-
     @Column(name = "target",length = 32)
     private String target;
-
     @Column(name = "prepare_moves")
     private int prepareMoves;
-
     @Column(name = "description",length = 2048)
     private String description;
 
+
+    //One-to-many connections
     @ManyToOne
     @JoinColumn(name = "spell_type_name")
     private SpellType spellType;
 
+
+    //Many-to-many connections
     @ManyToMany()
     @JoinTable(
             name = "spell_class",
@@ -81,6 +79,8 @@ public class Spell {
     )
     private List<Status> spell_statusList = new ArrayList<>();
 
+
+    //Getters and Setters
     public SpellType getSpellType() {
         return spellType;
     }

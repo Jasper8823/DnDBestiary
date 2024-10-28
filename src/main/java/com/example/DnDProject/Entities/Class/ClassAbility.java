@@ -21,6 +21,7 @@ public class ClassAbility {
     @JoinColumn(name = "class_name")
     private CharacterClass charClass;
 
+    //Getters and Setters
     public String getName() {
         return name;
     }

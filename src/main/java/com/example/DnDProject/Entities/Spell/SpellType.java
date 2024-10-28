@@ -14,6 +14,8 @@ public class SpellType {
     @OneToMany(mappedBy = "spellType", orphanRemoval = true)
     private List<Spell> spells = new ArrayList<>();
 
+
+    //Getters and Setters
     public List<Spell> getSpells() {
         return spells;
     }
