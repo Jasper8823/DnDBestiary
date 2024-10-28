@@ -18,6 +18,8 @@ public class RaceAbility {
     @JoinColumn(name = "race_name")
     private Race race;
 
+
+    //Getters and Setters
     public Race getRace() {
         return race;
     }

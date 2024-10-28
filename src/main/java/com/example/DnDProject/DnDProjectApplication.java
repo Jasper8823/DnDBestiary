@@ -11,7 +11,7 @@ public class DnDProjectApplication {
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(DnDProjectApplication.class, args);
 
-		context.getBean(DatabaseConnection.class).Connect();
+		context.getBean(DatabaseConnection.class).connect();
 	}
 
 }

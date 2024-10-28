@@ -24,6 +24,8 @@ public class CharacterClass {
     @Column(name = "hp_dice",length = 4)
     private String HP_dice;
 
+
+    //One-to-many connections
     @ManyToOne
     @JoinColumn(name = "parent_name") // Foreign key referencing itself
     private CharacterClass parentClass;
@@ -43,6 +45,8 @@ public class CharacterClass {
     @Fetch(FetchMode.SELECT)
     private List<SpellSlots> spellSlotsList = new ArrayList<>();
 
+
+    //Many-to-many connections
     @ManyToMany(mappedBy = "classAdvList")
     private List<Monster> monsters_advC = new ArrayList<>();
 
@@ -58,6 +62,8 @@ public class CharacterClass {
     @ManyToMany(mappedBy = "classProfList")
     private List<SubType> subtype_classList = new ArrayList<>();
 
+
+    //Getters and Setters
     public String getName() {
         return name;
     }

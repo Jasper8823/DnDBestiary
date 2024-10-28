@@ -1,6 +1,7 @@
 package com.example.DnDProject.DTOs;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.javaparser.quality.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;

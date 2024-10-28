@@ -17,7 +17,7 @@ public class SubType {
     @OneToMany(mappedBy = "subType", orphanRemoval = true)
     private List<Item> items = new ArrayList<>();
 
-
+    //Many-to-many connections
     @ManyToMany()
     @JoinTable(
             name = "class_proficiency",
@@ -32,6 +32,8 @@ public class SubType {
             inverseJoinColumns = { @JoinColumn(name = "race_name") }
     )
     private List<Race> raceProfList = new ArrayList<>();
+
+    //Getters and Setters
     public List<Item> getItems() {
         return items;
     }

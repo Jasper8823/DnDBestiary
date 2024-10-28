@@ -11,9 +11,7 @@ import java.util.List;
 public class Trait {
     @Id
     @Column(name = "name",length = 32)
-
     private String name;
-
     @Column(name = "description",length = 1024)
     private String description;
 
@@ -25,6 +23,8 @@ public class Trait {
     )
     private List<Character> trait_charList = new ArrayList<>();
 
+
+    //Getters and Setters
     public String getDescription() {
         return description;
     }
