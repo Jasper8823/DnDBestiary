@@ -1,5 +1,22 @@
 package com.example.DnDProject;
 
+import static com.helger.commons.mock.CommonsAssert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import com.example.DnDProject.Controllers.DatafillController;
+import com.example.DnDProject.DTOs.MonsterDTO;
+import com.example.DnDProject.Services.DatafillService;
+import org.junit.jupiter.api.BeforeEach;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import com.example.DnDProject.Exceptions.InvalidHPCalculationException;
 import com.example.DnDProject.UtilMethods.DataFetchUtil;
 import org.junit.jupiter.api.Test;
@@ -12,12 +29,13 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOf
 class DnDProjectApplicationTests {
 
 	private final DataFetchUtil dataFetchUtil = new DataFetchUtil();
+	private final DatafillController controller = new DatafillController();
+	@MockBean
+	private DatafillService datafillService;
 
-
-	@Test
-	void contextLoads() {
-
+	public void setUp() {
 	}
+
 	@Test
 	void testCalculateAvgHP_ValidInput() {
 		int result = dataFetchUtil.calculateAvgHP(3, 6, 2);
