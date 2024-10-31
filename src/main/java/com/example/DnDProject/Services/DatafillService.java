@@ -134,14 +134,10 @@ public class DatafillService {
         monster.setFeatures(dto.getFeatures());
         monster.setDescription(dto.getDescription());
 
-        monster.setDanger(dangerRepo.findById(dto.getDanger()).orElseThrow(() ->
-                new EntityNotFoundException("Danger not found with ID: " + dto.getDanger())));
-        monster.setType(typeRepo.findById(dto.getType()).orElseThrow(() ->
-                new EntityNotFoundException("Type not found with ID: " + dto.getType())));
-        monster.setSize(sizeRepo.findById(dto.getSize()).orElseThrow(() ->
-                new EntityNotFoundException("Size not found with ID: " + dto.getSize())));
-        monster.setWorldview(worldviewRepo.findById(dto.getWorldview()).orElseThrow(() ->
-                new EntityNotFoundException("Worldview not found with ID: " + dto.getWorldview())));
+        monster.setDanger(dfu.fetchEntity(dangerRepo,dto.getDanger()));
+        monster.setType(dfu.fetchEntity(typeRepo,dto.getType()));
+        monster.setSize(dfu.fetchEntity(sizeRepo,dto.getSize()));
+        monster.setWorldview(dfu.fetchEntity(worldviewRepo,dto.getWorldview()));
 
         monster.setResistanceList(dfu.fetchList(dto.getResistanceList(),damageTypeRepo));
         monster.setVulnerabilityList(dfu.fetchList(dto.getVulnerabilityList(),damageTypeRepo));
@@ -177,8 +173,7 @@ public class DatafillService {
         spell.setDuration(dto.getDuration());
 
         spell.setSpell_classList(dfu.fetchList(dto.getSpell_classList(),classRepo));
-        spell.setSpellType(spellTypeRepo.findById(dto.getSpellTypename()).orElseThrow(() ->
-                new EntityNotFoundException("Spell Type not found with name: " + dto.getSpellTypename())));
+        spell.setSpellType(dfu.fetchEntity(spellTypeRepo,dto.getSpellTypename()));
 
         spell.setSpell_statusList(dfu.fetchList(dto.getStatus_names(),statusRepo));
         spell.setSpell_damTypeList(dfu.fetchList(dto.getDamageType_names(),damageTypeRepo));
@@ -194,14 +189,10 @@ public class DatafillService {
         item.setConfigurable(dto.isConfigurable());
         item.setDescription(dto.getDescription());
 
-        item.setRarity(rarityRepo.findById(dto.getRarity_name()).orElseThrow(() ->
-                new EntityNotFoundException("Rarity not found with name: " + dto.getRarity_name())));
-        item.setItemType(itemTypeRepo.findById(dto.getItem_type_name()).orElseThrow(() ->
-                new EntityNotFoundException("Item Type not found with name: " + dto.getItem_type_name())));
+        item.setRarity(dfu.fetchEntity(rarityRepo,dto.getRarity_name()));
+        item.setItemType(dfu.fetchEntity(itemTypeRepo,dto.getItem_type_name()));
 
         item.setItem_charList(null);
-
-        System.out.println(dto.getItem_type_name()+" "+dto.getSubtype());
 
         item = dfu.setItemSubType(item, dto.getItem_type_name(), dto.getSubtype());
 
@@ -216,8 +207,7 @@ public class DatafillService {
         ability.setLevel(dto.getLevel());
         ability.setDescription(dto.getDescription());
 
-        ability.setCharClass(classRepo.findById(dto.getClassName()).orElseThrow(() ->
-                new EntityNotFoundException("Character Class not found with name: " + dto.getClassName())));
+        ability.setCharClass(dfu.fetchEntity(classRepo,dto.getClassName()));
         cabilityRepo.save(ability);
     }
 

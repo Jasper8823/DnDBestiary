@@ -11,6 +11,7 @@ import com.example.DnDProject.Repositories.Item.SubTypeRepository;
 import com.example.DnDProject.Repositories.Monster.Action.ActionRepository;
 import com.example.DnDProject.Repositories.MtoMConnections.MonsterActionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
@@ -29,6 +30,8 @@ public class DataFetchUtil {
 
     @Autowired
     private SubTypeRepository subTypeRepo;
+
+    @Cacheable(value = "entityListCache", key = "#repository.getClass().getSimpleName() + ':' + #ids")
     public <T> List<T> fetchList(List<String> ids, JpaRepository repository) {
         if (repository == null) {
             throw new IllegalArgumentException("Repository cannot be null.");
@@ -73,13 +76,26 @@ public class DataFetchUtil {
                 actionRepo.save(action);
                 monsterAction.setAction(action);
             } else {
-                monsterAction.setAction(actionRepo.findById(actionDTO.getName())
-                        .orElseThrow(() -> new EntityNotFoundException("Action not found with name: " + actionDTO.getName())));
+                monsterAction.setAction(this.fetchEntity(actionRepo,actionDTO.getName()));
             }
             monsterAction.setMonster(monster);
             monsterActionRepo.save(monsterAction);
         }
     }
+
+    @Cacheable(value = "entities", key = "#repository.getClass().getSimpleName() + ':' + #id")
+    public <T> T fetchEntity(JpaRepository<T, String> repository, String id) {
+        if (repository == null) {
+            throw new IllegalArgumentException("Repository cannot be null.");
+        }
+        if (id == null || id.trim().isEmpty()) {
+            throw new IllegalArgumentException("ID cannot be null or empty.");
+        }
+
+        return repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Entity not found with ID: " + id));
+    }
+
 
 
     public Item setItemSubType(Item item, String itemTypeName, String subtypename) {
