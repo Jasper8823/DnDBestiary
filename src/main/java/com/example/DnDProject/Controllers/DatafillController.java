@@ -20,20 +20,14 @@ public class DatafillController {
     public String createMonsterForm() {
         return "fillDBMonster";
     }
-
-
     @GetMapping("/fillDBSpell")
     public String createSpellForm() {
         return "fillDBSpell";
     }
-
-
     @GetMapping("/fillDBItem")
     public String createItemForm() {
         return "fillDBItem";
     }
-
-
     @GetMapping("/fillDBAbility")
     public String createAbilityForm() {
         return "fillDBAbility";
@@ -53,7 +47,6 @@ public class DatafillController {
         datafillService.saveSpell(spellDTO);
         return ResponseEntity.ok("Spell received successfully!");
     }
-
 
     @PostMapping("/itemPush")
     @ResponseBody

@@ -49,6 +49,7 @@ public class Character {
     @Column(name = "hp")
     private int hp;
 
+    //Many-to-many connections
     @ManyToMany(mappedBy = "trait_charList")
     private List<Trait> trait_charList = new ArrayList<>();
 
@@ -61,6 +62,7 @@ public class Character {
     @ManyToMany(mappedBy = "skill_charList")
     private List<Skill> skill_charList = new ArrayList<>();
 
+    //Many-to-one connections
     @ManyToOne
     @JoinColumn(name = "class_name")
     private CharacterClass charClass;

@@ -65,6 +65,8 @@ public class Monster {
     private String features;
     @Column(length = 2048)
     private String description;
+
+    //One-to-many connections
     @ManyToOne
     @JoinColumn(name = "danger_name")
     @Fetch(FetchMode.SELECT)
@@ -83,8 +85,15 @@ public class Monster {
     @ManyToOne
     @JoinColumn(name = "worldview_name")
     @Fetch(FetchMode.SELECT)
-    private Worldview worldview; // Attributes connections
+    private Worldview worldview;
 
+    @OneToMany(mappedBy = "monster", orphanRemoval = true)
+    @Cascade(CascadeType.ALL)
+    @Fetch(FetchMode.SELECT)
+    private List<MonsterAction> monsterActions = new ArrayList<>();
+
+
+    //Many-to-many connections
     @ManyToMany()
     @Cascade(CascadeType.ALL)
     @JoinTable(
@@ -121,8 +130,6 @@ public class Monster {
     )
     private List<Status> immunityStatusList = new ArrayList<>();
 
-// Sensitivities connections
-
     @ManyToMany()
     @Cascade(CascadeType.ALL)
     @JoinTable(
@@ -131,8 +138,6 @@ public class Monster {
             inverseJoinColumns = { @JoinColumn(name = "location_name") }
     )
     private List<Location> habitats = new ArrayList<>(); // Describes the locations and biomes in which the monster is most often found
-
-// Habitat connection
 
     @ManyToMany()
     @Cascade(CascadeType.ALL)
@@ -150,12 +155,7 @@ public class Monster {
             joinColumns = { @JoinColumn(name = "monster_id") },
             inverseJoinColumns = { @JoinColumn(name = "class_name") }
     )
-    private List<CharacterClass> classWeakList = new ArrayList<>(); // Class connections
-
-    @OneToMany(mappedBy = "monster", orphanRemoval = true)
-    @Cascade(CascadeType.ALL)
-    @Fetch(FetchMode.SELECT)
-    private List<MonsterAction> monsterActions = new ArrayList<>(); // Actions connection
+    private List<CharacterClass> classWeakList = new ArrayList<>();
 
     @ManyToMany()
     @Cascade(CascadeType.ALL)
@@ -173,9 +173,10 @@ public class Monster {
             joinColumns = { @JoinColumn(name = "monster_id") },
             inverseJoinColumns = { @JoinColumn(name = "topography_name") }
     )
-    private List<Topography> topographyAdvList = new ArrayList<>(); // Topography connections
+    private List<Topography> topographyAdvList = new ArrayList<>();
 
 
+    //Getters and Setters
     public Danger getDanger() {
         return danger;
     }
@@ -276,9 +277,7 @@ public class Monster {
         return topographyWeakList;
     }
 
-    public void setTopographyWeakList(List<Topography> topographyWeakList) {
-        this.topographyWeakList = topographyWeakList;
-    }
+    public void setTopographyWeakList(List<Topography> topographyWeakList) {this.topographyWeakList = topographyWeakList;}
 
     public List<Topography> getTopographyAdvList() {
         return topographyAdvList;
@@ -478,5 +477,5 @@ public class Monster {
 
     public String getDescription() {
         return description;
-    } //Getters and Setters
+    }
 }

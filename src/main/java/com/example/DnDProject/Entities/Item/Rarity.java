@@ -14,6 +14,7 @@ public class Rarity {
     @OneToMany(mappedBy = "rarity", orphanRemoval = true)
     private List<Item> items = new ArrayList<>();
 
+    //Getters and Setters
     public List<Item> getItems() {
         return items;
     }

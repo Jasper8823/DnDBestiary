@@ -17,6 +17,7 @@ public class Status {
     @Column(name = "name",length = 16)
     private String name;
 
+    //Many-to-many connections
     @ManyToMany(mappedBy = "immunityStatusList")
     private List<Monster> monster_imS = new ArrayList<>();
 
@@ -26,10 +27,11 @@ public class Status {
     @ManyToMany(mappedBy = "spell_statusList")
     private List<Spell> spell_statusList = new ArrayList<>();
 
+
+    //Getters and Setters
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }

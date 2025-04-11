@@ -22,6 +22,7 @@ public class Item {
     @Column(name = "configurable")
     private boolean configurable;
 
+    //One-to-many connections
     @ManyToOne
     @JoinColumn(name = "item_type_name")
     private ItemType itemType;
@@ -34,6 +35,7 @@ public class Item {
     @JoinColumn(name = "rarity_name")
     private Rarity rarity;
 
+    //Many-to-many connections
     @ManyToMany()
     @JoinTable(
             name = "item_char",
@@ -58,6 +60,8 @@ public class Item {
     )
     private List<Status> item_statusList = new ArrayList<>();
 
+
+    //Getters and Setters
     public ItemType getItemType() {
         return itemType;
     }

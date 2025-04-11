@@ -19,11 +19,15 @@ public class Skill {
     @Column(name = "name",length = 32)
     private String name;
 
+
+    //One-to-many connections
     @ManyToOne
     @JoinColumn(name = "attribute_name", nullable = false)
     @Fetch(FetchMode.SELECT)
     private Attribute attribute;
 
+
+    //Many-to-many connections
     @ManyToMany(mappedBy = "back_skillList")
     private List<Backstory> back_skillList = new ArrayList<>();
 
@@ -35,6 +39,8 @@ public class Skill {
     )
     private List<Character> skill_charList = new ArrayList<>();
 
+
+    //Getters and Setters
     public Attribute getAttribute() {
         return attribute;
     }

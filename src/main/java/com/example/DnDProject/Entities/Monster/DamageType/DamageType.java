@@ -17,6 +17,8 @@ public class DamageType {
     @Column(name = "name",length = 16)
     private String name;
 
+
+    //Many-to-many connections
     @ManyToMany(mappedBy = "immunityList")
     private List<Monster> monster_imD =  new ArrayList<>();
 
@@ -24,7 +26,7 @@ public class DamageType {
     private List<Monster> monster_res =  new ArrayList<>();
 
     @ManyToMany(mappedBy = "vulnerabilityList")
-    private List<Monster> monster_vul =  new ArrayList<>();//Sensitivities connections
+    private List<Monster> monster_vul =  new ArrayList<>();
 
     @ManyToMany(mappedBy = "spell_damTypeList")
     private List<Spell> spell_damTypeList = new ArrayList<>();
@@ -32,13 +34,15 @@ public class DamageType {
     @ManyToMany(mappedBy = "item_damTypeList")
     private List<Item> item_damTypeList = new ArrayList<>();
 
+
+    //Getters and Setters
     public void setName(String name) {
         this.name = name;
     }
 
     public String getName() {
         return name;
-    }//Getters and Setters
+    }
 
     public List<Monster> getMonster_imD() {
         return monster_imD;

@@ -1,6 +1,9 @@
 server:
   port: 8080
+
 spring:
+  main:
+    lazy-initialization: true
   thymeleaf:
     prefix: classpath:/web/
     suffix: .html
@@ -11,6 +14,12 @@ spring:
     resources:
       cache:
         period: 0
+  cache:
+    cache-names: myCache
+    caffeine:
+      spec: maximumSize=500,expireAfterAccess=10m
+
+
 jpa:
     hibernate:
       ddl-auto: update

@@ -11,6 +11,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "backstory")
 public class Backstory {
+
     @Id
     @Column(name = "name",length = 16)
     private String name;

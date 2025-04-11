@@ -14,6 +14,7 @@ public class ItemType {
     @OneToMany(mappedBy = "itemType", orphanRemoval = true)
     private List<Item> items = new ArrayList<>();
 
+    //Getters and Setters
     public List<Item> getItems() {
         return items;
     }
