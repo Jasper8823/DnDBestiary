@@ -4,7 +4,7 @@ import com.example.DnDProject.DTOs.ClassAbilityDTO;
 import com.example.DnDProject.DTOs.ItemDTO;
 import com.example.DnDProject.DTOs.MonsterDTO;
 import com.example.DnDProject.DTOs.SpellDTO;
-import com.example.DnDProject.Services.DatafillService;
+import com.example.DnDProject.Services.DataFillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class DatafillController {
 
     @Autowired
-    private DatafillService datafillService;
+    private DataFillService datafillService;
 
     @GetMapping("/fillDBMonster")
     public String createMonsterForm() {
