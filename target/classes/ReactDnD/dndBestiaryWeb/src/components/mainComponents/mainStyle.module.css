@@ -1,0 +1,129 @@
+.box{
+    position: relative;
+    width: 80%;
+    height: 3000px;
+    background-color: rgb(200,200,200,0.2);
+    margin: 0;
+    left: 17%;
+    top: 125px;
+    backdrop-filter: blur(8px);
+    background: linear-gradient(rgba(172, 69, 0, 0.1));
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 5px;
+    border: 10px ridge rgb(110, 72, 0, 0.35);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    margin-bottom: 150px;
+    transition: all 5s ease;
+    user-select: none;
+}
+
+.box:hover{
+    backdrop-filter: blur(18px);
+    box-shadow: 0 10px 48px 0 rgba(0, 0, 0, 0.5);
+}
+
+.header{
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 42px;
+    background-color: rgb(41, 41, 41);
+    left: 0px;
+    color: white;
+    user-select: none;
+}
+
+.header p{
+    font-size: 1.8em;
+    position: relative;
+    width: 200px;
+    left: 57px;
+    top: 3.5px;
+    font-family: sans-serif;
+    margin: 0px;
+}
+
+.sideBarBox{
+    position: absolute;
+    top: 70px;
+    left: 30px;
+    width: 14%;
+    border-radius: 5px;
+    backdrop-filter: blur(8px);
+    background: linear-gradient(135deg, rgba(143, 16, 16, 0.1), rgba(126, 15, 15, 0.1));
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(143, 53, 53, 0.37);
+    user-select: none;
+}
+
+.subBox{
+    display: block;
+    position: relative;
+    width: 95%;
+    margin: 1.5%;
+    border-radius: 7px;
+    border: solid rgb(0, 0, 0, 0.01) 5px;
+}
+
+.subBox h3{
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.5em;
+    color: rgba(0, 0, 0, 0.4);
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+.subBox h3::after{
+    content: "";
+    position: absolute;
+    background-color: rgb(0, 0, 0, 0.3);
+    width: 40%;
+    height: 3px;
+    left: 30%;
+    top: 34px;
+}
+
+.directBox p{
+    display: inline-block;
+    margin-left: 7px;
+    position: relative;
+    font-family: "Open Sans", sans-serif;
+    color: inherit;
+    transition: all 0.3s ease;
+    margin-bottom: 0px;
+}
+
+.titleBox{
+    display: block;
+
+    border-radius: 5px;
+}
+
+.directBox{
+    font-size: 1.4em;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    color: rgba(0, 0, 0, 0.7);
+    transition: all 0.15s ease;
+}
+
+.directBox:hover{
+    filter: brightness(0) saturate(100%) invert(12%) sepia(94%) saturate(2555%) hue-rotate(-7deg) brightness(91%) contrast(101%);
+}
+
+.icon{
+    margin-left:15px;
+    display: inline-block;
+    margin-bottom: 0px;
+}
+
+.picture{
+    position: relative;
+    margin-left:15px;
+    display: inline-block;
+    margin-bottom: 0px;
+    width: 22px;
+    height: 22px;
+    top: 2px;
+}
