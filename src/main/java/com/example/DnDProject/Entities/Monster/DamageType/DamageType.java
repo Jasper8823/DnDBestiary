@@ -6,6 +6,9 @@ import com.example.DnDProject.Entities.Monster.Monster;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.DnDProject.Entities.MtoMConnections.Item_DamageType;
+import com.example.DnDProject.Entities.MtoMConnections.Spell_DamageType;
+import com.example.DnDProject.Entities.Race.RaceAbility;
 import com.example.DnDProject.Entities.Spell.Spell;
 import jakarta.persistence.*;
 
@@ -28,11 +31,12 @@ public class DamageType {
     @ManyToMany(mappedBy = "vulnerabilityList")
     private List<Monster> monster_vul =  new ArrayList<>();
 
-    @ManyToMany(mappedBy = "spell_damTypeList")
-    private List<Spell> spell_damTypeList = new ArrayList<>();
+    @OneToMany(mappedBy = "damageType", orphanRemoval = true)
+    private List<Item_DamageType> itemDamageTypeList = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "item_damTypeList")
-    private List<Item> item_damTypeList = new ArrayList<>();
+    @OneToMany(mappedBy = "damageType", orphanRemoval = true)
+    private List<Spell_DamageType> spellDamageTypeList = new ArrayList<>();
+
 
 
     //Getters and Setters
@@ -68,19 +72,19 @@ public class DamageType {
         this.monster_vul = monster_vul;
     }
 
-    public List<Spell> getSpell_damTypeList() {
-        return spell_damTypeList;
+    public List<Item_DamageType> getItemDamageTypeList() {
+        return itemDamageTypeList;
     }
 
-    public void setSpell_damTypeList(List<Spell> spell_damTypeList) {
-        this.spell_damTypeList = spell_damTypeList;
+    public void setItemDamageTypeList(List<Item_DamageType> itemDamageTypeList) {
+        this.itemDamageTypeList = itemDamageTypeList;
     }
 
-    public List<Item> getItem_damTypeList() {
-        return item_damTypeList;
+    public List<Spell_DamageType> getSpellDamageTypeList() {
+        return spellDamageTypeList;
     }
 
-    public void setItem_damTypeList(List<Item> item_damTypeList) {
-        this.item_damTypeList = item_damTypeList;
+    public void setSpellDamageTypeList(List<Spell_DamageType> spellDamageTypeList) {
+        this.spellDamageTypeList = spellDamageTypeList;
     }
 }

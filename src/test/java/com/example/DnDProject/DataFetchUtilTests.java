@@ -1,41 +1,45 @@
 package com.example.DnDProject;
 
-import static com.helger.commons.mock.CommonsAssert.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
-import com.example.DnDProject.Controllers.DatafillController;
-import com.example.DnDProject.DTOs.MonsterDTO;
-import com.example.DnDProject.Services.DatafillService;
-import org.junit.jupiter.api.BeforeEach;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
 import com.example.DnDProject.Exceptions.InvalidHPCalculationException;
 import com.example.DnDProject.UtilMethods.DataFetchUtil;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
-class DnDProjectApplicationTests {
+class DataFetchUtilTests {
 
-	private final DataFetchUtil dataFetchUtil = new DataFetchUtil();
-	private final DatafillController controller = new DatafillController();
-	@MockBean
-	private DatafillService datafillService;
+	private DataFetchUtil dataFetchUtil;
+	private JpaRepository mockRepository;
 
-	public void setUp() {
+	@BeforeEach
+	void setUp() {
+		dataFetchUtil = new DataFetchUtil();
+		mockRepository = Mockito.mock(JpaRepository.class);
 	}
 
+	@Test
+	void testFetchList_NullRepository_ThrowsIllegalArgumentException() {
+		// Arrange
+		List<String> ids = Collections.singletonList("1");
+
+		// Act & Assert
+		assertThatExceptionOfType(IllegalArgumentException.class)
+				.isThrownBy(() -> dataFetchUtil.fetchList(ids, null))
+				.withMessage("Repository cannot be null.");
+	}
+
+	//Calculating average HP tests
 	@Test
 	void testCalculateAvgHP_ValidInput() {
 		int result = dataFetchUtil.calculateAvgHP(3, 6, 2);
@@ -77,6 +81,8 @@ class DnDProjectApplicationTests {
 				.withMessage("Passive bonus must not be negative.");
 	}
 
+
+	//Calculate HP tests
 	@Test
 	void testFormatHPCalculation_ValidInput() {
 		String result = dataFetchUtil.formatHPCalculation(3, 6, 2);

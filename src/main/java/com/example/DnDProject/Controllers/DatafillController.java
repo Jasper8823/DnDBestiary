@@ -4,35 +4,18 @@ import com.example.DnDProject.DTOs.ClassAbilityDTO;
 import com.example.DnDProject.DTOs.ItemDTO;
 import com.example.DnDProject.DTOs.MonsterDTO;
 import com.example.DnDProject.DTOs.SpellDTO;
-import com.example.DnDProject.Services.DataFillService;
+import com.example.DnDProject.Services.DatafillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @Controller
 public class DatafillController {
 
     @Autowired
-    private DataFillService datafillService;
-
-    @GetMapping("/fillDBMonster")
-    public String createMonsterForm() {
-        return "fillDBMonster";
-    }
-    @GetMapping("/fillDBSpell")
-    public String createSpellForm() {
-        return "fillDBSpell";
-    }
-    @GetMapping("/fillDBItem")
-    public String createItemForm() {
-        return "fillDBItem";
-    }
-    @GetMapping("/fillDBAbility")
-    public String createAbilityForm() {
-        return "fillDBAbility";
-    }
-
+    private DatafillService datafillService;
 
     @PostMapping("/monsterPush")
     @ResponseBody

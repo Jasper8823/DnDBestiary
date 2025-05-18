@@ -157,7 +157,7 @@ document.getElementById("SubmitButton").addEventListener('click', () => {
         worldview: document.getElementById("WWLabel").value,
         type: document.getElementById("typeLabel").value,
         size: document.getElementById("SizeLabel").value,
-        danger: document.getElementById("DangerLabel").value,
+        danger: parseInt(document.getElementById("DangerLabel").value),
 
         features: document.getElementById("features").value,
         description: document.getElementById("description").value,

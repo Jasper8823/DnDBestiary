@@ -9,6 +9,13 @@ import { BrowserRouter, Routes, Route, Navigate  } from "react-router-dom";
 
 
 function MainComponent() {
+    const monsters = [
+        { id: 0, name: "Light", lvl: 0 },
+        { id: 1, name: "Wall of mud", lvl: 1 },
+        { id: 2, name: "Thunder wave", lvl: 1 },
+        { id: 3, name: "Fire ball", lvl: 3 }
+    ];
+
     const spells = [
       { id: 0, name: "Light", lvl: 0 },
       { id: 1, name: "Wall of mud", lvl: 1 },
@@ -27,7 +34,7 @@ function MainComponent() {
       <div className={style.box}>
         <Routes>
           <Route path="/" element={<Navigate to="/bestiary" replace />} />
-          <Route path="/bestiary" element={<MonsterSmall monsters={monsters} />} />
+          <Route path="/bestiary" element={<MonsterSmall/>} />
           <Route path="/bestiary/:id" element={<Monster monsters={monsters} />} />
           {/* <Route path="/bestiary" element={<MonsterSmall/>} />
           <Route path="/bestiary/:id" element={<Monster/>} /> */}

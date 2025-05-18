@@ -1,17 +1,27 @@
 import { useParams } from 'react-router-dom';
 import style from './monsters.module.css'
 import StatBox from './StatBox';
+import { useEffect, useState } from 'react';
 
-function Monster(props){
+function Monster(){
     const {id} = useParams();
-    const monster = props.monsters[parseInt(id)];
+    const [monster, setMonster] = useState(null);
+
+    useEffect(() => {
+        fetch(`http://localhost:8080/getMonster?id=${id}`)
+            .then(response => response.json())
+            .then(data => setMonster(data))
+            .catch(error => console.error('Error fetching data:', error));
+    }, []);
+
+    if (!monster) return <p>Loading monsters...</p>;
     return(
         <div className={style.mainBox}>
             <p id={style.monsterName}><b>{monster.name}</b></p>
             <div className={style.sizeTypeWVBox}>
-                <p><i>Big</i></p>
-                <p>Ozee</p>
-                <p>Chaoticly good</p>
+                <p><i>{monster.size}</i></p>
+                <p>{monster.type}</p>
+                <p>{monster.worldView}</p>
             </div>
             <p><b>Armor type</b> 11</p>
             <p><b>Hit points</b> 26 (4d8+8)</p>
@@ -22,7 +32,7 @@ function Monster(props){
             <StatBox name = {"Str"} value = {10} isGrey = {false}/>
             <StatBox name = {"Str"} value = {22} isGrey = {true}/>
             <StatBox name = {"Str"} value = {9} isGrey = {false}/>
-            <p><b>Danger</b> 2 (450)</p>
+            <p><b>Danger</b> {monster.danger} (450)</p>
             <p className = {style.features}><b>Features</b></p>
         </div>
     )
