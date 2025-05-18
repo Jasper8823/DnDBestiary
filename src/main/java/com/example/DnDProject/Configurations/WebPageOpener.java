@@ -14,7 +14,6 @@ public class WebPageOpener implements CommandLineRunner {
     }
 
     public void openWebPage(String url) {
-        String os = System.getProperty("os.name").toLowerCase();
         try {
             Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
         } catch (IOException e) {

@@ -1,7 +1,6 @@
 package com.example.DnDProject.Services;
 
 
-import com.example.DnDProject.Exceptions.EntityNotFoundException;
 import com.example.DnDProject.UtilMethods.DataFetchUtil;
 import com.example.DnDProject.DTOs.*;
 import com.example.DnDProject.Entities.Class.ClassAbility;
@@ -134,7 +133,7 @@ public class DatafillService {
         monster.setFeatures(dto.getFeatures());
         monster.setDescription(dto.getDescription());
 
-        monster.setDanger(dfu.fetchEntity(dangerRepo,dto.getDanger()));
+        monster.setDanger(dangerRepo.findById(dto.getDanger()).get());
         monster.setType(dfu.fetchEntity(typeRepo,dto.getType()));
         monster.setSize(dfu.fetchEntity(sizeRepo,dto.getSize()));
         monster.setWorldview(dfu.fetchEntity(worldviewRepo,dto.getWorldview()));
@@ -176,10 +175,10 @@ public class DatafillService {
         spell.setSpellType(dfu.fetchEntity(spellTypeRepo,dto.getSpellTypename()));
 
         spell.setSpell_statusList(dfu.fetchList(dto.getStatus_names(),statusRepo));
-        spell.setSpell_damTypeList(dfu.fetchList(dto.getDamageType_names(),damageTypeRepo));
         spell.setSpell_classList(dfu.fetchList(dto.getClass_names(),classRepo));
 
         spellRepo.save(spell);
+        dfu.fetchDamageTypesList(dto.getDamageType_names(),null,spell);
     }
     @Transactional
     public void saveItem(ItemDTO dto){
@@ -197,8 +196,9 @@ public class DatafillService {
         item = dfu.setItemSubType(item, dto.getItem_type_name(), dto.getSubtype());
 
         item.setItem_statusList(dfu.fetchList(dto.getStatusList(),statusRepo));
-        item.setItem_damTypeList(dfu.fetchList(dto.getDamageTList(),damageTypeRepo));
         itemRepo.save(item);
+        dfu.fetchDamageTypesList(dto.getDamageTList(),item,null);
+
     }
     @Transactional
     public void saveClassAbility( ClassAbilityDTO dto) {

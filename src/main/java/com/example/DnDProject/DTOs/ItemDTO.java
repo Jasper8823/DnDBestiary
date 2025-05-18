@@ -14,8 +14,8 @@ public class ItemDTO {
     private String subtype;
     @JsonProperty("StatusList")
     private List<String> StatusList = new ArrayList<>();
-    @JsonProperty("DamageTList")
-    private List<String> DamageTList = new ArrayList<>();
+    @JsonProperty("DamageTypes")
+    private List<DamageTypeDTO> DamageTypes = new ArrayList<>();
 
     public String getSubtype() {
         return subtype;
@@ -73,11 +73,11 @@ public class ItemDTO {
         StatusList = statusList;
     }
 
-    public List<String> getDamageTList() {
-        return DamageTList;
+    public List<DamageTypeDTO> getDamageTList() {
+        return DamageTypes;
     }
 
-    public void setDamageTList(List<String> damageTList) {
-        DamageTList = damageTList;
+    public void setDamageTList(List<DamageTypeDTO> damageTList) {
+        DamageTypes = damageTList;
     }
 }

@@ -1,0 +1,100 @@
+.monsterBox{
+    display: inline-block;
+    width: 23.8%;
+    margin: 0 0.17%;
+    margin-top: 4px;
+    padding: 5px;
+    height: 35px;
+    border-radius: 3px;
+    border: 0.5px ridge rgba(0, 0, 0, 0.281);
+    color: rgb(0, 0, 0, 0.7);
+    transition: all 1s ease;
+}
+
+.monsterBox:hover{
+    filter: brightness(150%) contrast(150%);
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.1);
+}
+
+.monsterName{
+    display: inline-block;
+    margin: 0px;
+    margin-left: 20px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.3em;
+    user-select:text;
+}
+
+.monsterLevel{
+    display: inline-block;
+    margin: 0px;
+    margin-left: 5px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.3em;
+}
+
+.mainBox{
+    position: relative;
+    width: 97%;
+    left: 1.5%;
+    font-family: serif;
+    margin: 0;
+    margin-top: 15px;
+    font-size: 1.4em;
+}
+
+.mainBox p{
+    margin: 0;  
+    margin-bottom: 5px;
+}
+
+#monsterName{
+    font-size: 1.5em;
+}
+
+#monsterName::after{
+    content: "";
+    position: absolute;
+    background-color: rgb(0, 0, 0, 0.07);
+    width: 13%;
+    height: 3px;
+    left: -2px;
+    top: 37px;
+}
+
+.sizeTypeWVBox{
+    padding: 0px;
+}
+
+.sizeTypeWVBox p{
+    margin-right: 0.6%;
+    display: inline;
+}
+
+
+.statBox{
+    position: relative;
+    text-align: center;
+    display: inline-block;
+    border: solid rgba(0, 0, 0, 0.015) 2px;
+    margin-right: 0.5%;
+    border-radius: 4px;
+    padding: 3px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.features {
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+}
+
+.features::before,
+.features::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #00000041;
+  margin: 0 8px;
+  max-width: 20px;
+}

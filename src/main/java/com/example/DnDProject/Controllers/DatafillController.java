@@ -10,29 +10,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @Controller
 public class DatafillController {
 
     @Autowired
     private DatafillService datafillService;
-
-    @GetMapping("/fillDBMonster")
-    public String createMonsterForm() {
-        return "fillDBMonster";
-    }
-    @GetMapping("/fillDBSpell")
-    public String createSpellForm() {
-        return "fillDBSpell";
-    }
-    @GetMapping("/fillDBItem")
-    public String createItemForm() {
-        return "fillDBItem";
-    }
-    @GetMapping("/fillDBAbility")
-    public String createAbilityForm() {
-        return "fillDBAbility";
-    }
-
 
     @PostMapping("/monsterPush")
     @ResponseBody

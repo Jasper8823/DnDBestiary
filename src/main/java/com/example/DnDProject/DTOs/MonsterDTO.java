@@ -40,7 +40,7 @@ public class MonsterDTO {
     private String features;
     private String description;
 
-    private String danger;
+    private int danger;
     private String size;
     private String type;
     private String worldview;
@@ -259,11 +259,11 @@ public class MonsterDTO {
         this.description = description;
     }
 
-    public String getDanger() {
+    public int getDanger() {
         return danger;
     }
 
-    public void setDanger(String danger) {
+    public void setDanger(int danger) {
         this.danger = danger;
     }
 

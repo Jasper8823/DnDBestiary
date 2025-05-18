@@ -3,6 +3,7 @@ package com.example.DnDProject.Entities.Item;
 import com.example.DnDProject.Entities.Character.Character;
 import com.example.DnDProject.Entities.Monster.DamageType.DamageType;
 import com.example.DnDProject.Entities.Monster.Status.Status;
+import com.example.DnDProject.Entities.MtoMConnections.Item_DamageType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 
@@ -46,20 +47,14 @@ public class Item {
 
     @ManyToMany()
     @JoinTable(
-            name = "item_dam_type",
-            joinColumns = { @JoinColumn(name = "item_name") },
-            inverseJoinColumns = { @JoinColumn(name = "dam_type_name") }
-    )
-    private List<DamageType> item_damTypeList = new ArrayList<>();
-
-    @ManyToMany()
-    @JoinTable(
             name = "item_status",
             joinColumns = { @JoinColumn(name = "item_name") },
             inverseJoinColumns = { @JoinColumn(name = "status_name") }
     )
     private List<Status> item_statusList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "item", orphanRemoval = true)
+    private List<Item_DamageType> itemDamageTypeList = new ArrayList<>();
 
     //Getters and Setters
     public ItemType getItemType() {
@@ -118,12 +113,12 @@ public class Item {
         this.item_charList = item_charList;
     }
 
-    public List<DamageType> getItem_damTypeList() {
-        return item_damTypeList;
+    public List<Item_DamageType> getItemDamageTypeList() {
+        return itemDamageTypeList;
     }
 
-    public void setItem_damTypeList(List<DamageType> item_damTypeList) {
-        this.item_damTypeList = item_damTypeList;
+    public void setItemDamageTypeList(List<Item_DamageType> itemDamageTypeList) {
+        this.itemDamageTypeList = itemDamageTypeList;
     }
 
     public List<Status> getItem_statusList() {

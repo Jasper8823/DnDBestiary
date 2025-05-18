@@ -1,15 +1,25 @@
 package com.example.DnDProject.UtilMethods;
 
+import com.example.DnDProject.DTOs.DamageTypeDTO;
 import com.example.DnDProject.Entities.Item.Item;
 import com.example.DnDProject.Entities.Monster.Action.Action;
+import com.example.DnDProject.Entities.Monster.DamageType.DamageType;
+import com.example.DnDProject.Entities.MtoMConnections.Item_DamageType;
 import com.example.DnDProject.Entities.MtoMConnections.MonsterAction;
 import com.example.DnDProject.Entities.Monster.Monster;
 import com.example.DnDProject.DTOs.ActionDTO;
+import com.example.DnDProject.Entities.MtoMConnections.Spell_DamageType;
+import com.example.DnDProject.Entities.Spell.Spell;
 import com.example.DnDProject.Exceptions.EntityNotFoundException;
 import com.example.DnDProject.Exceptions.InvalidHPCalculationException;
+import com.example.DnDProject.Repositories.Item.ItemRepository;
 import com.example.DnDProject.Repositories.Item.SubTypeRepository;
 import com.example.DnDProject.Repositories.Monster.Action.ActionRepository;
+import com.example.DnDProject.Repositories.Monster.DamageType.DamageTypeRepository;
+import com.example.DnDProject.Repositories.MtoMConnections.Item_DamageTypeRepository;
 import com.example.DnDProject.Repositories.MtoMConnections.MonsterActionRepository;
+import com.example.DnDProject.Repositories.MtoMConnections.Spell_DamageTypeRepository;
+import com.example.DnDProject.Repositories.Spell.SpellRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -24,14 +34,20 @@ public class DataFetchUtil {
 
     @Autowired
     private ActionRepository actionRepo;
-
     @Autowired
     private MonsterActionRepository monsterActionRepo;
 
     @Autowired
     private SubTypeRepository subTypeRepo;
 
-    @Cacheable(value = "entityListCache", key = "#repository.getClass().getSimpleName() + ':' + #ids")
+    @Autowired
+    private DamageTypeRepository damageTypeRepo;
+
+    @Autowired
+    private Item_DamageTypeRepository itemDamTypeRepo;
+    @Autowired
+    private Spell_DamageTypeRepository spellDamTypeRepo;
+
     public <T> List<T> fetchList(List<String> ids, JpaRepository repository) {
         if (repository == null) {
             throw new IllegalArgumentException("Repository cannot be null.");
@@ -48,6 +64,62 @@ public class DataFetchUtil {
     }
 
 
+    public void fetchDamageTypesList(List<DamageTypeDTO> damageTypes, Item item, Spell spell) {
+
+        if (damageTypes == null) {
+            return;
+        }
+
+        if (item == null && spell == null) {
+            throw new IllegalArgumentException("Both objects cannot be null.");
+        } else if (item != null && spell != null) {
+            throw new IllegalArgumentException("At least one object should be null.");
+        } else{
+            for (DamageTypeDTO damageTypeDTO : damageTypes) {
+                if (damageTypeDTO == null) {
+                    continue;
+                }
+                if (damageTypeDTO.getName() == null || damageTypeDTO.getName().isEmpty()) {
+                    throw new IllegalArgumentException("DamageType name cannot be null or empty.");
+                }
+
+                if(item != null){
+                    Item_DamageType itemDamageType = new Item_DamageType();
+                    itemDamageType.setDamageDice(damageTypeDTO.getDamage_dice());
+
+                    // Check if the damageType exists; if not, create and save a new one
+                    if (!damageTypeRepo.existsById(damageTypeDTO.getName())) {
+                        DamageType damageType = new DamageType();
+                        damageType.setName(damageTypeDTO.getName());
+                        damageTypeRepo.save(damageType);
+                        itemDamageType.setDamageType(damageType);
+                    } else {
+                        itemDamageType.setDamageType(this.fetchEntity(damageTypeRepo,damageTypeDTO.getName()));
+                    }
+                    itemDamageType.setItem(item);
+                    itemDamTypeRepo.save(itemDamageType);
+                } else {
+                    Spell_DamageType spellDamageType = new Spell_DamageType();
+                    spellDamageType.setDamageDice(damageTypeDTO.getDamage_dice());
+
+                    // Check if the damageType exists; if not, create and save a new one
+                    if (!damageTypeRepo.existsById(damageTypeDTO.getName())) {
+                        DamageType damageType = new DamageType();
+                        damageType.setName(damageTypeDTO.getName());
+                        damageTypeRepo.save(damageType);
+                        spellDamageType.setDamageType(damageType);
+                    } else {
+                        spellDamageType.setDamageType(this.fetchEntity(damageTypeRepo,damageTypeDTO.getName()));
+                    }
+                    spellDamageType.setSpell(spell);
+                    spellDamTypeRepo.save(spellDamageType);
+                }
+            }
+        }
+
+
+
+    }
     public void fetchActionsList(List<ActionDTO> actions, Monster monster) {
         if (monster == null) {
             throw new IllegalArgumentException("Monster cannot be null.");
@@ -83,7 +155,7 @@ public class DataFetchUtil {
         }
     }
 
-    @Cacheable(value = "entities", key = "#repository.getClass().getSimpleName() + ':' + #id")
+
     public <T> T fetchEntity(JpaRepository<T, String> repository, String id) {
         if (repository == null) {
             throw new IllegalArgumentException("Repository cannot be null.");
@@ -95,6 +167,7 @@ public class DataFetchUtil {
         return repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Entity not found with ID: " + id));
     }
+
 
 
 

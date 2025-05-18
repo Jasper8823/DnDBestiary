@@ -21,18 +21,18 @@ public class SpellDTO {
     private int prepareMoves;
     private String description;
     @JsonProperty("damageType_names")
-    private List<String> damageType_names = new ArrayList<>();
+    private List<DamageTypeDTO> damageTypes = new ArrayList<>();
     @JsonProperty("status_names")
     private List<String> status_names = new ArrayList<>();
     @JsonProperty("class_names")
     private List<String> class_names = new ArrayList<>();
 
-    public List<String> getDamageType_names() {
-        return damageType_names;
+    public List<DamageTypeDTO> getDamageType_names() {
+        return damageTypes;
     }
 
-    public void setDamageType_names(List<String> damageType_names) {
-        this.damageType_names = damageType_names;
+    public void setDamageType_names(List<DamageTypeDTO> damageType_names) {
+        this.damageTypes = damageType_names;
     }
 
     public List<String> getStatus_names() {
