@@ -1,0 +1,9 @@
+.fon{
+    position: fixed;
+    background: url('./backG.jpg') no-repeat center center fixed; 
+    background-size: cover;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+}
