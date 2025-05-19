@@ -84,14 +84,14 @@
     padding-right: 6px;
 }
 
-.features {
+.rows {
   display: flex;
   align-items: center;
   font-size: 1.2em;
 }
 
-.features::before,
-.features::after {
+.rows::before,
+.rows::after {
   content: "";
   flex: 1;
   border-bottom: 1px solid #00000041;

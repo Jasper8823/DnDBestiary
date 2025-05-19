@@ -66,6 +66,7 @@ public class ViewController {
     @GetMapping("/getSpell")
     @ResponseBody
     public Map<String, Object> getSpell(@RequestParam("id") String id) {
+        System.out.println(id);
         System.out.println(dataService.spellInfo(id).toString());
         return dataService.spellInfo(id);
     }
@@ -73,7 +74,6 @@ public class ViewController {
     @GetMapping("/getSpells")
     @ResponseBody
     public List<Map<String, Object>> getSpells() {
-        System.out.println(dataService.itemsInfo().toString());
         return dataService.spellsInfo();
     }
 

@@ -136,7 +136,7 @@ public class DataService {
         monsterInfo.put("features", monster.getFeatures());
         monsterInfo.put("description", monster.getDescription());
 
-        monsterInfo.put("danger", monster.getDanger().getDegree());
+        monsterInfo.put("danger", monster.getDanger());
         monsterInfo.put("size", monster.getSize().getName());
         monsterInfo.put("type", monster.getType().getName());
         monsterInfo.put("worldView", monster.getWorldview().getName());

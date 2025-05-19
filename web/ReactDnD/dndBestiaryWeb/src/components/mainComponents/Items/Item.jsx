@@ -8,14 +8,18 @@ function Item(){
     const [item, setItem] = useState(null);
     
     useEffect(() => {
-        fetch(`http://localhost:8080/getMonster?id=${id}`)
+        fetch(`http://localhost:8080/getItem?id=${id}`)
             .then(response => response.json())
             .then(data => setItem(data))
             .catch(error => console.error('Error fetching data:', error));
     }, []);
     
+    if (!item) return <p>Loading item...</p>;
+
     return(
-        <p>{item.name}</p>
+        <div key={item.name}>
+            <p>{item.name}</p>
+        </div>
     )
 }
 

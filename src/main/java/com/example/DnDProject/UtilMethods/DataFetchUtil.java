@@ -230,7 +230,7 @@ public class DataFetchUtil {
         if (passiveBonus < 0) {
             throw new InvalidHPCalculationException("Passive bonus must not be negative.");
         }
-        return numberOfDice + "D" + diceType + " + " + passiveBonus;
+        return numberOfDice + "d" + diceType + "+" + passiveBonus;
     }
 
 
