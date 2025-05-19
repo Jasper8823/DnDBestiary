@@ -27,4 +27,12 @@ public class Action {
     public String getName() {
         return name;
     }
+
+    public List<MonsterAction> getMonsterActions() {
+        return monsterActions;
+    }
+
+    public void setMonsterActions(List<MonsterAction> monsterActions) {
+        this.monsterActions = monsterActions;
+    }
 }

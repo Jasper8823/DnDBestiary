@@ -38,7 +38,7 @@ document.getElementById("SubmitButton").addEventListener('click', () => {
         rarity_name: document.getElementById("rarityLabel").value,
         subtype: document.getElementById("subTypeLabel").value,
 
-        DamageTList: DmgList,
+        DamageTypes: DmgList,
         StatusList: StatusList,
     }
 

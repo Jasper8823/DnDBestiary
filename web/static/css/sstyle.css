@@ -271,13 +271,13 @@ body{
 
 #StatusTypeText{
     position: absolute;
-    top:370px;
+    top:520px;
     left:20px;
 }
 
 #DamageTypeText{
     position: absolute;
-    top:520px;
+    top:370px;
     left:20px;
 }
 

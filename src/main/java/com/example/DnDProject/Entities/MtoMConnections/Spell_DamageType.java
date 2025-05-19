@@ -20,12 +20,12 @@ public class Spell_DamageType {
     private String damageDice;
 
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "spell_name")
     private Spell spell;
 
-    @ManyToOne
-    @JoinColumn(name = "damageType_name")
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "damage_type_name")
     private DamageType damageType;
 
     public int getId() {

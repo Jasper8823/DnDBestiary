@@ -26,8 +26,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Component
 public class DataFetchUtil {
@@ -63,6 +66,13 @@ public class DataFetchUtil {
         return resultList;
     }
 
+    public static <T> List<String> extractNames(List<T> list, Function<T, String> nameExtractor) {
+        return list.stream()
+                .map(nameExtractor)
+                .collect(Collectors.toList());
+    }
+
+
 
     public void fetchDamageTypesList(List<DamageTypeDTO> damageTypes, Item item, Spell spell) {
 
@@ -92,11 +102,14 @@ public class DataFetchUtil {
                         DamageType damageType = new DamageType();
                         damageType.setName(damageTypeDTO.getName());
                         damageTypeRepo.save(damageType);
-                        itemDamageType.setDamageType(damageType);
+                        itemDamageType.setDamageType(damageTypeRepo.findById(damageTypeDTO.getName()).
+                                orElseThrow(() -> new IllegalStateException("DamageType should have been saved but was not found")));
                     } else {
                         itemDamageType.setDamageType(this.fetchEntity(damageTypeRepo,damageTypeDTO.getName()));
                     }
                     itemDamageType.setItem(item);
+                    System.out.println(itemDamageType.getDamageType().getName() + " " + itemDamageType.getItem().getName());
+
                     itemDamTypeRepo.save(itemDamageType);
                 } else {
                     Spell_DamageType spellDamageType = new Spell_DamageType();
@@ -107,7 +120,8 @@ public class DataFetchUtil {
                         DamageType damageType = new DamageType();
                         damageType.setName(damageTypeDTO.getName());
                         damageTypeRepo.save(damageType);
-                        spellDamageType.setDamageType(damageType);
+                        spellDamageType.setDamageType(damageTypeRepo.findById(damageTypeDTO.getName()).
+                                orElseThrow(() -> new IllegalStateException("Damage type should have been saved but was not found")));
                     } else {
                         spellDamageType.setDamageType(this.fetchEntity(damageTypeRepo,damageTypeDTO.getName()));
                     }
@@ -120,7 +134,10 @@ public class DataFetchUtil {
 
 
     }
+
+
     public void fetchActionsList(List<ActionDTO> actions, Monster monster) {
+
         if (monster == null) {
             throw new IllegalArgumentException("Monster cannot be null.");
         }
@@ -133,6 +150,7 @@ public class DataFetchUtil {
             if (actionDTO == null) {
                 continue;
             }
+
             if (actionDTO.getName() == null || actionDTO.getName().isEmpty()) {
                 throw new IllegalArgumentException("Action name cannot be null or empty.");
             }
@@ -146,7 +164,8 @@ public class DataFetchUtil {
                 Action action = new Action();
                 action.setName(actionDTO.getName());
                 actionRepo.save(action);
-                monsterAction.setAction(action);
+                monsterAction.setAction(actionRepo.findById(actionDTO.getName()).
+                        orElseThrow(() -> new IllegalStateException("Action should have been saved but was not found")));
             } else {
                 monsterAction.setAction(this.fetchEntity(actionRepo,actionDTO.getName()));
             }
