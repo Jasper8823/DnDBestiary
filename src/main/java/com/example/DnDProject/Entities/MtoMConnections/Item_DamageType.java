@@ -20,12 +20,12 @@ public class Item_DamageType {
     @Column(name = "damage_dice")
     private String damageDice;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "item_name")
     private Item item;
 
-    @ManyToOne
-    @JoinColumn(name = "damageType_name")
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "damage_type_name")
     private DamageType damageType;
 
     public int getId() {

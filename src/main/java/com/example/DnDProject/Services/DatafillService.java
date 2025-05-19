@@ -31,6 +31,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
+import java.util.Arrays;
+
 @Service
 @Validated
 public class DatafillService {
@@ -197,7 +199,7 @@ public class DatafillService {
 
         item.setItem_statusList(dfu.fetchList(dto.getStatusList(),statusRepo));
         itemRepo.save(item);
-        dfu.fetchDamageTypesList(dto.getDamageTList(),item,null);
+        dfu.fetchDamageTypesList(dto.getDamageTypes(),item,null);
 
     }
     @Transactional

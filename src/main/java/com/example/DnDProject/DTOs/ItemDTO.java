@@ -73,11 +73,11 @@ public class ItemDTO {
         StatusList = statusList;
     }
 
-    public List<DamageTypeDTO> getDamageTList() {
+    public List<DamageTypeDTO> getDamageTypes() {
         return DamageTypes;
     }
 
-    public void setDamageTList(List<DamageTypeDTO> damageTList) {
-        DamageTypes = damageTList;
+    public void setDamageTypes(List<DamageTypeDTO> damageTypes) {
+        DamageTypes = damageTypes;
     }
 }

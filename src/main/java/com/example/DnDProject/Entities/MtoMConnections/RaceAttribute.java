@@ -16,11 +16,11 @@ public class RaceAttribute {
     @Column(name = "modif_value")
     private int modifValue;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "race_name")
     private Race race;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "att_name")
     private Attribute attribute;
 

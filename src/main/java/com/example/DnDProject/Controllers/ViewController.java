@@ -51,4 +51,30 @@ public class ViewController {
         return dataService.monstersInfo();
     }
 
+    @GetMapping("/getItem")
+    @ResponseBody
+    public Map<String, Object> getItem(@RequestParam("id") String id) {
+        return dataService.itemInfo(id);
+    }
+
+    @GetMapping("/getItems")
+    @ResponseBody
+    public List<Map<String, Object>> getItems() {
+        return dataService.itemsInfo();
+    }
+
+    @GetMapping("/getSpell")
+    @ResponseBody
+    public Map<String, Object> getSpell(@RequestParam("id") String id) {
+        System.out.println(dataService.spellInfo(id).toString());
+        return dataService.spellInfo(id);
+    }
+
+    @GetMapping("/getSpells")
+    @ResponseBody
+    public List<Map<String, Object>> getSpells() {
+        System.out.println(dataService.itemsInfo().toString());
+        return dataService.spellsInfo();
+    }
+
 }
