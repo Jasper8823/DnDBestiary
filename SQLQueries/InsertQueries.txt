@@ -691,7 +691,7 @@ VALUES
     ('quarterstaff', 'wizard'),
     ('light crossbow', 'wizard');
 
-    	INSERT INTO dbo.spell_type (name) VALUES
+    INSERT INTO dbo.spell_type (name) VALUES
         ('abjuration'),
         ('conjuration'),
         ('divination'),

@@ -8,7 +8,7 @@ spring:
     prefix: classpath:/web/
     suffix: .html
   datasource:
-    url: jdbc:sqlserver://DESKTOP-K6I7727\\InstanceName:1433;databaseName=mydb;encrypt=true;trustServerCertificate=true;
+    url: jdbc:sqlserver://DESKTOP-QIEQGCN\\InstanceName:1433;databaseName=mydb;encrypt=true;trustServerCertificate=true;
     username: sqlcoadmin     #DESKTOP-QIEQGCN #DESKTOP-K6I7727
     password: 123123123
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver

@@ -23,9 +23,10 @@ public class MonsterAction {
     @JoinColumn(name = "monster_id")
     private Monster monster;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "action_name")
     private Action action;
+
 
     public void setLegendary(boolean legendary) {
         isLegendary = legendary;

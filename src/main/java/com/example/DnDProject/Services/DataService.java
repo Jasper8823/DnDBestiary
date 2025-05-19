@@ -38,8 +38,6 @@ import org.springframework.validation.annotation.Validated;
 
 import java.util.*;
 
-import static com.example.DnDProject.UtilMethods.DataFetchUtil.extractNames;
-
 @Service
 @Validated
 public class DataService {
@@ -116,6 +114,7 @@ public class DataService {
         monsterInfo.put("fly_speed", monster.getFly_speed());
 
         monsterInfo.put("avgHP", monster.getAvg_HP());
+        monsterInfo.put("calcHP",monster.getCalc_HP());
 
         monsterInfo.put("strength", monster.getStrength());
         monsterInfo.put("dexterity", monster.getDexterity());
@@ -142,12 +141,12 @@ public class DataService {
         monsterInfo.put("type", monster.getType().getName());
         monsterInfo.put("worldView", monster.getWorldview().getName());
 
-        monsterInfo.put("immunityList", extractNames(monster.getImmunityList(), DamageType::getName));
-        monsterInfo.put("resistanceList", extractNames(monster.getResistanceList(), DamageType::getName));
-        monsterInfo.put("vulnerabilityList", extractNames(monster.getVulnerabilityList(), DamageType::getName));
-        monsterInfo.put("immunityStatusList", extractNames(monster.getImmunityStatusList(), Status::getName));
-        monsterInfo.put("habitats", extractNames(monster.getHabitats(), Location::getName));
-        monsterInfo.put("actions", extractNames(monster.getMonsterActions(), ma -> ma.getAction().getName()));
+        monsterInfo.put("immunityList", dfu.extractNames(monster.getImmunityList(), DamageType::getName));
+        monsterInfo.put("resistanceList", dfu.extractNames(monster.getResistanceList(), DamageType::getName));
+        monsterInfo.put("vulnerabilityList", dfu.extractNames(monster.getVulnerabilityList(), DamageType::getName));
+        monsterInfo.put("immunityStatusList", dfu.extractNames(monster.getImmunityStatusList(), Status::getName));
+        monsterInfo.put("habitats", dfu.extractNames(monster.getHabitats(), Location::getName));
+        monsterInfo.put("actions", dfu.extractNames(monster.getMonsterActions(), ma -> ma.getAction().getName()));
 
         return monsterInfo;
     }
@@ -185,8 +184,8 @@ public class DataService {
             itemInfo.put("subtype", item.getSubType().getName());
         }
 
-        itemInfo.put("StatusList", extractNames(item.getItem_statusList(), Status::getName));
-        itemInfo.put("DamageTypes", extractNames(item.getItemDamageTypeList(), idt -> idt.getDamageType().getName()));
+        itemInfo.put("StatusList", dfu.extractNames(item.getItem_statusList(), Status::getName));
+        itemInfo.put("DamageTypes", dfu.extractNames(item.getItemDamageTypeList(), idt -> idt.getDamageType().getName()));
 
         return itemInfo;
     }
@@ -224,9 +223,9 @@ public class DataService {
         spellInfo.put("distance", spell.getDistance());
         spellInfo.put("concentDura", spell.getConcentDura());
         spellInfo.put("prepareMoves", spell.getPrepareMoves());
-        spellInfo.put("status_names", extractNames(spell.getSpell_statusList(), Status::getName));
-        spellInfo.put("class_names", extractNames(spell.getSpell_classList(), CharacterClass::getName));
-        spellInfo.put("DamageTypes", extractNames(spell.getSpellDamageTypeList(), sdt -> sdt.getDamageType().getName()));
+        spellInfo.put("status_names", dfu.extractNames(spell.getSpell_statusList(), Status::getName));
+        spellInfo.put("class_names", dfu.extractNames(spell.getSpell_classList(), CharacterClass::getName));
+        spellInfo.put("DamageTypes", dfu.extractNames(spell.getSpellDamageTypeList(), sdt -> sdt.getDamageType().getName()));
 
         return spellInfo;
     }

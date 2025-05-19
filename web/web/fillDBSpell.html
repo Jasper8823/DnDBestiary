@@ -103,7 +103,7 @@
         <button id="RelButtonDS" class="RelButtonS">Show</button>
         <button id="RelButtonD" class="RelButton">Add</button>
 
-        <label for= "DamageType" id="DamageTypeText" class="RelText">Dmg</label>
+        <label for= "DamageType" id="DamageTypeText" class="RelText">Status</label>
         <select id="DamageType" class="RelChoice">
             <option value="piercing">piercing</option>
             <option value="bludgeoning">bludgeoning</option>
@@ -120,11 +120,26 @@
             <option value="psychic">psychic</option>
         </select>
 
+        <div id="dmg">
+            <h3 id="dmgTitle">DMG:  </h3>
+
+            <label for="NDLabel"></label><input type="number" id="NDLabel" class="dmgLabel" min="0" value="1">
+
+            <p class="dmgText">d</p>
+
+            <label for="DVLabel"></label><input type="number" id="DVLabel" class="dmgLabel" min="4" value="10">
+
+            <p class="dmgText"> + </p>
+
+            <label for="PBLabel"></label><input type="number" id="PBLabel" class="dmgLabel" min="0" value="5">
+        </div>
+
+
         <button id="RelButtonSR" class="RelButtonR">Reset</button>
         <button id="RelButtonSS" class="RelButtonS">Show</button>
         <button id="RelButtonS" class="RelButton">Add</button>
 
-        <label for= "StatusType" id="StatusTypeText" class="RelText">Status</label>
+        <label for= "StatusType" id="StatusTypeText" class="RelText">Dmg</label>
         <select id="StatusType" class="RelChoice">
             <option value="blinded">blinded</option>
             <option value="charmed">charmed</option>

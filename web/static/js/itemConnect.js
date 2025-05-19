@@ -10,7 +10,8 @@ document.getElementById("RelButtonDS").addEventListener('click', () => {
 });
 
 document.getElementById("RelButtonD").addEventListener('click', () => {
-    DmgList.push(document.getElementById("DamageType").value)
+        DmgList.push(DamageTypeDTO = {name : document.getElementById("DamageType").value,
+            damage_dice: `${document.getElementById("NDLabel").value}d${document.getElementById("DVLabel").value}+${document.getElementById("PBLabel").value}`})
 });
 
 document.getElementById("RelButtonSR").addEventListener('click', () => {

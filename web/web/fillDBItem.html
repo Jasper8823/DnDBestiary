@@ -131,9 +131,24 @@
             <option value="psychic">psychic</option>
         </select>
 
+
         <button id="RelButtonSR" class="RelButtonR">Reset</button>
         <button id="RelButtonSS" class="RelButtonS">Show</button>
         <button id="RelButtonS" class="RelButton">Add</button>
+
+        <div id="dmg">
+            <h3 id="dmgTitle">DMG:  </h3>
+
+            <label for="NDLabel"></label><input type="number" id="NDLabel" class="dmgLabel" min="0" value="1">
+
+            <p class="dmgText">d</p>
+
+            <label for="DVLabel"></label><input type="number" id="DVLabel" class="dmgLabel" min="4" value="10">
+
+            <p class="dmgText"> + </p>
+
+            <label for="PBLabel"></label><input type="number" id="PBLabel" class="dmgLabel" min="0" value="5">
+        </div>
 
         <label for= "StatusType" id="StatusTypeText" class="RelText">Status</label>
         <select id="StatusType" class="RelChoice">
