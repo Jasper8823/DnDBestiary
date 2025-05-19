@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="eeda4e98-7652-44ba-bd2f-85e06e0692d9" name="Changes" comment="damage type fixed in db fillers">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Items/Item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Items/Item.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Items/ItemSmall.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Items/ItemSmall.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Items/items.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Items/items.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ReactDnD/dndBestiaryWeb/src/components/mainComponents/MainComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ReactDnD/dndBestiaryWeb/src/components/mainComponents/MainComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Spells/Spell.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Spells/Spell.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Spells/SpellSmall.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Spells/SpellSmall.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Spells/spells.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Spells/spells.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DnDProject/Configurations/ReactOpener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DnDProject/DTOs/ItemDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DnDProject/DTOs/ItemDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DnDProject/Entities/Monster/Action/Action.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DnDProject/Entities/Monster/Action/Action.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DnDProject/Entities/MtoMConnections/Item_DamageType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DnDProject/Entities/MtoMConnections/Item_DamageType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DnDProject/Entities/MtoMConnections/MonsterAction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DnDProject/Entities/MtoMConnections/MonsterAction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DnDProject/Entities/MtoMConnections/RaceAttribute.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DnDProject/Entities/MtoMConnections/RaceAttribute.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DnDProject/Entities/MtoMConnections/Spell_DamageType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DnDProject/Entities/MtoMConnections/Spell_DamageType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DnDProject/Services/DataService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DnDProject/Services/DataService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/DnDProject/Services/DatafillService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/DnDProject/Services/DatafillService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/hibernate.cfg.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/istyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/istyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/sstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/sstyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/itemConnect.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/itemConnect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/spellConnect.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/spellConnect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/web/fillDBItem.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/web/fillDBItem.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/web/fillDBMonster.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/web/fillDBMonster.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/web/fillDBSpell.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/web/fillDBSpell.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/web/getMonster.html" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Class" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Jasper8823&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Jasper8823/DnDBestiary.git&quot;,
+    &quot;accountId&quot;: &quot;8dd88812-9a6b-44bb-8822-1303702eb615&quot;
+  }
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2l1jWyw7bW4YEOtNiA3GbCdnJIQ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.TestConnection.executor&quot;: &quot;Run&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JavaScript Debug.FillDBMonster.html (1).executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.FillDBMonster.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.createMonster.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.fillDBMonster.html.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.monsterConnect.js.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.DnDProjectApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/kerya/IdeaProjects/DnDBestiary/web&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\kerya\IdeaProjects\DnDBestiary\web" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\kerya\IdeaProjects\DnDBestiary\web" />
+      <recent name="C:\Users\kerya\IdeaProjects\DnDBestiary\src\main\resources\static\js" />
+      <recent name="C:\Users\kerya\IdeaProjects\DnDBestiary\src\main\java\com\example\DnDProject" />
+      <recent name="C:\Users\kerya\IdeaProjects\DnDBestiary\src\main\resources\static" />
+      <recent name="C:\Users\kerya\IdeaProjects\DnDBestiary\src\main\resources" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.DnDProject" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.DnDProjectApplication">
+    <configuration name="All in DnDProject" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="DnDProject" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FillDBMonster.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/DnDBestiary/DnDProject/web/FillDBMonster.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="createMonster.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/DnDBestiary/DnDProject/web/createMonster.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="fillDBMonster.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/DnDBestiary/DnDProject/templates/fillDBMonster.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="monsterConnect.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/main/resources/static/js/monsterConnect.js" working-dir="$PROJECT_DIR$/src/main/resources/static/js">
+      <method v="2" />
+    </configuration>
+    <configuration name="DnDProjectApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="DnDProject" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.DnDProject.DnDProjectApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.monsterConnect.js" />
+        <item itemvalue="JavaScript Debug.fillDBMonster.html" />
+        <item itemvalue="JUnit.All in DnDProject" />
+        <item itemvalue="JavaScript Debug.FillDBMonster.html" />
+        <item itemvalue="JavaScript Debug.createMonster.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.419" />
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.419" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="eeda4e98-7652-44ba-bd2f-85e06e0692d9" name="Changes" comment="" />
+      <created>1724354511142</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1724354511142</updated>
+      <workItem from="1724354512187" duration="11000" />
+      <workItem from="1724354530104" duration="57000" />
+      <workItem from="1724354591767" duration="438000" />
+      <workItem from="1724494325343" duration="641000" />
+      <workItem from="1724500279971" duration="345000" />
+      <workItem from="1724500827077" duration="2352000" />
+      <workItem from="1724509234580" duration="125000" />
+      <workItem from="1724509361201" duration="2879000" />
+      <workItem from="1724611562898" duration="690000" />
+      <workItem from="1725207858472" duration="845000" />
+      <workItem from="1725216420730" duration="82000" />
+      <workItem from="1725226903636" duration="1302000" />
+      <workItem from="1725291926491" duration="29000" />
+      <workItem from="1725371797984" duration="69000" />
+      <workItem from="1725921327683" duration="113000" />
+      <workItem from="1725971963259" duration="14319000" />
+      <workItem from="1725998013700" duration="3090000" />
+      <workItem from="1726005690294" duration="640000" />
+      <workItem from="1726056372018" duration="5197000" />
+      <workItem from="1726231438474" duration="1833000" />
+      <workItem from="1727192809031" duration="257000" />
+      <workItem from="1727341108805" duration="5429000" />
+      <workItem from="1727720680132" duration="3655000" />
+      <workItem from="1727729465671" duration="1029000" />
+      <workItem from="1727772883212" duration="1438000" />
+      <workItem from="1727774475452" duration="2115000" />
+      <workItem from="1727893191413" duration="1485000" />
+      <workItem from="1727899370731" duration="591000" />
+      <workItem from="1727966797815" duration="537000" />
+      <workItem from="1727967345431" duration="4899000" />
+      <workItem from="1727972477586" duration="2068000" />
+      <workItem from="1727981767269" duration="1000" />
+      <workItem from="1728027041313" duration="985000" />
+      <workItem from="1728028182986" duration="1750000" />
+      <workItem from="1728143657876" duration="4928000" />
+      <workItem from="1728402225579" duration="214000" />
+      <workItem from="1728402544368" duration="17000" />
+      <workItem from="1728415422503" duration="4878000" />
+      <workItem from="1728484194495" duration="21469000" />
+      <workItem from="1728568646964" duration="13072000" />
+      <workItem from="1728634166592" duration="3630000" />
+      <workItem from="1728901820297" duration="242000" />
+      <workItem from="1729174211862" duration="10666000" />
+      <workItem from="1729204128632" duration="695000" />
+      <workItem from="1729206233267" duration="663000" />
+      <workItem from="1729266211843" duration="4605000" />
+      <workItem from="1729283484021" duration="5584000" />
+      <workItem from="1729527920895" duration="2496000" />
+      <workItem from="1729609193661" duration="17000" />
+      <workItem from="1729668796103" duration="2147000" />
+      <workItem from="1729795914937" duration="385000" />
+      <workItem from="1730040218990" duration="5317000" />
+      <workItem from="1730381458477" duration="560000" />
+      <workItem from="1730457086054" duration="623000" />
+      <workItem from="1730468195464" duration="111000" />
+      <workItem from="1730661890225" duration="40000" />
+      <workItem from="1730835822629" duration="1000" />
+      <workItem from="1730887057422" duration="603000" />
+      <workItem from="1741545962162" duration="4029000" />
+      <workItem from="1741982196524" duration="600000" />
+      <workItem from="1742140630612" duration="2532000" />
+      <workItem from="1743085855891" duration="612000" />
+      <workItem from="1743758995873" duration="866000" />
+      <workItem from="1744013621627" duration="1087000" />
+      <workItem from="1744360426907" duration="1124000" />
+      <workItem from="1744466523007" duration="753000" />
+      <workItem from="1746277627549" duration="42000" />
+      <workItem from="1746308549595" duration="661000" />
+      <workItem from="1746447968221" duration="4383000" />
+      <workItem from="1746703192713" duration="7000" />
+      <workItem from="1746801523278" duration="652000" />
+      <workItem from="1747589028766" duration="2812000" />
+      <workItem from="1747603230482" duration="1540000" />
+      <workItem from="1747639766928" duration="593000" />
+      <workItem from="1747642398723" duration="5638000" />
+      <workItem from="1747650686087" duration="361000" />
+      <workItem from="1747651072628" duration="215000" />
+      <workItem from="1747651295909" duration="192000" />
+      <workItem from="1747651545199" duration="422000" />
+      <workItem from="1747655940511" duration="1832000" />
+      <workItem from="1747657796065" duration="98000" />
+      <workItem from="1747657915943" duration="762000" />
+      <workItem from="1747658696726" duration="1763000" />
+    </task>
+    <task id="LOCAL-00001" summary="Fixes">
+      <option name="closed" value="true" />
+      <created>1724500342583</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1724500342583</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Imported Hibernate">
+      <option name="closed" value="true" />
+      <created>1724511941393</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1724511941393</updated>
+    </task>
+    <task id="LOCAL-00003" summary="web db filler started">
+      <option name="closed" value="true" />
+      <created>1725216492875</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1725216492875</updated>
+    </task>
+    <task id="LOCAL-00004" summary="web db filler menu fixed">
+      <option name="closed" value="true" />
+      <created>1725226952064</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1725226952064</updated>
+    </task>
+    <task id="LOCAL-00005" summary="web db filler monster almost ready">
+      <option name="closed" value="true" />
+      <created>1725371863555</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1725371863555</updated>
+    </task>
+    <task id="LOCAL-00006" summary="web db filler monster html and css ready">
+      <option name="closed" value="true" />
+      <created>1725921364070</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1725921364070</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Switched javax to jakarta, created database connection test, added and deleted some dependencies in pom.xml, changed application.yml and hibernate.cfg.xml">
+      <option name="closed" value="true" />
+      <created>1726060969604</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1726060969604</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Switched javax to jakarta, created database connection test, added and deleted some dependencies in pom.xml, changed application.yml and hibernate.cfg.xml">
+      <option name="closed" value="true" />
+      <created>1727893277157</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1727893277157</updated>
+    </task>
+    <task id="LOCAL-00009" summary="small fixes">
+      <option name="closed" value="true" />
+      <created>1727899933356</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1727899933356</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added monsterPush function that post a monster data from fillDBMonster.html to java">
+      <option name="closed" value="true" />
+      <created>1727973872141</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1727973872141</updated>
+    </task>
+    <task id="LOCAL-00011" summary="js and css files">
+      <option name="closed" value="true" />
+      <created>1727973897989</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1727973897989</updated>
+    </task>
+    <task id="LOCAL-00012" summary="js and css files">
+      <option name="closed" value="true" />
+      <created>1728027165973</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1728027165973</updated>
+    </task>
+    <task id="LOCAL-00013" summary="js and css files">
+      <option name="closed" value="true" />
+      <created>1728027414112</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1728027414112</updated>
+    </task>
+    <task id="LOCAL-00014" summary="updated target js">
+      <option name="closed" value="true" />
+      <created>1728027530526</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1728027530526</updated>
+    </task>
+    <task id="LOCAL-00015" summary="updated target js">
+      <option name="closed" value="true" />
+      <created>1728027658442</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1728027658442</updated>
+    </task>
+    <task id="LOCAL-00016" summary="updated target js">
+      <option name="closed" value="true" />
+      <created>1728028340815</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1728028340815</updated>
+    </task>
+    <task id="LOCAL-00017" summary="added sql queries, updated fillDBMonster.html, js and css files">
+      <option name="closed" value="true" />
+      <created>1728148714495</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1728148714495</updated>
+    </task>
+    <task id="LOCAL-00018" summary="added sql queries, updated fillDBMonster.html, js and css files">
+      <option name="closed" value="true" />
+      <created>1728402366530</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1728402366530</updated>
+    </task>
+    <task id="LOCAL-00019" summary="added buttons to fillDBMonster">
+      <option name="closed" value="true" />
+      <created>1728419514735</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1728419514735</updated>
+    </task>
+    <task id="LOCAL-00020" summary="added Spell, Item and Ability fillers">
+      <option name="closed" value="true" />
+      <created>1728502609221</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1728502609222</updated>
+    </task>
+    <task id="LOCAL-00021" summary="js files added for item, spell and ability, also some sql inserts">
+      <option name="closed" value="true" />
+      <created>1728507426499</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1728507426499</updated>
+    </task>
+    <task id="LOCAL-00022" summary="front side of fillDBAbility.html, fillDBItem.html and fillDBSpell.html works">
+      <option name="closed" value="true" />
+      <created>1728576087093</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1728576087093</updated>
+    </task>
+    <task id="LOCAL-00023" summary="fixed error that occurred while opening other filling pages">
+      <option name="closed" value="true" />
+      <created>1728585707304</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1728585707304</updated>
+    </task>
+    <task id="LOCAL-00024" summary=".">
+      <option name="closed" value="true" />
+      <created>1728585837978</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1728585837978</updated>
+    </task>
+    <task id="LOCAL-00025" summary="filled spellSlots and trait tables">
+      <option name="closed" value="true" />
+      <created>1728637521082</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1728637521082</updated>
+    </task>
+    <task id="LOCAL-00026" summary="placed js scripts in correct place in html files">
+      <option name="closed" value="true" />
+      <created>1728901876273</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1728901876273</updated>
+    </task>
+    <task id="LOCAL-00027" summary="styled DB fillers">
+      <option name="closed" value="true" />
+      <created>1729183465510</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1729183465510</updated>
+    </task>
+    <task id="LOCAL-00028" summary="test commit Jasper">
+      <option name="closed" value="true" />
+      <created>1729206328953</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1729206328953</updated>
+    </task>
+    <task id="LOCAL-00029" summary="added reset after submit in all dbFills">
+      <option name="closed" value="true" />
+      <created>1729287024320</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1729287024320</updated>
+    </task>
+    <task id="LOCAL-00030" summary="added delete procedures to azure db, also made small changes in js files">
+      <option name="closed" value="true" />
+      <created>1729530962275</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1729530962275</updated>
+    </task>
+    <task id="LOCAL-00031" summary="changed dbFillItem">
+      <option name="closed" value="true" />
+      <created>1730044646990</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1730044646990</updated>
+    </task>
+    <task id="LOCAL-00032" summary="changed InsertQueries.txt">
+      <option name="closed" value="true" />
+      <created>1744361183717</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1744361183717</updated>
+    </task>
+    <task id="LOCAL-00033" summary="changed InsertQueries.txt">
+      <option name="closed" value="true" />
+      <created>1744361287612</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1744361287612</updated>
+    </task>
+    <task id="LOCAL-00034" summary="target commit">
+      <option name="closed" value="true" />
+      <created>1747610671934</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1747610671934</updated>
+    </task>
+    <task id="LOCAL-00035" summary="damage type fixed in db fillers">
+      <option name="closed" value="true" />
+      <created>1747659900581</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1747659900581</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="web db filler monster almost ready" />
+    <MESSAGE value="web db filler monster html and css ready" />
+    <MESSAGE value="Switched javax to jakarta, created database connection test, added and deleted some dependencies in pom.xml, changed application.yml and hibernate.cfg.xml" />
+    <MESSAGE value="small fixes" />
+    <MESSAGE value="Added monsterPush function that post a monster to java from fillDBMonster.html" />
+    <MESSAGE value="Added monsterPush function that post a monster data from fillDBMonster.html to java" />
+    <MESSAGE value="js and css files" />
+    <MESSAGE value="updated target js" />
+    <MESSAGE value="added sql queries, updated fillDBMonster.html, js and css files" />
+    <MESSAGE value="added buttons to fillDBMonster" />
+    <MESSAGE value="added Spell, Item and Ability fillers" />
+    <MESSAGE value="js files added for item, spell and ability, also some sql inserts" />
+    <MESSAGE value="front side of fillDBAbility.html, fillDBItem.html and fillDBSpell.html works" />
+    <MESSAGE value="fixed error that occurred while opening other filling pages" />
+    <MESSAGE value="." />
+    <MESSAGE value="filled spellSlots and trait tables" />
+    <MESSAGE value="placed js scripts in correct place in html files" />
+    <MESSAGE value="styled DB fillers" />
+    <MESSAGE value="test commit Jasper" />
+    <MESSAGE value="added reset after submit in all dbFills" />
+    <MESSAGE value="added delete procedures to azure db, also made small changes in js files" />
+    <MESSAGE value="changed dbFillItem" />
+    <MESSAGE value="changed InsertQueries.txt" />
+    <MESSAGE value="target commit" />
+    <MESSAGE value="damage type fixed in db fillers" />
+    <option name="LAST_COMMIT_MESSAGE" value="damage type fixed in db fillers" />
+  </component>
+</project>
