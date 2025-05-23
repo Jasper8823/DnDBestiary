@@ -2,10 +2,12 @@ import { useParams } from 'react-router-dom';
 import style from './monsters.module.css'
 import StatBox from './StatBox';
 import { useEffect, useState } from 'react';
+import dice from '../images/dice.png';
 
 function Monster(){
     const {id} = useParams();
     const [monster, setMonster] = useState(null);
+    const [calculatedHp, setCalculatedHp] = useState('');
 
     useEffect(() => {
         fetch(`http://localhost:8080/getMonster?id=${id}`)
@@ -13,6 +15,25 @@ function Monster(){
             .then(data => setMonster(data))
             .catch(error => console.error('Error fetching data:', error));
     }, []);
+
+    function calculateHp(calcHP){
+        const values = calcHP.match(/(\d+)d(\d+)\+(\d+)/);
+        const numberOfDice = parseInt(values[1]);
+        const diceType = parseInt(values[2]);
+        const passiveBonus = parseInt(values[3]);
+        let output='', sum = passiveBonus, currentValue
+        for(let i=0;i<numberOfDice;i++){
+            currentValue = Math.floor(Math.random()*diceType+1)
+            if(i==0){
+                output+= `${currentValue} `
+            }else{
+                output+= `+ ${currentValue} `
+            }
+            sum+=currentValue
+        }
+        output+= `+ ${passiveBonus} = ${sum}`
+        setCalculatedHp(output);
+    }
 
     if (!monster) return <p>Loading monster...</p>;
 
@@ -50,21 +71,21 @@ function Monster(){
         safe_bonus += `Chr <b>+${monster.charisma_bonus}</b>`
     }
 
-    if(monster.vulnerabilityList.size !=0){
+    if(monster.vulnerabilityList.size !==0){
         monster.vulnerabilityList.forEach(vulner => {
             dmgV+= `${vulner}, `
         });
         dmgV = dmgV.substring(0, dmgV.length-2);
     }
 
-    if(monster.resistanceList.size !=0){
+    if(monster.resistanceList.size !==0){
         monster.resistanceList.forEach(resist => {
             dmgR+= `${resist}, `
         });
         dmgR = dmgR.substring(0, dmgR.length-2);
     }
 
-    if(monster.immunityStatusList.size !=0){
+    if(monster.immunityStatusList.size !==0){
         monster.immunityStatusList.forEach(immunity => {
             dmgI+= `${immunity}, `
         });
@@ -75,7 +96,7 @@ function Monster(){
     let legActions = [];
 
     monster.actions.forEach(action => {
-        if(action.is_legendary){
+        if(action.legend){
             legActions.push(action);
         }else{
             actions.push(action);
@@ -84,17 +105,14 @@ function Monster(){
 
     let speeds = `Speed ${monster.walk_speed}, `;
 
-    if(monster.swim_speed!=0){
+    if(monster.swim_speed!==0){
         speeds += `Swim speed ${monster.swim_speed}, `
     }
-    if(monster.fly_speed!=0){
+    if(monster.fly_speed!==0){
         speeds += `Fly speed ${monster.fly_speed}, `
     }
 
     speeds = speeds.substring(0, speeds.length-2);
-
-
-    console.log(actions)
 
     return(
         <div key={monster.id} className={style.mainBox}>
@@ -105,7 +123,9 @@ function Monster(){
                 <p>{monster.worldView}</p>
             </div>
             <p><b>Armor type</b> {monster.armor_class}</p>
-            <p><b>Hit points</b> {monster.calcHP} ({monster.avgHP})</p>
+            <p className={style.hpP}><b>Hit points</b> {monster.avgHP} ({monster.calcHP})</p>
+            <img onClick={() => calculateHp(monster.calcHP)} src={dice} className={style.picture} />
+            <p className={style.hpP}>{calculatedHp}</p>
             <p><b>{speeds}</b></p>
             <StatBox name = {"Str"} value = {monster.strength} isGrey = {true}/>
             <StatBox name = {"Dxt"} value = {monster.dexterity} isGrey = {false}/>
@@ -113,21 +133,27 @@ function Monster(){
             <StatBox name = {"Int"} value = {monster.intelligence} isGrey = {false}/>
             <StatBox name = {"Wis"} value = {monster.wisdom} isGrey = {true}/>
             <StatBox name = {"Chr"} value = {monster.charisma} isGrey = {false}/>
-            {safe_bonus.length != 0 &&   <p dangerouslySetInnerHTML={{ __html: `<b>Saving Throws</b> ${safe_bonus}` }} />}
-            {dmgV.length != 0 &&   <p><b>Vulnerabilities</b> {dmgV} </p>}
-            {dmgR.length != 0 &&   <p><b>Resistances</b> {dmgR} </p>}
-            {dmgI.length != 0 &&   <p><b>Immunities</b> {dmgI} </p>}
+            {safe_bonus.length !== 0 &&   <p dangerouslySetInnerHTML={{ __html: `<b>Saving Throws</b> ${safe_bonus}` }} />}
+            {dmgV.length !== 0 &&   <p><b>Vulnerabilities</b> {dmgV} </p>}
+            {dmgR.length !== 0 &&   <p><b>Resistances</b> {dmgR} </p>}
+            {dmgI.length !== 0 &&   <p><b>Immunities</b> {dmgI} </p>}
             <p><b>Habitats </b>{habitats}</p>
             <p><b>Danger</b> {monster.danger.degree} ({monster.danger.expGain})</p>
             <p><b>Skill bonus +{monster.skill_bonus}</b></p>
             <p className = {style.rows}><b>Features</b></p>
             <p>{monster.features}</p>
             <p className = {style.rows}><b>Actions</b></p>
-            {actions.map(action => <p dangerouslySetInnerHTML={{ __html: `<b>${action.action_name}:</b> ${action.information}` }}/>)}
-            {legActions.length != 0 && <p className = {style.rows}><b>Legendary Actions</b></p>&& 
-            legActions.map(action => <p dangerouslySetInnerHTML={{ __html: `<b>${action.name}:</b> ${action.info}` }}/>)}
+            <div>
+            {actions.map((action, index) => (
+                <p key={`action-${index}`} dangerouslySetInnerHTML={{ __html: `<b>${action.name}:</b> ${action.info}` }} />
+            ))}
+            {legActions.length !== 0 && <p className={style.rows}><b>Legendary Actions</b></p>}
+            {legActions.map((action, index) => (
+                <p key={`legendary-${index}`} dangerouslySetInnerHTML={{ __html: `<b>${action.name}:</b> ${action.info}` }} />
+            ))}
+            </div>
             <p className = {style.rows}><b>Description</b></p>
-            <p>{monster.description}</p>
+            <p className>{monster.description}</p>
         </div>
     )
 }

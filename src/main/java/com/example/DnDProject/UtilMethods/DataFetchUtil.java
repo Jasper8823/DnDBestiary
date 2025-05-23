@@ -72,6 +72,25 @@ public class DataFetchUtil {
                 .collect(Collectors.toList());
     }
 
+    public List<ActionDTO> getActions(List<MonsterAction> monsterActions) {
+        if(monsterActions == null || monsterActions.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        List<ActionDTO> actionDTOList = new ArrayList<>();
+
+        for(MonsterAction monsterAction : monsterActions) {
+
+            ActionDTO actionDTO = new ActionDTO();
+            actionDTO.setName(monsterAction.getAction().getName());
+            actionDTO.setInfo(monsterAction.getInformation());
+            actionDTO.setLegend(monsterAction.isLegendary());
+
+            actionDTOList.add(actionDTO);
+        }
+
+        return actionDTOList;
+    }
 
 
     public void fetchDamageTypesList(List<DamageTypeDTO> damageTypes, Item item, Spell spell) {

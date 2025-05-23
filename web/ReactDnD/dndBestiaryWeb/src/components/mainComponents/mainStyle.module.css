@@ -1,8 +1,9 @@
 .box{
     position: relative;
     width: 80%;
-    height: 3000px;
-    background-color: rgb(200,200,200,0.2);
+    height: auto;
+    min-height: 900px;
+    background-color: rgb(240,240,240,0.5);
     margin: 0;
     left: 17%;
     top: 125px;

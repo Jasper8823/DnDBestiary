@@ -41,6 +41,7 @@
     margin: 0;
     margin-top: 15px;
     font-size: 1.4em;
+    margin-bottom: 50px;
 }
 
 .mainBox p{
@@ -88,6 +89,7 @@
   display: flex;
   align-items: center;
   font-size: 1.2em;
+  margin-bottom: 10px;
 }
 
 .rows::before,
@@ -97,4 +99,28 @@
   border-bottom: 1px solid #00000041;
   margin: 0 8px;
   max-width: 20px;
+}
+
+.descBottom{
+    margin-bottom: 50px;
+}
+
+.hpP{
+    display: inline-block;
+}
+
+.picture{
+    position: relative;
+    margin-left:10px;
+    margin-right:10px;
+    display: inline-block;
+    margin-bottom: 0px;
+    width: 22px;
+    height: 22px;
+    top: 2px;
+    transition: all 0.15s ease;
+}
+
+.picture:hover{
+    filter: brightness(0) saturate(100%) invert(12%) sepia(94%) saturate(2555%) hue-rotate(-7deg) brightness(91%) contrast(101%);
 }

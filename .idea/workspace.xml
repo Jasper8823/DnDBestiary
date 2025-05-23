@@ -4,20 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eeda4e98-7652-44ba-bd2f-85e06e0692d9" name="Changes" comment="added target folder to .gitignore">
+    <list default="true" id="eeda4e98-7652-44ba-bd2f-85e06e0692d9" name="Changes" comment="almost completed bestiary/{id} page, actions should be fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Configurations/ReactOpener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Configurations/ReactOpener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/ViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/ViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/MtoMConnections/Spell_DamageType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/MtoMConnections/Spell_DamageType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/Monster/MonsterAttributes/Danger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/Monster/MonsterAttributes/Danger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/DataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/DataService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/UtilMethods/DataFetchUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/UtilMethods/DataFetchUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Items/Item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Items/Item.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Items/ItemSmall.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Items/ItemSmall.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Monsters/Monster.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Monsters/Monster.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Monsters/monsters.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Monsters/monsters.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Spells/Spell.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Spells/Spell.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Spells/SpellSmall.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Spells/SpellSmall.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/web/fillDBMonster.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/web/fillDBMonster.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/mainStyle.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/mainStyle.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,6 +89,7 @@
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\kerya\\IntelliJ IDEA 2024.2.0.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -265,7 +260,12 @@
       <workItem from="1747657915943" duration="762000" />
       <workItem from="1747658696726" duration="2482000" />
       <workItem from="1747661303059" duration="3056000" />
-      <workItem from="1747666984895" duration="7835000" />
+      <workItem from="1747666984895" duration="8639000" />
+      <workItem from="1747912544975" duration="1276000" />
+      <workItem from="1747916956575" duration="2216000" />
+      <workItem from="1748007571922" duration="2921000" />
+      <workItem from="1748010508574" duration="535000" />
+      <workItem from="1748011053958" duration="346000" />
     </task>
     <task id="LOCAL-00001" summary="Fixes">
       <option name="closed" value="true" />
@@ -555,14 +555,21 @@
       <option name="project" value="LOCAL" />
       <updated>1747660687972</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="almost completed bestiary/{id} page, actions should be fixed">
+      <option name="closed" value="true" />
+      <created>1747676037031</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1747676037031</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="web db filler monster html and css ready" />
     <MESSAGE value="Switched javax to jakarta, created database connection test, added and deleted some dependencies in pom.xml, changed application.yml and hibernate.cfg.xml" />
     <MESSAGE value="small fixes" />
     <MESSAGE value="Added monsterPush function that post a monster to java from fillDBMonster.html" />
@@ -587,6 +594,7 @@
     <MESSAGE value="target commit" />
     <MESSAGE value="damage type fixed in db fillers" />
     <MESSAGE value="added target folder to .gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="added target folder to .gitignore" />
+    <MESSAGE value="almost completed bestiary/{id} page, actions should be fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="almost completed bestiary/{id} page, actions should be fixed" />
   </component>
 </project>

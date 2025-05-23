@@ -146,7 +146,7 @@ public class DataService {
         monsterInfo.put("vulnerabilityList", dfu.extractNames(monster.getVulnerabilityList(), DamageType::getName));
         monsterInfo.put("immunityStatusList", dfu.extractNames(monster.getImmunityStatusList(), Status::getName));
         monsterInfo.put("habitats", dfu.extractNames(monster.getHabitats(), Location::getName));
-        monsterInfo.put("actions", dfu.extractNames(monster.getMonsterActions(), ma -> ma.getAction().getName()));
+        monsterInfo.put("actions", dfu.getActions(monster.getMonsterActions()));
 
         return monsterInfo;
     }
