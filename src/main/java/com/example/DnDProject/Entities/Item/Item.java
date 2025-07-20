@@ -56,7 +56,6 @@ public class Item {
     @OneToMany(mappedBy = "item", orphanRemoval = true)
     private List<Item_DamageType> itemDamageTypeList = new ArrayList<>();
 
-    //Getters and Setters
     public ItemType getItemType() {
         return itemType;
     }

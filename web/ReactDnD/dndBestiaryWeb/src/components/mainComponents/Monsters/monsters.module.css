@@ -1,27 +1,9 @@
-.monsterBox{
-    display: inline-block;
-    width: 23.8%;
-    margin: 0 0.17%;
-    margin-top: 4px;
-    padding: 5px;
-    height: 35px;
-    border-radius: 3px;
-    border: 0.5px ridge rgba(0, 0, 0, 0.281);
-    color: rgb(0, 0, 0, 0.7);
-    transition: all 1s ease;
-}
-
-.monsterBox:hover{
-    filter: brightness(150%) contrast(150%);
-    box-shadow: 3px 3px rgba(0, 0, 0, 0.1);
-}
-
 .monsterName{
     display: inline-block;
     margin: 0px;
     margin-left: 20px;
-    font-family: "Open Sans", sans-serif;
-    font-size: 1.3em;
+    font-family: "Microsoft Himalaya";
+    font-size: 2.2em;
     user-select:text;
 }
 
@@ -37,20 +19,26 @@
     position: relative;
     width: 97%;
     left: 1.5%;
-    font-family: serif;
+    font-family: "Microsoft Himalaya";
+
     margin: 0;
     margin-top: 15px;
-    font-size: 1.4em;
+    font-size: 2.1em;
     margin-bottom: 50px;
 }
 
+
+/*descriptions: font-family: "Cascadia Code";*/
+/*main: font-family: "Microsoft Himalaya";*/
+
 .mainBox p{
-    margin: 0;  
+    margin: 0;
     margin-bottom: 5px;
 }
 
 #monsterName{
-    font-size: 1.5em;
+    font-family: "Sitka Banner";
+    font-size: 1.1em;
 }
 
 #monsterName::after{

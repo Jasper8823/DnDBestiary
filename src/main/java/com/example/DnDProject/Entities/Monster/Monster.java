@@ -36,7 +36,7 @@ public class Monster {
     private int swim_speed;
     private int fly_speed;
 
-    //calculated (x*y)/2+z
+    //calculated (x*(y+1))/2+z
     private int avg_HP;
     //has form of xDy+z, where x - number of roll, y - maximum number, z - permanent bonus
     @Column(length = 16)

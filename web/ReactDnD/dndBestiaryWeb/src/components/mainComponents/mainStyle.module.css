@@ -1,6 +1,6 @@
 .box{
     position: relative;
-    width: 80%;
+    width: 82%;
     height: auto;
     min-height: 900px;
     background-color: rgb(240,240,240,0.5);
@@ -11,7 +11,7 @@
     background: linear-gradient(rgba(172, 69, 0, 0.1));
     -webkit-backdrop-filter: blur(12px);
     border-radius: 5px;
-    border: 10px ridge rgb(110, 72, 0, 0.35);
+    border: 2px solid rgba(0, 0, 0, 0.534);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     margin-bottom: 150px;
     transition: all 5s ease;
@@ -68,8 +68,8 @@
 
 .subBox h3{
     text-align: center;
-    font-family: "Open Sans", sans-serif;
-    font-size: 1.5em;
+    font-family: "Microsoft Himalaya";
+    font-size: 2.5em;
     color: rgba(0, 0, 0, 0.4);
     margin-top: 7px;
     margin-bottom: 7px;
@@ -86,25 +86,27 @@
 }
 
 .directBox p{
+    font-size: 1.1em;
     display: inline-block;
     margin-left: 7px;
     position: relative;
-    font-family: "Open Sans", sans-serif;
     color: inherit;
     transition: all 0.3s ease;
-    margin-bottom: 0px;
+    margin-bottom: 0;
+    padding: 0;
 }
 
 .titleBox{
     display: block;
-
     border-radius: 5px;
 }
 
 .directBox{
-    font-size: 1.4em;
-    margin-bottom: 5px;
-    margin-top: 5px;
+    padding: 0px;
+    font-family: "Microsoft Himalaya";
+    font-size: 2.3em;
+    margin-bottom: -5px;
+    margin-top: -25px;
     color: rgba(0, 0, 0, 0.7);
     transition: all 0.15s ease;
 }
@@ -117,6 +119,7 @@
     margin-left:15px;
     display: inline-block;
     margin-bottom: 0px;
+    font-size: 0.7em;
 }
 
 .picture{
@@ -124,7 +127,44 @@
     margin-left:15px;
     display: inline-block;
     margin-bottom: 0px;
-    width: 22px;
-    height: 22px;
+    width: 25px;
+    height: 25px;
     top: 2px;
+}
+
+.bestiaryBox {
+    display: inline-block;
+    width: 18.84%;
+    margin: 0 0.17%;
+    margin-top: 4px;
+    padding: 5px;
+    height: 35px;
+    border-radius: 3px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    color: rgba(0, 0, 0, 0.7);
+    transition: all 1s ease;
+    position: relative; 
+}
+
+.bestiaryBox:hover{
+    filter: brightness(150%) contrast(150%);
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.1);
+}
+
+.bestiaryBox::after {
+    content: "";
+    position: absolute;
+    top: 5%;
+    right: -5px;
+    height: 90%;
+    width: 1px;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.bestiaryBox:last-child::after {
+    display: none;
+}
+
+.bestiaryBox:nth-child(5n)::after {
+    display: none;
 }

@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import style from './spells.module.css';
+import Mstyle from '../mainStyle.module.css';
 import { useEffect, useState } from 'react';
 import { faAlignCenter } from "@fortawesome/free-solid-svg-icons";
 
@@ -24,7 +25,7 @@ function SpellSmall() {
   if (!spells) return <p>Loading spells...</p>;
 
   const listItems = spells.map(spell => (
-    <div key={spell.name} onClick={() => handleClick(spell)} className={style.spellBox}>
+    <div key={spell.id} onClick={() => handleClick(spell)} className={Mstyle.bestiaryBox}>
       <p className={style.spellLevel}>{spell.lvl}</p>
       <p className={style.spellName}>
         {spell.name.length > 20 ? spell.name.substring(0, 20) + "..." : spell.name}

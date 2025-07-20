@@ -4,14 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eeda4e98-7652-44ba-bd2f-85e06e0692d9" name="Changes" comment="almost completed bestiary/{id} page, actions should be fixed">
+    <list default="true" id="eeda4e98-7652-44ba-bd2f-85e06e0692d9" name="Changes" comment="added hp dice visualization, fixed showing action in endpoint">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/Monster/MonsterAttributes/Danger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/Monster/MonsterAttributes/Danger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/Item/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/Item/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/Monster/Monster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/Monster/Monster.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/DataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/DataService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/UtilMethods/DataFetchUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/UtilMethods/DataFetchUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Items/Item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Items/Item.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Items/ItemSmall.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Items/ItemSmall.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Items/items.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Items/items.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Monsters/Monster.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Monsters/Monster.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Monsters/MonsterSmall.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Monsters/MonsterSmall.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Monsters/monsters.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Monsters/monsters.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Spells/Spell.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Spells/Spell.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Spells/SpellSmall.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Spells/SpellSmall.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Spells/spells.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Spells/spells.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/mainStyle.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/mainStyle.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/static/css/sstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/css/sstyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/web/fillDBSpell.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/web/fillDBSpell.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -265,7 +275,34 @@
       <workItem from="1747916956575" duration="2216000" />
       <workItem from="1748007571922" duration="2921000" />
       <workItem from="1748010508574" duration="535000" />
-      <workItem from="1748011053958" duration="346000" />
+      <workItem from="1748011053958" duration="2206000" />
+      <workItem from="1748037756619" duration="2310000" />
+      <workItem from="1748247618992" duration="432000" />
+      <workItem from="1748252138249" duration="1347000" />
+      <workItem from="1748262505130" duration="19000" />
+      <workItem from="1748264552079" duration="1857000" />
+      <workItem from="1748444131623" duration="1449000" />
+      <workItem from="1748447495814" duration="1516000" />
+      <workItem from="1748451567549" duration="1815000" />
+      <workItem from="1748502384083" duration="9386000" />
+      <workItem from="1748589594732" duration="10000" />
+      <workItem from="1748590832550" duration="77000" />
+      <workItem from="1748591235897" duration="1072000" />
+      <workItem from="1748593414746" duration="761000" />
+      <workItem from="1748695860135" duration="685000" />
+      <workItem from="1748808314917" duration="35000" />
+      <workItem from="1748856137550" duration="415000" />
+      <workItem from="1748860828444" duration="215000" />
+      <workItem from="1748875302370" duration="1795000" />
+      <workItem from="1748877248507" duration="52000" />
+      <workItem from="1749109270743" duration="336000" />
+      <workItem from="1749718681501" duration="1135000" />
+      <workItem from="1750409385593" duration="2188000" />
+      <workItem from="1751214311181" duration="4201000" />
+      <workItem from="1751361692399" duration="1890000" />
+      <workItem from="1751541209569" duration="128000" />
+      <workItem from="1753012170443" duration="2467000" />
+      <workItem from="1753027130433" duration="6853000" />
     </task>
     <task id="LOCAL-00001" summary="Fixes">
       <option name="closed" value="true" />
@@ -563,14 +600,21 @@
       <option name="project" value="LOCAL" />
       <updated>1747676037031</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="added hp dice visualization, fixed showing action in endpoint">
+      <option name="closed" value="true" />
+      <created>1748012104013</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1748012104013</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Switched javax to jakarta, created database connection test, added and deleted some dependencies in pom.xml, changed application.yml and hibernate.cfg.xml" />
     <MESSAGE value="small fixes" />
     <MESSAGE value="Added monsterPush function that post a monster to java from fillDBMonster.html" />
     <MESSAGE value="Added monsterPush function that post a monster data from fillDBMonster.html to java" />
@@ -595,6 +639,7 @@
     <MESSAGE value="damage type fixed in db fillers" />
     <MESSAGE value="added target folder to .gitignore" />
     <MESSAGE value="almost completed bestiary/{id} page, actions should be fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="almost completed bestiary/{id} page, actions should be fixed" />
+    <MESSAGE value="added hp dice visualization, fixed showing action in endpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="added hp dice visualization, fixed showing action in endpoint" />
   </component>
 </project>

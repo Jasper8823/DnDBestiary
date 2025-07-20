@@ -137,12 +137,12 @@ function Monster(){
             {dmgV.length !== 0 &&   <p><b>Vulnerabilities</b> {dmgV} </p>}
             {dmgR.length !== 0 &&   <p><b>Resistances</b> {dmgR} </p>}
             {dmgI.length !== 0 &&   <p><b>Immunities</b> {dmgI} </p>}
-            <p><b>Habitats </b>{habitats}</p>
+            {isNaN(habitats) && <p><b>Habitats </b>{habitats}</p>}
             <p><b>Danger</b> {monster.danger.degree} ({monster.danger.expGain})</p>
             <p><b>Skill bonus +{monster.skill_bonus}</b></p>
-            <p className = {style.rows}><b>Features</b></p>
+            {isNaN(monster.features) && <p className = {style.rows}><b>Features</b></p>}
             <p>{monster.features}</p>
-            <p className = {style.rows}><b>Actions</b></p>
+            {isNaN(actions) && <p className = {style.rows}><b>Actions</b></p>}
             <div>
             {actions.map((action, index) => (
                 <p key={`action-${index}`} dangerouslySetInnerHTML={{ __html: `<b>${action.name}:</b> ${action.info}` }} />
@@ -152,8 +152,8 @@ function Monster(){
                 <p key={`legendary-${index}`} dangerouslySetInnerHTML={{ __html: `<b>${action.name}:</b> ${action.info}` }} />
             ))}
             </div>
-            <p className = {style.rows}><b>Description</b></p>
-            <p className>{monster.description}</p>
+            {isNaN(monster.description) && <p className = {style.rows}><b>Description</b></p>}
+            <p>{monster.description}</p>
         </div>
     )
 }

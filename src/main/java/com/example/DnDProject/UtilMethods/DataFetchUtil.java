@@ -236,7 +236,7 @@ public class DataFetchUtil {
         if (passiveBonus < 0) {
             throw new InvalidHPCalculationException("Passive bonus must not be negative.");
         }
-        return (numberOfDice * dieType) / 2 + passiveBonus;
+        return (numberOfDice * (dieType + 1)) / 2 + passiveBonus;
     }
 
     public String formatHPCalculation(int numberOfDice, int diceType, int passiveBonus) {
