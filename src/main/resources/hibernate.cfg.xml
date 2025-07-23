@@ -6,7 +6,7 @@
     <session-factory>
 
         <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
-        <property name="hibernate.connection.url">jdbc:sqlserver://DESKTOP-QIEQGCN:1433;instanceName=InstanceName;databaseName=mydb;encrypt=true;trustServerCertificate=true;
+        <property name="hibernate.connection.url">jdbc:sqlserver://DESKTOP-K6I7727:1433;instanceName=InstanceName;databaseName=MASdb;encrypt=true;trustServerCertificate=true;
         </property>
         <property name="hibernate.connection.username">sqlcoadmin</property>
         <property name="hibernate.connection.password">123123123</property>

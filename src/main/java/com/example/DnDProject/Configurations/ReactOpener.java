@@ -26,4 +26,8 @@ public class ReactOpener implements ApplicationRunner {
             System.err.println("Failed to start React app: " + e.getMessage());
         }
     }
+
+
+
+
 }

@@ -20,6 +20,7 @@ import com.example.DnDProject.Repositories.MtoMConnections.Item_DamageTypeReposi
 import com.example.DnDProject.Repositories.MtoMConnections.MonsterActionRepository;
 import com.example.DnDProject.Repositories.MtoMConnections.Spell_DamageTypeRepository;
 import com.example.DnDProject.Repositories.Spell.SpellRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -92,67 +93,53 @@ public class DataFetchUtil {
         return actionDTOList;
     }
 
-
+    @Transactional
     public void fetchDamageTypesList(List<DamageTypeDTO> damageTypes, Item item, Spell spell) {
-
-        if (damageTypes == null) {
-            return;
-        }
+        if (damageTypes == null) return;
 
         if (item == null && spell == null) {
-            throw new IllegalArgumentException("Both objects cannot be null.");
-        } else if (item != null && spell != null) {
-            throw new IllegalArgumentException("At least one object should be null.");
-        } else{
-            for (DamageTypeDTO damageTypeDTO : damageTypes) {
-                if (damageTypeDTO == null) {
-                    continue;
-                }
-                if (damageTypeDTO.getName() == null || damageTypeDTO.getName().isEmpty()) {
-                    throw new IllegalArgumentException("DamageType name cannot be null or empty.");
-                }
-
-                if(item != null){
-                    Item_DamageType itemDamageType = new Item_DamageType();
-                    itemDamageType.setDamageDice(damageTypeDTO.getDamage_dice());
-
-                    // Check if the damageType exists; if not, create and save a new one
-                    if (!damageTypeRepo.existsById(damageTypeDTO.getName())) {
-                        DamageType damageType = new DamageType();
-                        damageType.setName(damageTypeDTO.getName());
-                        damageTypeRepo.save(damageType);
-                        itemDamageType.setDamageType(damageTypeRepo.findById(damageTypeDTO.getName()).
-                                orElseThrow(() -> new IllegalStateException("DamageType should have been saved but was not found")));
-                    } else {
-                        itemDamageType.setDamageType(this.fetchEntity(damageTypeRepo,damageTypeDTO.getName()));
-                    }
-                    itemDamageType.setItem(item);
-                    System.out.println(itemDamageType.getDamageType().getName() + " " + itemDamageType.getItem().getName());
-
-                    itemDamTypeRepo.save(itemDamageType);
-                } else {
-                    Spell_DamageType spellDamageType = new Spell_DamageType();
-                    spellDamageType.setDamageDice(damageTypeDTO.getDamage_dice());
-
-                    // Check if the damageType exists; if not, create and save a new one
-                    if (!damageTypeRepo.existsById(damageTypeDTO.getName())) {
-                        DamageType damageType = new DamageType();
-                        damageType.setName(damageTypeDTO.getName());
-                        damageTypeRepo.save(damageType);
-                        spellDamageType.setDamageType(damageTypeRepo.findById(damageTypeDTO.getName()).
-                                orElseThrow(() -> new IllegalStateException("Damage type should have been saved but was not found")));
-                    } else {
-                        spellDamageType.setDamageType(this.fetchEntity(damageTypeRepo,damageTypeDTO.getName()));
-                    }
-                    spellDamageType.setSpell(spell);
-                    spellDamTypeRepo.save(spellDamageType);
-                }
-            }
+            throw new IllegalArgumentException("Both Item and Spell cannot be null.");
+        }
+        if (item != null && spell != null) {
+            throw new IllegalArgumentException("Only one of Item or Spell should be non-null.");
         }
 
+        for (DamageTypeDTO dto : damageTypes) {
+            if (dto == null) continue;
+            String damageTypeName = dto.getName();
+            if (damageTypeName == null || damageTypeName.isEmpty()) {
+                throw new IllegalArgumentException("DamageType name cannot be null or empty.");
+            }
 
+            DamageType damageType = damageTypeRepo.findById(damageTypeName)
+                    .orElseGet(() -> {
+                        DamageType newType = new DamageType();
+                        newType.setName(damageTypeName);
+                        return damageTypeRepo.save(newType);
+                    });
 
+            if (item != null) {
+                Item_DamageType itemDamageType = new Item_DamageType();
+                itemDamageType.setItem(item);
+                itemDamageType.setDamageType(damageType);
+                itemDamageType.setDamageDice(dto.getDamage_dice());
+                itemDamTypeRepo.save(itemDamageType);
+
+                System.out.println(damageType.getName() + " " + item.getName());
+            } else {
+                Spell_DamageType spellDamageType = new Spell_DamageType();
+                spellDamageType.setSpell(spell);
+                spellDamageType.setDamageType(damageType);
+                spellDamageType.setDamageDice(dto.getDamage_dice());
+                spellDamTypeRepo.save(spellDamageType);
+            }
+        }
     }
+
+
+
+
+
 
 
     public void fetchActionsList(List<ActionDTO> actions, Monster monster) {
@@ -236,7 +223,7 @@ public class DataFetchUtil {
         if (passiveBonus < 0) {
             throw new InvalidHPCalculationException("Passive bonus must not be negative.");
         }
-        return (numberOfDice * dieType) / 2 + passiveBonus;
+        return numberOfDice * ((1 + dieType) / 2) + passiveBonus;
     }
 
     public String formatHPCalculation(int numberOfDice, int diceType, int passiveBonus) {

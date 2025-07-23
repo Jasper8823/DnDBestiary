@@ -154,7 +154,7 @@ public class DatafillService {
         monster.setClassAdvList(dfu.fetchList(dto.getClassAdvList(),classRepo));
         monster.setClassWeakList(dfu.fetchList(dto.getClassWeakList(),classRepo));
 
-        repo.save(monster);
+        repo.saveAndFlush(monster);
         dfu.fetchActionsList(dto.getActions(),monster);
 
     }
@@ -179,7 +179,7 @@ public class DatafillService {
         spell.setSpell_statusList(dfu.fetchList(dto.getStatus_names(),statusRepo));
         spell.setSpell_classList(dfu.fetchList(dto.getClass_names(),classRepo));
 
-        spellRepo.save(spell);
+        spellRepo.saveAndFlush(spell);
         dfu.fetchDamageTypesList(dto.getDamageType_names(),null,spell);
     }
     @Transactional
@@ -198,7 +198,7 @@ public class DatafillService {
         item = dfu.setItemSubType(item, dto.getItem_type_name(), dto.getSubtype());
 
         item.setItem_statusList(dfu.fetchList(dto.getStatusList(),statusRepo));
-        itemRepo.save(item);
+        itemRepo.saveAndFlush(item);
         dfu.fetchDamageTypesList(dto.getDamageTypes(),item,null);
 
     }

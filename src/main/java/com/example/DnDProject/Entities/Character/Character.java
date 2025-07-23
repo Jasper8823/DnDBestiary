@@ -162,4 +162,60 @@ public class Character {
     public void setHp(int hp) {
         this.hp = hp;
     }
+
+    public List<Trait> getTrait_charList() {
+        return trait_charList;
+    }
+
+    public void setTrait_charList(List<Trait> trait_charList) {
+        this.trait_charList = trait_charList;
+    }
+
+    public List<Spell> getSpell_charList() {
+        return spell_charList;
+    }
+
+    public void setSpell_charList(List<Spell> spell_charList) {
+        this.spell_charList = spell_charList;
+    }
+
+    public List<Item> getItem_charList() {
+        return item_charList;
+    }
+
+    public void setItem_charList(List<Item> item_charList) {
+        this.item_charList = item_charList;
+    }
+
+    public List<Skill> getSkill_charList() {
+        return skill_charList;
+    }
+
+    public void setSkill_charList(List<Skill> skill_charList) {
+        this.skill_charList = skill_charList;
+    }
+
+    public CharacterClass getCharClass() {
+        return charClass;
+    }
+
+    public void setCharClass(CharacterClass charClass) {
+        this.charClass = charClass;
+    }
+
+    public Race getRace() {
+        return race;
+    }
+
+    public void setRace(Race race) {
+        this.race = race;
+    }
+
+    public Backstory getBackstory() {
+        return backstory;
+    }
+
+    public void setBackstory(Backstory backstory) {
+        this.backstory = backstory;
+    }
 }
