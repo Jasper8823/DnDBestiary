@@ -12,8 +12,6 @@ import com.example.DnDProject.Repositories.Class.ClassAbilityRepository;
 import com.example.DnDProject.Repositories.Item.ItemRepository;
 import com.example.DnDProject.Repositories.Item.ItemTypeRepository;
 import com.example.DnDProject.Repositories.Item.RarityRepository;
-import com.example.DnDProject.Repositories.Item.SubTypeRepository;
-import com.example.DnDProject.Repositories.Monster.Action.ActionRepository;
 import com.example.DnDProject.Repositories.Monster.DamageType.DamageTypeRepository;
 import com.example.DnDProject.Repositories.Monster.Location.LocationRepository;
 import com.example.DnDProject.Repositories.Monster.MonsterAttributes.DangerRepository;
@@ -23,7 +21,6 @@ import com.example.DnDProject.Repositories.Monster.MonsterAttributes.WorldviewRe
 import com.example.DnDProject.Repositories.Monster.MonsterRepository;
 import com.example.DnDProject.Repositories.Monster.StatusSens.StatusRepository;
 import com.example.DnDProject.Repositories.Monster.Topography.TopographyRepository;
-import com.example.DnDProject.Repositories.MtoMConnections.MonsterActionRepository;
 import com.example.DnDProject.Repositories.Spell.SpellRepository;
 import com.example.DnDProject.Repositories.Spell.SpellTypeRepository;
 import jakarta.transaction.Transactional;
@@ -31,7 +28,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import java.util.Arrays;
 
 @Service
 @Validated
@@ -50,11 +46,6 @@ public class DatafillService {
     @Autowired
     private WorldviewRepository worldviewRepo;
 
-    //Action repositories
-    @Autowired
-    private ActionRepository actionRepo;
-    @Autowired
-    private MonsterActionRepository monsterActionRepo;
 
     //Status and damagetype repositories
     @Autowired
@@ -80,9 +71,6 @@ public class DatafillService {
     @Autowired
     private SpellRepository spellRepo;
 
-    //Item repositories
-    @Autowired
-    private SubTypeRepository subTypeRepo;
     @Autowired
     private ItemRepository itemRepo;
     @Autowired

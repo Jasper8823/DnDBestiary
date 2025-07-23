@@ -20,11 +20,11 @@ public class Spell_DamageType {
     private String damageDice;
 
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "spell_name")
     private Spell spell;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "damage_type_name")
     private DamageType damageType;
 

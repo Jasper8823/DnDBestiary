@@ -18,7 +18,7 @@ public class SpellDTO {
     private String concentDura;
     private int distance;
     private String target;
-    private int prepareMoves;
+    private String prepareMoves;
     private String description;
     @JsonProperty("damageType_names")
     private List<DamageTypeDTO> damageTypes = new ArrayList<>();
@@ -117,11 +117,11 @@ public class SpellDTO {
         this.target = target;
     }
 
-    public int getPrepareMoves() {
+    public String getPrepareMoves() {
         return prepareMoves;
     }
 
-    public void setPrepareMoves(int prepareMoves) {
+    public void setPrepareMoves(String prepareMoves) {
         this.prepareMoves = prepareMoves;
     }
 

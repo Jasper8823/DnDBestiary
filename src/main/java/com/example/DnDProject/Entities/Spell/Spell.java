@@ -37,7 +37,7 @@ public class Spell {
     @Column(name = "target",length = 32)
     private String target;
     @Column(name = "prepare_moves")
-    private int prepareMoves;
+    private String prepareMoves;
     @Column(name = "description",length = 2048)
     private String description;
 
@@ -143,11 +143,11 @@ public class Spell {
         this.target = target;
     }
 
-    public int getPrepareMoves() {
+    public String getPrepareMoves() {
         return prepareMoves;
     }
 
-    public void setPrepareMoves(int prepareMoves) {
+    public void setPrepareMoves(String prepareMoves) {
         this.prepareMoves = prepareMoves;
     }
 

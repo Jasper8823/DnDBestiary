@@ -4,13 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eeda4e98-7652-44ba-bd2f-85e06e0692d9" name="Changes" comment="Connected endpoints for spell and item to the react">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/EncounterCalculator/CombatCalculator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/EncounterCalculator/Difficulty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="eeda4e98-7652-44ba-bd2f-85e06e0692d9" name="Changes" comment="Started working on combat calculator">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Configurations/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Configurations/DatabaseConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Configurations/ReactOpener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Configurations/ReactOpener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/Character/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/Character/Character.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/ViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/ViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/DTOs/SpellDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/DTOs/SpellDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/DnDProjectApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/DnDProjectApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/MtoMConnections/Item_DamageType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/MtoMConnections/Item_DamageType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/MtoMConnections/Spell_DamageType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/MtoMConnections/Spell_DamageType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/Spell/Spell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/Spell/Spell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/DataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/DataService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/DatafillService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/DatafillService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/UtilMethods/DataFetchUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/UtilMethods/DataFetchUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
@@ -53,7 +58,7 @@
     </option>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -285,6 +290,7 @@
       <workItem from="1748876325723" duration="1541000" />
       <workItem from="1749656449238" duration="592000" />
       <workItem from="1749663164127" duration="37000" />
+      <workItem from="1753286922172" duration="6261000" />
     </task>
     <task id="LOCAL-00001" summary="Fixes">
       <option name="closed" value="true" />
@@ -582,14 +588,21 @@
       <option name="project" value="LOCAL" />
       <updated>1747676037031</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Started working on combat calculator">
+      <option name="closed" value="true" />
+      <created>1753287119567</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1753287119567</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Switched javax to jakarta, created database connection test, added and deleted some dependencies in pom.xml, changed application.yml and hibernate.cfg.xml" />
     <MESSAGE value="small fixes" />
     <MESSAGE value="Added monsterPush function that post a monster to java from fillDBMonster.html" />
     <MESSAGE value="Added monsterPush function that post a monster data from fillDBMonster.html to java" />
@@ -614,6 +627,7 @@
     <MESSAGE value="damage type fixed in db fillers" />
     <MESSAGE value="added target folder to .gitignore" />
     <MESSAGE value="almost completed bestiary/{id} page, actions should be fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="almost completed bestiary/{id} page, actions should be fixed" />
+    <MESSAGE value="Started working on combat calculator" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started working on combat calculator" />
   </component>
 </project>

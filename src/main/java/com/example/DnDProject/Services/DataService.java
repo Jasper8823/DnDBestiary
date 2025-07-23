@@ -1,38 +1,18 @@
 package com.example.DnDProject.Services;
 
-import com.example.DnDProject.DTOs.ActionDTO;
 import com.example.DnDProject.Entities.Class.CharacterClass;
 import com.example.DnDProject.Entities.Item.Item;
 import com.example.DnDProject.Entities.Monster.DamageType.DamageType;
 import com.example.DnDProject.Entities.Monster.Location.Location;
-import com.example.DnDProject.Entities.Monster.MonsterAttributes.Danger;
 import com.example.DnDProject.Entities.Monster.Status.Status;
-import com.example.DnDProject.Entities.MtoMConnections.Item_DamageType;
-import com.example.DnDProject.Entities.MtoMConnections.MonsterAction;
 import com.example.DnDProject.Entities.Spell.Spell;
 import com.example.DnDProject.UtilMethods.DataFetchUtil;
 import com.example.DnDProject.Entities.Monster.Monster;
-import com.example.DnDProject.Repositories.Class.CharacterClassRepository;
-import com.example.DnDProject.Repositories.Class.ClassAbilityRepository;
 import com.example.DnDProject.Repositories.Item.ItemRepository;
-import com.example.DnDProject.Repositories.Item.ItemTypeRepository;
-import com.example.DnDProject.Repositories.Item.RarityRepository;
-import com.example.DnDProject.Repositories.Item.SubTypeRepository;
-import com.example.DnDProject.Repositories.Monster.Action.ActionRepository;
-import com.example.DnDProject.Repositories.Monster.DamageType.DamageTypeRepository;
-import com.example.DnDProject.Repositories.Monster.Location.LocationRepository;
-import com.example.DnDProject.Repositories.Monster.MonsterAttributes.DangerRepository;
-import com.example.DnDProject.Repositories.Monster.MonsterAttributes.SizeRepository;
-import com.example.DnDProject.Repositories.Monster.MonsterAttributes.TypeRepository;
-import com.example.DnDProject.Repositories.Monster.MonsterAttributes.WorldviewRepository;
 import com.example.DnDProject.Repositories.Monster.MonsterRepository;
-import com.example.DnDProject.Repositories.Monster.StatusSens.StatusRepository;
-import com.example.DnDProject.Repositories.Monster.Topography.TopographyRepository;
-import com.example.DnDProject.Repositories.MtoMConnections.MonsterActionRepository;
 import com.example.DnDProject.Repositories.Spell.SpellRepository;
-import com.example.DnDProject.Repositories.Spell.SpellTypeRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -45,57 +25,12 @@ public class DataService {
     @Autowired
     private MonsterRepository repo;
 
-    //Monster attributes repositories
-    @Autowired
-    private DangerRepository dangerRepo;
-    @Autowired
-    private SizeRepository sizeRepo;
-    @Autowired
-    private TypeRepository typeRepo;
-    @Autowired
-    private WorldviewRepository worldviewRepo;
-
-    //Action repositories
-    @Autowired
-    private ActionRepository actionRepo;
-    @Autowired
-    private MonsterActionRepository monsterActionRepo;
-
-    //Status and damagetype repositories
-    @Autowired
-    private StatusRepository statusRepo;
-    @Autowired
-    private DamageTypeRepository damageTypeRepo;
-
-    //Location repositories
-    @Autowired
-    private LocationRepository locationRepo;
-    @Autowired
-    private TopographyRepository topographyRepo;
-
-    //Class repositories
-    @Autowired
-    private CharacterClassRepository classRepo;
-    @Autowired
-    private ClassAbilityRepository cabilityRepo;
-
-    //Spell repositories
-    @Autowired
-    private SpellTypeRepository spellTypeRepo;
     @Autowired
     private SpellRepository spellRepo;
 
-    //Item repositories
-    @Autowired
-    private SubTypeRepository subTypeRepo;
     @Autowired
     private ItemRepository itemRepo;
-    @Autowired
-    private RarityRepository rarityRepo;
-    @Autowired
-    private ItemTypeRepository itemTypeRepo;
 
-    // Util Methods
     @Autowired
     private DataFetchUtil dfu;
 
@@ -141,12 +76,13 @@ public class DataService {
         monsterInfo.put("type", monster.getType().getName());
         monsterInfo.put("worldView", monster.getWorldview().getName());
 
-        monsterInfo.put("immunityList", dfu.extractNames(monster.getImmunityList(), DamageType::getName));
-        monsterInfo.put("resistanceList", dfu.extractNames(monster.getResistanceList(), DamageType::getName));
-        monsterInfo.put("vulnerabilityList", dfu.extractNames(monster.getVulnerabilityList(), DamageType::getName));
-        monsterInfo.put("immunityStatusList", dfu.extractNames(monster.getImmunityStatusList(), Status::getName));
-        monsterInfo.put("habitats", dfu.extractNames(monster.getHabitats(), Location::getName));
+        monsterInfo.put("immunityList", DataFetchUtil.extractNames(monster.getImmunityList(), DamageType::getName));
+        monsterInfo.put("resistanceList", DataFetchUtil.extractNames(monster.getResistanceList(), DamageType::getName));
+        monsterInfo.put("vulnerabilityList", DataFetchUtil.extractNames(monster.getVulnerabilityList(), DamageType::getName));
+        monsterInfo.put("immunityStatusList", DataFetchUtil.extractNames(monster.getImmunityStatusList(), Status::getName));
+        monsterInfo.put("habitats", DataFetchUtil.extractNames(monster.getHabitats(), Location::getName));
         monsterInfo.put("actions", dfu.getActions(monster.getMonsterActions()));
+
 
         return monsterInfo;
     }
@@ -191,9 +127,7 @@ public class DataService {
     }
 
     public List<Map<String, Object>> itemsInfo() {
-        List<Item> items = itemRepo.findAll();
-
-        items.sort(Comparator.comparing(Item::getName));
+        List<Item> items = itemRepo.findAll(Sort.by(Sort.Direction.ASC, "name"));
 
         List<Map<String, Object>> result = new ArrayList<>();
         for (Item item : items) {
@@ -206,6 +140,7 @@ public class DataService {
 
         return result;
     }
+
 
     public Map<String, Object> spellInfo(String id) {
         Spell spell = spellRepo.findById(id)
@@ -223,10 +158,12 @@ public class DataService {
         spellInfo.put("target", spell.getTarget());
         spellInfo.put("distance", spell.getDistance());
         spellInfo.put("concentDura", spell.getConcentDura());
+        spellInfo.put("spell_subtype", spell.getSpellType().getName());
         spellInfo.put("prepareMoves", spell.getPrepareMoves());
-        spellInfo.put("status_names", dfu.extractNames(spell.getSpell_statusList(), Status::getName));
-        spellInfo.put("class_names", dfu.extractNames(spell.getSpell_classList(), CharacterClass::getName));
-        spellInfo.put("DamageTypes", dfu.extractNames(spell.getSpellDamageTypeList(), sdt -> sdt.getDamageType().getName()));
+        spellInfo.put("status_names", DataFetchUtil.extractNames(spell.getSpell_statusList(), Status::getName));
+        spellInfo.put("class_names", DataFetchUtil.extractNames(spell.getSpell_classList(), CharacterClass::getName));
+        spellInfo.put("DamageTypes", DataFetchUtil.extractNames(spell.getSpellDamageTypeList(), sdt -> sdt.getDamageType().getName()));
+
 
         return spellInfo;
     }
@@ -248,7 +185,6 @@ public class DataService {
 
         return result;
     }
-
 
 }
 

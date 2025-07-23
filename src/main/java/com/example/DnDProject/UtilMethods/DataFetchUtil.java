@@ -104,7 +104,7 @@ public class DataFetchUtil {
             throw new IllegalArgumentException("Only one of Item or Spell should be non-null.");
         }
 
-        for (DamageTypeDTO dto : damageTypes) {
+        for (DamageTypeDTO dto : damageTypes){
             if (dto == null) continue;
             String damageTypeName = dto.getName();
             if (damageTypeName == null || damageTypeName.isEmpty()) {
@@ -125,7 +125,6 @@ public class DataFetchUtil {
                 itemDamageType.setDamageDice(dto.getDamage_dice());
                 itemDamTypeRepo.save(itemDamageType);
 
-                System.out.println(damageType.getName() + " " + item.getName());
             } else {
                 Spell_DamageType spellDamageType = new Spell_DamageType();
                 spellDamageType.setSpell(spell);

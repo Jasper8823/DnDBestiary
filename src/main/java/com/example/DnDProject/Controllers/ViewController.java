@@ -47,9 +47,7 @@ public class ViewController {
 
     @GetMapping("/getMonsters")
     @ResponseBody
-    public List<Map<String, Object>> getMonsters() {
-        return dataService.monstersInfo();
-    }
+    public List<Map<String, Object>> getMonsters() {return dataService.monstersInfo();}
 
     @GetMapping("/getItem")
     @ResponseBody
