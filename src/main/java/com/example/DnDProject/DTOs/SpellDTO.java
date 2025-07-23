@@ -1,7 +1,6 @@
 package com.example.DnDProject.DTOs;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Column;
 
 import java.util.ArrayList;
 import java.util.List;

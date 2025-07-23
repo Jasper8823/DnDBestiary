@@ -2,9 +2,7 @@ package com.example.DnDProject.Entities.Spell;
 
 import com.example.DnDProject.Entities.Character.Character;
 import com.example.DnDProject.Entities.Class.CharacterClass;
-import com.example.DnDProject.Entities.Monster.DamageType.DamageType;
 import com.example.DnDProject.Entities.Monster.Status.Status;
-import com.example.DnDProject.Entities.MtoMConnections.Item_DamageType;
 import com.example.DnDProject.Entities.MtoMConnections.Spell_DamageType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

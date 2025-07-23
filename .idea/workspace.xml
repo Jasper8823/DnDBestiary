@@ -4,22 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eeda4e98-7652-44ba-bd2f-85e06e0692d9" name="Changes" comment="Started working on combat calculator">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Configurations/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Configurations/DatabaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Configurations/ReactOpener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Configurations/ReactOpener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/ViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/ViewController.java" afterDir="false" />
+    <list default="true" id="eeda4e98-7652-44ba-bd2f-85e06e0692d9" name="Changes" comment="Fixed DamageType issue, removed redundant files, added sorting.">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/DTOs/SpellDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/DTOs/SpellDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/DnDProjectApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/DnDProjectApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/MtoMConnections/Item_DamageType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/MtoMConnections/Item_DamageType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/MtoMConnections/Spell_DamageType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/MtoMConnections/Spell_DamageType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/Spell/Spell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/Spell/Spell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/DataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/DataService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/DatafillService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/DatafillService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/UtilMethods/DataFetchUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/UtilMethods/DataFetchUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -290,7 +280,7 @@
       <workItem from="1748876325723" duration="1541000" />
       <workItem from="1749656449238" duration="592000" />
       <workItem from="1749663164127" duration="37000" />
-      <workItem from="1753286922172" duration="6261000" />
+      <workItem from="1753286922172" duration="6570000" />
     </task>
     <task id="LOCAL-00001" summary="Fixes">
       <option name="closed" value="true" />
@@ -596,14 +586,21 @@
       <option name="project" value="LOCAL" />
       <updated>1753287119567</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Fixed DamageType issue, removed redundant files, added sorting.">
+      <option name="closed" value="true" />
+      <created>1753311948371</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1753311948371</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="small fixes" />
     <MESSAGE value="Added monsterPush function that post a monster to java from fillDBMonster.html" />
     <MESSAGE value="Added monsterPush function that post a monster data from fillDBMonster.html to java" />
     <MESSAGE value="js and css files" />
@@ -628,6 +625,7 @@
     <MESSAGE value="added target folder to .gitignore" />
     <MESSAGE value="almost completed bestiary/{id} page, actions should be fixed" />
     <MESSAGE value="Started working on combat calculator" />
-    <option name="LAST_COMMIT_MESSAGE" value="Started working on combat calculator" />
+    <MESSAGE value="Fixed DamageType issue, removed redundant files, added sorting." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed DamageType issue, removed redundant files, added sorting." />
   </component>
 </project>

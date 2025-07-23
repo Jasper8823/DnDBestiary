@@ -1,10 +1,8 @@
 package com.example.DnDProject.Entities.MtoMConnections;
 
 
-import com.example.DnDProject.Entities.Attribute.Attribute;
 import com.example.DnDProject.Entities.Item.Item;
 import com.example.DnDProject.Entities.Monster.DamageType.DamageType;
-import com.example.DnDProject.Entities.Race.Race;
 import jakarta.persistence.*;
 
 @Entity
