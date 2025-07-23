@@ -15,9 +15,47 @@ function Spell(){
 
     if (!spell) return <p>Loading spell...</p>;
 
+    let statuses = '';
+
+    if(spell.status_names.size !==0){
+        spell.status_names.forEach(status => {
+            statuses+= `${status}, `
+        });
+        statuses = statuses.substring(0, statuses.length-2);
+    }
+
+    let classes = '';
+
+    if(spell.class_names.size !==0){
+        spell.class_names.forEach(classC => {
+            classes+= `${classC}, `
+        });
+        classes = classes.substring(0, classes.length-2);
+    }
+
+    let damageDeal = '';
+    
+    if(spell.DamageTypes.size !==0){
+        spell.DamageTypes.forEach(damageDeal => {
+            damageDeal+= `${damageDeal}, `
+        });
+        damageDeal = damageDeal.substring(0, damageDeal.length-2);
+    }
+
     return(
-        <div key={spell.name}>
-            <p >{spell.name}</p>
+        <div key={spell.id} className={style.mainBox}>
+            <p id={style.spellName}><b>{spell.name}</b></p>
+            <div className={style.sizeTypeWVBox}>
+                <p>{spell.level} level, {/*{spell.subtype}*/}</p>
+            </div>
+            {spell.prepareMoves > 0 && <p><b>Prepare moves:</b> {spell.prepareMoves}</p>}
+            <p><b>Distance:</b> {spell.distance} feet</p>
+            {isNaN(spell.duration) && <p><b>Duration:</b> {spell.duration}</p>}
+            {classes.length !== 0 && <p>Statuses: {classes}</p>}
+            {statuses.length !== 0 && <p>Statuses: {statuses}</p>}
+            {damageDeal.length !== 0 && <p>Damage Types: {damageDeal}</p>}
+            {isNaN(spell.description) && <p className = {style.rows}><b>Description</b><br/></p>}
+            <p>{spell.description}</p>
         </div>
     )
 }

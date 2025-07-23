@@ -184,8 +184,8 @@ public class DataService {
             itemInfo.put("subtype", item.getSubType().getName());
         }
 
-        itemInfo.put("StatusList", dfu.extractNames(item.getItem_statusList(), Status::getName));
-        itemInfo.put("DamageTypes", dfu.extractNames(item.getItemDamageTypeList(), idt -> idt.getDamageType().getName()));
+        itemInfo.put("StatusList", DataFetchUtil.extractNames(item.getItem_statusList(), Status::getName));
+        itemInfo.put("DamageTypes", DataFetchUtil.extractNames(item.getItemDamageTypeList(), idt -> idt.getDamageType().getName()));
 
         return itemInfo;
     }
@@ -218,6 +218,7 @@ public class DataService {
         spellInfo.put("description", spell.getDescription());
         spellInfo.put("concentration", spell.isConcentration());
         spellInfo.put("type", spell.getSpellType().getName());
+        spellInfo.put("duration", spell.getDuration());
         spellInfo.put("level", spell.getLevel());
         spellInfo.put("target", spell.getTarget());
         spellInfo.put("distance", spell.getDistance());

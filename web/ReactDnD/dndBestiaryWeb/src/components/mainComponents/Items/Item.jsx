@@ -16,9 +16,37 @@ function Item(){
     
     if (!item) return <p>Loading item...</p>;
 
+    let statuses = '';
+
+    if(item.StatusList.size !==0){
+        item.StatusList.forEach(status => {
+            statuses+= `${status}, `
+        });
+        statuses = statuses.substring(0, statuses.length-2);
+    }
+
+    let damageDeal = '';
+    
+    if(item.DamageTypes.size !==0){
+        item.DamageTypes.forEach(damageDeal => {
+            damageDeal+= `${damageDeal}, `
+        });
+        damageDeal = damageDeal.substring(0, damageDeal.length-2);
+    }
+
     return(
-        <div key={item.name}>
-            <p>{item.name}</p>
+        <div key={item.id} className={style.mainBox}>
+            <p id={style.itemName}><b>{item.name}</b></p>
+            <div className={style.shortDescBox}>
+                <p><i>{item.item_type_name}</i></p>
+                {item.subtype !== undefined && !isNaN(item.subtype) && <p>({item.subtype})</p>}
+                <p>, {item.rarity_name}</p>
+                {isNaN(item.configurable) && <p> (Need configuration)</p>}<br/>
+            </div>
+            {statuses.length !== 0 && <p>Statuses: {statuses}</p>}
+            {damageDeal.length !== 0 && <p>Damage Types: {damageDeal}</p>}
+            {isNaN(item.description) && <p className = {style.rows}><b>Description</b><br/></p>}
+            <p>{item.description}</p>
         </div>
     )
 }

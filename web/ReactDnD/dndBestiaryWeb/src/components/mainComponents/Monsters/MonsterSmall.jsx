@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import style from './monsters.module.css';
+import Mstyle from '../mainStyle.module.css';
 import { useEffect, useState } from 'react';
 
 function MonsterSmall() {
@@ -19,8 +20,10 @@ function MonsterSmall() {
 
     if (!monsters) return <p>Loading monsters...</p>;
 
+    let i=1;
+
     const listItems = monsters.map(monster => (
-        <div key={monster.id} onClick={() => handleClick(monster)} className={style.monsterBox}>
+        <div key={monster.id} onClick={() => handleClick(monster)} className={Mstyle.bestiaryBox}>
             <p className={style.monsterLevel}>{monster.danger}</p>
             <p className={style.monsterName}>
                 {monster.name.length > 20 ? monster.name.substring(0, 20) + "..." : monster.name}
