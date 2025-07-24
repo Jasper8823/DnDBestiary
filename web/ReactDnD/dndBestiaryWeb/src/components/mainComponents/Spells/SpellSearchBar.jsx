@@ -8,7 +8,7 @@ function SpellSearchBar() {
     const [formData, setFormData] = useState({
         name: '',
         level: '',
-        class: '',
+        charClass: '',
         type: ''
     });
 
@@ -39,7 +39,7 @@ function SpellSearchBar() {
         setFormData({
             name: '',
             level: '',
-            class: '',
+            charClass: '',
             type: ''
         });
     };
@@ -63,7 +63,7 @@ function SpellSearchBar() {
                     <option value="9">9 level</option>
                 </select>
 
-                <select className={Mstyle.searchSelect} name="class" value={formData.type} onChange={handleChange} required >
+                <select className={Mstyle.searchSelect} name="charClass" value={formData.type} onChange={handleChange} required >
                     <option value="" disabled selected>Class</option>
                     <option value="bard">Bard</option>
                     <option value="cleric">Cleric</option>

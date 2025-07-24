@@ -27,7 +27,7 @@ public class CharacterClass {
 
     //One-to-many connections
     @ManyToOne
-    @JoinColumn(name = "parent_name") // Foreign key referencing itself
+    @JoinColumn(name = "parent_name")
     private CharacterClass parentClass;
 
     @OneToMany(mappedBy = "parentClass")
@@ -182,5 +182,13 @@ public class CharacterClass {
 
     public void setSpell_classList(List<Spell> spell_classList) {
         this.spell_classList = spell_classList;
+    }
+
+    public List<SubType> getSubtype_classList() {
+        return subtype_classList;
+    }
+
+    public void setSubtype_classList(List<SubType> subtype_classList) {
+        this.subtype_classList = subtype_classList;
     }
 }

@@ -75,6 +75,11 @@ public class Character {
     @JoinColumn(name = "backstory_name")
     private Backstory backstory;
 
+
+    public int getProficiencyBonus() {
+        return 2 + ((this.getLevel() - 1) / 4);
+    }
+
     public int getId() {
         return id;
     }

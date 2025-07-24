@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -20,9 +21,6 @@ import java.util.List;
 @Validated
 public class CombatCalculator {
 
-
-    @Autowired
-    private static DataFetchUtil dfu;
 
     public static String calculateDifficulty(List<Character> characters, List<Monster> monsters,Topography topography) {
         if (characters == null || monsters == null || characters.isEmpty() || monsters.isEmpty()) {
@@ -62,6 +60,7 @@ public class CombatCalculator {
 
     public static double calculateEfficiency(Character character, Monster monster, Topography topography) {
         double efficiency = 1;
+        double monsterHPvar = monster.getAvg_HP() * 1.25;
 
         if (monster.getClassAdvList() != null) {
             if (monster.getClassAdvList().contains(character.getCharClass())) {
@@ -86,27 +85,49 @@ public class CombatCalculator {
         }
 
         if (character.getItem_charList() != null) {
-            double monsterHPvar = monster.getAvg_HP() * 1.25;
-            String[] dexterityWeapons = {};
+
+            String[] dexterityWeapons = {
+                    "dagger", "rapier", "short sword", "scimitar",
+                    "whip", "dart", "light crossbow", "short bow",
+                    "sling", "hand crossbow",
+                    "heavy crossbow", "long bow",
+                    "blowgun", "net"
+            };
             double bestScore = 0;
 
             for (Item item : character.getItem_charList()) {
                 if(item.getItemType().getName().equals("weapon")) {
-                    if(character.getDexterity()>character.getStrength()){
+
+                    String itemName = item.getSubType().getName().toLowerCase();
+                    boolean isDexWeapon = Arrays.asList(dexterityWeapons).contains(itemName);
+
+                    boolean isProficient =
+                            character.getCharClass().getSubtype_classList().stream()
+                                    .anyMatch(cp -> cp.getName().equals(item.getSubType().getName())) ||
+                                    character.getRace().getRaceProfList().stream()
+                                            .anyMatch(rp -> rp.getName().equals(item.getSubType().getName()));
 
 
-
-
+                    int abilityModifier;
+                    if (isDexWeapon && character.getDexterity() >= character.getStrength()) {
+                        abilityModifier = (character.getDexterity()-10)/2;
+                    } else {
+                        abilityModifier = (character.getStrength()-10)/2;
                     }
 
+                    int attackModifier = abilityModifier;
+                    if (isProficient) {
+                        attackModifier += character.getProficiencyBonus();
+                    }
 
-//                    int neededRoll = monster.getArmor_class() - attackModifier;
+                    int neededRoll = monster.getArmor_class()-attackModifier;
+                    double hitChance = Math.max(0, Math.min(1, (21-neededRoll)/20.0));
 
                     double itemBestScore = 0;
 
                     for (Item_DamageType idt : item.getItemDamageTypeList()) {
                         String[] parts = idt.getDamageDice().split("[d+]");
-                        double score = dfu.calculateAvgHP(Integer.parseInt(parts[0]),
+                        double score = DataFetchUtil.calculateAvgHP(Integer.parseInt(parts[0]),
                                 Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
 
 

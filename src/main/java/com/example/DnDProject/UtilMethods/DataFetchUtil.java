@@ -12,22 +12,18 @@ import com.example.DnDProject.Entities.MtoMConnections.Spell_DamageType;
 import com.example.DnDProject.Entities.Spell.Spell;
 import com.example.DnDProject.Exceptions.EntityNotFoundException;
 import com.example.DnDProject.Exceptions.InvalidHPCalculationException;
-import com.example.DnDProject.Repositories.Item.ItemRepository;
 import com.example.DnDProject.Repositories.Item.SubTypeRepository;
 import com.example.DnDProject.Repositories.Monster.Action.ActionRepository;
 import com.example.DnDProject.Repositories.Monster.DamageType.DamageTypeRepository;
 import com.example.DnDProject.Repositories.MtoMConnections.Item_DamageTypeRepository;
 import com.example.DnDProject.Repositories.MtoMConnections.MonsterActionRepository;
 import com.example.DnDProject.Repositories.MtoMConnections.Spell_DamageTypeRepository;
-import com.example.DnDProject.Repositories.Spell.SpellRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -164,7 +160,6 @@ public class DataFetchUtil {
             monsterAction.setInformation(actionDTO.getInfo());
             monsterAction.setLegendary(actionDTO.getLegend());
 
-            // Check if the action exists; if not, create and save a new one
             if (!actionRepo.existsById(actionDTO.getName())) {
                 Action action = new Action();
                 action.setName(actionDTO.getName());
@@ -212,7 +207,9 @@ public class DataFetchUtil {
     }
 
 
-    public int calculateAvgHP(int numberOfDice, int dieType, int passiveBonus) {
+
+
+    public static int calculateAvgHP(int numberOfDice, int dieType, int passiveBonus) {
         if (numberOfDice <= 0) {
             throw new InvalidHPCalculationException("Number of dice must be positive.");
         }
