@@ -112,3 +112,11 @@
 .descBottom{
     margin-bottom: 50px;
 }
+
+#searchInput{
+    width: 25%;
+}
+
+#searchConf{
+    width: 19%;
+}

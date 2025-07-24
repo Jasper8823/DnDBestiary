@@ -93,3 +93,11 @@
 .descBottom{
     margin-bottom: 50px;
 }
+
+#searchInput{
+    width: 25%;
+}
+
+#searchType{
+    width: 19%;
+}

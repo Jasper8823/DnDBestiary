@@ -71,21 +71,21 @@ function Monster(){
         safe_bonus += `Chr <b>+${monster.charisma_bonus}</b>`
     }
 
-    if(monster.vulnerabilityList.size !==0){
+    if(monster.vulnerabilityList.length !==0){
         monster.vulnerabilityList.forEach(vulner => {
             dmgV+= `${vulner}, `
         });
         dmgV = dmgV.substring(0, dmgV.length-2);
     }
 
-    if(monster.resistanceList.size !==0){
+    if(monster.resistanceList.length !==0){
         monster.resistanceList.forEach(resist => {
             dmgR+= `${resist}, `
         });
         dmgR = dmgR.substring(0, dmgR.length-2);
     }
 
-    if(monster.immunityStatusList.size !==0){
+    if(monster.immunityStatusList.length !==0){
         monster.immunityStatusList.forEach(immunity => {
             dmgI+= `${immunity}, `
         });

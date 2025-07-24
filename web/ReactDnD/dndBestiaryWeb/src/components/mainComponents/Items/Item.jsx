@@ -18,7 +18,7 @@ function Item(){
 
     let statuses = '';
 
-    if(item.StatusList.size !==0){
+    if(item.StatusList.length !==0){
         item.StatusList.forEach(status => {
             statuses+= `${status}, `
         });
@@ -26,10 +26,12 @@ function Item(){
     }
 
     let damageDeal = '';
-    
-    if(item.DamageTypes.size !==0){
-        item.DamageTypes.forEach(damageDeal => {
-            damageDeal+= `${damageDeal}, `
+
+    console.log(item.DamageTypes.length);
+
+    if(item.DamageTypes.length !== 0){
+        item.DamageTypes.forEach(damageT => {
+            damageDeal+= `${damageT}, `
         });
         damageDeal = damageDeal.substring(0, damageDeal.length-2);
     }

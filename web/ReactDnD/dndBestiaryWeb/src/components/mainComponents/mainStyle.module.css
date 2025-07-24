@@ -6,7 +6,7 @@
     background-color: rgb(240,240,240,0.5);
     margin: 0;
     left: 17%;
-    top: 125px;
+    top: 50px;
     backdrop-filter: blur(8px);
     background: linear-gradient(rgba(172, 69, 0, 0.1));
     -webkit-backdrop-filter: blur(12px);
@@ -167,4 +167,74 @@
 
 .bestiaryBox:nth-child(5n)::after {
     display: none;
+}
+
+.searchBar{
+    position: relative;
+    width: 82%;
+    height: 100px;
+    top: 70px;
+    margin: 0;
+    left: 17%;
+    user-select: none;
+}
+
+.searchButton{
+    display: inline-block;
+    text-align: center;
+    font-family: "Sitka Banner";
+    font-size: 1.8em;
+    width: 10%;
+    padding: 7px;
+    margin-left: 5px;
+    margin-right: 5px;
+    backdrop-filter: blur(8px);
+    background: linear-gradient(rgba(172, 69, 0, 0.1));
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 5px;
+    border: solid rgba(0, 0, 0, 0.316) 2px;
+}
+
+.searchInput{
+    display: inline-block;
+    text-align: center;
+    font-family: "Sitka Banner";
+    color:black;
+    font-size: 1.8em;
+    width: 15%;
+    padding: 7px;
+    margin-left: 5px;
+    margin-right: 5px;
+    backdrop-filter: blur(8px);
+    background: linear-gradient(rgba(172, 69, 0, 0.1));
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 5px;
+    border: solid rgba(0, 0, 0, 0.316) 2px;
+}
+
+.searchInput::placeholder{
+    color:black;
+}
+
+.searchSelect{
+    display: inline-block;
+    font-family: "Sitka Banner";
+    color:black;
+    font-size: 1.8em;
+    width: 15%;
+    padding: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    backdrop-filter: blur(8px);
+    background: linear-gradient(rgba(172, 69, 0, 0.1));
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 5px;
+    border: solid rgba(0, 0, 0, 0.316) 2px;
+}
+
+.searchSelect option {
+    color: black;
+    background-color: #b18b54;
+    font-family: "Sitka Banner";
+    font-size: 1em;
 }

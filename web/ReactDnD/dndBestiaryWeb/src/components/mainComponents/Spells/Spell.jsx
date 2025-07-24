@@ -17,7 +17,7 @@ function Spell(){
 
     let statuses = '';
 
-    if(spell.status_names.size !==0){
+    if(spell.status_names.length !==0){
         spell.status_names.forEach(status => {
             statuses+= `${status}, `
         });
@@ -26,7 +26,7 @@ function Spell(){
 
     let classes = '';
 
-    if(spell.class_names.size !==0){
+    if(spell.class_names.length !==0){
         spell.class_names.forEach(classC => {
             classes+= `${classC}, `
         });
@@ -35,7 +35,7 @@ function Spell(){
 
     let damageDeal = '';
     
-    if(spell.DamageTypes.size !==0){
+    if(spell.DamageTypes.length !==0){
         spell.DamageTypes.forEach(damageDeal => {
             damageDeal+= `${damageDeal}, `
         });
