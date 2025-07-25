@@ -87,22 +87,7 @@ public class DataService {
         return monsterInfo;
     }
 
-    public List<Map<String, Object>> monstersInfo() {
-        List<Monster> monsters = repo.findAll();
 
-        monsters.sort(Comparator.comparingInt(m -> m.getDanger().getDegree()));
-
-        List<Map<String, Object>> result = new ArrayList<>();
-        for (Monster monster : monsters) {
-            Map<String, Object> info = new HashMap<>();
-            info.put("id", monster.getId());
-            info.put("name", monster.getName());
-            info.put("danger", monster.getDanger().getDegree());
-            result.add(info);
-        }
-
-        return result;
-    }
 
     public Map<String, Object> itemInfo(String id) {
         Item item = itemRepo.findById(id)
@@ -126,34 +111,7 @@ public class DataService {
         return itemInfo;
     }
 
-    public List<Map<String, Object>> itemsInfo() {
-        List<Item> items = itemRepo.findAll();
 
-        List<String> rarityOrder = Arrays.asList(
-                "common",
-                "uncommon",
-                "rare",
-                "veryRare",
-                "legendary",
-                "artifact",
-                "noConstRarity"
-        );
-
-        items.sort(Comparator
-                .comparing((Item i) -> rarityOrder.indexOf(i.getRarity().getName()))
-                .thenComparing(Item::getName));
-
-        List<Map<String, Object>> result = new ArrayList<>();
-        for (Item item : items) {
-            Map<String, Object> info = new HashMap<>();
-            info.put("name", item.getName());
-            info.put("type", item.getItemType().getName());
-            info.put("rarity", item.getRarity().getName());
-            result.add(info);
-        }
-
-        return result;
-    }
 
     public List<Map<String, Object>> getFilteredSortedItems(Map<String, String> filters) {
         String name = filters.getOrDefault("name", "").trim().toLowerCase();
@@ -161,6 +119,8 @@ public class DataService {
         String type = filters.getOrDefault("type", "").trim().toLowerCase();
         String needsAdjustment = filters.getOrDefault("needsAdjustment", "").trim().toLowerCase();
 
+        boolean filterNeedsAdjustment = !needsAdjustment.isEmpty();
+        boolean needsAdjustValue = Boolean.parseBoolean(needsAdjustment);
 
         List<Item> items = itemRepo.findAll(Sort.by(
                 Sort.Order.asc("rarity.name"),
@@ -169,33 +129,23 @@ public class DataService {
 
         List<Map<String, Object>> filteredItems = new ArrayList<>();
 
-        boolean needsAdjustFilter = false;
-        boolean applyNeedsAdjustFilter = false;
-        if (!needsAdjustment.isEmpty()) {
-            applyNeedsAdjustFilter = true;
-            needsAdjustFilter = Boolean.parseBoolean(needsAdjustment);
-        }
-
         for (Item item : items) {
             String itemName = item.getName() != null ? item.getName().toLowerCase() : "";
-            String itemRarity = item.getRarity() != null && item.getRarity().getName() != null ? item.getRarity().getName().toLowerCase() : "";
-            String itemType = item.getItemType() != null && item.getItemType().getName() != null ? item.getItemType().getName().toLowerCase() : "";
+            String itemRarity = item.getRarity() != null && item.getRarity().getName() != null
+                    ? item.getRarity().getName().toLowerCase() : "";
+            String itemType = item.getItemType() != null && item.getItemType().getName() != null
+                    ? item.getItemType().getName().toLowerCase() : "";
             boolean itemConfigurable = item.isConfigurable();
 
-            boolean matchesName = name.isEmpty() || itemName.contains(name);
-            boolean matchesRarity = rarity.isEmpty() || itemRarity.equalsIgnoreCase(rarity);
-            boolean matchesType = type.isEmpty() || itemType.equalsIgnoreCase(type);
-            boolean matchesConfig = !applyNeedsAdjustFilter || itemConfigurable == needsAdjustFilter;
+            if (!name.isEmpty() && !itemName.contains(name)) continue;
+            if (!rarity.isEmpty() && !itemRarity.equals(rarity)) continue;
+            if (!type.isEmpty() && !itemType.equals(type)) continue;
+            if (filterNeedsAdjustment && itemConfigurable != needsAdjustValue) continue;
 
-
-            if (matchesName && matchesRarity && matchesType && matchesConfig) {
-                Map<String, Object> info = new HashMap<>();
-                info.put("name", item.getName());
-                info.put("rarity_name", item.getRarity() != null ? item.getRarity().getName() : null);
-                info.put("subtype", item.getSubType() != null ? item.getSubType().getName() : null);
-
-                filteredItems.add(info);
-            }
+            Map<String, Object> info = new HashMap<>();
+            info.put("name", item.getName());
+            info.put("type", item.getItemType() != null ? item.getItemType().getName() : null);
+            filteredItems.add(info);
         }
 
         return filteredItems;
@@ -229,23 +179,6 @@ public class DataService {
         return spellInfo;
     }
 
-    public List<Map<String, Object>> spellsInfo() {
-        List<Spell> spells = spellRepo.findAll();
-
-        spells.sort(Comparator.comparing(Spell::getLevel));
-
-        List<Map<String, Object>> result = new ArrayList<>();
-        for (Spell spell : spells) {
-            Map<String, Object> info = new HashMap<>();
-            info.put("name", spell.getName());
-            info.put("type", spell.getSpellType().getName());
-            info.put("level", spell.getLevel());
-            info.put("concentration", spell.isConcentration());
-            result.add(info);
-        }
-
-        return result;
-    }
 
     public List<Map<String, Object>> getFilteredSortedSpells(Map<String, String> filters) {
         List<Spell> allSpells = spellRepo.findAll();
@@ -290,8 +223,6 @@ public class DataService {
                 Map<String, Object> map = new HashMap<>();
                 map.put("name", spell.getName());
                 map.put("level", spell.getLevel());
-                map.put("concentration", spell.isConcentration());
-                map.put("type", spell.getSpellType() != null ? spell.getSpellType().getName() : null);
 
                 result.add(map);
             }

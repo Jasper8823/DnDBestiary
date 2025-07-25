@@ -41,15 +41,10 @@ public class SpellController {
 
     @GetMapping("/getSpells")
     @ResponseBody
-    public List<Map<String, Object>> getSpells() {
-        return dataService.spellsInfo();
-    }
-
-    @PostMapping("/getSpells/sort")
-    @ResponseBody
-    public List<Map<String, Object>> getSortedFilteredSpells(@RequestBody Map<String, String> filters) {
-        System.out.println(dataService.getFilteredSortedSpells(filters));
+    public List<Map<String, Object>> getSpells(@RequestParam  Map<String, String> filters) {
         return dataService.getFilteredSortedSpells(filters);
     }
+
+
 }
 

@@ -41,14 +41,9 @@ public class MonsterController {
 
     @GetMapping("/getMonsters")
     @ResponseBody
-    public List<Map<String, Object>> getMonsters() {
-        return dataService.monstersInfo();
+    public List<Map<String, Object>> getMonsters(@RequestParam Map<String, String> query) {
+        return dataService.getFilteredSortedMonsters(query);
     }
-    @PostMapping("/getMonsters/sort")
-    @ResponseBody
-    public List<Map<String, Object>> getSortedFilteredMonsters(@RequestBody Map<String, String> filters) {
-        System.out.println(dataService.getFilteredSortedMonsters(filters));
-        return dataService.getFilteredSortedMonsters(filters);
-    }
+
 
 }

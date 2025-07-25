@@ -34,8 +34,8 @@ public class ItemController {
 
     @GetMapping("/getItems")
     @ResponseBody
-    public List<Map<String, Object>> getItems() {
-        return dataService.itemsInfo();
+    public List<Map<String, Object>> getItems(@RequestParam  Map<String, String> query){
+        return dataService.getFilteredSortedItems(query);
     }
 
     @PostMapping("/itemPush")
@@ -45,11 +45,6 @@ public class ItemController {
         return ResponseEntity.ok("Item received successfully!");
     }
 
-    @PostMapping("/getItems/sort")
-    @ResponseBody
-    public List<Map<String, Object>> getSortedFilteredItems(@RequestBody Map<String, String> filters) {
-        System.out.println(dataService.getFilteredSortedItems(filters));
-        return dataService.getFilteredSortedItems(filters);
-    }
+
 }
 

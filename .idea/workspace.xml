@@ -4,24 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eeda4e98-7652-44ba-bd2f-85e06e0692d9" name="Changes" comment="Fixed DamageType issue, removed redundant files, added sorting.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/CalculatorController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/ItemController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/MonsterController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/SpellController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/DTOs/Search/ItemSearchRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/DTOs/Search/SpellSearchRequest.java" afterDir="false" />
+    <list default="true" id="eeda4e98-7652-44ba-bd2f-85e06e0692d9" name="Changes" comment="Refactored controllers, added sorting possibility for spells items and monsters.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/DataController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/DatafillController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/ClassAbilityController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/ViewController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/Character/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/Character/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/Class/CharacterClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/Class/CharacterClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/ItemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/MonsterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/MonsterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/SpellController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/SpellController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/DataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/DataService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/EncounterCalculator/CombatCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/EncounterCalculator/CombatCalculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/UtilMethods/DataFetchUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/UtilMethods/DataFetchUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Spells/SpellSearchBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Spells/SpellSearchBar.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -297,7 +285,8 @@
       <workItem from="1749663164127" duration="37000" />
       <workItem from="1753286922172" duration="6629000" />
       <workItem from="1753355840564" duration="6835000" />
-      <workItem from="1753391792660" duration="6424000" />
+      <workItem from="1753391792660" duration="6599000" />
+      <workItem from="1753441684884" duration="1465000" />
     </task>
     <task id="LOCAL-00001" summary="Fixes">
       <option name="closed" value="true" />
@@ -619,14 +608,21 @@
       <option name="project" value="LOCAL" />
       <updated>1753312067345</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Refactored controllers, added sorting possibility for spells items and monsters.">
+      <option name="closed" value="true" />
+      <created>1753398390599</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1753398390599</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added monsterPush function that post a monster to java from fillDBMonster.html" />
     <MESSAGE value="Added monsterPush function that post a monster data from fillDBMonster.html to java" />
     <MESSAGE value="js and css files" />
     <MESSAGE value="updated target js" />
@@ -651,6 +647,7 @@
     <MESSAGE value="almost completed bestiary/{id} page, actions should be fixed" />
     <MESSAGE value="Started working on combat calculator" />
     <MESSAGE value="Fixed DamageType issue, removed redundant files, added sorting." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed DamageType issue, removed redundant files, added sorting." />
+    <MESSAGE value="Refactored controllers, added sorting possibility for spells items and monsters." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored controllers, added sorting possibility for spells items and monsters." />
   </component>
 </project>
