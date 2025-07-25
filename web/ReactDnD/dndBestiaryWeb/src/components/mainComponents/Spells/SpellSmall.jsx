@@ -1,26 +1,26 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import style from './spells.module.css';
 import Mstyle from '../mainStyle.module.css';
 import { useEffect, useState } from 'react';
-import { faAlignCenter } from "@fortawesome/free-solid-svg-icons";
 
 function SpellSmall() {
   const navigate = useNavigate();
-    const [spells, setSpells] = useState(null);
+  const location = useLocation();
+  const [spells, setSpells] = useState(null);
 
   const handleClick = (spell) => {
     navigate(`/spells/${spell.name}`);
   };
 
   useEffect(() => {
-  fetch('http://localhost:8080/getSpells')
-    .then(response => response.json())
-    .then(data => {
-      console.log("Fetched spells:", data);
-      setSpells(data);
+    const query = location.search;
+    fetch(`http://localhost:8080/getSpells${query}`, {
+      method: 'GET',
     })
-    .catch(error => console.error('Error fetching data:', error));
-}, []);
+    .then(res => res.json())
+    .then(data => setSpells(data))
+    .catch(err => console.error('Failed to load spells:', err));
+  }, [location.search]);
 
   if (!spells) return <p>Loading spells...</p>;
 

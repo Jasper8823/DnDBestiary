@@ -22,17 +22,8 @@ function SpellSearchBar() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:8080/getSpells/sort', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        }).then(response => {
-            console.log('Request sent:', formData);
-        }).catch(error => {
-            console.error('Error sending request:', error);
-        });
+        const query = new URLSearchParams(formData).toString();
+        navigate(`/spells?${query}`);
     };
 
     const handleReset = () => {
@@ -47,11 +38,11 @@ function SpellSearchBar() {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input className={Mstyle.searchInput} id={style.searchInput} type="text" name="name" value={formData.name} onChange={handleChange} minLength={3} maxLength={32} required placeholder="Name"/>
+                <input className={Mstyle.searchInput} id={style.searchInput} type="text" name="name" value={formData.name} onChange={handleChange} minLength={3} maxLength={32}  placeholder="Name"/>
 
-                <select className={Mstyle.searchSelect} name="level" value={formData.rarity} onChange={handleChange} required >
+                <select className={Mstyle.searchSelect} name="level" value={formData.level} onChange={handleChange}>
                     <option value="" disabled selected>Level</option>
-                    <option value="plot">Plot</option>
+                    <option value="0">Plot</option>
                     <option value="1">1 level</option>
                     <option value="2">2 level</option>
                     <option value="3">3 level</option>
@@ -63,7 +54,7 @@ function SpellSearchBar() {
                     <option value="9">9 level</option>
                 </select>
 
-                <select className={Mstyle.searchSelect} name="charClass" value={formData.type} onChange={handleChange} required >
+                <select className={Mstyle.searchSelect} name="charClass" value={formData.charClass} onChange={handleChange}>
                     <option value="" disabled selected>Class</option>
                     <option value="bard">Bard</option>
                     <option value="cleric">Cleric</option>
@@ -73,7 +64,7 @@ function SpellSearchBar() {
                     <option value="wizard">Wizard</option>
                 </select>
 
-                <select className={Mstyle.searchSelect} id={style.searchType} name="type" value={formData.needsAdjustment} onChange={handleChange} required >
+                <select className={Mstyle.searchSelect} id={style.searchType} name="type" value={formData.type} onChange={handleChange}   >
                     <option value="" disabled selected>Type</option>
                     <option value="abjuration">Abjuration</option>
                     <option value="conjuration">Conjuration</option>

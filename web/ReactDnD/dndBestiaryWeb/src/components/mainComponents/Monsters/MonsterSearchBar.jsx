@@ -25,17 +25,8 @@ function MonsterSearchBar() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:8080/getMosters/sort', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        }).then(response => {
-            console.log('Request sent:', formData);
-        }).catch(error => {
-            console.error('Error sending request:', error);
-        });
+        const query = new URLSearchParams(formData).toString();
+        navigate(`/bestiary?${query}`);
     };
 
     const handleReset = () => {
@@ -51,9 +42,9 @@ function MonsterSearchBar() {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input className={Mstyle.searchInput} id={style.searchInput} type="text" name="name" value={formData.name} onChange={handleChange} minLength={3} maxLength={32} required placeholder="Name"/>
+                <input className={Mstyle.searchInput} id={style.searchInput} type="text" name="name" value={formData.name} onChange={handleChange} minLength={3} maxLength={32}   placeholder="Name"/>
 
-                <select className={Mstyle.searchSelect} id={style.searchSize} name="size" value={formData.size} onChange={handleChange} required >
+                <select className={Mstyle.searchSelect} id={style.searchSize} name="size" value={formData.size} onChange={handleChange}   >
                     <option value="" disabled selected>Size</option>
                     <option value="tiny">Tiny</option>
                     <option value="small">Small</option>
@@ -68,7 +59,7 @@ function MonsterSearchBar() {
                     <option value="lsmedium">Large Swarm of Medium</option>
                 </select>
 
-                <select className={Mstyle.searchSelect} id={style.searchType} name="type" value={formData.type} onChange={handleChange} required >
+                <select className={Mstyle.searchSelect} id={style.searchType} name="type" value={formData.type} onChange={handleChange}   >
                     <option value="" disabled selected>Type</option>
                     <option value="aberration">Aberration</option>
                     <option value="giant">Giant</option>
@@ -86,7 +77,7 @@ function MonsterSearchBar() {
                     <option value="elemental">Elemental</option>
                 </select>
 
-                <select className={Mstyle.searchSelect} id={style.searchWV} name="worldView" value={formData.worldView} onChange={handleChange} required >
+                <select className={Mstyle.searchSelect} id={style.searchWV} name="worldView" value={formData.worldView} onChange={handleChange}   >
                     <option value="" disabled selected>Worldview</option>
                     <option value="lawful_good">Lawful Good</option>
                     <option value="neutral_good">Neutral Good</option>
@@ -100,7 +91,7 @@ function MonsterSearchBar() {
                     <option value="noWV">No Worldview</option>
                 </select>
 
-                <select className={Mstyle.searchSelect} id={style.searchDanger} name="danger" value={formData.danger} onChange={handleChange} required >
+                <select className={Mstyle.searchSelect} id={style.searchDanger} name="danger" value={formData.danger} onChange={handleChange}   >
                     <option value="" disabled selected>Danger</option>
                     <option value="100">0 - 10 exp</option>
                     <option value="108">1/8 - 25 exp</option>

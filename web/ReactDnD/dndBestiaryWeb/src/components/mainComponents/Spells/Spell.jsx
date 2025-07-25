@@ -46,12 +46,12 @@ function Spell(){
         <div key={spell.id} className={style.mainBox}>
             <p id={style.spellName}><b>{spell.name}</b></p>
             <div className={style.sizeTypeWVBox}>
-                <p>{spell.level} level, {/*{spell.subtype}*/}</p>
+                <p>{spell.level} level, {spell.spell_subtype}</p>
             </div>
             {spell.prepareMoves > 0 && <p><b>Prepare moves:</b> {spell.prepareMoves}</p>}
             <p><b>Distance:</b> {spell.distance} feet</p>
             {isNaN(spell.duration) && <p><b>Duration:</b> {spell.duration}</p>}
-            {classes.length !== 0 && <p>Statuses: {classes}</p>}
+            {classes.length !== 0 && <p>Classes: {classes}</p>}
             {statuses.length !== 0 && <p>Statuses: {statuses}</p>}
             {damageDeal.length !== 0 && <p>Damage Types: {damageDeal}</p>}
             {isNaN(spell.description) && <p className = {style.rows}><b>Description</b><br/></p>}

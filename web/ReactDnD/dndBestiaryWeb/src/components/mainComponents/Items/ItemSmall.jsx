@@ -11,13 +11,18 @@ function ItemSmall() {
     navigate(`/items/${item.name}`);
   };
 
+
   useEffect(() => {
-      fetch('http://localhost:8080/getItems')
-          .then(response => response.json())
-          .then(data => setItems(data))
-          .catch(error => console.error('Error fetching data:', error));
-  }, []);
-    if (!items) return <p>Loading items...</p>;
+        const query = location.search;
+        fetch(`http://localhost:8080/getItems${query}`, {
+        method: 'GET',
+        })
+        .then(res => res.json())
+        .then(data => setItems(data))
+        .catch(err => console.error('Failed to load items:', err));
+  }, [location.search]);
+
+  if (!items) return <p>Loading items...</p>;
 
   const listItems = items.map(item => (
     <div key={item.id} onClick={() => handleClick(item)} className={Mstyle.bestiaryBox}>

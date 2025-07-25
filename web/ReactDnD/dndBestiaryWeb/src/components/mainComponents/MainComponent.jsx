@@ -17,7 +17,7 @@ function MainComponent() {
           <Route path="/bestiary/:id" element={<Monster/>} />
           <Route path="/items" element={<ItemSmall/>} />
           <Route path="/items/:id" element={<Item/>} />
-          <Route path="/spells" element={<SpellSmall/>} />
+          <Route path="/spells" element={<SpellSmall />} />
           <Route path="/spells/:id" element={<Spell/>} />
         </Routes>
       </div>

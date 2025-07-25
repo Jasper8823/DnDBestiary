@@ -22,17 +22,8 @@ function ItemSearchBar() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:8080/getItems/sort', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        }).then(response => {
-            console.log('Request sent:', formData);
-        }).catch(error => {
-            console.error('Error sending request:', error);
-        });
+        const query = new URLSearchParams(formData).toString();
+        navigate(`/items?${query}`);
     };
 
     const handleReset = () => {
@@ -47,9 +38,9 @@ function ItemSearchBar() {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input className={Mstyle.searchInput} id={style.searchInput} type="text" name="name" value={formData.name} onChange={handleChange} minLength={3} maxLength={32} required placeholder="Name"/>
+                <input className={Mstyle.searchInput} id={style.searchInput} type="text" name="name" value={formData.name} onChange={handleChange} minLength={3} maxLength={32}  placeholder="Name"/>
 
-                <select className={Mstyle.searchSelect} name="rarity" value={formData.rarity} onChange={handleChange} required >
+                <select className={Mstyle.searchSelect} name="rarity" value={formData.rarity} onChange={handleChange}  >
                     <option value="" disabled selected>Rarity</option>
                     <option value="common">Common</option>
                     <option value="uncommon">Uncommon</option>
@@ -59,7 +50,7 @@ function ItemSearchBar() {
                     <option value="artifact">Artifact</option>
                 </select>
 
-                <select className={Mstyle.searchSelect} name="type" value={formData.type} onChange={handleChange} required >
+                <select className={Mstyle.searchSelect} name="type" value={formData.type} onChange={handleChange}  >
                     <option value="" disabled selected>Type</option>
                     <option value="wand">Wand</option>
                     <option value="armor">Armor</option>
@@ -72,7 +63,7 @@ function ItemSearchBar() {
                     <option value="wondrous-item">Wondrous Item</option>
                 </select>
 
-                <select className={Mstyle.searchSelect} id={style.searchConf} name="needsAdjustment" value={formData.needsAdjustment} onChange={handleChange} required >
+                <select className={Mstyle.searchSelect} id={style.searchConf} name="needsAdjustment" value={formData.needsAdjustment} onChange={handleChange}  >
                     <option value="" disabled selected>Configuration</option>
                     <option value="true">Needs configuration</option>
                     <option value="false">Doesn't need configuration</option>
