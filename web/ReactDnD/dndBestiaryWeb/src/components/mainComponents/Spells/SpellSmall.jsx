@@ -26,7 +26,7 @@ function SpellSmall() {
 
   const listItems = spells.map(spell => (
     <div key={spell.id} onClick={() => handleClick(spell)} className={Mstyle.bestiaryBox}>
-      <p className={style.spellLevel}>{spell.lvl}</p>
+      <p className={style.spellLevel}>{spell.level != 0 ? spell.level : "plot"}</p>
       <p className={style.spellName}>
         {spell.name.length > 20 ? spell.name.substring(0, 20) + "..." : spell.name}
       </p>

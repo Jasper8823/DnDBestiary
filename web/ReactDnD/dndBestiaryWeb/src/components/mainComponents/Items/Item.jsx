@@ -27,8 +27,6 @@ function Item(){
 
     let damageDeal = '';
 
-    console.log(item.DamageTypes.length);
-
     if(item.DamageTypes.length !== 0){
         item.DamageTypes.forEach(damageT => {
             damageDeal+= `${damageT}, `

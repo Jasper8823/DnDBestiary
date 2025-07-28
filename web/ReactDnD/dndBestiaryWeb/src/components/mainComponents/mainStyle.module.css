@@ -1,18 +1,18 @@
 .box{
+    transition: none !important;
+    animation: none !important;
     position: relative;
     width: 82%;
     height: auto;
-    min-height: 900px;
     background-color: rgb(240,240,240,0.5);
     margin: 0;
     left: 17%;
-    top: 50px;
     backdrop-filter: blur(1px); 
     background: linear-gradient(rgba(204, 82, 0, 0.1));
     border-radius: 5px;
     border: 2px solid rgba(0, 0, 0, 0.534);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    margin-bottom: 150px;
+    margin-bottom: 100px;
     transition: all 5s ease;
     user-select: none;
     color: black;
@@ -20,6 +20,17 @@
 
 .box:hover{
     box-shadow: 0 10px 48px 0 rgba(0, 0, 0, 0.5);
+}
+
+#bestiaryBox{
+    top: 50px;
+    min-height: 700px;
+}
+
+#toolBox{
+    top: -38px;
+    min-height: 788px;
+    margin-bottom: 0px;
 }
 
 .header{
@@ -36,7 +47,7 @@
 .header p{
     font-size: 1.8em;
     position: relative;
-    width: 200px;
+    width: 400px;
     left: 57px;
     top: 3.5px;
     font-family: sans-serif;

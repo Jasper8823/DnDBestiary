@@ -173,7 +173,7 @@ public class DataService {
         spellInfo.put("prepareMoves", spell.getPrepareMoves());
         spellInfo.put("status_names", DataFetchUtil.extractNames(spell.getSpell_statusList(), Status::getName));
         spellInfo.put("class_names", DataFetchUtil.extractNames(spell.getSpell_classList(), CharacterClass::getName));
-        spellInfo.put("DamageTypes", DataFetchUtil.extractNames(spell.getSpellDamageTypeList(), sdt -> sdt.getDamageType().getName()));
+        spellInfo.put("DamageTypes", DataFetchUtil.extractNames(spell.getSpellDamageTypeList(), idt -> idt.getDamageType().getName()));
 
 
         return spellInfo;

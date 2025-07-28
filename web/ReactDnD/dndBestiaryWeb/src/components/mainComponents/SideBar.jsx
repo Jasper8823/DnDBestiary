@@ -13,12 +13,19 @@ function SideBar(){
     const monsterRouter = () => {
         navigate(`/bestiary`);
     };
+
     const itemRouter = () => {
         navigate(`/items`);
     };
+
     const spellRouter = () => {
         navigate(`/spells`);
+    };    
+    
+    const calcRouter = () => {
+        navigate(`/combat-calculator`);
     };
+
     return(
         <div className={style.sideBarBox}>
             <div className={style.subBox}>
@@ -39,7 +46,7 @@ function SideBar(){
                 <div className={style.titleBox}>
                     <h3>Tools</h3>
                 </div>
-                <div className={style.directBox}>
+                <div className={style.directBox} onClick={() => calcRouter()}>
                     <img src={battleImage} className={style.picture}/><p>Combat calculator</p>
                 </div>
                 <div className={style.directBox}>

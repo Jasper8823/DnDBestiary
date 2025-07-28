@@ -35,6 +35,7 @@ function Spell(){
 
     let damageDeal = '';
     
+    console.log(damageDeal)
     if(spell.DamageTypes.length !==0){
         spell.DamageTypes.forEach(damageDeal => {
             damageDeal+= `${damageDeal}, `
