@@ -16,7 +16,7 @@ public class MonsterAction {
     @Column(name = "is_legendary")
     private boolean isLegendary;
 
-    @Column(name = "information")
+    @Column(name = "information", length = 1024)
     private String information;
 
     @ManyToOne

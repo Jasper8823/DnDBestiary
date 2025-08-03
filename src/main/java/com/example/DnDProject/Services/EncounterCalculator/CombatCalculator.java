@@ -1,5 +1,6 @@
 package com.example.DnDProject.Services.EncounterCalculator;
 
+import com.example.DnDProject.DTOs.CalcDTO;
 import com.example.DnDProject.Entities.Item.Item;
 import com.example.DnDProject.Entities.Monster.Monster;
 import com.example.DnDProject.Entities.Character.Character;
@@ -9,17 +10,64 @@ import com.example.DnDProject.Entities.MtoMConnections.Item_DamageType;
 import com.example.DnDProject.Entities.MtoMConnections.Spell_DamageType;
 import com.example.DnDProject.Entities.Spell.Spell;
 import com.example.DnDProject.UtilMethods.DataFetchUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.Arrays;
 import java.util.List;
 
+import static com.example.DnDProject.Services.EncounterCalculator.EncounterXPData.*;
+
 
 @Service
 @Validated
 public class CombatCalculator {
+    public String calculateSimpleDifficulty(CalcDTO dto) {
+        if (dto == null || dto.getPlayers() == null || dto.getPlayers().isEmpty() ||
+                dto.getMonsters() == null || dto.getMonsters().isEmpty()) {
+            return "No players or monsters";
+        }
+
+        int easyThreshold = 0;
+        int mediumThreshold = 0;
+        int hardThreshold = 0;
+        int deadlyThreshold = 0;
+        for (CalcDTO.PlayerGroup group : dto.getPlayers()) {
+            int[] thresholds = LEVEL_THRESHOLDS.get(group.getLevel());
+            easyThreshold+=thresholds[0]*group.getCount();
+            mediumThreshold+=thresholds[1]*group.getCount();
+            hardThreshold+=thresholds[2]*group.getCount();
+            deadlyThreshold+=thresholds[3]*group.getCount();
+        }
+
+        int totalMonsterXP = 0;
+        int totalMonsters = 0;
+        for (CalcDTO.MonsterGroup group : dto.getMonsters()) {
+            int xp = CR_XP.get(group.getCr());
+            totalMonsterXP += xp*group.getCount();
+            totalMonsters += group.getCount();
+        }
+
+        double multiplier =
+                getEncounterMultiplier(totalMonsters,
+                        dto.getPlayers().stream().mapToInt(CalcDTO.PlayerGroup::getCount).sum());
+
+        double finalXP = totalMonsterXP*multiplier;
+
+        if (finalXP<easyThreshold) {
+            return "Very Simple";
+        } else if (finalXP<mediumThreshold) {
+            return "Easy";
+        } else if (finalXP<hardThreshold) {
+            return "Medium";
+        } else if (finalXP<deadlyThreshold) {
+            return "Hard";
+        } else {
+            return "Deadly";
+        }
+    }
+
+
 
 
     public static String calculateDifficulty(List<Character> characters, List<Monster> monsters,Topography topography) {

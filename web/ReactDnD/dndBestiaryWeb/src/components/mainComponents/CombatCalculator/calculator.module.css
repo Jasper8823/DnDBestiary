@@ -1,0 +1,107 @@
+.calculatorBox {
+    font-family: "Microsoft Himalaya";
+    font-size: 2em;
+}
+
+.box {
+    display: inline-block;
+    position: fixed;
+    margin: 0px;
+    padding: 0px;
+}
+
+.inputBox{
+    position: relative;
+    top: -25px;
+}
+
+#playerBox{
+    top: 20px;
+    left: 20px
+}
+
+#monsterBox{
+    top: 20px;
+    left: 390px
+}
+
+input {
+    padding: 2px;
+    margin-right: 5px;  
+    text-align: center;
+    width: 120px;
+    background-color: #7e7a7523;
+    border: solid rgba(0, 0, 0, 0.171) 1px;
+    border-radius: 5px;
+    font-family: "Microsoft Himalaya";
+    font-size: 0.9em;
+    color: black;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input::placeholder {
+  color: black;
+  opacity: 0.7;
+}
+
+button {
+    padding: 3px;
+    margin-left: 5px;
+    font-family: "Microsoft Himalaya";
+    font-size: 0.8em;
+}
+
+.addButton{
+    position: relative;
+    background-color: #24990023;
+    border-radius: 5px;
+    border: solid rgba(0, 0, 0, 0.26) 1px;
+}
+
+.removeButton{
+    background-color: #99000000;
+    border-radius: 5px;
+    scale: 0.75;
+    position: relative;
+    left: -9px;
+    top: 1px;
+    border: solid rgba(0, 0, 0, 0) 1px;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  margin: 5px 0;
+}
+
+.specButton{
+    margin: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    top: 600px;
+    left: 20px;
+    background: #b901013b;
+    font-size: 1.2em;
+    color: rgb(0, 0, 0);
+    border: solid rgba(0, 0, 0, 0.336) 1px;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 5px;
+}
+
+#resetButton {
+    background: #b901013b;
+}
+
+#calcButton {
+    background: #01b90a3b;
+}
