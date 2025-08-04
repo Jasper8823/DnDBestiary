@@ -24,30 +24,90 @@ const getBonus = (value) => {
     }
 }
 
+const raceBonuses = {
+    "Mountain Dwarf" : [2, 0, 2, 0, 0, 0],
+    "Hill Dwarf" : [0, 0, 2, 0, 1, 0],
+    "High Elf" : [0, 2, 0, 1, 0, 0],
+    "Wood Elf" : [0, 2, 0, 0, 1, 0],
+    "Drow (Dark Elf)" : [0, 2, 0, 0, 0, 1],
+    "Lightfoot Halfling" : [0, 2, 0, 0, 0, 1],
+    "Stout Halfling" : [0, 2, 1, 0, 0, 0],
+    "Human" : [1, 1, 1, 1, 1, 1],
+    "Dragonborn" : [2, 0, 0, 0, 0, 1],
+    "Forest Gnome" : [0, 1, 0, 2, 0, 0],
+    "Rock Gnome" : [0, 0, 1, 0, 2, 0],
+    "Half-Elf" : [0, 1, 0, 0, 1, 2],
+    "Half-Orc" : [2, 1, 0, 0, 0, 0],
+    "Tiefling" : [0, 0, 0, 1, 0, 2]
+};
+
+const archetypes = {
+    "Barbarian" : ["Path of the berserker","Path of the totem warrior"],
+    
+    "Bard" : ["College of valor","College of knowledge"],
+    
+    "Cleric" : ["Life domain","Knowledge domain"
+        ,"Trickery domain","Nature domain","Light domain"],
+    
+        "Druid" : ["Circle of the land","Circle of the moon"],
+    
+    "Fighter" : ["Master of martial arts","Mystic knight","Champion"],
+    
+    "Monk" : ["Way of the open hand","Way of the four elements","Way of shadow"],
+    
+    "Paladin" : ["Oath of devotion","Oath of vengeance","Oath of the ancients"],
+    
+    "Ranger" : ["Hunter","Beast master"],
+
+    "Rogue" : ["Thief","Assassin","Arcane trickster"],
+
+    "Sorcerer" : ["Dragon bloodline","Wild magic"],
+
+    "Warlock" : ["The archfey","The fiend","The great old one"],
+
+    "Wizard" : ["School of illusion","School of illusion"
+        ,"School of necromancy","School of abjuration"
+        ,"School of enchantment","School of transmutation","School of divination"],
+
+}
+
 function CreateCharacter() {
     const navigate = useNavigate();
     const [characters, setCharacters] = useState(null);
 
-    const raceBonuses = {
-        "Mountain Dwarf" : [2, 0, 2, 0, 0, 0],
-        "Hill Dwarf" : [0, 0, 2, 0, 1, 0],
-        "High Elf" : [0, 2, 0, 1, 0, 0],
-        "Wood Elf" : [0, 2, 0, 0, 1, 0],
-        "Drow (Dark Elf)" : [0, 2, 0, 0, 0, 1],
-        "Lightfoot Halfling" : [0, 2, 0, 0, 0, 1],
-        "Stout Halfling" : [0, 2, 1, 0, 0, 0],
-        "Human" : [1, 1, 1, 1, 1, 1],
-        "Dragonborn" : [2, 0, 0, 0, 0, 1],
-        "Forest Gnome" : [0, 1, 0, 2, 0, 0],
-        "Rock Gnome" : [0, 0, 1, 0, 2, 0],
-        "Half-Elf" : [0, 1, 0, 0, 1, 2],
-        "Half-Orc" : [2, 1, 0, 0, 0, 0],
-        "Tiefling" : [0, 0, 0, 1, 0, 2]
-    };
-
     let statList = [8, 8, 8, 8, 8, 8];
     let raceBonusList = [0, 0, 0, 0, 0, 0];
     let pointsLeft = 27;
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        const form = event.target;
+
+        const data = {
+            name: form.name.value,
+            level: form.level.value,
+            class: form.class.value,
+            race: form.race.value,
+            backstory: form.backstory.value,
+            archetype: form.archetype.value,
+            stats: getFinalStats()
+        };
+
+        try {
+            console.log(data);
+            const response = await fetch("/create-character", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Error while sending request.");
+        }
+    };
 
     const statUp = (statNumber) =>{
         let statStrName = "";
@@ -154,8 +214,28 @@ function CreateCharacter() {
         }
     }
 
+    const getFinalStats = () => {
+        let fstat = []
+        for(let i=0; i<6; i++){
+            fstat[i] = raceBonusList[i]+statList[i];
+        }
+        return fstat;
+    }
+
+    const updateArchetype = (className) => {
+        let archetypesList = archetypes[className];
+        const selectE =  document.getElementById("archetype");
+        selectE.selectedIndex = -1;
+        selectE.innerHTML = "";
+        archetypesList.forEach(arName => {
+            var option = document.createElement("option");
+            option.text = arName;
+            selectE.appendChild(option);
+        });
+    }
+
     return<div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" minlength="2" maxlength="32" required/>
 
@@ -163,7 +243,7 @@ function CreateCharacter() {
                 <input type="number" id="level" name="level" min="1" max="20" required/>
 
                 <label for="class">Class</label>
-                <select id="class" name="class" required>
+                <select id="class" name="class" onChange={(e) => updateArchetype(e.target.value)} required>
                     <option value="">--Select Class--</option>
                     <option>Barbarian</option>
                     <option>Bard</option>
@@ -180,7 +260,7 @@ function CreateCharacter() {
                 </select>
 
                 <label for="race">Race</label>
-                <select id="race" name="race" onClick={(e) => updateRaceB(e.target.value)} required>
+                <select id="race" name="race" onChange={(e) => updateRaceB(e.target.value)} required>
                     <option value="">--Select Race--</option>
                     <option>Human</option>
                     <option>High Elf</option>
@@ -197,73 +277,100 @@ function CreateCharacter() {
                     <option>Half-Orc</option>
                     <option>Tiefling</option>
                 </select>
+
+                <label for="backstory">Backstory</label>
+                <select id="backstory" name="backstory" required>
+                    <option value="">--Select Backstory--</option>
+                    <option>Acolyte</option>
+                    <option>Criminal</option>
+                    <option>Folk Hero</option>
+                    <option>Noble</option>
+                    <option>Sage</option>
+                    <option>Soldier</option>
+                    <option>Urchin</option>
+                    <option>Entertainer</option>
+                    <option>Haunted One</option>
+                    <option>Guild Artisan</option>
+                    <option>Faceless One</option>
+                    <option>Hermit</option>
+                    <option>Bounty Hunter</option>
+                    <option>Feylost</option>
+                    <option>Recluse</option>
+                    <option>Far Traveler</option>
+                </select>
+
+                <label for="archetype">Archetype</label>
+                <select id="archetype" name="archetype" required>
+                    <option value="">--Select Archetype--</option>
+                </select>
                 
                 <p id="statLeft">Stat points left: {pointsLeft}</p>
 
                 <div className={style.statBoxMain}>
                     <div className={style.statBox}>
                         <p className={style.statName} style={{ visibility: "hidden" }}>1</p>
-                        <button className={style.statUpB} style={{ visibility: "hidden" }}>1</button>
+                        <button type="button" className={style.statUpB} style={{ visibility: "hidden" }}>1</button>
                         <p className={style.statVal}  style={{ visibility: "hidden" }}>1</p>
-                        <button className={style.statDownB} style={{ visibility: "hidden" }}>1</button>
+                        <button type="button" className={style.statDownB} style={{ visibility: "hidden" }}>1</button>
                         <p>Race bonus:</p>
                         <p>Final value:</p>
                     </div>
 
                     <div className={style.statBox}>
                         <p className={style.statName}>Strength</p>
-                        <button className={style.statUpB} id="StrengthUP" onClick={() => statUp(0)}>+</button>
+                        <button type="button" className={style.statUpB} id="StrengthUP" onClick={() => statUp(0)}>+</button>
                         <p className={style.statVal} id="StrengthVAL">8</p>
-                        <button className={style.statDownB} style={{ visibility: "hidden" }} id="StrengthDOWN" onClick={() => statDown(0)}>-</button>
+                        <button type="button" className={style.statDownB} style={{ visibility: "hidden" }} id="StrengthDOWN" onClick={() => statDown(0)}>-</button>
                         <p id="0RaceBonus" style={{ visibility: "hidden" }}>1</p>
                         <p id="0FinalVal">8 (-1)</p>
                     </div>
 
                     <div className={style.statBox}>
                         <p className={style.statName}>Dexterity</p>
-                        <button className={style.statUpB} id="DexterityUP" onClick={() => statUp(1)}>+</button>
+                        <button type="button" className={style.statUpB} id="DexterityUP" onClick={() => statUp(1)}>+</button>
                         <p className={style.statVal} id="DexterityVAL">8</p>
-                        <button className={style.statDownB} style={{ visibility: "hidden" }} id="DexterityDOWN" onClick={() => statDown(1)}>-</button>
+                        <button type="button" className={style.statDownB} style={{ visibility: "hidden" }} id="DexterityDOWN" onClick={() => statDown(1)}>-</button>
                         <p id="1RaceBonus" style={{ visibility: "hidden" }}>1</p>
                         <p id="1FinalVal">8 (-1)</p>
                     </div>
 
                     <div className={style.statBox}>
                         <p className={style.statName}>Constitution</p>
-                        <button className={style.statUpB} id="ConstitutionUP" onClick={() => statUp(2)}>+</button>
+                        <button type="button" className={style.statUpB} id="ConstitutionUP" onClick={() => statUp(2)}>+</button>
                         <p className={style.statVal} id="ConstitutionVAL">8</p>
-                        <button className={style.statDownB} style={{ visibility: "hidden" }} id="ConstitutionDOWN" onClick={() => statDown(2)}>-</button>
+                        <button type="button" className={style.statDownB} style={{ visibility: "hidden" }} id="ConstitutionDOWN" onClick={() => statDown(2)}>-</button>
                         <p id="2RaceBonus" style={{ visibility: "hidden" }}>1</p>
                         <p id="2FinalVal">8 (-1)</p>
                     </div>
 
                     <div className={style.statBox}>
                         <p className={style.statName}>Intelligence</p>
-                        <button className={style.statUpB} id="IntelligenceUP" onClick={() => statUp(3)}>+</button>
+                        <button type="button" className={style.statUpB} id="IntelligenceUP" onClick={() => statUp(3)}>+</button>
                         <p className={style.statVal} id="IntelligenceVAL">8</p>
-                        <button className={style.statDownB} style={{ visibility: "hidden" }} id="IntelligenceDOWN" onClick={() => statDown(3)}>-</button>
+                        <button type="button" className={style.statDownB} style={{ visibility: "hidden" }} id="IntelligenceDOWN" onClick={() => statDown(3)}>-</button>
                         <p id="3RaceBonus" style={{ visibility: "hidden" }}>1</p>
                         <p id="3FinalVal">8 (-1)</p>
                     </div>
 
                     <div className={style.statBox}>
                         <p className={style.statName}>Wisdom</p>
-                        <button className={style.statUpB} id="WisdomUP" onClick={() => statUp(4)}>+</button>
+                        <button type="button" className={style.statUpB} id="WisdomUP" onClick={() => statUp(4)}>+</button>
                         <p className={style.statVal} id="WisdomVAL">8</p>
-                        <button className={style.statDownB} style={{ visibility: "hidden" }} id="WisdomDOWN" onClick={() => statDown(4)}>-</button>
+                        <button type="button" className={style.statDownB} style={{ visibility: "hidden" }} id="WisdomDOWN" onClick={() => statDown(4)}>-</button>
                         <p id="4RaceBonus" style={{ visibility: "hidden" }}>1</p>
                         <p id="4FinalVal">8 (-1)</p>
                     </div>
                     
                     <div className={style.statBox}>
                         <p className={style.statName}>Charisma</p>
-                        <button className={style.statUpB} id="CharismaUP" onClick={() => statUp(5)}>+</button>
+                        <button type="button" className={style.statUpB} id="CharismaUP" onClick={() => statUp(5)}>+</button>
                         <p className={style.statVal} id="CharismaVAL">8</p>
-                        <button className={style.statDownB} style={{ visibility: "hidden" }} id="CharismaDOWN" onClick={() => statDown(5)}>-</button>
+                        <button type="button" className={style.statDownB} style={{ visibility: "hidden" }} id="CharismaDOWN" onClick={() => statDown(5)}>-</button>
                         <p id="5RaceBonus" style={{ visibility: "hidden" }}>1</p>
                         <p id="5FinalVal">8 (-1)</p>
                     </div>
                 </div>
+                <button id="submit">Submit</button>
             </form>
         </div>;
 }

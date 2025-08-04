@@ -26,6 +26,10 @@ function SideBar(){
         navigate(`/combat-calculator`);
     };
 
+    const charRouter = () => {
+        navigate(`/characters`);
+    };
+
     return(
         <div className={style.sideBarBox}>
             <div className={style.subBox}>
@@ -49,7 +53,7 @@ function SideBar(){
                 <div className={style.directBox} onClick={() => calcRouter()}>
                     <img src={battleImage} className={style.picture}/><p>Combat calculator</p>
                 </div>
-                <div className={style.directBox}>
+                <div className={style.directBox} onClick={() => charRouter()}>
                     <FontAwesomeIcon icon={faUser} className={style.icon}/><p>Characters</p>
                 </div>
             </div>

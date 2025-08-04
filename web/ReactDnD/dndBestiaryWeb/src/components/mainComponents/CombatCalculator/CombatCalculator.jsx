@@ -81,7 +81,7 @@ function CombatCalculator() {
                 }
 
                 const data = await response.json();
-                console.log('Calculation result:', data);
+                document.getElementById("diff").textContent();
 
             } catch (error) {
                 console.error('Error submitting data:', error);
@@ -136,6 +136,7 @@ function CombatCalculator() {
             <button onClick={resetAll} className={style.specButton} id={style.resetButton}>Reset</button>
             
             <button onClick={submit} className={style.specButton} id={style.calcButton}>Calculate</button>
+            <p id="diff"></p>
         </div>
     );
 }

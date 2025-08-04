@@ -1,6 +1,5 @@
 package com.example.DnDProject.Controllers;
 
-import com.example.DnDProject.Repositories.Character.CharacterRepository;
 import com.example.DnDProject.Services.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +12,7 @@ import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:5173")
 @Controller
-public class CharacterController {
+public class CharacterController{
 
     @Autowired
     private CharacterService characterService;
@@ -23,5 +22,4 @@ public class CharacterController {
     public List<Map<String, Object>> getItems(){
         return characterService.charactersInfo();
     }
-
 }
