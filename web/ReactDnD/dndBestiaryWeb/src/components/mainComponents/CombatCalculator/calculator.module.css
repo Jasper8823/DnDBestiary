@@ -105,3 +105,9 @@ li {
 #calcButton {
     background: #01b90a3b;
 }
+
+.diff{
+    position: absolute;
+    top: 40px;
+    right: 550px;
+}
