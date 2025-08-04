@@ -16,6 +16,7 @@ import jakarta.persistence.*;
 @Table(name = "character")
 public class Character {
     @Id
+    @GeneratedValue()
     @Column(name = "id")
     private int id;
 
@@ -223,4 +224,6 @@ public class Character {
     public void setBackstory(Backstory backstory) {
         this.backstory = backstory;
     }
+
+
 }

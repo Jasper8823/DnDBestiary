@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eeda4e98-7652-44ba-bd2f-85e06e0692d9" name="Changes" comment="Filtering works">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/CharacterController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/DTOs/CalcDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/CharacterService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/EncounterCalculator/EncounterXPData.java" afterDir="false" />
+    <list default="true" id="eeda4e98-7652-44ba-bd2f-85e06e0692d9" name="Changes" comment="Added simple calculator logic. Added character Controller.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Cache/CharacterCache.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/DTOs/CharacterDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/CalculatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/CalculatorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/MtoMConnections/MonsterAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/MtoMConnections/MonsterAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/EncounterCalculator/CombatCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/EncounterCalculator/CombatCalculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQLQueries/InsertQueries.txt" beforeDir="false" afterPath="$PROJECT_DIR$/SQLQueries/InsertQueries.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/CharacterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/CharacterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/Character/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/Character/Character.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Characters/CreateCharacter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Characters/CreateCharacter.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -291,7 +290,10 @@
       <workItem from="1753391792660" duration="6599000" />
       <workItem from="1753441684884" duration="1597000" />
       <workItem from="1754055518409" duration="2422000" />
-      <workItem from="1754226547537" duration="4302000" />
+      <workItem from="1754226547537" duration="4402000" />
+      <workItem from="1754232941920" duration="63000" />
+      <workItem from="1754233898812" duration="1234000" />
+      <workItem from="1754319062708" duration="6472000" />
     </task>
     <task id="LOCAL-00001" summary="Fixes">
       <option name="closed" value="true" />
@@ -629,14 +631,32 @@
       <option name="project" value="LOCAL" />
       <updated>1753443269943</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Added simple calculator logic. Added character Controller.">
+      <option name="closed" value="true" />
+      <created>1754231858470</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1754231858471</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="js and css files" />
     <MESSAGE value="updated target js" />
     <MESSAGE value="added sql queries, updated fillDBMonster.html, js and css files" />
     <MESSAGE value="added buttons to fillDBMonster" />
@@ -661,6 +681,7 @@
     <MESSAGE value="Fixed DamageType issue, removed redundant files, added sorting." />
     <MESSAGE value="Refactored controllers, added sorting possibility for spells items and monsters." />
     <MESSAGE value="Filtering works" />
-    <option name="LAST_COMMIT_MESSAGE" value="Filtering works" />
+    <MESSAGE value="Added simple calculator logic. Added character Controller." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added simple calculator logic. Added character Controller." />
   </component>
 </project>

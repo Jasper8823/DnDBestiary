@@ -96,7 +96,7 @@ function CreateCharacter() {
 
         try {
             console.log(data);
-            const response = await fetch("/create-character", {
+            const response = await fetch("http://localhost:8080/create-character", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
