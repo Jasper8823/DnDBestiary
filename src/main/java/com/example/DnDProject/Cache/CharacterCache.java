@@ -1,7 +1,11 @@
 package com.example.DnDProject.Cache;
 
+import com.example.DnDProject.DTOs.CharacterDtos.CharSpellDTO;
 import com.example.DnDProject.Entities.Character.Character;
-import com.example.DnDProject.DTOs.CharacterDTO;
+import com.example.DnDProject.DTOs.CharacterDtos.CharacterDTO;
+import com.example.DnDProject.Entities.Class.CharacterClass;
+import com.example.DnDProject.Entities.Class.SpellSlots;
+import com.example.DnDProject.Entities.Spell.Spell;
 import com.example.DnDProject.Repositories.BackStory.BackStoryRepository;
 import com.example.DnDProject.Repositories.Class.CharacterClassRepository;
 import com.example.DnDProject.Repositories.Race.RaceRepository;
@@ -9,9 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class CharacterCache {
@@ -62,13 +66,15 @@ public class CharacterCache {
 
     public String createCharacter(CharacterDTO dto) {
         Character character = new Character();
+        String className = dto.getClazz().toLowerCase();
 
         character.setName(dto.getName());
         character.setLevel(dto.getLevel());
-        if(dto.getLevel()>2){
+        if(dto.getLevel()>2 && (className.equalsIgnoreCase("rogue")
+                || className.equalsIgnoreCase("fighter"))){
             character.setCharClass(charClassRepo.findById(dto.getArchetype()).orElse(null));
         }else{
-            character.setCharClass(charClassRepo.findById(dto.getClazz()).orElse(null));
+            character.setCharClass(charClassRepo.findById(className).orElse(null));
         }
         character.setBackstory(backstoryRepo.findById(dto.getBackstory()).orElse(null));
         character.setRace(raceRepo.findById(dto.getRace()).orElse(null));
@@ -89,6 +95,38 @@ public class CharacterCache {
 
         return cacheId;
     }
+
+    public CharSpellDTO getCharSpells(String id){
+        Character character = getCharacter(id);
+        if (character == null){
+            return null;
+        }
+        int statRaise = (character.getLevel() / 4)*2;
+
+        CharacterClass clazz = character.getCharClass();
+        Map<String, Integer> spells = new LinkedHashMap<>();
+
+        clazz.getSpellClassList().stream()
+                .filter(spell -> spell.getLevel() <= character.getLevel())
+                .sorted(Comparator.comparingInt(Spell::getLevel))
+                .forEach(spell -> spells.put(spell.getName(), spell.getLevel()));
+
+
+        System.out.println(clazz.getName() + clazz.getSpellSlotsList());
+        SpellSlots slots = clazz.getSpellSlotsList().stream()
+                .filter(slot -> slot.getLevel() == character.getLevel()
+                        && slot.getCharClass().getName().equals(clazz.getName()))
+                .findFirst()
+                .orElse(null);
+
+        int spells_num=0;
+        if (slots != null){
+            spells_num=slots.getSpell_num();
+        }
+
+        return new CharSpellDTO(statRaise, spells, spells_num);
+    }
+
 
     public Character getCharacter(String id) {
         CacheEntry entry = cache.get(id);

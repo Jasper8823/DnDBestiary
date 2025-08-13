@@ -1,7 +1,8 @@
 package com.example.DnDProject.Controllers;
 
 import com.example.DnDProject.Cache.CharacterCache;
-import com.example.DnDProject.DTOs.CharacterDTO;
+import com.example.DnDProject.DTOs.CharacterDtos.CharSpellDTO;
+import com.example.DnDProject.DTOs.CharacterDtos.CharacterDTO;
 import com.example.DnDProject.Services.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,4 +32,14 @@ public class CharacterController{
     public String createCharacter(@RequestBody CharacterDTO dto) {
         return cache.createCharacter(dto);
     }
+
+    @GetMapping("/create-character")
+    @ResponseBody
+    public CharSpellDTO getCharacterProgress(@RequestParam String uuid) {
+        CharSpellDTO dto = cache.getCharSpells(uuid);
+        System.out.println(dto);
+        return dto;
+    }
+
+
 }

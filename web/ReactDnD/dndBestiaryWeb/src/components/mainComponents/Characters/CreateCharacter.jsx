@@ -51,7 +51,7 @@ const archetypes = {
     
         "Druid" : ["Circle of the land","Circle of the moon"],
     
-    "Fighter" : ["Master of martial arts","Mystic knight","Champion"],
+    "Fighter" : ["Master of martial arts","Mystic Knight","Champion"],
     
     "Monk" : ["Way of the open hand","Way of the four elements","Way of shadow"],
     

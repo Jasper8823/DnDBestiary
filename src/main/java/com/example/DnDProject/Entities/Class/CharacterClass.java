@@ -42,7 +42,7 @@ public class CharacterClass {
     private List<Character> characterList = new ArrayList<>();
 
     @OneToMany(mappedBy = "charClass", orphanRemoval = true)
-    @Fetch(FetchMode.SELECT)
+    @Fetch(FetchMode.JOIN)
     private List<SpellSlots> spellSlotsList = new ArrayList<>();
 
 
@@ -56,7 +56,7 @@ public class CharacterClass {
     @ManyToMany(mappedBy = "att_classList")
     private List<Attribute> att_classList = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "spell_classList")
+    @ManyToMany(mappedBy = "spell_classList", fetch = FetchType.EAGER)
     private List<Spell> spell_classList = new ArrayList<>();
 
     @ManyToMany(mappedBy = "classProfList")
@@ -176,13 +176,6 @@ public class CharacterClass {
         this.att_classList = att_classList;
     }
 
-    public List<Spell> getSpell_classList() {
-        return spell_classList;
-    }
-
-    public void setSpell_classList(List<Spell> spell_classList) {
-        this.spell_classList = spell_classList;
-    }
 
     public List<SubType> getSubtype_classList() {
         return subtype_classList;

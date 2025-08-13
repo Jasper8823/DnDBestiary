@@ -1,4 +1,4 @@
-package com.example.DnDProject.DTOs;
+package com.example.DnDProject.DTOs.CharacterDtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
