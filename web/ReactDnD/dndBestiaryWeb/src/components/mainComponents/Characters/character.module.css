@@ -1,5 +1,11 @@
+@font-face {
+  font-family: 'DeutscheZierschrift';
+  src: url('../../../../public/fonts/DeutscheZierschrift.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 #createButton{
-    position: absolute;
     font-size: 1.8em;
     position: absolute;
     width: 400px;
@@ -9,7 +15,7 @@
     color: white;
     right: -30px;
     border: none;
-    font-family: sans-serif;
+    font-family: 'DeutscheZierschrift';
     margin: 0px;
 }
 

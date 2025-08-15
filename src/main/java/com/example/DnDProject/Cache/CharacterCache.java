@@ -124,6 +124,14 @@ public class CharacterCache {
             spells_num=slots.getSpell_num();
         }
 
+        if(statRaise == 0 && spells_num==0){
+            statRaise = -1;
+        }
+
+        if(spells_num>spells.size()){
+            spells_num=spells.size();
+        }
+
         return new CharSpellDTO(statRaise, spells, spells_num);
     }
 
