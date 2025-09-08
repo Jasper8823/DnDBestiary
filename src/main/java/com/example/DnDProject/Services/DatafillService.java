@@ -1,6 +1,10 @@
 package com.example.DnDProject.Services;
 
 
+import com.example.DnDProject.DTOs.CharacterDtos.CharacterDTO;
+import com.example.DnDProject.DTOs.CharacterDtos.CharacterWSpellsDTO;
+import com.example.DnDProject.Entities.Character.Character;
+import com.example.DnDProject.Repositories.Character.CharacterRepository;
 import com.example.DnDProject.UtilMethods.DataFetchUtil;
 import com.example.DnDProject.DTOs.*;
 import com.example.DnDProject.Entities.Class.ClassAbility;
@@ -46,6 +50,9 @@ public class DatafillService {
     @Autowired
     private WorldviewRepository worldviewRepo;
 
+    //Character repository
+    @Autowired
+    private CharacterRepository characterRepo;
 
     //Status and damagetype repositories
     @Autowired
@@ -201,5 +208,22 @@ public class DatafillService {
         cabilityRepo.save(ability);
     }
 
+    @Transactional
+    public void saveCharacter(Character character, CharacterWSpellsDTO dto) {
+        if(dto != null) {
+            character.setStrength(dto.getStats().get(0));
+            character.setDexterity(dto.getStats().get(1));
+            character.setConstitution(dto.getStats().get(2));
+            character.setWisdom(dto.getStats().get(3));
+            character.setIntelligence(dto.getStats().get(4));
+            character.setCharisma(dto.getStats().get(5));
+
+            if(!dto.getSpells().isEmpty()) {
+                character.setSpell_charList(dfu.fetchList(dto.getSpells(),spellRepo));
+            }
+        }
+
+        characterRepo.saveAndFlush(character);
+    }
 }
 

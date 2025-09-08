@@ -1,18 +1,23 @@
 package com.example.DnDProject.DTOs.CharacterDtos;
 
+import java.util.List;
 import java.util.Map;
 
 public class CharSpellDTO {
     private int stat_raise;
     private Map<String, Integer> spells;
     private int spells_num;
+    private List<Integer> stats;
+    private String race;
 
     public CharSpellDTO() {}
 
-    public CharSpellDTO(int stat_raise, Map<String, Integer> spells, int spells_num) {
+    public CharSpellDTO(int stat_raise, Map<String, Integer> spells, int spells_num, List<Integer> stats, String race) {
+        this.stats = stats;
         this.stat_raise = stat_raise;
         this.spells_num = spells_num;
         this.spells = spells;
+        this.race = race;
     }
 
     public int getStat_raise() {
@@ -39,6 +44,14 @@ public class CharSpellDTO {
         this.spells_num = spells_num;
     }
 
+    public List<Integer> getStats() {return stats;}
+
+    public void setStats(List<Integer> stats) {this.stats = stats;}
+
+    public String getRace() {return race;}
+
+    public void setRace(String race) {this.race = race;}
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -56,5 +69,4 @@ public class CharSpellDTO {
 
         return sb.toString();
     }
-
 }

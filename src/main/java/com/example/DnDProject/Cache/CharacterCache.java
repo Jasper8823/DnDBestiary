@@ -132,7 +132,23 @@ public class CharacterCache {
             spells_num=spells.size();
         }
 
-        return new CharSpellDTO(statRaise, spells, spells_num);
+        List<Integer> stats = new ArrayList<>();
+        stats.add(character.getStrength());
+        stats.add(character.getDexterity());
+        stats.add(character.getConstitution());
+        stats.add(character.getIntelligence());
+        stats.add(character.getWisdom());
+        stats.add(character.getCharisma());
+
+        String race = character.getRace().getName();
+
+        System.out.println(stats);
+        System.out.println(statRaise);
+        System.out.println(spells_num);
+        System.out.println(race);
+        System.out.println(character.getName());
+
+        return new CharSpellDTO(statRaise, spells, spells_num, stats, race);
     }
 
 

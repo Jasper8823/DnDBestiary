@@ -3,7 +3,10 @@ package com.example.DnDProject.Controllers;
 import com.example.DnDProject.Cache.CharacterCache;
 import com.example.DnDProject.DTOs.CharacterDtos.CharSpellDTO;
 import com.example.DnDProject.DTOs.CharacterDtos.CharacterDTO;
+import com.example.DnDProject.DTOs.CharacterDtos.CharacterWSpellsDTO;
+import com.example.DnDProject.Entities.Character.Character;
 import com.example.DnDProject.Services.CharacterService;
+import com.example.DnDProject.Services.DatafillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +19,11 @@ import java.util.Map;
 public class CharacterController{
 
     @Autowired
+    private DatafillService dataFillService;
+
+    @Autowired
     private CharacterService characterService;
+
     @Autowired
     private CharacterCache cache;
 
@@ -41,5 +48,10 @@ public class CharacterController{
         return dto;
     }
 
-
+    @PostMapping("/create-character-spells")
+    @ResponseBody
+    public void createCharacterSpells(@RequestBody CharacterWSpellsDTO dto) {
+        Character character = cache.getCharacter(dto.getUuid());
+        dataFillService.saveCharacter(character, dto);
+    }
 }
