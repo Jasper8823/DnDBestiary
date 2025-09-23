@@ -116,7 +116,7 @@ function Monster(){
 
     return(
         <div key={monster.id} className={style.mainBox}>
-            <p id={style.monsterName}><b>{monster.name}</b></p>
+            <p id={style.monsterTName}><b>{monster.name}</b></p>
             <div className={style.sizeTypeWVBox}>
                 <p><i>{monster.size}</i></p>
                 <p>{monster.type}</p>

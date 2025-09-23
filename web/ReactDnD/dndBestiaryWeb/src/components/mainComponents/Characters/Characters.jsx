@@ -7,8 +7,12 @@ function Characters() {
     const navigate = useNavigate();
     const [characters, setCharacters] = useState(null);
 
-    const handleClick = () => {
+    const handleClickCreate = () => {
         navigate(`/create-character`);
+    };
+
+    const handleClick = (char) => {
+        navigate(`/characters/${char.id}`);
     };
 
     useEffect(() => {
@@ -35,7 +39,7 @@ function Characters() {
     }
     
     return <>
-    <button id={style.createButton}  onClick={() => handleClick()}>Create Character</button>
+    <button id={style.createButton}  onClick={() => handleClickCreate()}>Create Character</button>
     {listCharacters}
     </>;
 }

@@ -15,6 +15,10 @@ function Header(){
     pageName = "Items";
     } else if (location.pathname.startsWith("/spells")) {
     pageName = "Spells";
+    } else if (location.pathname.startsWith("/characters")) {
+    pageName = "Characters";
+    } else if (location.pathname.startsWith("/create-character")) {
+    pageName = "Create";
     } else {
     pageName = "Error";
     }

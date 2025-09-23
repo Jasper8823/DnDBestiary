@@ -5,80 +5,155 @@
   font-style: normal;
 }
 
-#createButton{
-    font-size: 1.8em;
-    position: absolute;
-    width: 400px;
-    right: 0px;
-    top: -70.5px;
+#createButton{ 
+    font-size: 1.8em; 
+    position: absolute; 
+    width: 400px; 
+    right: 0px; 
+    top: -70.5px; 
     background-color: rgb(41, 41, 41);
-    color: white;
-    right: -30px;
+    color: white; right: -30px; 
+    border: none; 
+    font-family: 'DeutscheZierschrift'; 
+    margin: 0px; 
+}
+
+.characterForm {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+    max-width: 100%;
+    min-height: 750px;
+    background: rgba(255, 255, 255, 0.075);
+    border: 1px solid rgba(70, 50, 30, 0.7);
+    border-radius: 6px;
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.25);
+    font-family: "Sitka Banner", serif;
+}
+
+.characterForm label {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #2e1d10;
+    margin-top: 6px;
+}
+
+.characterForm input:valid{
+    background:  rgba(114, 65, 0, 0.151);
+}
+
+.characterForm input, select {
+    padding: 10px 8px;
+    font-size: 1em;
     border: none;
-    font-family: 'DeutscheZierschrift';
-    margin: 0px;
+    border-radius: 4px;
+    background: rgba(114, 65, 0, 0.151);
+    color: #000000;
+    font-family: inherit;
 }
 
-.charName{
-    display: inline-block;
-    margin: 0px;
-    margin-left: 20px;
-    font-family: "Microsoft Himalaya";
-    font-size: 2.2em;
-    user-select:text;
+.formInput{
+    background-color: #ff000000;
 }
 
-#charName{
-    font-family: "Sitka Banner";
-    font-size: 1.1em;
+.characterForm input:focus, 
+.characterForm select:focus {
+    border-color: #5a3d20;
+    outline: none;
+    background: rgba(114, 65, 0, 0.151); /* match normal background */
 }
 
-#charName::after{
-    content: "";
-    position: absolute;
-    background-color: rgb(0, 0, 0, 0.07);
-    width: 13%;
-    height: 3px;
-    left: -2px;
-    top: 37px;
-}
-
-.rows {
-  display: flex;
-  align-items: center;  
-  font-size: 1.2em;
-  margin-bottom: 10px;
-}
-
-.rows::before,
-.rows::after {
-  content: "";
-  flex: 1;
-  border-bottom: 1px solid #00000041;
-  margin: 0 8px;
-  max-width: 20px;
-}
-
-.statBox{
-    width: 80px;
-    display: inline-block;
+.statBoxMain {
+    display: flex;
+    background: rgba(78, 59, 0, 0.105);
+    border-radius: 6px;
     padding: 10px;
-    margin: 10px;
+    font-size: 1.1em;
+    margin: 10px;  
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.pointsLeft{
+    font-size: 1.3em;
+}
+
+.statBoxM{
+    width: 170px;
     text-align: center;
 }
 
-.statBox button{
+.statBox {
+    width: 130px;
+    text-align: center;
+}
+
+.statName {
+    font-weight: bold;
+    font-size: 1.05em;
+    margin-bottom: 4px;
+    color: #3a2718;
+}
+
+.statVal {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin: 6px 0;
+    color: #2a1a0f;
+}
+
+.statBox button {
+    font-size: 1.2em;
+    width: 36px;
+    height: 36px;
+    margin: 4px;
+    border: 1px solid rgba(40, 25, 10, 0.6);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.15s, filter 0.2s;
+}
+
+.statUpB {
+  background: #7a9f59c7;
+  color: #fff;
+}
+.statUpB:hover {
+    filter: brightness(1.1);
+    transform: scale(1.05);
+}
+
+.statDownB {
+    background: #a04d3ac7;
+    color: #fff;
+}
+.statDownB:hover {
+    filter: brightness(1.1);
+    transform: scale(1.05);
+}
+
+.statText{
     font-size: 1.5em;
-    width: 80%;
-    border: none;
 }
 
-.statUpB{
-    border-radius: 5px;
-    background-color: rgba(62, 128, 0, 0.438);
+.submit {
+    position: relative;
+    left: 36%;
+    width: 25%;
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 2em;
+    background: linear-gradient(180deg, rgba(53, 30, 12, 0.699), rgba(53, 30, 12, 0.906));
+    color: #fdfcf7;
+    border: 1px solid #2a1a0f;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: serif;
+    transition: all 2s ease;
 }
 
-.statDownB{
-    border-radius: 5px;
-    background-color: rgba(175, 2, 2, 0.438);
+.submit:hover {
+    filter: brightness(1.3);
+    transform: scale(1.02);
 }

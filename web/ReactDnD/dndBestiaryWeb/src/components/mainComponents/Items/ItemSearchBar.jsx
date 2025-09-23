@@ -3,77 +3,140 @@ import style from './items.module.css';
 import Mstyle from '../mainStyle.module.css';
 import { useNavigate } from 'react-router-dom';
 
+const rarityOptions = {
+  common: "Common",
+  uncommon: "Uncommon",
+  rare: "Rare",
+  veryRare: "Very Rare",
+  legendary: "Legendary",
+  artifact: "Artifact"
+};
+
+const typeOptions = {
+  wand: "Wand",
+  armor: "Armor",
+  rod: "Rod",
+  potion: "Potion",
+  ring: "Ring",
+  weapon: "Weapon",
+  staff: "Staff",
+  scroll: "Scroll",
+  "wondrous-item": "Wondrous Item"
+};
+
+const configOptions = {
+  true: "Needs configuration",
+  false: "Doesn't need configuration"
+};
+
 function ItemSearchBar() {
-    const navigate = useNavigate();
-    const [formData, setFormData] = useState({
-        name: '',
-        rarity: '',
-        type: '',
-        needsAdjustment: ''
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    name: '',
+    rarity: [],
+    type: [],
+    needsAdjustment: []
+  });
+
+  const [rarities, setRarities] = useState([]);
+  const [types, setTypes] = useState([]);
+  const [configs, setConfigs] = useState([]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    switch(name) {
+      case "name":
+        setFormData({ ...formData, [name]: value });
+        break;
+      case "rarity":
+        if (rarities.includes(value)) {
+            setRarities(rarities.filter((s) => s !== value));
+        } else {
+            setRarities([...rarities, value]);
+        }
+        break;
+      case "type":
+        if (types.includes(value)) {
+            setTypes(types.filter((s) => s !== value));
+        } else {
+            setTypes([...types, value]);
+        }
+        break;
+      case "needsAdjustment":
+        if (configs.includes(value)) {
+            setConfigs(configs.filter((s) => s !== value));
+        } else {
+            setConfigs([...configs, value]);
+        }
+        break;
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormData({
+      ...formData,
+      rarity: rarities,
+      type: types,
+      needsAdjustment: configs
     });
+    const query = new URLSearchParams(formData).toString();
+    navigate(`/items?${query}`);
+  };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        });
-    };
+  const handleReset = () => {
+    setFormData({ name: '', rarity: [], type: [], needsAdjustment: [] });
+    setRarities([]);
+    setTypes([]);
+    setConfigs([]);
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const query = new URLSearchParams(formData).toString();
-        navigate(`/items?${query}`);
-    };
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          className={Mstyle.searchInput}
+          id={style.searchInput}
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          placeholder="Name"
+        />
 
-    const handleReset = () => {
-        setFormData({
-            name: '',
-            rarity: '',
-            type: '',
-            needsAdjustment: ''
-        });
-    };
+        <select className={Mstyle.searchSelect} name="rarity" onChange={handleChange}>
+          <option value="" disabled>Rarity</option>
+          {Object.entries(rarityOptions).map(([value, label]) => (
+            <option key={value} value={value} className={rarities.includes(value) ? style.selectedOption : ""}>
+              {label}
+            </option>
+          ))}
+        </select>
 
-    return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input className={Mstyle.searchInput} id={style.searchInput} type="text" name="name" value={formData.name} onChange={handleChange} minLength={3} maxLength={32}  placeholder="Name"/>
+        <select className={Mstyle.searchSelect} name="type" onChange={handleChange}>
+          <option value="" disabled>Type</option>
+          {Object.entries(typeOptions).map(([value, label]) => (
+            <option key={value} value={value} className={types.includes(value) ? style.selectedOption : ""}>
+              {label}
+            </option>
+          ))}
+        </select>
 
-                <select className={Mstyle.searchSelect} name="rarity" value={formData.rarity} onChange={handleChange}  >
-                    <option value="" disabled selected>Rarity</option>
-                    <option value="common">Common</option>
-                    <option value="uncommon">Uncommon</option>
-                    <option value="rare">Rare</option>
-                    <option value="veryRare">Very Rare</option>
-                    <option value="legendary">Legendary</option>
-                    <option value="artifact">Artifact</option>
-                </select>
+        <select className={Mstyle.searchSelect} id={style.configSearch} name="needsAdjustment" onChange={handleChange}>
+          <option value="" disabled>Configuration</option>
+          {Object.entries(configOptions).map(([value, label]) => (
+            <option key={value} value={value} className={configs.includes(value) ? style.selectedOption : ""}>
+              {label}
+            </option>
+          ))}
+        </select>
 
-                <select className={Mstyle.searchSelect} name="type" value={formData.type} onChange={handleChange}  >
-                    <option value="" disabled selected>Type</option>
-                    <option value="wand">Wand</option>
-                    <option value="armor">Armor</option>
-                    <option value="rod">Rod</option>
-                    <option value="potion">Potion</option>
-                    <option value="ring">Ring</option>
-                    <option value="weapon">Weapon</option>
-                    <option value="staff">Staff</option>
-                    <option value="scroll">Scroll</option>
-                    <option value="wondrous-item">Wondrous Item</option>
-                </select>
-
-                <select className={Mstyle.searchSelect} id={style.searchConf} name="needsAdjustment" value={formData.needsAdjustment} onChange={handleChange}  >
-                    <option value="" disabled selected>Configuration</option>
-                    <option value="true">Needs configuration</option>
-                    <option value="false">Doesn't need configuration</option>
-                </select>
-
-                <button className={Mstyle.searchButton} type="button" onClick={handleReset}>Reset</button>
-                <button className={Mstyle.searchButton} type="submit">Search</button>
-            </form>
-        </div>
-    );
+        <button type="submit" className={Mstyle.searchButton}>Search</button>
+        <button type="button" className={Mstyle.searchButton} onClick={handleReset}>Reset</button>
+      </form>
+    </div>
+  );
 }
 
 export default ItemSearchBar;

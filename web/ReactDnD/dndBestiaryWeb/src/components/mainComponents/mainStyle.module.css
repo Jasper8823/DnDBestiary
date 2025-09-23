@@ -8,7 +8,7 @@
     margin: 0;
     left: 17%;
     backdrop-filter: blur(1px); 
-    background: linear-gradient(rgba(204, 82, 0, 0.1));
+    background: rgba(204, 82, 0, 0.1);
     border-radius: 5px;
     border: 2px solid rgba(0, 0, 0, 0.534);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
@@ -56,8 +56,8 @@
     left: 30px;
     width: 14%;
     border-radius: 5px;
-    backdrop-filter: blur(2px);
-    background: linear-gradient(135deg, rgba(143, 16, 16, 0.1), rgba(126, 15, 15, 0.1));
+    backdrop-filter: blur(1px);
+    background: rgba(128, 51, 0, 0.205);
     border: 1px solid rgba(0, 0, 0, 0.18);
     box-shadow: 0 8px 32px 0 rgba(143, 53, 53, 0.37);
     user-select: none;
@@ -76,7 +76,7 @@
     text-align: center;
     font-family: "Microsoft Himalaya";
     font-size: 2.5em;
-    color: rgba(0, 0, 0, 0.4);
+    color: rgba(0, 0, 0, 0.815);
     margin-top: 7px;
     margin-bottom: 7px;
 }
@@ -84,7 +84,7 @@
 .subBox h3::after{
     content: "";
     position: absolute;
-    background-color: rgb(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.555);
     width: 40%;
     height: 3px;
     left: 30%;
@@ -140,40 +140,24 @@
 
 .bestiaryBox {
     display: inline-block;
-    width: 18.84%;
+    width: 13%;
     margin: 0 0.17%;
     margin-top: 4px;
     padding: 5px;
     height: 35px;
-    /* border-bottom: 2px solid rgba(0, 0, 0, 0.5); */
     color: rgba(0, 0, 0, 0.7);
     transition: all 1s ease;
     position: relative; 
 }
 
-/* .bestiaryBox:hover{
-    filter: brightness(150%) contrast(150%);
-    box-shadow: 3px 3px rgba(0, 0, 0, 0.1);
-} */
-
-/* .bestiaryBox::after {
-    content: "";
-    position: absolute;
-    top: 10%;
-    right: -2%;
-    height: 90%;
-    width: 2px;
-    background-color: rgba(0, 0, 0, 0.2);
-} */
-
 .bestiaryBox::before {
     content: "";
     position: absolute;
     bottom: 20%;
-    left: 12%;
+    left: 5%;
     width: 80%;
     height: 2px;
-    background-color: rgba(0, 0, 0, 0.13);
+    background: linear-gradient(90deg,rgba(70, 70, 70, 0.397), rgba(70, 70, 70, 0.151), rgba(70, 70, 70, 0.048));
 }
 
 .bestiaryBox:last-child::after {
@@ -248,4 +232,24 @@
     background-color: #b18b54;
     font-family: "Sitka Banner";
     font-size: 1em;
+}
+
+.dangerHeader{
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-family: "Cascadia Code", monospace;
+    position: relative;
+    left: 25px;
+    font-size: 1.5em;
+    color: rgba(0, 0, 0, 0.637);
+}
+
+.dangerHeaderBox{
+    display: block;
+    margin-top: -15px;
+    margin-bottom: -10px;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background: linear-gradient(90deg,rgba(90, 59, 0, 0.192), rgba(70, 70, 70, 0.061), rgba(70, 70, 70, 0.061), rgba(70, 70, 70, 0.061), rgba(112, 73, 0, 0.171));
 }

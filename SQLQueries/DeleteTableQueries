@@ -48,6 +48,8 @@ DELETE FROM dbo.trait_char;
 DELETE FROM dbo.type;
 DELETE FROM dbo.vulnerability;
 DELETE FROM dbo.worldview;
+DELETE FROM dbo.user;
+DELETE FROM dbo.login;
 
 
 Exec deleteMonster @del_name = ''; Integer

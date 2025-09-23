@@ -113,7 +113,7 @@ public class DataService {
 
 
 
-    public List<Map<String, Object>> getFilteredSortedItems(Map<String, String> filters) {
+    public Map<String, List<Map<String, Object>>> getFilteredSortedItems(Map<String, String> filters) {
         String name = filters.getOrDefault("name", "").trim().toLowerCase();
         String rarity = filters.getOrDefault("rarity", "").trim().toLowerCase();
         String type = filters.getOrDefault("type", "").trim().toLowerCase();
@@ -127,7 +127,7 @@ public class DataService {
                 Sort.Order.asc("name")
         ));
 
-        List<Map<String, Object>> filteredItems = new ArrayList<>();
+        Map<String, List<Map<String, Object>>> result = new LinkedHashMap<>();
 
         for (Item item : items) {
             String itemName = item.getName() != null ? item.getName().toLowerCase() : "";
@@ -145,10 +145,13 @@ public class DataService {
             Map<String, Object> info = new HashMap<>();
             info.put("name", item.getName());
             info.put("type", item.getItemType() != null ? item.getItemType().getName() : null);
-            filteredItems.add(info);
+
+            String rarityKey = item.getRarity() != null ? item.getRarity().getName() : "Unknown";
+
+            result.computeIfAbsent(rarityKey, k -> new ArrayList<>()).add(info);
         }
 
-        return filteredItems;
+        return result;
     }
 
 
@@ -180,15 +183,14 @@ public class DataService {
     }
 
 
-    public List<Map<String, Object>> getFilteredSortedSpells(Map<String, String> filters) {
+    public Map<String, List<Map<String, Object>>> getFilteredSortedSpells(Map<String, String> filters) {
         List<Spell> allSpells = spellRepo.findAll();
-        List<Map<String, Object>> result = new ArrayList<>();
+        Map<String, List<Map<String, Object>>> result = new HashMap<>();
 
         String nameFilter = filters.getOrDefault("name", "").trim().toLowerCase();
         String levelFilter = filters.getOrDefault("level", "").trim();
         String classFilter = filters.getOrDefault("charClass", "").trim().toLowerCase();
         String typeFilter = filters.getOrDefault("type", "").trim().toLowerCase();
-
 
         for (Spell spell : allSpells) {
             boolean matches = nameFilter.isEmpty() || spell.getName().toLowerCase().contains(nameFilter);
@@ -224,24 +226,34 @@ public class DataService {
                 map.put("name", spell.getName());
                 map.put("level", spell.getLevel());
 
-                result.add(map);
+                String groupKey;
+                if (spell.getName() != null && !spell.getName().isEmpty()) {
+                    groupKey = spell.getName().substring(0, 1).toUpperCase();
+                } else {
+                    groupKey = "#";
+                }
+
+                result.computeIfAbsent(groupKey, k -> new ArrayList<>()).add(map);
             }
+        }
+
+        for (List<Map<String, Object>> monsters : result.values()) {
+            monsters.sort(Comparator.comparingInt(m -> (int) m.get("level")));
         }
 
         return result;
     }
 
 
-    public List<Map<String, Object>> getFilteredSortedMonsters(Map<String, String> filters) {
+    public Map<String, List<Map<String, Object>>> getFilteredSortedMonsters(Map<String, String> filters) {
         List<Monster> allMonsters = repo.findAll();
-        List<Map<String, Object>> result = new ArrayList<>();
+        Map<String, List<Map<String, Object>>> result = new HashMap<>();
 
         String nameFilter = filters.getOrDefault("name", "").trim().toLowerCase();
         String sizeFilter = filters.getOrDefault("size", "").trim().toLowerCase();
         String typeFilter = filters.getOrDefault("type", "").trim().toLowerCase();
         String worldViewFilter = filters.getOrDefault("worldView", "").trim().toLowerCase();
         String dangerFilter = filters.getOrDefault("danger", "").trim();
-
 
         for (Monster monster : allMonsters) {
             boolean matches = nameFilter.isEmpty() || monster.getName().toLowerCase().contains(nameFilter);
@@ -274,10 +286,32 @@ public class DataService {
                 map.put("id", monster.getId());
                 map.put("name", monster.getName());
                 map.put("danger", monster.getDanger().getDegree());
-                result.add(map);
+
+                String groupKey;
+                if (monster.getName() != null && !monster.getName().isEmpty()) {
+                    groupKey = monster.getName().substring(0, 1).toUpperCase();
+                } else {
+                    groupKey = "#";
+                }
+
+                result.computeIfAbsent(groupKey, k -> new ArrayList<>()).add(map);
             }
         }
+
+        for (List<Map<String, Object>> monsters : result.values()) {
+            monsters.sort(Comparator.comparingDouble(m -> convertDangerCode((int) m.get("danger"))));
+        }
+
         return result;
+    }
+
+    private double convertDangerCode(int code) {
+        return switch (code) {
+            case 108 -> 1.0 / 8.0;
+            case 104 -> 1.0 / 4.0;
+            case 102 -> 1.0 / 2.0;
+            default -> code;
+        };
     }
 
 }

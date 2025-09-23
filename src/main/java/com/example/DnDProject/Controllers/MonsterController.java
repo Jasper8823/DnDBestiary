@@ -31,8 +31,6 @@ public class MonsterController {
         return ResponseEntity.ok("Monster received successfully!");
     }
 
-
-
     @GetMapping("/getMonster")
     @ResponseBody
     public Map<String, Object> getMonster(@RequestParam("id") int id) {
@@ -41,9 +39,7 @@ public class MonsterController {
 
     @GetMapping("/getMonsters")
     @ResponseBody
-    public List<Map<String, Object>> getMonsters(@RequestParam Map<String, String> query) {
+    public Map<String,List<Map<String, Object>>> getMonsters(@RequestParam Map<String, String> query) {
         return dataService.getFilteredSortedMonsters(query);
     }
-
-
 }

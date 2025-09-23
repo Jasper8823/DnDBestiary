@@ -184,21 +184,13 @@ INSERT INTO dbo.item_type (name)
 VALUES
 ('armor'),
 ('weapon'),
+('wand'),
 ('potion'),
 ('ring'),
 ('rod'),
 ('scroll'),
 ('staff'),
-('wand'),
-('wondrous item'),
-('ammunition'),
-('wonderous figurine'),
-('instrument'),
-('tome'),
-('clothing'),
-('jewelry'),
-('tools'),
-('mount');
+('wonderful item'),;
 
 INSERT INTO dbo.class (name, hp_dice, parent_name)
 VALUES

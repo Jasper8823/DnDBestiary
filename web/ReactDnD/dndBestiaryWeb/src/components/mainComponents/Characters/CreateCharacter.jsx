@@ -29,7 +29,7 @@ const raceBonuses = {
     "Hill Dwarf" : [0, 0, 2, 0, 1, 0],
     "High Elf" : [0, 2, 0, 1, 0, 0],
     "Wood Elf" : [0, 2, 0, 0, 1, 0],
-    "Drow (Dark Elf)" : [0, 2, 0, 0, 0, 1],
+    "Dark Elf" : [0, 2, 0, 0, 0, 1],
     "Lightfoot Halfling" : [0, 2, 0, 0, 0, 1],
     "Stout Halfling" : [0, 2, 1, 0, 0, 0],
     "Human" : [1, 1, 1, 1, 1, 1],
@@ -65,7 +65,7 @@ const archetypes = {
 
     "Warlock" : ["The archfey","The fiend","The great old one"],
 
-    "Wizard" : ["School of illusion","School of illusion"
+    "Wizard" : ["School of illusion"
         ,"School of necromancy","School of abjuration"
         ,"School of enchantment","School of transmutation","School of divination"],
 
@@ -239,14 +239,14 @@ function CreateCharacter() {
     }
 
     return<div>
-            <form onSubmit={handleSubmit}>
-                <label for="name">Name</label>
+            <form className={style.characterForm} onSubmit={handleSubmit}>
+                <label className={style.createLable} htmlFor="name">Name</label>
                 <input type="text" id="name" name="name" minlength="2" maxlength="32" required/>
 
-                <label for="level">Level</label>
+                <label className={style.createLabel} htmlFor="level">Level</label>
                 <input type="number" id="level" name="level" min="1" max="20" required/>
 
-                <label for="class">Class</label>
+                <label className={style.createLabel} for="class">Class</label>
                 <select id="class" name="class" onChange={(e) => updateArchetype(e.target.value)} required>
                     <option value="">--Select Class--</option>
                     <option>Barbarian</option>
@@ -263,7 +263,7 @@ function CreateCharacter() {
                     <option>Wizard</option>
                 </select>
 
-                <label for="race">Race</label>
+                <label className={style.createLabel} for="race">Race</label>
                 <select id="race" name="race" onChange={(e) => updateRaceB(e.target.value)} required>
                     <option value="">--Select Race--</option>
                     <option>Human</option>
@@ -282,7 +282,7 @@ function CreateCharacter() {
                     <option>Tiefling</option>
                 </select>
 
-                <label for="backstory">Backstory</label>
+                <label className={style.createLabel} for="backstory">Backstory</label>
                 <select id="backstory" name="backstory" required>
                     <option value="">--Select Backstory--</option>
                     <option>Acolyte</option>
@@ -303,21 +303,19 @@ function CreateCharacter() {
                     <option>Far Traveler</option>
                 </select>
 
-                <label for="archetype">Archetype</label>
+                <label className={style.createLabel} for="archetype">Archetype</label>
                 <select id="archetype" name="archetype" required>
                     <option value="">--Select Archetype--</option>
                 </select>
-                
-                <p id="statLeft">Stat points left: {pointsLeft}</p>
 
                 <div className={style.statBoxMain}>
-                    <div className={style.statBox}>
-                        <p className={style.statName} style={{ visibility: "hidden" }}>1</p>
-                        <button type="button" className={style.statUpB} style={{ visibility: "hidden" }}>1</button>
+                    <div className={style.statBoxM}>
+                        <p className={style.pointsLeft}  id="statLeft">Stat points left: {pointsLeft}</p>
+                        <p className={style.statVal}  style={{ visibility: "hidden" }}>1</p>
                         <p className={style.statVal}  style={{ visibility: "hidden" }}>1</p>
                         <button type="button" className={style.statDownB} style={{ visibility: "hidden" }}>1</button>
-                        <p>Race bonus:</p>
-                        <p>Final value:</p>
+                        <p className={style.statText}>Race bonus:</p>
+                        <p className={style.statText}>Final value:</p>
                     </div>
 
                     <div className={style.statBox}>
@@ -325,8 +323,8 @@ function CreateCharacter() {
                         <button type="button" className={style.statUpB} id="StrengthUP" onClick={() => statUp(0)}>+</button>
                         <p className={style.statVal} id="StrengthVAL">8</p>
                         <button type="button" className={style.statDownB} style={{ visibility: "hidden" }} id="StrengthDOWN" onClick={() => statDown(0)}>-</button>
-                        <p id="0RaceBonus" style={{ visibility: "hidden" }}>1</p>
-                        <p id="0FinalVal">8 (-1)</p>
+                        <p className={style.statText} id="0RaceBonus" style={{ visibility: "hidden" }}>1</p>
+                        <p className={style.statText} id="0FinalVal">8 (-1)</p>
                     </div>
 
                     <div className={style.statBox}>
@@ -334,8 +332,8 @@ function CreateCharacter() {
                         <button type="button" className={style.statUpB} id="DexterityUP" onClick={() => statUp(1)}>+</button>
                         <p className={style.statVal} id="DexterityVAL">8</p>
                         <button type="button" className={style.statDownB} style={{ visibility: "hidden" }} id="DexterityDOWN" onClick={() => statDown(1)}>-</button>
-                        <p id="1RaceBonus" style={{ visibility: "hidden" }}>1</p>
-                        <p id="1FinalVal">8 (-1)</p>
+                        <p className={style.statText} id="1RaceBonus" style={{ visibility: "hidden" }}>1</p>
+                        <p className={style.statText} id="1FinalVal">8 (-1)</p>
                     </div>
 
                     <div className={style.statBox}>
@@ -343,8 +341,8 @@ function CreateCharacter() {
                         <button type="button" className={style.statUpB} id="ConstitutionUP" onClick={() => statUp(2)}>+</button>
                         <p className={style.statVal} id="ConstitutionVAL">8</p>
                         <button type="button" className={style.statDownB} style={{ visibility: "hidden" }} id="ConstitutionDOWN" onClick={() => statDown(2)}>-</button>
-                        <p id="2RaceBonus" style={{ visibility: "hidden" }}>1</p>
-                        <p id="2FinalVal">8 (-1)</p>
+                        <p className={style.statText} id="2RaceBonus" style={{ visibility: "hidden" }}>1</p>
+                        <p className={style.statText} id="2FinalVal">8 (-1)</p>
                     </div>
 
                     <div className={style.statBox}>
@@ -352,8 +350,8 @@ function CreateCharacter() {
                         <button type="button" className={style.statUpB} id="IntelligenceUP" onClick={() => statUp(3)}>+</button>
                         <p className={style.statVal} id="IntelligenceVAL">8</p>
                         <button type="button" className={style.statDownB} style={{ visibility: "hidden" }} id="IntelligenceDOWN" onClick={() => statDown(3)}>-</button>
-                        <p id="3RaceBonus" style={{ visibility: "hidden" }}>1</p>
-                        <p id="3FinalVal">8 (-1)</p>
+                        <p className={style.statText} id="3RaceBonus" style={{ visibility: "hidden" }}>1</p>
+                        <p className={style.statText} id="3FinalVal">8 (-1)</p>
                     </div>
 
                     <div className={style.statBox}>
@@ -361,8 +359,8 @@ function CreateCharacter() {
                         <button type="button" className={style.statUpB} id="WisdomUP" onClick={() => statUp(4)}>+</button>
                         <p className={style.statVal} id="WisdomVAL">8</p>
                         <button type="button" className={style.statDownB} style={{ visibility: "hidden" }} id="WisdomDOWN" onClick={() => statDown(4)}>-</button>
-                        <p id="4RaceBonus" style={{ visibility: "hidden" }}>1</p>
-                        <p id="4FinalVal">8 (-1)</p>
+                        <p className={style.statText} id="4RaceBonus" style={{ visibility: "hidden" }}>1</p>
+                        <p className={style.statText} id="4FinalVal">8 (-1)</p>
                     </div>
                     
                     <div className={style.statBox}>
@@ -370,11 +368,11 @@ function CreateCharacter() {
                         <button type="button" className={style.statUpB} id="CharismaUP" onClick={() => statUp(5)}>+</button>
                         <p className={style.statVal} id="CharismaVAL">8</p>
                         <button type="button" className={style.statDownB} style={{ visibility: "hidden" }} id="CharismaDOWN" onClick={() => statDown(5)}>-</button>
-                        <p id="5RaceBonus" style={{ visibility: "hidden" }}>1</p>
-                        <p id="5FinalVal">8 (-1)</p>
+                        <p className={style.statText} id="5RaceBonus" style={{ visibility: "hidden" }}>1</p>
+                        <p className={style.statText} id="5FinalVal">8 (-1)</p>
                     </div>
                 </div>
-                <button id="submit">Submit</button>
+                <button className={style.submit} id="submit">Create</button>
             </form>
         </div>;
 }

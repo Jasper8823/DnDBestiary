@@ -41,7 +41,7 @@ public class SpellController {
 
     @GetMapping("/getSpells")
     @ResponseBody
-    public List<Map<String, Object>> getSpells(@RequestParam  Map<String, String> filters) {
+    public Map<String, List<Map<String, Object>>> getSpells(@RequestParam  Map<String, String> filters) {
         return dataService.getFilteredSortedSpells(filters);
     }
 

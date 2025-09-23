@@ -9,6 +9,7 @@ import com.example.DnDProject.Entities.Spell.Spell;
 import com.example.DnDProject.Repositories.BackStory.BackStoryRepository;
 import com.example.DnDProject.Repositories.Class.CharacterClassRepository;
 import com.example.DnDProject.Repositories.Race.RaceRepository;
+import com.example.DnDProject.Services.DatafillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -96,7 +97,7 @@ public class CharacterCache {
         return cacheId;
     }
 
-    public CharSpellDTO getCharSpells(String id){
+    public CharSpellDTO getCharSpells(String id, DatafillService dfs){
         Character character = getCharacter(id);
         if (character == null){
             return null;
@@ -125,6 +126,7 @@ public class CharacterCache {
         }
 
         if(statRaise == 0 && spells_num==0){
+            dfs.saveCharacter(character, null);
             statRaise = -1;
         }
 

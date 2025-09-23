@@ -3,6 +3,8 @@ package com.example.DnDProject.Entities.Character;
 import com.example.DnDProject.Entities.BackStory.Backstory;
 import com.example.DnDProject.Entities.Class.CharacterClass;
 import com.example.DnDProject.Entities.Item.Item;
+import com.example.DnDProject.Entities.Item.ItemType;
+import com.example.DnDProject.Entities.Login.User;
 import com.example.DnDProject.Entities.Trait.Trait;
 import com.example.DnDProject.Entities.Race.Race;
 import com.example.DnDProject.Entities.Skill.Skill;
@@ -62,6 +64,10 @@ public class Character {
 
     @ManyToMany(mappedBy = "skill_charList")
     private List<Skill> skill_charList = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     //Many-to-one connections
     @ManyToOne

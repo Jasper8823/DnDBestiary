@@ -1,5 +1,5 @@
 .itemBox{
-    display: inline-block;
+    display: flex;      
     width: 23.8%;
     margin: 0 0.17%;
     margin-top: 4px;
@@ -8,7 +8,6 @@
     border-radius: 3px;
     border: 0.5px ridge rgba(0, 0, 0, 0.281);
     color: rgb(0, 0, 0, 0.7);
-    transition: all 1s ease;
 }
 
 .itemBox:hover{
@@ -16,13 +15,21 @@
     box-shadow: 3px 3px rgba(0, 0, 0, 0.1);
 }
 
+.itemName{
+    display: inline-block;
+    margin: 0px;
+    margin-left: 5px;
+    font-family: "Microsoft Himalaya";
+    font-size: 2.2em;
+    user-select:text;
+}
+
 .itemType{
     display: inline-block;
     margin: 0px;
-    margin-left: 20px;
+    font-size: 1.1em;
+    color: rgba(0, 0, 0, 0.438);
     font-family: "Open Sans", sans-serif;
-    font-size: 1.3em;
-    user-select:text;
 }
 
 .itemBox{
@@ -50,15 +57,6 @@
 .itemBox:hover{
     filter: brightness(150%) contrast(150%);
     box-shadow: 3px 3px rgba(0, 0, 0, 0.1);
-}
-
-.itemName{
-    display: inline-block;
-    margin: 0px;
-    margin-left: 20px;
-    font-family: "Microsoft Himalaya";
-    font-size: 2.2em;
-    user-select:text;
 }
 
 .mainBox{
@@ -118,5 +116,30 @@
 }
 
 #searchConf{
+    width: 19%;
+}
+
+.picture {
+    margin-left:3px;
+    display: inline-block;
+    height: 25px;
+    position: relative;
+    top: 2px;
+}
+
+.icon{
+    margin-left:3px;
+    display: inline-block;
+    margin-bottom: 0px;
+    font-size: 1.3em;
+    color:black;
+}
+
+.selectedOption {
+  background-color: #4caf50 !important;
+  color: white !important;
+}
+
+#configSearch{
     width: 19%;
 }

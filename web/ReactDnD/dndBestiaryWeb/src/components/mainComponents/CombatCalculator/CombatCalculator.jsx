@@ -96,50 +96,52 @@ function CombatCalculator() {
     };
 
     return (
-        <div className={style.calculatorBox}>
-            <div className={style.box} id={style.playerBox}>
-                <p><b>Player Characters</b></p>
-                <div className={style.inputBox}>
-                    <input type="number" placeholder="Number" value={playerCount}
-                        onChange={(e) => setPlayerCount(e.target.value)} />
-                    <input type="number" placeholder="Level" value={playerLevel}
-                        onChange={(e) => setPlayerLevel(e.target.value)} />
-                    <button class={style.addButton} onClick={addPlayer}>Add</button>
-                </div>
-                <ul>
-                {players.map((p, i) => (
-                    <li key={i}>
-                    {p.count} charactes with {p.level} level
-                    <button  className={style.removeButton} onClick={() => removePlayer(i)}>❌</button>
-                    </li>
-                ))}
-                </ul>
-            </div>
+        <>
+            <div className={style.calculatorBox}>
+                <div className={style.mainBox}>
+                    <div className={style.box} id={style.playerBox}>
+                        <p><b>Player Characters</b></p>
+                        <div className={style.inputBox}>
+                            <input type="number" placeholder="Number" value={playerCount}
+                                onChange={(e) => setPlayerCount(e.target.value)} />
+                            <input type="number" placeholder="Level" value={playerLevel}
+                                onChange={(e) => setPlayerLevel(e.target.value)} />
+                            <button class={style.addButton} onClick={addPlayer}>Add</button>
+                        </div>
+                        <ul>
+                        {players.map((p, i) => (
+                            <li key={i}>
+                            {p.count} charactes with {p.level} level
+                            <button  className={style.removeButton} onClick={() => removePlayer(i)}>❌</button>
+                            </li>
+                        ))}
+                        </ul>
+                    </div>
 
-            <div className={style.box} id={style.monsterBox}>
-                <p><b>Enemies</b></p>
-                <div className={style.inputBox}>
-                    <input type="number" placeholder="Number" value={monsterCount}
-                        onChange={(e) => setMonsterCount(e.target.value)} />
-                    <input type="text" placeholder="Danger level" value={monsterDL}
-                        onChange={(e) => setMonsterDL(e.target.value)} />
-                    <button class={style.addButton} onClick={addMonster}>Add</button>
+                    <div className={style.box} id={style.monsterBox}>
+                        <p><b>Enemies</b></p>
+                        <div className={style.inputBox}>
+                            <input type="number" placeholder="Number" value={monsterCount}
+                                onChange={(e) => setMonsterCount(e.target.value)} />
+                            <input type="text" placeholder="Danger level" value={monsterDL}
+                                onChange={(e) => setMonsterDL(e.target.value)} />
+                            <button class={style.addButton} onClick={addMonster}>Add</button>
+                        </div>
+                        <ul>
+                        {monsters.map((m, i) => (
+                            <li key={i}>
+                            {m.count} {m.count != 1 ? "Monsters" : "Monster" } of {m.cr} danger level
+                            <button className={style.removeButton} onClick={() => removeMonster(i)}>❌</button>
+                            </li>
+                        ))}
+                        </ul>
+                    </div>
                 </div>
-                <ul>
-                {monsters.map((m, i) => (
-                    <li key={i}>
-                    {m.count} {m.count != 1 ? "Monsters" : "Monster" } of {m.cr} danger level
-                    <button className={style.removeButton} onClick={() => removeMonster(i)}>❌</button>
-                    </li>
-                ))}
-                </ul>
+                <p id="diff" className={style.diff}></p>
+                <button onClick={submit} className={style.specButton} id={style.calcButton}>Calculate</button>
+                <button onClick={resetAll} className={style.specButton} id={style.resetButton}>Reset</button> 
             </div>
-
-            <button onClick={resetAll} className={style.specButton} id={style.resetButton}>Reset</button>
-            
-            <button onClick={submit} className={style.specButton} id={style.calcButton}>Calculate</button>
-            <p id="diff" className={style.diff}></p>
-        </div>
+        </>
     );
 }
 

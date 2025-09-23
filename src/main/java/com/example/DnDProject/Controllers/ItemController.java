@@ -34,7 +34,7 @@ public class ItemController {
 
     @GetMapping("/getItems")
     @ResponseBody
-    public List<Map<String, Object>> getItems(@RequestParam  Map<String, String> query){
+    public Map<String, List<Map<String, Object>>> getItems(@RequestParam  Map<String, String> query){
         return dataService.getFilteredSortedItems(query);
     }
 

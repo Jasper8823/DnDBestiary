@@ -43,7 +43,7 @@ public class CharacterController{
     @GetMapping("/create-character")
     @ResponseBody
     public CharSpellDTO getCharacterProgress(@RequestParam String uuid) {
-        CharSpellDTO dto = cache.getCharSpells(uuid);
+        CharSpellDTO dto = cache.getCharSpells(uuid, dataFillService);
         System.out.println(dto);
         return dto;
     }

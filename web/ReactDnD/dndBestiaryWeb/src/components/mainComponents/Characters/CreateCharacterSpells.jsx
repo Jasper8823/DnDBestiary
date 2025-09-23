@@ -153,7 +153,7 @@ function CreateCharacterSpells() {
             }
             document.getElementById(statStrName+"VAL").textContent = statList[statNumber];
         }
-        const newPointsLeft = pointsLeft - 1;
+        let newPointsLeft = pointsLeft - 1;
         if(newPointsLeft<0){
             newPointsLeft=0;
         }
@@ -193,7 +193,7 @@ function CreateCharacterSpells() {
             document.getElementById(statStrName+"DOWN").style.visibility = "hidden";
         }
         document.getElementById(statStrName+"VAL").textContent = statList[statNumber];
-        const newPointsLeft = pointsLeft + 1;
+        let newPointsLeft = pointsLeft + 1;
         document.getElementById("statLeft").textContent = "Stat points left: " + newPointsLeft;
         updateFinalStat();
     };
@@ -215,7 +215,7 @@ function CreateCharacterSpells() {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form className={style.characterForm} onSubmit={handleSubmit}>
                 {selectedSpells.map((selected, index) => (
                     <div key={index}>
                         <select
@@ -301,7 +301,7 @@ function CreateCharacterSpells() {
                                 </div>
                                 </div>
                             }
-                <button type="submit">Save</button>
+                <button className={style.submit}  type="submit">Finish</button>
             </form>
         </div>
     );

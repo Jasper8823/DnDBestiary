@@ -1,76 +1,103 @@
+@font-face {
+  font-family: 'DeutscheZierschrift';
+  src: url('../../../../public/fonts/DeutscheZierschrift.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .calculatorBox {
-    font-family: "Microsoft Himalaya";
-    font-size: 2em;
+    gap: 20px;
+    padding: 20px;
+    max-width: 100%;
+    min-height: 750px;
+    background: rgba(252, 239, 202, 0.356);
+    border-radius: 6px;
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.25);
+    font-family: "Sitka Banner", serif;
+}
+
+.mainBox{
+    max-width: 760px;
+    display: flex;
+    background: rgba(255, 250, 235, 0.75);
+    border: 1px solid rgba(70, 50, 30, 0.7);
+    border-radius: 6px;
+}
+
+.sectionTitle {
+  font-family: serif;
+  font-size: 1.6em;
+  color: #2e1d10;
+  margin-bottom: 10px;
 }
 
 .box {
-    display: inline-block;
-    position: fixed;
-    margin: 0px;
-    padding: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
 }
 
-.inputBox{
-    position: relative;
-    top: -25px;
-}
-
-#playerBox{
-    top: 20px;
-    left: 20px
-}
-
-#monsterBox{
-    top: 20px;
-    left: 390px
+.inputBox {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 input {
-    padding: 2px;
-    margin-right: 5px;  
-    text-align: center;
-    width: 120px;
-    background-color: #7e7a7523;
-    border: solid rgba(0, 0, 0, 0.171) 1px;
-    border-radius: 5px;
-    font-family: "Microsoft Himalaya";
-    font-size: 0.9em;
-    color: black;
+  padding: 6px 8px;
+  font-size: 0.95em;
+  border: 1px solid rgba(60,40,20,0.7);
+  border-radius: 4px;
+  background: rgba(250, 242, 219, 0.9);
+  color: #2a1a0f;
+  font-family: inherit;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+#playerBox{
+    width: 350px;
+    display: inline-block;
 }
 
-input::placeholder {
-  color: black;
-  opacity: 0.7;
+#monsterBox{
+    width: 350px;
+    display: inline-block;
 }
 
-button {
-    padding: 3px;
-    margin-left: 5px;
-    font-family: "Microsoft Himalaya";
-    font-size: 0.8em;
+input:focus {
+  border-color: #5a3d20;
+  background: rgba(255, 248, 220, 0.95);
+  outline: none;
 }
 
-.addButton{
-    position: relative;
-    background-color: #24990023;
-    border-radius: 5px;
-    border: solid rgba(0, 0, 0, 0.26) 1px;
+.addButton {
+  padding: 6px 12px;
+  background: #7a9f59;
+  color: white;
+  border: 1px solid rgba(40, 25, 10, 0.6);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.1em;
+  transition: transform 0.15s, filter 0.2s;
+}
+.addButton:hover {
+  filter: brightness(1.1);
+  transform: scale(1.05);
 }
 
-.removeButton{
-    background-color: #99000000;
-    border-radius: 5px;
-    scale: 0.75;
-    position: relative;
-    left: -9px;
-    top: 1px;
-    border: solid rgba(0, 0, 0, 0) 1px;
+.removeButton {
+  background: #a04d3a;
+  color: white;
+  border: 1px solid rgba(40, 25, 10, 0.6);
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: transform 0.15s, filter 0.2s;
+}
+.removeButton:hover {
+  filter: brightness(1.1);
+  transform: scale(1.05);
 }
 
 ul {
@@ -79,35 +106,34 @@ ul {
 }
 
 li {
+  display: flex;
+  align-items: center;
   margin: 5px 0;
+  font-size: 1em;
+  color: #2a1a0f;
 }
 
-.specButton{
-    margin: 10px;
-    padding-left: 15px;
-    padding-right: 15px;
+.specButton {
     position: relative;
-    top: 600px;
-    left: 20px;
-    background: #b901013b;
-    font-size: 1.2em;
-    color: rgb(0, 0, 0);
-    border: solid rgba(0, 0, 0, 0.336) 1px;
+    bottom: 1px;
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 1.3em;
+    background: linear-gradient(to bottom, #5b40284f, #3a2718ea);
+    color: #fdfcf7;
+    border: 1px solid #2a1a0f;
+    border-radius: 6px;
     cursor: pointer;
-    padding: 8px 16px;
-    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+.specButton:hover {
+  background: linear-gradient(to bottom, #5b40287c, #3a2718fd);
 }
 
-#resetButton {
-    background: #b901013b;
-}
-
-#calcButton {
-    background: #01b90a3b;
-}
-
-.diff{
-    position: absolute;
-    top: 40px;
-    right: 550px;
+.diff {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #2e1d10;
+  margin-top: 10px;
+  text-align: center;
 }

@@ -3,84 +3,149 @@ import style from './spells.module.css';
 import Mstyle from '../mainStyle.module.css';
 import { useNavigate } from 'react-router-dom';
 
+const levelOptions = {
+  0: "Plot",
+  1: "1 level",
+  2: "2 level",
+  3: "3 level",
+  4: "4 level",
+  5: "5 level",
+  6: "6 level",
+  7: "7 level",
+  8: "8 level",
+  9: "9 level"
+};
+
+const classOptions = {
+  bard: "Bard",
+  cleric: "Cleric",
+  druid: "Druid",
+  sorcerer: "Sorcerer",
+  warlock: "Warlock",
+  wizard: "Wizard"
+};
+
+const typeOptions = {
+  abjuration: "Abjuration",
+  conjuration: "Conjuration",
+  divination: "Divination",
+  enchantment: "Enchantment",
+  evocation: "Evocation",
+  illusion: "Illusion",
+  necromancy: "Necromancy",
+  transmutation: "Transmutation"
+};
+
 function SpellSearchBar() {
-    const navigate = useNavigate();
-    const [formData, setFormData] = useState({
-        name: '',
-        level: '',
-        charClass: '',
-        type: ''
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    name: '',
+    level: [],
+    charClass: [],
+    type: []
+  });
+
+  const [levels, setLevels] = useState([]);
+  const [classes, setClasses] = useState([]);
+  const [types, setTypes] = useState([]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    switch (name) {
+      case "name":
+        setFormData({ ...formData, [name]: value });
+        break;
+      case "level":
+        if (levels.includes(value)) {
+            setLevels(levels.filter((s) => s !== value));
+        } else {
+            setLevels([...levels, value]);
+        }
+        break;
+      case "charClass":
+        if (classes.includes(value)) {
+            setClasses(classes.filter((s) => s !== value));
+        } else {
+            setClasses([...classes, value]);
+        }
+        break;
+      case "type":
+        if (types.includes(value)) {
+            setTypes(types.filter((s) => s !== value));
+        } else {
+            setTypes([...types, value]);
+        }
+        break;
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormData({
+      ...formData,
+      level: levels,
+      charClass: classes,
+      type: types
     });
+    const query = new URLSearchParams(formData).toString();
+    navigate(`/spells?${query}`);
+  };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        });
-    };
+  const handleReset = () => {
+    setFormData({ name: '', level: [], charClass: [], type: [] });
+    setLevels([]);
+    setClasses([]);
+    setTypes([]);
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const query = new URLSearchParams(formData).toString();
-        navigate(`/spells?${query}`);
-    };
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          className={Mstyle.searchInput}
+          id={style.searchInput}
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          placeholder="Name"
+          minLength={3}
+          maxLength={32}
+        />
 
-    const handleReset = () => {
-        setFormData({
-            name: '',
-            level: '',
-            charClass: '',
-            type: ''
-        });
-    };
+        <select className={Mstyle.searchSelect}  name="level" onChange={handleChange}>
+          <option value="" disabled>Level</option>
+          {Object.entries(levelOptions).map(([value, label]) => (
+            <option key={value} value={value} className={levels.includes(value) ? style.selectedOption : ""}>
+              {label}
+            </option>
+          ))}
+        </select>
 
-    return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input className={Mstyle.searchInput} id={style.searchInput} type="text" name="name" value={formData.name} onChange={handleChange} minLength={3} maxLength={32}  placeholder="Name"/>
+        <select className={Mstyle.searchSelect}  name="charClass" onChange={handleChange}>
+          <option value="" disabled>Class</option>
+          {Object.entries(classOptions).map(([value, label]) => (
+            <option key={value} value={value} className={classes.includes(value) ? style.selectedOption : ""}>
+              {label}
+            </option>
+          ))}
+        </select>
 
-                <select className={Mstyle.searchSelect} name="level" value={formData.level} onChange={handleChange}>
-                    <option value="" disabled selected>Level</option>
-                    <option value="0">Plot</option>
-                    <option value="1">1 level</option>
-                    <option value="2">2 level</option>
-                    <option value="3">3 level</option>
-                    <option value="4">4 level</option>
-                    <option value="5">5 level</option>
-                    <option value="6">6 level</option>
-                    <option value="7">7 level</option>
-                    <option value="8">8 level</option>
-                    <option value="9">9 level</option>
-                </select>
+        <select className={Mstyle.searchSelect} id={style.typeSearch} name="type" onChange={handleChange}>
+          <option value="" disabled>Type</option>
+          {Object.entries(typeOptions).map(([value, label]) => (
+            <option key={value} value={value} className={types.includes(value) ? style.selectedOption : ""}>
+              {label}
+            </option>
+          ))}
+        </select>
 
-                <select className={Mstyle.searchSelect} name="charClass" value={formData.charClass} onChange={handleChange}>
-                    <option value="" disabled selected>Class</option>
-                    <option value="bard">Bard</option>
-                    <option value="cleric">Cleric</option>
-                    <option value="druid">Druid</option>
-                    <option value="sorcerer">Sorcerer</option>
-                    <option value="warlock">Warlock</option>
-                    <option value="wizard">Wizard</option>
-                </select>
-
-                <select className={Mstyle.searchSelect} id={style.searchType} name="type" value={formData.type} onChange={handleChange}   >
-                    <option value="" disabled selected>Type</option>
-                    <option value="abjuration">Abjuration</option>
-                    <option value="conjuration">Conjuration</option>
-                    <option value="divination">Divination</option>
-                    <option value="enchantment">Enchantment</option>
-                    <option value="evocation">Evocation</option>
-                    <option value="illusion">Illusion</option>
-                    <option value="necromancy">Necromancy</option>
-                    <option value="transmutation">Transmutation</option>
-                </select>
-
-                <button className={Mstyle.searchButton} type="button" onClick={handleReset}>Reset</button>
-                <button className={Mstyle.searchButton} type="submit">Search</button>
-            </form>
-        </div>
-    );
+        <button type="submit" className={Mstyle.searchButton}>Search</button>
+        <button type="button" className={Mstyle.searchButton} onClick={handleReset}>Reset</button>
+      </form>
+    </div>
+  );
 }
 
 export default SpellSearchBar;
