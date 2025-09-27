@@ -8,6 +8,7 @@ import com.example.DnDProject.Entities.Character.Character;
 import com.example.DnDProject.Services.CharacterService;
 import com.example.DnDProject.Services.DatafillService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,8 +31,14 @@ public class CharacterController{
 
     @GetMapping("/getCharacters")
     @ResponseBody
-    public List<Map<String, Object>> getCharacters(){
+    public Map<String, List<Map<String, Object>>> getCharacters(){
         return characterService.charactersInfo();
+    }
+
+    @GetMapping("/getCharacter")
+    @ResponseBody
+    public Map<String, Object> getCharacter(@RequestParam("id") int id) {
+        return characterService.characterInfo(id);
     }
 
     @PostMapping("/create-character")

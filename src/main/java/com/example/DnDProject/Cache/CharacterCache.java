@@ -113,7 +113,6 @@ public class CharacterCache {
                 .forEach(spell -> spells.put(spell.getName(), spell.getLevel()));
 
 
-        System.out.println(clazz.getName() + clazz.getSpellSlotsList());
         SpellSlots slots = clazz.getSpellSlotsList().stream()
                 .filter(slot -> slot.getLevel() == character.getLevel()
                         && slot.getCharClass().getName().equals(clazz.getName()))
