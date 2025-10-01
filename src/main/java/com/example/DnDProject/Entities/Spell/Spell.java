@@ -57,12 +57,7 @@ public class Spell {
     )
     private List<CharacterClass> spell_classList = new ArrayList<>();
 
-    @ManyToMany()
-    @JoinTable(
-            name = "spell_char",
-            joinColumns = { @JoinColumn(name = "spell_name") },
-            inverseJoinColumns = { @JoinColumn(name = "character_id") }
-    )
+    @ManyToMany(mappedBy = "spell_charList")
     private List<Character> spell_charList = new ArrayList<>();
 
     @ManyToMany()

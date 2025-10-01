@@ -56,10 +56,20 @@ public class Character {
     @ManyToMany(mappedBy = "trait_charList")
     private List<Trait> trait_charList = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "spell_charList")
+    @ManyToMany
+    @JoinTable(
+            name = "spell_char",
+            joinColumns = @JoinColumn(name = "character_id"),
+            inverseJoinColumns = @JoinColumn(name = "spell_name")
+    )
     private List<Spell> spell_charList = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "item_charList")
+    @ManyToMany
+    @JoinTable(
+            name = "item_char",
+            joinColumns = @JoinColumn(name = "character_id"),
+            inverseJoinColumns = @JoinColumn(name = "item_name")
+    )
     private List<Item> item_charList = new ArrayList<>();
 
     @ManyToMany(mappedBy = "skill_charList")

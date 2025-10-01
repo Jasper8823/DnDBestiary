@@ -37,12 +37,7 @@ public class Item {
     private Rarity rarity;
 
     //Many-to-many connections
-    @ManyToMany()
-    @JoinTable(
-            name = "item_char",
-            joinColumns = { @JoinColumn(name = "item_name") },
-            inverseJoinColumns = { @JoinColumn(name = "character_id") }
-    )
+    @ManyToMany(mappedBy = "item_charList")
     private List<Character> item_charList = new ArrayList<>();
 
     @ManyToMany()
