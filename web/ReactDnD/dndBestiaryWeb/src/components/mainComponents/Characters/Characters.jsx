@@ -24,20 +24,33 @@ function Characters() {
             .then(data => setCharacters(data))
             .catch(err => console.error('Failed to load characters:', err));
     }, [location.search]);
-    let listCharacters;
+    let listCharacters = [];
 
     if (!characters) listCharacters = "Loading chars..."
     else{
-        listCharacters = characters.map(char => (
-            <div key={char.id} onClick={() => handleClick(char)} className={Mstyle.bestiaryBox}>
-            <p className={style.charType}>{char.type}</p>
-            <p className={style.charName}>
-                {char.name.length > 20 ? char.name.substring(0, 20) + "..." : char.name}
-            </p>
-            </div>
-        ));
+        for (let i = 65; i <= 90; i++) { 
+                let letter = String.fromCharCode(i);
+                const characterList = characters[letter];
+                if (characterList && characterList.length > 0) {
+                    listCharacters.push(
+                        <div className={Mstyle.dangerHeaderBox}>
+                            <p className={Mstyle.dangerHeader}>
+                                {letter}
+                            </p>
+                        </div>
+                    );
+                    characterList.forEach(char => {
+                        listCharacters.push(
+                            <div key={char.id} onClick={() => handleClick(char)} className={Mstyle.bestiaryBox}>
+                            <p className={style.charLevel}>{char.level}</p>
+                            <p className={style.charName}>
+                                {char.name.length > 20 ? char.name.substring(0, 20) + "..." : char.name}
+                            </p>
+                            </div>
+                    )});
+            }
+        }
     }
-    
     return <>
     <button id={style.createButton}  onClick={() => handleClickCreate()}>Create Character</button>
     {listCharacters}

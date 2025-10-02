@@ -9,6 +9,7 @@ import CombatCalculator from './CombatCalculator/CombatCalculator'
 import Characters from './Characters/Characters'
 import CreateCharacter from './Characters/CreateCharacter'
 import CreateCharacterSpells from './Characters/CreateCharacterSpells'
+import Character from './Characters/Character'
 import { useLocation } from "react-router-dom";
 import { BrowserRouter, Routes, Route, Navigate  } from "react-router-dom";
 
@@ -19,12 +20,13 @@ function MainComponent() {
     const toolBoxRoutes = [
       "/combat-calculator",
       "/characters",
-      "/create-character",
+      "/create-character"
     ];
 
     const isToolBoxPage =
       toolBoxRoutes.includes(location.pathname) ||
-      /^\/create-character\/[^/]+$/.test(location.pathname); // regex на UUID
+      /^\/create-character\/[^/]+$/.test(location.pathname)||
+      /^\/characters\/[^/]+$/.test(location.pathname);
 
     return (
       <div className={style.box} id={isToolBoxPage ? style.toolBox : style.bestiaryBox}>
@@ -38,6 +40,7 @@ function MainComponent() {
           <Route path="/spells/:id" element={<Spell/>} />
           <Route path="/combat-calculator" element={<CombatCalculator/>} />
           <Route path="/characters" element={<Characters/>} />
+          <Route path="/characters/:id" element={<Character/>} />
           <Route path="/create-character" element={<CreateCharacter/>} />
           <Route path="/create-character/:uuid" element={<CreateCharacterSpells/>} />
         </Routes>

@@ -15,7 +15,8 @@
     margin-bottom: 100px;
     transition: all 5s ease;
     user-select: none;
-    color: black;
+    color: black;  
+    z-index: 1; 
 }
 
 #bestiaryBox{
@@ -184,7 +185,7 @@
     font-family: "Sitka Banner";
     font-size: 1.8em;
     width: 10%;
-    padding: 7px;
+    padding: 10px 7px 10px 7px;
     margin-left: 5px;
     margin-right: 5px;
     backdrop-filter: blur(1.5px);
@@ -198,8 +199,8 @@
     font-family: "Sitka Banner";
     color:black;
     font-size: 1.8em;
-    width: 15%;
-    padding: 7px;
+    width: 18%;
+    padding: 10px 7px 10px 7px;
     margin-left: 5px;
     margin-right: 5px;
     backdrop-filter: blur(1.5px);
@@ -212,26 +213,54 @@
     color:black;
 }
 
-.searchSelect{
+.dropdown {
+    position: relative;
     display: inline-block;
-    font-family: "Sitka Banner";
-    color:black;
-    font-size: 1.8em;
-    width: 15%;
-    padding: 10px;
-    margin-left: 5px;
-    margin-right: 5px;
-    backdrop-filter: blur(1.5px);
-    background: linear-gradient(rgba(172, 69, 0, 0.1));
-    border-radius: 5px;
-    border: solid rgba(0, 0, 0, 0.316) 2px;
+    font-size: 1.5em;
+    width: 11%;
+    margin: 0 5px;
+    z-index: 9999; 
 }
 
-.searchSelect option {
-    color: black;
-    background-color: #b18b54;
+.dropdownHeader {
+    padding: 10px;
+    background: linear-gradient(rgba(172, 69, 0, 0.1));
+    border: 2px solid rgba(0, 0, 0, 0.316);
+    border-radius: 5px;
+    cursor: pointer;
     font-family: "Sitka Banner";
-    font-size: 1em;
+    font-size: 1.2em;
+}
+
+.dropdownList {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #b18b54;
+    border: 1px solid #444;
+    border-radius: 5px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.arrow {
+    float: right;
+}
+
+.dropdownOption {
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.dropdownOption:hover {
+    background: #d4b07a;
+}
+
+.selectedOption {
+    background: #8b5d18 !important;
+    color: white !important;
 }
 
 .dangerHeader{
@@ -252,4 +281,44 @@
     margin-left: 10px;
     margin-right: 10px;
     background: linear-gradient(90deg,rgba(90, 59, 0, 0.192), rgba(70, 70, 70, 0.061), rgba(70, 70, 70, 0.061), rgba(70, 70, 70, 0.061), rgba(112, 73, 0, 0.171));
+}
+
+#searchType{
+    width: 10%;
+}
+
+#searchSize{
+    width: 19%;
+}
+
+#searchWV{
+    width: 13%;
+}
+
+#searchDanger{
+    width: 14%;
+}
+
+#searchLevel{
+    width: 16.652%;
+}
+
+#searchClass{
+    width: 18%;
+}
+
+#searchTypeS{
+    width: 22%;
+}
+
+#searchRarity{
+    width: 18%;
+}
+
+#searchConf{
+    width: 22%;
+}
+
+#searchTypeI{
+    width: 16.652%;
 }

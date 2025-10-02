@@ -214,8 +214,8 @@ public class DatafillService {
             character.setStrength(dto.getStats().get(0));
             character.setDexterity(dto.getStats().get(1));
             character.setConstitution(dto.getStats().get(2));
-            character.setWisdom(dto.getStats().get(3));
-            character.setIntelligence(dto.getStats().get(4));
+            character.setWisdom(dto.getStats().get(4));
+            character.setIntelligence(dto.getStats().get(3));
             character.setCharisma(dto.getStats().get(5));
 
             if(!dto.getSpells().isEmpty()) {

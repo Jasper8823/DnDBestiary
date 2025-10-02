@@ -2,6 +2,7 @@ import { useState } from 'react';
 import style from './items.module.css';
 import Mstyle from '../mainStyle.module.css';
 import { useNavigate } from 'react-router-dom';
+import CustomDropdown from '../CustomDropdown.jsx';
 
 const rarityOptions = {
   common: "Common",
@@ -43,32 +44,31 @@ function ItemSearchBar() {
   const [types, setTypes] = useState([]);
   const [configs, setConfigs] = useState([]);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = (name, values) => {
     switch(name) {
       case "name":
-        setFormData({ ...formData, [name]: value });
+        setFormData({ ...formData, [name]: values });
         break;
       case "rarity":
-        if (rarities.includes(value)) {
-            setRarities(rarities.filter((s) => s !== value));
-        } else {
-            setRarities([...rarities, value]);
-        }
+        setRarities(values);
+        setFormData({
+            ...formData,
+            rarity: values,
+        });
         break;
       case "type":
-        if (types.includes(value)) {
-            setTypes(types.filter((s) => s !== value));
-        } else {
-            setTypes([...types, value]);
-        }
+        setTypes(values);
+        setFormData({
+            ...formData,
+            type: values,
+        });
         break;
       case "needsAdjustment":
-        if (configs.includes(value)) {
-            setConfigs(configs.filter((s) => s !== value));
-        } else {
-            setConfigs([...configs, value]);
-        }
+        setConfigs(values);
+        setFormData({
+            ...formData,
+            needsAdjustment: values,
+        });
         break;
     }
   };
@@ -96,44 +96,45 @@ function ItemSearchBar() {
     <div>
       <form onSubmit={handleSubmit}>
         <input
-          className={Mstyle.searchInput}
-          id={style.searchInput}
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder="Name"
+            className={Mstyle.searchInput}
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={(e) => handleChange("name", e.target.value)}
+            minLength={3}
+            maxLength={32}
+            placeholder={formData.name || "Name"}
+        />
+        
+        <CustomDropdown
+            name="rarity"
+            options={rarityOptions}
+            selectedValues={formData.rarity}
+            onChange={handleChange}
+            placeholder="Rarity"
+            idName = "searchRarity"
+        />
+        
+        <CustomDropdown
+            name="type"
+            options={typeOptions}
+            selectedValues={formData.type}
+            onChange={handleChange}
+            placeholder="Type"
+            idName = "searchTypeI"
+        />
+        
+        <CustomDropdown
+            name="needsAdjustment"
+            options={configOptions}
+            selectedValues={formData.needsAdjustment}
+            onChange={handleChange}
+            placeholder="Configuration"
+            idName = "searchConf"
         />
 
-        <select className={Mstyle.searchSelect} name="rarity" onChange={handleChange}>
-          <option value="" disabled>Rarity</option>
-          {Object.entries(rarityOptions).map(([value, label]) => (
-            <option key={value} value={value} className={rarities.includes(value) ? style.selectedOption : ""}>
-              {label}
-            </option>
-          ))}
-        </select>
-
-        <select className={Mstyle.searchSelect} name="type" onChange={handleChange}>
-          <option value="" disabled>Type</option>
-          {Object.entries(typeOptions).map(([value, label]) => (
-            <option key={value} value={value} className={types.includes(value) ? style.selectedOption : ""}>
-              {label}
-            </option>
-          ))}
-        </select>
-
-        <select className={Mstyle.searchSelect} id={style.configSearch} name="needsAdjustment" onChange={handleChange}>
-          <option value="" disabled>Configuration</option>
-          {Object.entries(configOptions).map(([value, label]) => (
-            <option key={value} value={value} className={configs.includes(value) ? style.selectedOption : ""}>
-              {label}
-            </option>
-          ))}
-        </select>
-
         <button type="submit" className={Mstyle.searchButton}>Search</button>
-        <button type="button" className={Mstyle.searchButton} onClick={handleReset}>Reset</button>
+        <button type="submit" className={Mstyle.searchButton} onClick={handleReset}>Reset</button>
       </form>
     </div>
   );

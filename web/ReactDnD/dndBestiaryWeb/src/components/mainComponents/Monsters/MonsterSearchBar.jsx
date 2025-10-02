@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import style from './monsters.module.css';
 import Mstyle from '../mainStyle.module.css';
+import CustomDropdown from '../CustomDropdown.jsx';
 import { useNavigate } from 'react-router-dom';
 
 const sizeOptions = {
@@ -100,45 +101,50 @@ function MonsterSearchBar() {
     const [types, setTypes] = useState([]);
     const [worldViews, setWorldViews] = useState([]);
     const [dangers, setDangers] = useState([]);
+    const handleChange = (name, values) => {
+    switch (name) {
+        case "name":
+        setFormData({
+            ...formData,
+            name: values,
+        });
+        break;
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        switch(name){
-            case "name":
-                setFormData({
-                    ...formData,
-                    [name]: value
-                });
-                break;
-            case "size":
-                if (sizes.includes(value)) {
-                    setSizes(sizes.filter((s) => s !== value));
-                } else {
-                    setSizes([...sizes, value]);
-                }
-                break;
-            case "type":
-                if (types.includes(value)) {
-                    setTypes(types.filter((s) => s !== value));
-                } else {
-                    setTypes([...types, value]);
-                }
-                break;
-            case "worldView":
-                if (worldViews.includes(value)) {
-                    setWorldViews(worldViews.filter((s) => s !== value));
-                } else {
-                    setWorldViews([...worldViews, value]);
-                }
-                break;
-            case "danger":
-                if (dangers.includes(value)) {
-                    setDangers(dangers.filter((s) => s !== value));
-                } else {
-                    setDangers([...dangers, value]);
-                }
-                break;
-        }
+        case "size":
+        setSizes(values);
+        setFormData({
+            ...formData,
+            size: values,
+        });
+        break;
+
+        case "type":
+        setTypes(values);
+        setFormData({
+            ...formData,
+            type: values,
+        });
+        break;
+
+        case "worldView":
+        setWorldViews(values);
+        setFormData({
+            ...formData,
+            worldView: values,
+        });
+        break;
+
+        case "danger":
+        setDangers(values);
+        setFormData({
+            ...formData,
+            danger: values,
+        });
+        break;
+
+        default:
+        break;
+    }
     };
 
 
@@ -168,38 +174,54 @@ function MonsterSearchBar() {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input className={Mstyle.searchInput} id={style.searchInput} type="text" name="name" value={formData.name} onChange={handleChange} minLength={3} maxLength={32}   placeholder="Name"/>
-                
-                <select className={Mstyle.searchSelect} id={style.searchSize} name="size" onChange={handleChange}>
-                    <option value="" disabled>Size</option>
-                    {Object.entries(sizeOptions).map(([value, label]) => (
-                        <option key={value} value={value} className={sizes.includes(value) ? style.selectedOption : ""} > {label} </option>
-                    ))}
-                </select>
+                <input
+                    className={Mstyle.searchInput}
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={(e) => handleChange("name", e.target.value)}
+                    minLength={3}
+                    maxLength={32}
+                    placeholder={formData.name || "Name"}
+                />
+                <CustomDropdown
+                            name="size"
+                            options={sizeOptions}
+                            selectedValues={formData.size}
+                            onChange={handleChange}
+                            placeholder="Size"
+                            idName = "searchSize"
+                />
 
-                <select className={Mstyle.searchSelect} id={style.searchType} name="type" onChange={handleChange}>
-                    <option value="" disabled>Type</option>
-                    {Object.entries(typeOptions).map(([value, label]) => (
-                        <option key={value} value={value} className={types.includes(value) ? style.selectedOption : ""} > {label} </option>
-                    ))}
-                </select>
+                <CustomDropdown
+                            name="type"
+                            options={typeOptions}
+                            selectedValues={formData.type}
+                            onChange={handleChange}
+                            placeholder="Type"
+                            idName = "searchType"
+                />
 
-                <select className={Mstyle.searchSelect} id={style.searchWV} name="worldView" onChange={handleChange}>
-                    <option value="" disabled>Worldview</option>
-                    {Object.entries(worldViewOptions).map(([value, label]) => (
-                        <option key={value} value={value} className={worldViews.includes(value) ? style.selectedOption : ""} > {label} </option>
-                    ))}
-                </select>
+                <CustomDropdown
+                            name="worldView"
+                            options={worldViewOptions}
+                            selectedValues={formData.worldView}
+                            onChange={handleChange}
+                            placeholder="Worldview"
+                            idName = "searchWV"
+                />
 
-                <select className={Mstyle.searchSelect} id={style.searchDanger} name="danger" onChange={handleChange}>
-                    <option value="" disabled>Danger</option>
-                    {Object.entries(dangerOptions).map(([value, label]) => (
-                        <option key={value} value={value} className={dangers.includes(value) ? style.selectedOption : ""} > {label} </option>
-                    ))}
-                </select>
+                <CustomDropdown
+                            name="danger"
+                            options={dangerOptions}
+                            selectedValues={formData.danger}
+                            onChange={handleChange}
+                            placeholder="Danger"
+                            idName = "searchDanger"
+                />
 
                 <button className={Mstyle.searchButton} type="submit">Search</button>
-                <button className={Mstyle.searchButton} type="button" onClick={handleReset}>Reset</button>
+                <button className={Mstyle.searchButton} type="submit" onClick={handleReset}>Reset</button>
             </form>
         </div>
     );

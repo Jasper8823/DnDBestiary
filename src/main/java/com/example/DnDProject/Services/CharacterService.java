@@ -25,6 +25,7 @@ public class CharacterService {
 
         for (Character character : characters) {
             Map<String, Object> charInfo = new HashMap<>();
+            charInfo.put("id", character.getId());
             charInfo.put("name", character.getName());
             charInfo.put("class", character.getCharClass().getName());
             charInfo.put("level", character.getLevel());
