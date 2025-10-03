@@ -22,6 +22,12 @@ function CustomDropdown({ name, options, selectedValues, onChange, placeholder, 
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
+    
+    if(options.size == 34){
+                     options.forEach((value, label) => {
+                console.log(value+" "+label);
+            })
+    }
 
     return (
         <div ref={dropdownRef} className={`${style.searchSelect} ${style.dropdown}`} id={`${style[idName]}`}>
@@ -32,16 +38,28 @@ function CustomDropdown({ name, options, selectedValues, onChange, placeholder, 
 
         {open && (
             <div className={style.dropdownList}>
-            {Object.entries(options).map(([value, label]) => (
-                <div
-                key={value}
-                className={`${style.dropdownOption} ${
-                    selectedValues.includes(value) ? style.selectedOption : ""
-                }`}
-                onClick={() => toggleOption(value)}
-                >
-                {label}
-                </div>
+            {options.size == 34
+                ? Array.from(options).map(([value, label]) => (
+                    <div
+                        key={value}
+                        className={`${style.dropdownOption} ${
+                        selectedValues.includes(value) ? style.selectedOption : ""
+                        }`}
+                        onClick={() => toggleOption(value)}
+                    >
+                        {label}
+                    </div>
+                    ))
+                : Object.entries(options).map(([value, label]) => (
+                    <div
+                        key={value}
+                        className={`${style.dropdownOption} ${
+                        selectedValues.includes(value) ? style.selectedOption : ""
+                        }`}
+                        onClick={() => toggleOption(value)}
+                    >
+                        {label}
+                    </div>
             ))}
             </div>
         )}

@@ -8,6 +8,33 @@ function Character() {
     const { id } = useParams();
     const [character, setCharacter] = useState(null);
 
+    const [allItems] = useState([
+        { id: 1, name: "Longsword" },
+        { id: 2, name: "Shortbow" },
+        { id: 3, name: "Leather Armor" },
+        { id: 4, name: "Chainmail" },
+        { id: 5, name: "Health Potion" },
+        { id: 6, name: "Mana Potion" },
+        { id: 7, name: "Dagger" },
+        { id: 8, name: "Great Axe" },
+        { id: 9, name: "Magic Wand" },
+        { id: 10, name: "Shield" },
+        { id: 11, name: "Torch" },
+        { id: 12, name: "Rope (50ft)" },
+        { id: 13, name: "Spellbook" },
+        { id: 14, name: "Herbs Pouch" },
+        { id: 15, name: "Warhammer" },
+        { id: 16, name: "Crossbow" },
+        { id: 17, name: "Arrows (20)" },
+        { id: 18, name: "Magic Ring" },
+        { id: 19, name: "Scroll of Fireball" },
+        { id: 20, name: "Boots of Speed" },
+    ]);
+
+    const [characterItems, setCharacterItems] = useState([]); 
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [search, setSearch] = useState("");
+
     useEffect(() => {
         fetch(`http://localhost:8080/getCharacter?id=${id}`)
             .then(response => response.json())
@@ -17,8 +44,22 @@ function Character() {
 
     if (!character) return <p>Loading character...</p>;
 
-    console.log(character.spells);
-    
+    const availableItems = allItems.filter(
+        item =>
+            !characterItems.some(ci => ci.id === item.id) &&
+            item.name.toLowerCase().includes(search.toLowerCase())
+    );
+
+    const addItemToCharacter = (item) => {
+        setCharacterItems([...characterItems, item]);
+        setDropdownOpen(false);
+        setSearch("");
+    };
+
+    const removeItemFromCharacter = (itemId) => {
+        setCharacterItems(characterItems.filter(item => item.id !== itemId));
+    };
+
     return (
         <div className={style.mainBox}>
             <p id={style.charName}><b>{character.name}</b>{" ("+character.level+") " + character.backstory}</p>
@@ -63,6 +104,52 @@ function Character() {
                     ))}
                 </>
             )}
+            <div className={style.itemsSection}>
+            <h3>Items</h3>
+            <ul>
+                {characterItems.map((item) => (
+                <li key={item.id} className={style.itemRow}>
+                    <span>{item.name}</span>
+                    <button
+                    className={style.removeButton}
+                    onClick={() => removeItemFromCharacter(item.id)}
+                    >
+                    ❌
+                    </button>
+                </li>
+                ))}
+            </ul>
+
+            <div>
+                {dropdownOpen ? (
+                <div className={style.dropdownBox}>
+                    <input
+                    type="text"
+                    placeholder="Search items..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    className={style.searchInput}
+                    />
+                    <div className={style.dropdownList}>
+                    {availableItems.map(item => (
+                        <div
+                        key={item.id}
+                        className={style.dropdownOption}
+                        onClick={() => addItemToCharacter(item)}
+                        >
+                        {item.name}
+                        </div>
+                    ))}
+                    {availableItems.length === 0 && <p>No items found</p>}
+                    </div>
+                </div>
+                ) : (
+                <button className={style.addButton} onClick={() => setDropdownOpen(true)}>
+                    +
+                </button>
+                )}
+            </div>
+            </div>
         </div>
     );
 }
