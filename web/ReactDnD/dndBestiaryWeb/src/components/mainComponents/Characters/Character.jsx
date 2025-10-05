@@ -34,15 +34,18 @@ function Character() {
     const [characterItems, setCharacterItems] = useState([]); 
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [search, setSearch] = useState("");
+    const [items, setItems] = useState("");
 
     useEffect(() => {
         fetch(`http://localhost:8080/getCharacter?id=${id}`)
             .then(response => response.json())
-            .then(data => setCharacter(data))
+            .then(data => setCharacter(data.character))
             .catch(error => console.error('Error fetching data:', error));
     }, [id]);
 
     if (!character) return <p>Loading character...</p>;
+
+    setItems(character.items);
 
     const availableItems = allItems.filter(
         item =>
@@ -50,16 +53,58 @@ function Character() {
             item.name.toLowerCase().includes(search.toLowerCase())
     );
 
+    const addItem = async (itemId) => {
+        const data = {
+            id :  itemId
+        };
+
+        try {
+            console.log(data);
+            const response = await fetch("http://localhost:8080/character-item-add", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Error while sending request.");
+        }
+    };
+
+    const removeItem = async (itemId) => {
+        const data = {
+            id :  itemId
+        };
+        
+        try {
+            console.log(data);
+            const response = await fetch("http://localhost:8080/character-item-remove", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Error while sending request.");
+        }
+    };
+
     const addItemToCharacter = (item) => {
         setCharacterItems([...characterItems, item]);
         setDropdownOpen(false);
         setSearch("");
+        addItem(item.id);
     };
 
     const removeItemFromCharacter = (itemId) => {
         setCharacterItems(characterItems.filter(item => item.id !== itemId));
+        removeItem(itemId);
     };
-
+ 
     return (
         <div className={style.mainBox}>
             <p id={style.charName}><b>{character.name}</b>{" ("+character.level+") " + character.backstory}</p>
@@ -131,7 +176,7 @@ function Character() {
                     className={style.searchInput}
                     />
                     <div className={style.dropdownList}>
-                    {availableItems.map(item => (
+                    {items.map(item => (
                         <div
                         key={item.id}
                         className={style.dropdownOption}
@@ -140,7 +185,7 @@ function Character() {
                         {item.name}
                         </div>
                     ))}
-                    {availableItems.length === 0 && <p>No items found</p>}
+                    {items.length === 0 && <p>No items found</p>}
                     </div>
                 </div>
                 ) : (
