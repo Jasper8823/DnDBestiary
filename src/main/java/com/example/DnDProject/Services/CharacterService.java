@@ -169,7 +169,7 @@ public class CharacterService {
     @Transactional
     public void addItemToCharacter(Map<String, Object> requestData) {
         String itemId = (String) requestData.get("itemId");
-        int characterId = (int) requestData.get("characterId");
+        int characterId = Integer.parseInt((String) requestData.get("id"));
 
         Character character = characterRepo.findById(characterId).
                 orElseThrow(() -> new RuntimeException("Character not found with id: " + characterId));
@@ -182,7 +182,7 @@ public class CharacterService {
     @Transactional
     public void removeItemFromCharacter(Map<String, Object> requestData) {
         String itemId = (String) requestData.get("itemId");
-        int characterId = (int) requestData.get("characterId");
+        int characterId = Integer.parseInt((String) requestData.get("id"));
 
         Character character = characterRepo.findById(characterId).
                 orElseThrow(() -> new RuntimeException("Character not found with id: " + characterId));

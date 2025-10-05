@@ -12,19 +12,25 @@ function Character() {
     const [characterItems, setCharacterItems] = useState([]); 
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [search, setSearch] = useState("");
-    const [allItems, setItems] = useState("");
+    const [allItems, setItems] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:8080/getCharacter?id=${id}`)
-            .then(response => response.json())
-            .then(data => setCharacter(data.character))
-            .catch(error => console.error('Error fetching data:', error));
+    fetch(`http://localhost:8080/getCharacter?id=${id}`)
+        .then(response => response.json())
+        .then(data => {
+            setCharacter(data);
+            if (data.allItems) {
+                setItems(data.allItems);
+            }
+            if (data.items) {
+                setCharacterItems(data.items);
+            }
+            })
+        .catch(error => console.error('Error fetching data:', error));
     }, [id]);
 
     if (!character) return <p>Loading character...</p>;
-
-    setItems(character.allItems);
-
+    
     const availableItems = allItems.filter(
         item =>
             !characterItems.some(ci => ci.id === item.id) &&
@@ -33,8 +39,8 @@ function Character() {
 
     const addItem = async (itemId) => {
         const data = {
-            itemId :  itemId,
-            characterId : id
+            id :  id,
+            itemId : itemId
         };
 
         try {
@@ -54,8 +60,8 @@ function Character() {
 
     const removeItem = async (itemId) => {
         const data = {
-            itemId :  itemId,
-            characterId : id
+            id :  id,
+            itemId : itemId
         };
         
         try {
@@ -77,11 +83,11 @@ function Character() {
         setCharacterItems([...characterItems, item]);
         setDropdownOpen(false);
         setSearch("");
-        addItem(item.id);
+        addItem(item.name);
     };
 
     const removeItemFromCharacter = (itemId) => {
-        setCharacterItems(characterItems.filter(item => item.id !== itemId));
+        setCharacterItems(characterItems.filter(item => item.name !== itemId));
         removeItem(itemId);
     };
  
@@ -137,7 +143,7 @@ function Character() {
                     <span>{item.name}</span>
                     <button
                     className={style.removeButton}
-                    onClick={() => removeItemFromCharacter(item.id)}
+                    onClick={() => removeItemFromCharacter(item.name)}
                     >
                     ❌
                     </button>
@@ -158,7 +164,7 @@ function Character() {
                     <div className={style.dropdownList}>
                     {allItems.map(item => (
                         <div
-                        key={item.id}
+                        key={item.name}
                         className={style.dropdownOption}
                         onClick={() => addItemToCharacter(item)}
                         >
