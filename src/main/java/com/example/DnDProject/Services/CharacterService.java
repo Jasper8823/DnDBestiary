@@ -1,10 +1,14 @@
 package com.example.DnDProject.Services;
 
 import com.example.DnDProject.Entities.Character.Character;
+import com.example.DnDProject.Entities.Class.ClassAbility;
 import com.example.DnDProject.Entities.Class.SpellSlots;
 import com.example.DnDProject.Entities.Item.Item;
+import com.example.DnDProject.Entities.Race.RaceAbility;
 import com.example.DnDProject.Entities.Spell.Spell;
 import com.example.DnDProject.Repositories.Character.CharacterRepository;
+import com.example.DnDProject.Repositories.Item.ItemRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -17,6 +21,9 @@ public class CharacterService {
 
     @Autowired
     private CharacterRepository characterRepo;
+
+    @Autowired
+    private ItemRepository itemRepo;
 
     public Map<String, List<Map<String, Object>>> charactersInfo() {
         List<Character> characters = characterRepo.findAll();
@@ -55,11 +62,30 @@ public class CharacterService {
         charInfo.put("name", character.getName());
         charInfo.put("level", character.getLevel());
 
-        if (character.getCharClass() != null) {
+        if (character.getCharClass() != null){
             charInfo.put("class", character.getCharClass().getName());
+            if(character.getCharClass().getParentClass() != null){
+                charInfo.put("parentClass", character.getCharClass().getParentClass().getName());
+            } else if (character.getCharClass().getAbilityList()!=null) {
+                Map<String,Object> abilitiesInfo = new HashMap<>();
+                for(ClassAbility ability : character.getCharClass().getAbilityList()){
+                    abilitiesInfo.put("ability", ability.getName());
+                    abilitiesInfo.put("level", ability.getLevel());
+                    abilitiesInfo.put("description", ability.getDescription());
+                }
+                charInfo.put("abilities", abilitiesInfo);
+            }
         }
         if (character.getRace() != null) {
             charInfo.put("race", character.getRace().getName());
+            Map<String, Object> raceInfo = new HashMap<>();
+            if (character.getRace().getAbilities() != null) {
+               for(RaceAbility ability : character.getRace().getAbilities()) {
+                   raceInfo.put("abilityName", ability.getName());
+                   raceInfo.put("description", ability.getDescription());
+               }
+            }
+            charInfo.put("raceInfo", raceInfo);
         }
         charInfo.put("backstory", character.getBackstory().getName());
 
@@ -85,14 +111,30 @@ public class CharacterService {
         }
 
         if (character.getItem_charList() != null) {
-            List<Map<String, Object>> items = new ArrayList<>();
+            List<Map<String, Object>> ownedItems = new ArrayList<>();
+
             for (Item item : character.getItem_charList()) {
                 Map<String, Object> itemInfo = new HashMap<>();
                 itemInfo.put("name", item.getName());
                 itemInfo.put("type", item.getItemType().getName());
-                items.add(itemInfo);
+                ownedItems.add(itemInfo);
             }
-            charInfo.put("items", items);
+
+            charInfo.put("items", ownedItems);
+
+            List<Item> allItems = itemRepo.findAll();
+            List<Item> notOwnedItems = new ArrayList<>(allItems);
+            notOwnedItems.removeAll(character.getItem_charList());
+
+            List<Map<String, Object>> availableItems = new ArrayList<>();
+            for (Item item : notOwnedItems) {
+                Map<String, Object> itemInfo = new HashMap<>();
+                itemInfo.put("name", item.getName());
+                itemInfo.put("type", item.getItemType().getName());
+                availableItems.add(itemInfo);
+            }
+
+            charInfo.put("allItems", availableItems);
         }
 
         SpellSlots slots = character.getCharClass().getSpellSlotsList().stream()
@@ -122,6 +164,33 @@ public class CharacterService {
         return charInfo;
     }
 
+
+
+    @Transactional
+    public void addItemToCharacter(Map<String, Object> requestData) {
+        String itemId = (String) requestData.get("itemId");
+        int characterId = (int) requestData.get("characterId");
+
+        Character character = characterRepo.findById(characterId).
+                orElseThrow(() -> new RuntimeException("Character not found with id: " + characterId));
+        Item item = itemRepo.findById(itemId).
+                orElseThrow(() -> new RuntimeException("Item not found with id: " + itemId));
+        character.getItem_charList().add(item);
+        characterRepo.save(character);
+    }
+
+    @Transactional
+    public void removeItemFromCharacter(Map<String, Object> requestData) {
+        String itemId = (String) requestData.get("itemId");
+        int characterId = (int) requestData.get("characterId");
+
+        Character character = characterRepo.findById(characterId).
+                orElseThrow(() -> new RuntimeException("Character not found with id: " + characterId));
+        Item item = itemRepo.findById(itemId).
+                orElseThrow(() -> new RuntimeException("Item not found with id: " + itemId));
+        character.getItem_charList().remove(item);
+        characterRepo.save(character);
+    }
 
 
 }

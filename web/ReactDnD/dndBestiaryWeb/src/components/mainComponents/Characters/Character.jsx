@@ -8,33 +8,11 @@ function Character() {
     const { id } = useParams();
     const [character, setCharacter] = useState(null);
 
-    const [allItems] = useState([
-        { id: 1, name: "Longsword" },
-        { id: 2, name: "Shortbow" },
-        { id: 3, name: "Leather Armor" },
-        { id: 4, name: "Chainmail" },
-        { id: 5, name: "Health Potion" },
-        { id: 6, name: "Mana Potion" },
-        { id: 7, name: "Dagger" },
-        { id: 8, name: "Great Axe" },
-        { id: 9, name: "Magic Wand" },
-        { id: 10, name: "Shield" },
-        { id: 11, name: "Torch" },
-        { id: 12, name: "Rope (50ft)" },
-        { id: 13, name: "Spellbook" },
-        { id: 14, name: "Herbs Pouch" },
-        { id: 15, name: "Warhammer" },
-        { id: 16, name: "Crossbow" },
-        { id: 17, name: "Arrows (20)" },
-        { id: 18, name: "Magic Ring" },
-        { id: 19, name: "Scroll of Fireball" },
-        { id: 20, name: "Boots of Speed" },
-    ]);
 
     const [characterItems, setCharacterItems] = useState([]); 
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [search, setSearch] = useState("");
-    const [items, setItems] = useState("");
+    const [allItems, setItems] = useState("");
 
     useEffect(() => {
         fetch(`http://localhost:8080/getCharacter?id=${id}`)
@@ -45,7 +23,7 @@ function Character() {
 
     if (!character) return <p>Loading character...</p>;
 
-    setItems(character.items);
+    setItems(character.allItems);
 
     const availableItems = allItems.filter(
         item =>
@@ -55,7 +33,8 @@ function Character() {
 
     const addItem = async (itemId) => {
         const data = {
-            id :  itemId
+            itemId :  itemId,
+            characterId : id
         };
 
         try {
@@ -75,7 +54,8 @@ function Character() {
 
     const removeItem = async (itemId) => {
         const data = {
-            id :  itemId
+            itemId :  itemId,
+            characterId : id
         };
         
         try {
@@ -176,7 +156,7 @@ function Character() {
                     className={style.searchInput}
                     />
                     <div className={style.dropdownList}>
-                    {items.map(item => (
+                    {allItems.map(item => (
                         <div
                         key={item.id}
                         className={style.dropdownOption}
@@ -185,7 +165,7 @@ function Character() {
                         {item.name}
                         </div>
                     ))}
-                    {items.length === 0 && <p>No items found</p>}
+                    {allItems.length === 0 && <p>No items found</p>}
                     </div>
                 </div>
                 ) : (

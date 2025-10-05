@@ -184,4 +184,13 @@ public class CharacterClass {
     public void setSubtype_classList(List<SubType> subtype_classList) {
         this.subtype_classList = subtype_classList;
     }
+
+    public List<Spell> getSpell_classList() {
+        return spell_classList;
+    }
+
+    public void setSpell_classList(List<Spell> spell_classList) {
+        this.spell_classList = spell_classList;
+    }
+
 }

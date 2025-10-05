@@ -61,4 +61,18 @@ public class CharacterController{
         Character character = cache.getCharacter(dto.getUuid());
         dataFillService.saveCharacter(character, dto);
     }
+
+    @PostMapping("/character-item-add")
+    @ResponseBody
+    public void addItemToCharacter(@RequestBody Map<String, Object> requestData) {
+        characterService.addItemToCharacter(requestData);
+    }
+
+
+    @PostMapping("/character-item-remove")
+    @ResponseBody
+    public void removeItemFromCharacter(@RequestBody Map<String, Object> requestData) {
+        characterService.removeItemFromCharacter(requestData);
+    }
+
 }
