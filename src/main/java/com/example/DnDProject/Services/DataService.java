@@ -111,12 +111,14 @@ public class DataService {
         return itemInfo;
     }
 
-
-
     public Map<String, List<Map<String, Object>>> getFilteredSortedItems(Map<String, String> filters) {
         String name = filters.getOrDefault("name", "").trim().toLowerCase();
-        String rarity = filters.getOrDefault("rarity", "").trim().toLowerCase();
-        String type = filters.getOrDefault("type", "").trim().toLowerCase();
+        List<String> rarityFilters = Arrays.stream(filters.getOrDefault("rarity", "").trim().toLowerCase().split(","))
+                .filter(s -> !s.isEmpty())
+                .toList();
+        List<String> typeFilters = Arrays.stream(filters.getOrDefault("type", "").trim().toLowerCase().split(","))
+                .filter(s -> !s.isEmpty())
+                .toList();
         String needsAdjustment = filters.getOrDefault("needsAdjustment", "").trim().toLowerCase();
 
         boolean filterNeedsAdjustment = !needsAdjustment.isEmpty();
@@ -130,6 +132,8 @@ public class DataService {
         Map<String, List<Map<String, Object>>> result = new LinkedHashMap<>();
 
         for (Item item : items) {
+            boolean matches = false;
+
             String itemName = item.getName() != null ? item.getName().toLowerCase() : "";
             String itemRarity = item.getRarity() != null && item.getRarity().getName() != null
                     ? item.getRarity().getName().toLowerCase() : "";
@@ -137,23 +141,38 @@ public class DataService {
                     ? item.getItemType().getName().toLowerCase() : "";
             boolean itemConfigurable = item.isConfigurable();
 
-            if (!name.isEmpty() && !itemName.contains(name)) continue;
-            if (!rarity.isEmpty() && !itemRarity.equals(rarity)) continue;
-            if (!type.isEmpty() && !itemType.equals(type)) continue;
-            if (filterNeedsAdjustment && itemConfigurable != needsAdjustValue) continue;
+            if (!name.isEmpty() && itemName.contains(name)) {
+                matches = true;
+            }
 
-            Map<String, Object> info = new HashMap<>();
-            info.put("name", item.getName());
-            info.put("type", item.getItemType() != null ? item.getItemType().getName() : null);
+            if (!rarityFilters.isEmpty() && rarityFilters.contains(itemRarity)) {
+                matches = true;
+            }
 
-            String rarityKey = item.getRarity() != null ? item.getRarity().getName() : "Unknown";
+            if (!typeFilters.isEmpty() && typeFilters.contains(itemType)) {
+                matches = true;
+            }
 
-            result.computeIfAbsent(rarityKey, k -> new ArrayList<>()).add(info);
+            if (filterNeedsAdjustment && itemConfigurable == needsAdjustValue) {
+                matches = true;
+            }
+
+            if (name.isEmpty() && rarityFilters.isEmpty() && typeFilters.isEmpty() && !filterNeedsAdjustment) {
+                matches = true;
+            }
+
+            if (matches) {
+                Map<String, Object> info = new HashMap<>();
+                info.put("name", item.getName());
+                info.put("type", item.getItemType() != null ? item.getItemType().getName() : null);
+
+                String rarityKey = item.getRarity() != null ? item.getRarity().getName() : "Unknown";
+                result.computeIfAbsent(rarityKey, k -> new ArrayList<>()).add(info);
+            }
         }
 
         return result;
     }
-
 
 
     public Map<String, Object> spellInfo(String id) {
@@ -188,35 +207,38 @@ public class DataService {
         Map<String, List<Map<String, Object>>> result = new HashMap<>();
 
         String nameFilter = filters.getOrDefault("name", "").trim().toLowerCase();
-        String levelFilter = filters.getOrDefault("level", "").trim();
-        String classFilter = filters.getOrDefault("charClass", "").trim().toLowerCase();
-        String typeFilter = filters.getOrDefault("type", "").trim().toLowerCase();
+        List<String> levelFilters = Arrays.stream(filters.getOrDefault("level", "").trim().split(","))
+                .filter(s -> !s.isEmpty())
+                .toList();
+        List<String> classFilters = Arrays.stream(filters.getOrDefault("charClass", "").trim().toLowerCase().split(","))
+                .filter(s -> !s.isEmpty())
+                .toList();
+        List<String> typeFilters = Arrays.stream(filters.getOrDefault("type", "").trim().toLowerCase().split(","))
+                .filter(s -> !s.isEmpty())
+                .toList();
 
         for (Spell spell : allSpells) {
-            boolean matches = nameFilter.isEmpty() || spell.getName().toLowerCase().contains(nameFilter);
+            boolean matches = true;
 
-            if (!levelFilter.isEmpty()) {
-                try {
-                    int level = Integer.parseInt(levelFilter);
-                    if (spell.getLevel() != level) {
-                        matches = false;
-                    }
-                } catch (NumberFormatException e) {
-                    matches = false;
-                }
+            if (!nameFilter.isEmpty() && !spell.getName().toLowerCase().contains(nameFilter)) {
+                matches = false;
             }
 
-            if (!classFilter.isEmpty()) {
+            if (!levelFilters.isEmpty() && !levelFilters.contains(String.valueOf(spell.getLevel()))) {
+                matches = false;
+            }
+
+            if (!classFilters.isEmpty()) {
                 boolean hasClass = spell.getSpell_classList().stream()
-                        .anyMatch(c -> c.getName().equalsIgnoreCase(classFilter));
+                        .anyMatch(c -> classFilters.contains(c.getName().toLowerCase()));
                 if (!hasClass) {
                     matches = false;
                 }
             }
 
-            if (!typeFilter.isEmpty()) {
+            if (!typeFilters.isEmpty()) {
                 String spellType = spell.getSpellType() != null ? spell.getSpellType().getName().toLowerCase() : "";
-                if (!spellType.equals(typeFilter)) {
+                if (!typeFilters.contains(spellType)) {
                     matches = false;
                 }
             }
@@ -237,12 +259,13 @@ public class DataService {
             }
         }
 
-        for (List<Map<String, Object>> monsters : result.values()) {
-            monsters.sort(Comparator.comparingInt(m -> (int) m.get("level")));
+        for (List<Map<String, Object>> spells : result.values()) {
+            spells.sort(Comparator.comparingInt(m -> (int) m.get("level")));
         }
 
         return result;
     }
+
 
 
     public Map<String, List<Map<String, Object>>> getFilteredSortedMonsters(Map<String, String> filters) {
@@ -250,35 +273,61 @@ public class DataService {
         Map<String, List<Map<String, Object>>> result = new HashMap<>();
 
         String nameFilter = filters.getOrDefault("name", "").trim().toLowerCase();
-        String sizeFilter = filters.getOrDefault("size", "").trim().toLowerCase();
-        String typeFilter = filters.getOrDefault("type", "").trim().toLowerCase();
-        String worldViewFilter = filters.getOrDefault("worldView", "").trim().toLowerCase();
-        String dangerFilter = filters.getOrDefault("danger", "").trim();
+
+        List<String> sizeFilters = Arrays.stream(filters.getOrDefault("size", "")
+                        .trim().toLowerCase().split(","))
+                .filter(s -> !s.isEmpty())
+                .toList();
+
+        List<String> typeFilters = Arrays.stream(filters.getOrDefault("type", "")
+                        .trim().toLowerCase().split(","))
+                .filter(s -> !s.isEmpty())
+                .toList();
+
+        List<String> worldViewFilters = Arrays.stream(filters.getOrDefault("worldView", "")
+                        .trim().toLowerCase().split(","))
+                .filter(s -> !s.isEmpty())
+                .toList();
+
+        List<String> dangerFilters = Arrays.stream(filters.getOrDefault("danger", "")
+                        .trim().split(","))
+                .filter(s -> !s.isEmpty())
+                .toList();
 
         for (Monster monster : allMonsters) {
-            boolean matches = nameFilter.isEmpty() || monster.getName().toLowerCase().contains(nameFilter);
+            boolean matches = false;
 
-            if (!sizeFilter.isEmpty() && !monster.getSize().getName().toLowerCase().equals(sizeFilter)) {
-                matches = false;
+            if (!nameFilter.isEmpty() && monster.getName().toLowerCase().contains(nameFilter)) {
+                matches = true;
             }
 
-            if (!typeFilter.isEmpty() && !monster.getType().getName().toLowerCase().equals(typeFilter)) {
-                matches = false;
+            if (!sizeFilters.isEmpty() && sizeFilters.contains(monster.getSize().getName().toLowerCase())) {
+                matches = true;
             }
 
-            if (!worldViewFilter.isEmpty() && !monster.getWorldview().getName().toLowerCase().equals(worldViewFilter)) {
-                matches = false;
+            if (!typeFilters.isEmpty() && typeFilters.contains(monster.getType().getName().toLowerCase())) {
+                matches = true;
             }
 
-            if (!dangerFilter.isEmpty()) {
-                try {
-                    int dangerLevel = Integer.parseInt(dangerFilter);
-                    if (monster.getDanger().getDegree() != dangerLevel) {
-                        matches = false;
-                    }
-                } catch (NumberFormatException e) {
-                    matches = false;
+            if (!worldViewFilters.isEmpty() && worldViewFilters.contains(monster.getWorldview().getName().toLowerCase())) {
+                matches = true;
+            }
+
+            if (!dangerFilters.isEmpty()) {
+                for (String dangerVal : dangerFilters) {
+                    try {
+                        int dangerLevel = Integer.parseInt(dangerVal);
+                        if (monster.getDanger().getDegree() == dangerLevel) {
+                            matches = true;
+                            break;
+                        }
+                    } catch (NumberFormatException ignored) {}
                 }
+            }
+
+            if (nameFilter.isEmpty() && sizeFilters.isEmpty() && typeFilters.isEmpty()
+                    && worldViewFilters.isEmpty() && dangerFilters.isEmpty()) {
+                matches = true;
             }
 
             if (matches) {
@@ -304,6 +353,7 @@ public class DataService {
 
         return result;
     }
+
 
     private double convertDangerCode(int code) {
         return switch (code) {
