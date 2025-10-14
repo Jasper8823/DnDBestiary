@@ -97,21 +97,14 @@ public class CharacterCache {
         return cacheId;
     }
 
-    public CharSpellDTO getCharSpells(String id, DatafillService dfs){
+    public CharSpellDTO getCharSpells(String id, DatafillService dfs) {
         Character character = getCharacter(id);
-        if (character == null){
+        if (character == null) {
             return null;
         }
-        int statRaise = (character.getLevel() / 4)*2;
 
+        int statRaise = (character.getLevel() / 4) * 2;
         CharacterClass clazz = character.getCharClass();
-        Map<String, Integer> spells = new LinkedHashMap<>();
-
-        clazz.getSpellClassList().stream()
-                .filter(spell -> spell.getLevel() <= character.getLevel())
-                .sorted(Comparator.comparingInt(Spell::getLevel))
-                .forEach(spell -> spells.put(spell.getName(), spell.getLevel()));
-
 
         SpellSlots slots = clazz.getSpellSlotsList().stream()
                 .filter(slot -> slot.getLevel() == character.getLevel()
@@ -119,38 +112,73 @@ public class CharacterCache {
                 .findFirst()
                 .orElse(null);
 
-        int spells_num=0;
-        if (slots != null){
-            spells_num=slots.getSpell_num();
+        int spells_num = 0;
+        int plots_num = 0;
+        int maxSpellLevel = 0;
+
+        if (slots != null) {
+            spells_num = slots.getSpell_num();
+            plots_num = slots.getPlot_num();
+
+            for (int i = 1; i <= 9; i++) {
+                int available = switch (i) {
+                    case 1 -> slots.getLvl1();
+                    case 2 -> slots.getLvl2();
+                    case 3 -> slots.getLvl3();
+                    case 4 -> slots.getLvl4();
+                    case 5 -> slots.getLvl5();
+                    case 6 -> slots.getLvl6();
+                    case 7 -> slots.getLvl7();
+                    case 8 -> slots.getLvl8();
+                    case 9 -> slots.getLvl9();
+                    default -> 0;
+                };
+                if (available == 0) break;
+                maxSpellLevel = i;
+            }
         }
 
-        if(statRaise == 0 && spells_num==0){
+        Map<String, Integer> plots = new LinkedHashMap<>();
+        Map<String, Integer> spells = new LinkedHashMap<>();
+
+        int finalMaxSpellLevel = maxSpellLevel;
+        clazz.getSpellClassList().stream()
+                .sorted(Comparator.comparingInt(Spell::getLevel))
+                .forEach(spell -> {
+                    int lvl = spell.getLevel();
+                    if (lvl == 0) {
+                        plots.put(spell.getName(), lvl);
+                    } else if (lvl <= finalMaxSpellLevel) {
+                        spells.put(spell.getName(), lvl);
+                    }
+                });
+
+        if (statRaise == 0 && spells_num == 0 && plots_num == 0) {
             dfs.saveCharacter(character, null);
             statRaise = -1;
         }
 
-        if(spells_num>spells.size()){
-            spells_num=spells.size();
-        }
-
-        List<Integer> stats = new ArrayList<>();
-        stats.add(character.getStrength());
-        stats.add(character.getDexterity());
-        stats.add(character.getConstitution());
-        stats.add(character.getIntelligence());
-        stats.add(character.getWisdom());
-        stats.add(character.getCharisma());
+        List<Integer> stats = List.of(
+                character.getStrength(),
+                character.getDexterity(),
+                character.getConstitution(),
+                character.getIntelligence(),
+                character.getWisdom(),
+                character.getCharisma()
+        );
 
         String race = character.getRace().getName();
 
         System.out.println(stats);
         System.out.println(statRaise);
         System.out.println(spells_num);
+        System.out.println(plots_num);
         System.out.println(race);
         System.out.println(character.getName());
 
-        return new CharSpellDTO(statRaise, spells, spells_num, stats, race);
+        return new CharSpellDTO(statRaise, spells, plots, spells_num, plots_num, stats, race);
     }
+
 
 
     public Character getCharacter(String id) {

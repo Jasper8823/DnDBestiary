@@ -6,13 +6,18 @@ import java.util.Map;
 public class CharSpellDTO {
     private int stat_raise;
     private Map<String, Integer> spells;
+    private Map<String, Integer> plots;
+    private int plots_num;
     private int spells_num;
     private List<Integer> stats;
     private String race;
 
     public CharSpellDTO() {}
 
-    public CharSpellDTO(int stat_raise, Map<String, Integer> spells, int spells_num, List<Integer> stats, String race) {
+    public CharSpellDTO(int stat_raise, Map<String, Integer> spells,Map<String, Integer> plots,
+                        int spells_num, int plots_num, List<Integer> stats, String race) {
+        this.plots_num = plots_num;
+        this.plots = plots;
         this.stats = stats;
         this.stat_raise = stat_raise;
         this.spells_num = spells_num;
@@ -52,21 +57,19 @@ public class CharSpellDTO {
 
     public void setRace(String race) {this.race = race;}
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Stat Raise: ").append(stat_raise).append("\n");
-        sb.append("Spells Num: ").append(spells_num).append("\n");
-        sb.append("Spells:\n");
+    public Map<String, Integer> getPlots() {
+        return plots;
+    }
 
-        if (spells != null && !spells.isEmpty()) {
-            spells.forEach((name, level) ->
-                    sb.append("  - ").append(name)
-                            .append(" (Level ").append(level).append(")\n"));
-        } else {
-            sb.append("  None\n");
-        }
+    public void setPlots(Map<String, Integer> plots) {
+        this.plots = plots;
+    }
 
-        return sb.toString();
+    public int getPlots_num() {
+        return plots_num;
+    }
+
+    public void setPlots_num(int plots_num) {
+        this.plots_num = plots_num;
     }
 }
