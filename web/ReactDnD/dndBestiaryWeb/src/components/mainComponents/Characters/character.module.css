@@ -262,3 +262,61 @@
   transform: scale(1.2);
   color: #e00;
 }
+
+.selectionContainer {
+  display: flex;
+  gap: 20px; /* space between spells and plots */
+  margin-bottom: 30px;
+}
+
+/* Each half (Spells / Plots) */
+.selectionSection {
+  flex: 1; /* takes half of the parent container */
+  background-color: rgba(248, 243, 232, 0.7);
+  border: 1px solid #c9b79c;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Section header */
+.selectionSection h3 {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #6b4c2a;
+}
+
+/* Grid layout for selects (3 columns per row) */
+.selectGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px; /* space between select boxes */
+}
+
+/* Each select box */
+.selectBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.selectBox label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.selectBox select {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  border: 1px solid #aaa;
+  background-color: #fff8f0;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.selectBox select:focus {
+  outline: none;
+  border-color: #6b4c2a;
+  box-shadow: 0 0 5px rgba(107, 76, 42, 0.5);
+}

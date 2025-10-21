@@ -51,6 +51,8 @@ function CreateCharacterSpells() {
     const [neededInfo, setNeededInfo] = useState(null);
     const [selectedSpells, setSelectedSpells] = useState([]);
 
+    const [selectedPlots, setSelectedPlots] = useState([]);
+
     const [statList, setStatList] = useState([]);
 
     useEffect(() => {
@@ -67,6 +69,7 @@ function CreateCharacterSpells() {
                 );
                 setStatList(adjustedStats);
                 setSelectedSpells(Array(data.spells_num).fill(""));
+                setSelectedPlots(Array(data.plots_num).fill(""));
             })
             .catch(error => console.error("Error fetching data:", error));
     }, [uuid]);
@@ -76,9 +79,8 @@ function CreateCharacterSpells() {
         return <div><p>Loading</p></div>;
     }
 
-    console.log(statList);
-
     const spellsList = Object.keys(neededInfo.spells);
+    const plotsList = Object.keys(neededInfo.plots);
 
     const handleSelectChange = (index, value) => {
         setSelectedSpells(prev => {
@@ -95,6 +97,23 @@ function CreateCharacterSpells() {
 
         return spellsList.filter(spell => !chosenSpells.includes(spell));
     };
+
+    const handlePlotSelectChange = (index, value) => {
+        setSelectedPlots(prev => {
+            const newSelection = [...prev];
+            newSelection[index] = value;
+            return newSelection;
+        });
+    };
+
+    const getAvailablePlots = (index) => {
+        let chosenPlots = Array.from(selectedPlots);
+
+        chosenPlots[index] = "";
+
+        return plotsList.filter(plot => !chosenPlots.includes(plot));
+    };
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -216,8 +235,13 @@ function CreateCharacterSpells() {
     return (
         <div>
             <form className={style.characterForm} onSubmit={handleSubmit}>
-                {selectedSpells.map((selected, index) => (
-                    <div key={index}>
+                <div className={style.selectionContainer}>
+
+                <div className={style.selectionSection}>
+                    <h3>Spells</h3>
+                    <div className={style.selectGrid}>
+                    {selectedSpells.map((selected, index) => (
+                        <div key={index} className={style.selectBox}>
                         <select
                             required
                             value={selected}
@@ -225,24 +249,51 @@ function CreateCharacterSpells() {
                         >
                             <option value="">-- Select a spell --</option>
                             {getAvailableSpells(index).map(spell => (
-                                <option key={spell} value={spell}>
-                                    {neededInfo.spells[spell]+" "+spell}
-                                </option>
+                            <option key={spell} value={spell}>
+                                {neededInfo.spells[spell] + " " + spell}
+                            </option>
                             ))}
                         </select>
+                        </div>
+                    ))}
                     </div>
-                ))}
+                </div>
+
+                <div className={style.selectionSection}>
+                    <h3>Plots</h3>
+                    <div className={style.selectGrid}>
+                    {selectedPlots.map((selected, index) => (
+                        <div key={index} className={style.selectBox}>
+                        <select
+                            required
+                            value={selected}
+                            onChange={(e) => handlePlotSelectChange(index, e.target.value)}
+                        >
+                            <option value="">-- Select a plot --</option>
+                            {getAvailablePlots(index).map(plot => (
+                            <option key={plot} value={plot}>
+                                {plot}
+                            </option>
+                            ))}
+                        </select>
+                        </div>
+                    ))}
+                    </div>
+                </div>
+
+                </div>
+
+
                 {neededInfo.stat_raise!=0 && 
                                 <div>
-                                <p id="statLeft">Stat points left: {neededInfo.stat_raise}</p>
                                 <div className={style.statBoxMain}>
-                                    <div className={style.statBox}>
-                                        <p className={style.statName} style={{ visibility: "hidden" }}>1</p>
-                                        <button type="button" className={style.statUpB} style={{ visibility: "hidden" }}>1</button>
+                                    <div className={style.statBoxM}>
+                                        <p className={style.pointsLeft}  id="statLeft">Stat points left: {pointsLeft}</p>
+                                        <p className={style.statVal}  style={{ visibility: "hidden" }}>1</p>
                                         <p className={style.statVal}  style={{ visibility: "hidden" }}>1</p>
                                         <button type="button" className={style.statDownB} style={{ visibility: "hidden" }}>1</button>
-                                        <p>Race bonus:</p>
-                                        <p>Final value:</p>
+                                        <p className={style.statText}>Race bonus:</p>
+                                        <p className={style.statText}>Final value:</p>
                                     </div>
                 
                                     <div className={style.statBox}>
@@ -250,8 +301,8 @@ function CreateCharacterSpells() {
                                         <button type="button" className={style.statUpB} id="StrengthUP" onClick={() => statUp(0)}>+</button>
                                         <p className={style.statVal} id="StrengthVAL">{neededInfo.stats[0]-raceBonuses[neededInfo.race][0]}</p>
                                         <button type="button" className={style.statDownB} style={{ visibility: "hidden" }} id="StrengthDOWN" onClick={() => statDown(0)}>-</button>
-                                        <p id="0RaceBonus" style={{ visibility: raceBonuses[neededInfo.race][0] == 0 ? "hidden" : "visible" }}>+{raceBonuses[neededInfo.race][0]}</p>
-                                        <p id="0FinalVal">{neededInfo.stats[0]} ({Math.floor((neededInfo.stats[0]-10)/2)})</p>
+                                        <p className={style.statText} id="0RaceBonus" style={{ visibility: raceBonuses[neededInfo.race][0] == 0 ? "hidden" : "visible" }}>+{raceBonuses[neededInfo.race][0]}</p>
+                                        <p className={style.statText} id="0FinalVal">{neededInfo.stats[0]} ({Math.floor((neededInfo.stats[0]-10)/2)})</p>
                                     </div>
                 
                                     <div className={style.statBox}>
@@ -259,8 +310,8 @@ function CreateCharacterSpells() {
                                         <button type="button" className={style.statUpB} id="DexterityUP" onClick={() => statUp(1)}>+</button>
                                         <p className={style.statVal} id="DexterityVAL">{neededInfo.stats[1]-raceBonuses[neededInfo.race][1]}</p>
                                         <button type="button" className={style.statDownB} style={{ visibility: "hidden" }} id="DexterityDOWN" onClick={() => statDown(1)}>-</button>
-                                        <p id="1RaceBonus" style={{ visibility: raceBonuses[neededInfo.race][1] == 0 ? "hidden" : "visible" }}>+{raceBonuses[neededInfo.race][1]}</p>
-                                        <p id="1FinalVal">{neededInfo.stats[1]} ({Math.floor((neededInfo.stats[1]-10)/2)})</p>
+                                        <p className={style.statText} id="1RaceBonus" style={{ visibility: raceBonuses[neededInfo.race][1] == 0 ? "hidden" : "visible" }}>+{raceBonuses[neededInfo.race][1]}</p>
+                                        <p className={style.statText} id="1FinalVal">{neededInfo.stats[1]} ({Math.floor((neededInfo.stats[1]-10)/2)})</p>
                                     </div>
                 
                                     <div className={style.statBox}>
@@ -268,8 +319,8 @@ function CreateCharacterSpells() {
                                         <button type="button" className={style.statUpB} id="ConstitutionUP" onClick={() => statUp(2)}>+</button>
                                         <p className={style.statVal} id="ConstitutionVAL">{neededInfo.stats[2]-raceBonuses[neededInfo.race][2]}</p>
                                         <button type="button" className={style.statDownB} style={{ visibility: "hidden" }} id="ConstitutionDOWN" onClick={() => statDown(2)}>-</button>
-                                        <p id="2RaceBonus" style={{ visibility: raceBonuses[neededInfo.race][2] == 0 ? "hidden" : "visible" }}>+{raceBonuses[neededInfo.race][2]}</p>
-                                        <p id="2FinalVal">{neededInfo.stats[2]} ({Math.floor((neededInfo.stats[2]-10)/2)})</p>
+                                        <p className={style.statText} id="2RaceBonus" style={{ visibility: raceBonuses[neededInfo.race][2] == 0 ? "hidden" : "visible" }}>+{raceBonuses[neededInfo.race][2]}</p>
+                                        <p className={style.statText} id="2FinalVal">{neededInfo.stats[2]} ({Math.floor((neededInfo.stats[2]-10)/2)})</p>
                                     </div>
                 
                                     <div className={style.statBox}>
@@ -277,8 +328,8 @@ function CreateCharacterSpells() {
                                         <button type="button" className={style.statUpB} id="IntelligenceUP" onClick={() => statUp(3)}>+</button>
                                         <p className={style.statVal} id="IntelligenceVAL">{neededInfo.stats[3]-raceBonuses[neededInfo.race][3]}</p>
                                         <button type="button" className={style.statDownB} style={{ visibility: "hidden" }} id="IntelligenceDOWN" onClick={() => statDown(3)}>-</button>
-                                        <p id="3RaceBonus" style={{ visibility: raceBonuses[neededInfo.race][3] == 0 ? "hidden" : "visible" }}>+{raceBonuses[neededInfo.race][3]}</p>
-                                        <p id="3FinalVal">{neededInfo.stats[3]} ({Math.floor((neededInfo.stats[3]-10)/2)})</p>
+                                        <p className={style.statText} id="3RaceBonus" style={{ visibility: raceBonuses[neededInfo.race][3] == 0 ? "hidden" : "visible" }}>+{raceBonuses[neededInfo.race][3]}</p>
+                                        <p className={style.statText} id="3FinalVal">{neededInfo.stats[3]} ({Math.floor((neededInfo.stats[3]-10)/2)})</p>
                                     </div>
                 
                                     <div className={style.statBox}>
@@ -286,8 +337,8 @@ function CreateCharacterSpells() {
                                         <button type="button" className={style.statUpB} id="WisdomUP" onClick={() => statUp(4)}>+</button>
                                         <p className={style.statVal} id="WisdomVAL">{neededInfo.stats[4]-raceBonuses[neededInfo.race][4]}</p>
                                         <button type="button" className={style.statDownB} style={{ visibility: "hidden" }} id="WisdomDOWN" onClick={() => statDown(4)}>-</button>
-                                        <p id="4RaceBonus" style={{ visibility: raceBonuses[neededInfo.race][4] == 0 ? "hidden" : "visible" }}>+{raceBonuses[neededInfo.race][4]}</p>
-                                        <p id="4FinalVal">{neededInfo.stats[4]} ({Math.floor((neededInfo.stats[4]-10)/2)})</p>
+                                        <p className={style.statText} id="4RaceBonus" style={{ visibility: raceBonuses[neededInfo.race][4] == 0 ? "hidden" : "visible" }}>+{raceBonuses[neededInfo.race][4]}</p>
+                                        <p className={style.statText} id="4FinalVal">{neededInfo.stats[4]} ({Math.floor((neededInfo.stats[4]-10)/2)})</p>
                                     </div>
                                     
                                     <div className={style.statBox}>
@@ -295,8 +346,8 @@ function CreateCharacterSpells() {
                                         <button type="button" className={style.statUpB} id="CharismaUP" onClick={() => statUp(5)}>+</button>
                                         <p className={style.statVal} id="CharismaVAL">{neededInfo.stats[5]-raceBonuses[neededInfo.race][5]}</p>
                                         <button type="button" className={style.statDownB} style={{ visibility: "hidden" }} id="CharismaDOWN" onClick={() => statDown(5)}>-</button>
-                                        <p id="5RaceBonus" style={{ visibility: raceBonuses[neededInfo.race][5] == 0 ? "hidden" : "visible" }}>+{raceBonuses[neededInfo.race][5]}</p>
-                                        <p id="5FinalVal">{neededInfo.stats[5]} ({Math.floor((neededInfo.stats[5]-10)/2)})</p>
+                                        <p className={style.statText} id="5RaceBonus" style={{ visibility: raceBonuses[neededInfo.race][5] == 0 ? "hidden" : "visible" }}>+{raceBonuses[neededInfo.race][5]}</p>
+                                        <p className={style.statText} id="5FinalVal">{neededInfo.stats[5]} ({Math.floor((neededInfo.stats[5]-10)/2)})</p>
                                     </div>
                                 </div>
                                 </div>

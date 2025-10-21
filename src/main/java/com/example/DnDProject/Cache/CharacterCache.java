@@ -176,6 +176,14 @@ public class CharacterCache {
         System.out.println(race);
         System.out.println(character.getName());
 
+        if(spells.size()<spells_num){
+            spells_num = spells.size();
+        }
+
+        if(plots.size()<plots_num){
+            plots_num = plots.size();
+        }
+
         return new CharSpellDTO(statRaise, spells, plots, spells_num, plots_num, stats, race);
     }
 
