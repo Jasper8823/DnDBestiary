@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import style from './calculator.module.css';
 import Mstyle from '../mainStyle.module.css';
 import CustomDropdown from '../CustomDropdown.jsx';
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 
 const classes = [
   "Barbarian","Bard","Cleric","Druid",
@@ -62,6 +62,34 @@ function CombatCalculator() {
   const [characterLevel, setCharacterLevel] = useState('');
 
   const [selectedTopo, setSelectedTopo] = useState('');
+
+  const [monsterList, setMonsterList] = useState('');
+  const [charactersList, setCharactersList] = useState('');
+
+  if(userid){
+    useEffect(() => {
+                const query = location.search;
+                fetch(`http://localhost:8080/getCombatCalculator?userid=${userid}`, {
+                method: 'GET',
+                })
+                .then(res => res.json())
+                .then(data => {
+                  setMonsterList(data.monsters);
+                  setCharactersList(data.characters);
+                })
+                .catch(err => console.error('Failed to load items:', err));
+    }, [location.search]);
+  }else{
+    useEffect(() => {
+                const query = location.search;
+                fetch(`http://localhost:8080/getCombatCalculator`, {
+                method: 'GET',
+                })
+                .then(res => res.json())
+                .then(data => setMonsterList(data.monsters))
+                .catch(err => console.error('Failed to load items:', err));
+    }, [location.search]);
+  }
 
   const resetAll = () => {
     setPlayers([]);
@@ -123,15 +151,15 @@ function CombatCalculator() {
   const submit = async () => {
     if (players.length > 0 && monsters.length > 0) {
       try {
-        const response = await fetch('http://localhost:8080/calculate', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            players,
-            monsters,
-            topography: selectedTopo
-          }),
-        });
+          const response = await fetch('http://localhost:8080/calculate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              players,
+              monsters,
+              topography: selectedTopo
+            }),
+          });
         if (!response.ok) throw new Error(`Server error: ${response.status}`);
         const data = await response.json();
         if (data) {

@@ -19,24 +19,25 @@ import { BrowserRouter, Routes, Route, Navigate  } from "react-router-dom";
 function MainComponent() {
     const location = useLocation();
 
+    const pathParts = location.pathname.split("/").filter(Boolean); 
+
     const toolBoxRoutes = [
-      "/combat-calculator",
-      "/characters",
-      "/create-character"
+      "combat-calculator",
+      "characters",
+      "create-character"
     ];
 
     const logBoxRoutes = [
-      "/login",
-      "/signup"
+      "login",
+      "signup"
     ];
 
     const isToolBoxPage =
-      toolBoxRoutes.includes(location.pathname) ||
-      /^\/create-character\/[^/]+$/.test(location.pathname)||
-      /^\/characters\/[^/]+$/.test(location.pathname);
+      toolBoxRoutes.includes(pathParts[0]) ||
+      toolBoxRoutes.includes(pathParts[1])
 
     const isLoginBoxPage =
-      logBoxRoutes.includes(location.pathname)
+      logBoxRoutes.includes(pathParts[0])
 
     return (
       <div className={style.box} id={isToolBoxPage ? style.toolBox : isLoginBoxPage ? style.loginBox :  style.bestiaryBox}>

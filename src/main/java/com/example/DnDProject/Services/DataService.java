@@ -355,6 +355,24 @@ public class DataService {
     }
 
 
+    public List<Map<String, Object>> getAllMonstersBasicInfo() {
+        List<Monster> monsters = repo.findAll();
+        List<Map<String, Object>> result = new ArrayList<>();
+
+        for (Monster m : monsters) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("id", m.getId());
+            map.put("name", m.getName());
+            map.put("danger", m.getDanger().getDegree());
+            result.add(map);
+        }
+
+        return result;
+    }
+
+
+
+
     private double convertDangerCode(int code) {
         return switch (code) {
             case 108 -> 1.0 / 8.0;

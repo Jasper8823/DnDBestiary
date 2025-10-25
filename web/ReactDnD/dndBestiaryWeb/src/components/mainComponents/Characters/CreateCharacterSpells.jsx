@@ -81,7 +81,7 @@ function CreateCharacterSpells() {
             .then(response => response.json())
             .then(data => {
                 if(data.stat_raise===-1){
-                    navigate(`/characters`);
+                    navigate(`/${userid}/characters`);
                 }
                 setNeededInfo(data);
                 setPointsLeft(data.stat_raise);

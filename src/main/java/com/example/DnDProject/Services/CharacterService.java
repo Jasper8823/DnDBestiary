@@ -212,5 +212,22 @@ public class CharacterService {
         characterRepo.save(character);
     }
 
+    public List<Map<String, Object>> getAllCharactersBasicInfo(Integer userId) {
+        List<Character> characters = characterRepo.findAll();
+        List<Map<String, Object>> result = new ArrayList<>();
+
+        for (Character c : characters) {
+            if (c.getUser() == null || c.getUser().getId() != userId) continue;
+
+            Map<String, Object> map = new HashMap<>();
+            map.put("id", c.getId());
+            map.put("name", c.getName());
+            map.put("level", c.getLevel());
+            result.add(map);
+        }
+
+        return result;
+    }
+
 
 }

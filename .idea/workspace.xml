@@ -4,14 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eeda4e98-7652-44ba-bd2f-85e06e0692d9" name="Changes" comment="Added simple calculator logic. Added character Controller.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Cache/CharacterCache.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/DTOs/CharacterDTO.java" afterDir="false" />
+    <list default="true" id="eeda4e98-7652-44ba-bd2f-85e06e0692d9" name="Changes" comment="Extended data on user show method, specified characters to particular user">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/DTOs/Calculator/CharacterDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/DTOs/Calculator/GeneralCalcDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/DTOs/Calculator/MonsterDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Enums/CharacterType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Enums/MonsterType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/EncounterCalculator/Calculators/AdvancedCalculator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/EncounterCalculator/Calculators/ExpertCalculator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/EncounterCalculator/Calculators/SimpleCalculator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/EncounterCalculator/Orchestrator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SQLQueries/InsertQueries.txt" beforeDir="false" afterPath="$PROJECT_DIR$/SQLQueries/InsertQueries.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/CharacterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/CharacterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/Character/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Entities/Character/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Characters/CreateCharacter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Characters/CreateCharacter.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Configurations/WebPageOpener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Configurations/WebPageOpener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/CalculatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/CalculatorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/DTOs/CalcDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/CharacterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/CharacterService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/DataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/DataService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/EncounterCalculator/CombatCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/EncounterCalculator/CombatCalculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/EncounterCalculator/Difficulty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Enums/Difficulty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/ReactDnD.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Characters/CreateCharacterSpells.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Characters/CreateCharacterSpells.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/CombatCalculator/CombatCalculator.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/CombatCalculator/CombatCalculator.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/MainComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/MainComponent.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +37,7 @@
       <list>
         <option value="HTML File" />
         <option value="CSS File" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -639,7 +654,23 @@
       <option name="project" value="LOCAL" />
       <updated>1754231858471</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Login system initially works">
+      <option name="closed" value="true" />
+      <created>1761395233703</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1761395233703</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Extended data on user show method, specified characters to particular user">
+      <option name="closed" value="true" />
+      <created>1761401455665</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1761401455665</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -657,8 +688,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="updated target js" />
-    <MESSAGE value="added sql queries, updated fillDBMonster.html, js and css files" />
     <MESSAGE value="added buttons to fillDBMonster" />
     <MESSAGE value="added Spell, Item and Ability fillers" />
     <MESSAGE value="js files added for item, spell and ability, also some sql inserts" />
@@ -682,6 +711,8 @@
     <MESSAGE value="Refactored controllers, added sorting possibility for spells items and monsters." />
     <MESSAGE value="Filtering works" />
     <MESSAGE value="Added simple calculator logic. Added character Controller." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added simple calculator logic. Added character Controller." />
+    <MESSAGE value="Login system initially works" />
+    <MESSAGE value="Extended data on user show method, specified characters to particular user" />
+    <option name="LAST_COMMIT_MESSAGE" value="Extended data on user show method, specified characters to particular user" />
   </component>
 </project>
