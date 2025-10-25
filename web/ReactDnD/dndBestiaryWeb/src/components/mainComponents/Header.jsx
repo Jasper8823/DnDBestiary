@@ -19,18 +19,38 @@ function Header() {
         navigate(`/signup`);
     };
 
-    if (pathParts[1] === "bestiary" || pathParts[0] === "bestiary") {
+    let bool = false; 
+
+    if (pathParts[0] === "bestiary") {
         pageName = "Bestiary";
-    } else if (pathParts[1] === "combat-calculator" || pathParts[0] === "combat-calculator") {
+    } else if (pathParts[0] === "combat-calculator") {
         pageName = "Combat Calculator";
-    } else if (pathParts[1] === "items" || pathParts[0] === "items") {
+    } else if (pathParts[0] === "items") {
         pageName = "Items";
-    } else if (pathParts[1] === "spells" || pathParts[0] === "spells") {
+    } else if (pathParts[0] === "spells") {
         pageName = "Spells";
-    } else if (pathParts[1] === "characters" || pathParts[0] === "characters") {
+    } else if (pathParts[0] === "characters") {
         pageName = "Characters";
-    } else if (pathParts[1] === "create-character" || pathParts[0] === "create-character") {
+    } else if (pathParts[0] === "create-character") {
         pageName = "Create";
+    } else if (pathParts[1] === "bestiary" && pathParts.length === 3) {
+        pageName = "Bestiary";
+        bool = true;
+    } else if (pathParts[1] === "combat-calculator" && pathParts.length === 3) {
+        pageName = "Combat Calculator";
+        bool = true;
+    } else if (pathParts[1] === "items" && pathParts.length === 3) {
+        pageName = "Items";
+        bool = true;
+    } else if (pathParts[1] === "spells" && pathParts.length === 3) {
+        pageName = "Spells";
+        bool = true;
+    } else if (pathParts[1] === "characters" && pathParts.length === 3) {
+        pageName = "Characters";
+        bool = true;
+    } else if (pathParts[1] === "create-character" && pathParts.length === 3) {
+        pageName = "Create";
+        bool = true;
     } else {
         pageName = "Error";
     }
@@ -39,8 +59,8 @@ function Header() {
         <div className={style.header}>
         <p className={style.headerText}><b>DnD</b> | {pageName}</p>
             <div className={style.loginDiv}>
-                {pathParts.length === 1 && <> <p className={style.link} onClick={loginRouter}>Log in</p> <p className={style.link} onClick={signinRouter}>Sign up</p> </>}
-                {pathParts.length === 2 && <> <p className={style.link}>Log out</p> </>}
+                { bool===false &&  <> <p className={style.link} onClick={loginRouter}>Log in</p> <p className={style.link} onClick={signinRouter}>Sign up</p> </>}
+                {bool === true && <> <p className={style.link}>Log out</p> </>}
             </div>
         </div>
     );

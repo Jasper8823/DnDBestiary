@@ -1,0 +1,82 @@
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: url('/images/parchment_texture.jpg') center/cover no-repeat;
+  font-family: 'IM Fell English', serif;
+  color: #2b1a06;
+}
+
+.loginBox {
+    position: relative;
+  background: rgba(245, 222, 179, 0.8);
+  border: 1px solid #5a3b1d;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  padding: 2rem 3rem;
+  border-radius: 8px;
+  width: 350px;
+  text-align: left;
+  backdrop-filter: blur(2px);
+  left: 250px;
+}
+
+.loginBox h1 {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  text-shadow: 1px 1px 0 #fff;
+}
+
+.loginBox label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+  color: #2a1c0e;
+}
+
+.loginBox input {
+  width: 95%;
+  padding: 0.5rem;
+  border: 1px solid #5a3b1d;
+  border-radius: 4px;
+  background-color: #fdf5e6;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  outline: none;
+}
+
+.loginBox input:focus {
+  border-color: #b98c4b;
+  box-shadow: 0 0 6px rgba(185, 140, 75, 0.6);
+}
+
+.loginBox button {
+  display: block;
+  width: 100%;
+  padding: 0.6rem 1rem;
+  background: linear-gradient(#b98c4b, #8b5e2f);
+  border: 1px solid #5a3b1d;
+  color: #fffaf0;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+}
+
+.loginBox button:hover {
+  background: linear-gradient(#d1a45e, #8b5e2f);
+  transform: translateY(-2px);
+}
+
+.formGroup {
+  margin-bottom: 1rem;
+}
+
+.error {
+  color: #7a1c1c;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+  font-style: italic;
+  text-shadow: 1px 1px 0 #fff3d4;
+}
