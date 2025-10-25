@@ -16,7 +16,8 @@ function SideBar(){
 
     if(pathParts[0]==="bestiary" || pathParts[0]==="items" || 
         pathParts[0]==="spells" || pathParts[0]==="characters" ||
-        pathParts[0]==="create-character" || pathParts[0]==="combat-calculator"
+        pathParts[0]==="create-character" || pathParts[0]==="combat-calculator" ||
+        pathParts[0]==="login" || pathParts[0]==="signup"
     ){
 
     }else{
