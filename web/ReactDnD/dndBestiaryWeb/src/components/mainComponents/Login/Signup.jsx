@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import style from "./login.module.css";
+import {useNavigate} from "react-router-dom";
 
 export default function Signup() {
     const [form, setForm] = useState({ username: "", email: "", password: "" });
-  
+    const navigate = useNavigate();
     const [errors, setErrors] = useState({});
   
     const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
@@ -39,10 +39,10 @@ export default function Signup() {
                     },
                     body: JSON.stringify(data),
                 });
-                // const rawText = await response.text();
-                // if(rawText){
-                //     navigate(`/create-character/${rawText}`);
-                // }
+                const rawText = await response.text();
+                if(rawText){
+                    navigate(`/${rawText}/bestiary`);
+                }
             } catch (error) {
                 console.error("Error:", error);
                 alert("Error while sending request.");

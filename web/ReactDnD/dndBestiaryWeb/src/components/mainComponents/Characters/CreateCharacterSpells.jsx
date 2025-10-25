@@ -46,6 +46,26 @@ function CreateCharacterSpells() {
     const { userid } = useParams();
     const { uuid } = useParams();
     const navigate = useNavigate();
+
+    if(userid){
+        const updateUserId = (async () =>{
+
+            try {
+                const response = await fetch(`http://localhost:8080/prolong?userid=${userid}`, {
+                    method: "POST",
+                });
+                const rawText = await response.text();
+                if(rawText == "1"){
+                    navigate(`/`);
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Error while sending request.");
+            }
+        })
+
+        updateUserId();
+    }
     
     const [pointsLeft, setPointsLeft] = useState(0);
 

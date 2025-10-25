@@ -7,7 +7,27 @@ function Item(){
     const {id} = useParams();
     
     const [item, setItem] = useState(null);
-    
+
+    if(userid){
+        const updateUserId = (async () =>{
+
+            try {
+                const response = await fetch(`http://localhost:8080/prolong?userid=${userid}`, {
+                    method: "POST",
+                });
+                const rawText = await response.text();
+                if(rawText == "1"){
+                    navigate(`/`);
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Error while sending request.");
+            }
+        })
+
+        updateUserId();
+    }
+
     useEffect(() => {
         fetch(`http://localhost:8080/getItem?id=${id}`)
             .then(response => response.json())

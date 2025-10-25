@@ -11,21 +11,13 @@ function MonsterSmall() {
 
     if(userid){
          const updateUserId = (async () =>{
-            const data = {
-                userid: userid
-            };
 
             try {
-                console.log(data);
-                const response = await fetch("http://localhost:8080/prolong", {
+                const response = await fetch(`http://localhost:8080/prolong?userid=${userid}`, {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(data),
                 });
                 const rawText = await response.text();
-                if(rawText){
+                if(rawText == "1"){
                     navigate(`/`);
                 }
             } catch (error) {
