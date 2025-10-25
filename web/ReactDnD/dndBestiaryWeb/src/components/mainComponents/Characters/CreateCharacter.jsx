@@ -1,7 +1,8 @@
-import { useNavigate } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 import style from './character.module.css';
 import Mstyle from '../mainStyle.module.css';
 import { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 const minStat = 8;
 const maxStat = 15;
@@ -72,6 +73,7 @@ const archetypes = {
 }
 
 function CreateCharacter() {
+    const { userid } = useParams();
     const navigate = useNavigate();
     const [characters, setCharacters] = useState(null);
 

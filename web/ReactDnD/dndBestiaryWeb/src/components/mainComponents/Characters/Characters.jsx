@@ -1,9 +1,11 @@
+import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import style from './character.module.css';
 import Mstyle from '../mainStyle.module.css';
 import { useEffect, useState } from 'react';
 
 function Characters() {
+    const { userid } = useParams();
     const navigate = useNavigate();
     const [characters, setCharacters] = useState(null);
 

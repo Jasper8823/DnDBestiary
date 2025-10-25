@@ -3,6 +3,7 @@ import style from './spells.module.css'
 import { useEffect, useState } from 'react';
 
 function Spell(){
+    const { userid } = useParams();
     const {id} = useParams();
     const [spell, setSpell] = useState(null);
 

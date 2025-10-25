@@ -10,24 +10,55 @@ import { useNavigate } from "react-router-dom";
 function SideBar(){
     const navigate = useNavigate();
 
+    const pathParts = location.pathname.split("/").filter(Boolean); 
+
+    let bool = 0;
+
+    if(pathParts[0]==="bestiary" || pathParts[0]==="items" || 
+        pathParts[0]==="spells" || pathParts[0]==="characters" ||
+        pathParts[0]==="create-character" || pathParts[0]==="combat-calculator"
+    ){
+
+    }else{
+        bool = 1;
+    }
+
+    console.log(bool);
+
     const monsterRouter = () => {
-        navigate(`/bestiary`);
+        if(bool===1){
+            navigate(`/${pathParts[[0]]}/bestiary`);
+        }else{
+            navigate(`/bestiary`);
+        }
     };
 
     const itemRouter = () => {
-        navigate(`/items`);
+        if(bool===1){
+            navigate(`/${pathParts[[0]]}/items`);
+        }else{
+            navigate(`/items`);
+        }
     };
 
     const spellRouter = () => {
-        navigate(`/spells`);
+        if(bool===1){
+            navigate(`/${pathParts[[0]]}/spells`);
+        }else{
+            navigate(`/spells`);
+        }
     };    
     
     const calcRouter = () => {
-        navigate(`/combat-calculator`);
+        if(bool===1){
+            navigate(`/${pathParts[[0]]}/combat-calculator`);
+        }else{
+            navigate(`/combat-calculator`);
+        }
     };
 
     const charRouter = () => {
-        navigate(`/characters`);
+        navigate(`/${pathParts[[0]]}/characters`);
     };
 
     return(
@@ -53,9 +84,11 @@ function SideBar(){
                 <div className={style.directBox} onClick={() => calcRouter()}>
                     <img src={battleImage} className={style.picture}/><p>Combat calculator</p>
                 </div>
-                <div className={style.directBox} onClick={() => charRouter()}>
-                    <FontAwesomeIcon icon={faUser} className={style.icon}/><p>Characters</p>
-                </div>
+                {bool === 1 &&
+                    <div className={style.directBox} onClick={() => charRouter()}>
+                        <FontAwesomeIcon icon={faUser} className={style.icon}/><p>Characters</p>
+                    </div>
+                }
             </div>
         </div>
     )

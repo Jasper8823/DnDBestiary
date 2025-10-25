@@ -1,9 +1,11 @@
+import { useParams } from 'react-router-dom';
 import { useNavigate, useLocation } from "react-router-dom";
 import style from './spells.module.css';
 import Mstyle from '../mainStyle.module.css';
 import { useEffect, useState } from 'react';
 
 function SpellSmall() {
+        const { userid } = useParams();
         const navigate = useNavigate();
         const location = useLocation();
         const [spells, setSpells] = useState(null);

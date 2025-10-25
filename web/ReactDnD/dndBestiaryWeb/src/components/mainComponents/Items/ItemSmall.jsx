@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import style from './items.module.css';
 import Mstyle from '../mainStyle.module.css';
@@ -14,6 +15,7 @@ import { faRing } from '@fortawesome/free-solid-svg-icons';
 const rarity = ['common', 'uncommon', 'rare', 'veryRare', 'legendary', 'artifact', 'noConstRarity'];
 
 function ItemSmall() {
+        const { userid } = useParams();
       const navigate = useNavigate();
         const [items, setItems] = useState(null);
 

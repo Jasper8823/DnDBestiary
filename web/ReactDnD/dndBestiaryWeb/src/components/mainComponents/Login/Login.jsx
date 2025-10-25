@@ -18,16 +18,18 @@ export default function Login() {
         return Object.keys(err).length === 0;
     };
 
-    const handleSubmit = async e => {
-        e.preventDefault();
+    const handleSubmit = async (event) => {
+        event.preventDefault();
         if (validate()) {
+            const form = event.target;
+
             const data = {
                 password: form.password.value,
                 email: form.email.value
             };
+            console.log(data);
 
             try {
-                console.log(data);
                 const response = await fetch("http://localhost:8080/login", {
                     method: "POST",
                     headers: {

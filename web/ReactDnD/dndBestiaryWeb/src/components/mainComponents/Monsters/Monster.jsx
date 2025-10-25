@@ -5,9 +5,38 @@ import { useEffect, useState } from 'react';
 import dice from '../images/dice.png';
 
 function Monster(){
+    const { userid } = useParams();
     const {id} = useParams();
     const [monster, setMonster] = useState(null);
     const [calculatedHp, setCalculatedHp] = useState('');
+
+    if(userid){
+         const updateUserId = (async () =>{
+            const data = {
+                userid: userid
+            };
+
+            try {
+                console.log(data);
+                const response = await fetch("http://localhost:8080/prolong", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                });
+                const rawText = await response.text();
+                if(rawText){
+                    navigate(`/`);
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Error while sending request.");
+            }
+        })
+
+        updateUserId();
+    }
 
     useEffect(() => {
         fetch(`http://localhost:8080/getMonster?id=${id}`)

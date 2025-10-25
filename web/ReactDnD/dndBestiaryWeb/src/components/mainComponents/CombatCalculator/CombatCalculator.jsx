@@ -1,10 +1,40 @@
+import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import style from './calculator.module.css';
 import Mstyle from '../mainStyle.module.css';
 import { useState } from 'react';
 
 function CombatCalculator() {
+    const { userid } = useParams();
   const navigate = useNavigate();
+
+    if(userid){
+         const updateUserId = (async () =>{
+            const data = {
+                userid: userid
+            };
+
+            try {
+                console.log(data);
+                const response = await fetch("http://localhost:8080/prolong", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                });
+                const rawText = await response.text();
+                if(rawText){
+                    navigate(`/`);
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Error while sending request.");
+            }
+        })
+
+        updateUserId();
+    }
 
   const [players, setPlayers] = useState([]);
   const [monsters, setMonsters] = useState([]);

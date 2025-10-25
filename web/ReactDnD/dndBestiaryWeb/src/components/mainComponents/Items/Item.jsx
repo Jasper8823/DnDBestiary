@@ -3,6 +3,7 @@ import style from './items.module.css'
 import { useEffect, useState } from 'react';
 
 function Item(){
+    const { userid } = useParams();
     const {id} = useParams();
     
     const [item, setItem] = useState(null);

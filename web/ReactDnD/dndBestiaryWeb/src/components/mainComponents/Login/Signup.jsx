@@ -19,17 +19,19 @@ export default function Signup() {
       return Object.keys(err).length === 0;
     };
   
-    const handleSubmit = async e => {
-        e.preventDefault();
+    const handleSubmit = async (event) => {
+        event.preventDefault();
         if (validate()) {
+            const form = event.target;
+
             const data = {
                 username: form.username.value,
                 password: form.password.value,
                 email: form.email.value
             };
+            console.log(data);
 
-            try {
-                console.log(data);
+            try {;
                 const response = await fetch("http://localhost:8080/signup", {
                     method: "POST",
                     headers: {

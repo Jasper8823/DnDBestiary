@@ -265,13 +265,12 @@
 
 .selectionContainer {
   display: flex;
-  gap: 20px; /* space between spells and plots */
+  gap: 20px;
   margin-bottom: 30px;
 }
 
-/* Each half (Spells / Plots) */
 .selectionSection {
-  flex: 1; /* takes half of the parent container */
+  flex: 1;
   background-color: rgba(248, 243, 232, 0.7);
   border: 1px solid #c9b79c;
   padding: 15px 20px;
@@ -279,7 +278,6 @@
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Section header */
 .selectionSection h3 {
   margin-bottom: 15px;
   font-size: 1.1rem;
@@ -287,14 +285,12 @@
   color: #6b4c2a;
 }
 
-/* Grid layout for selects (3 columns per row) */
 .selectGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 15px; /* space between select boxes */
+  gap: 15px;
 }
 
-/* Each select box */
 .selectBox {
   display: flex;
   flex-direction: column;

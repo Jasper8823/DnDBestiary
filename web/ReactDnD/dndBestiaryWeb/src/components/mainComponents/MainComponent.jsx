@@ -43,17 +43,23 @@ function MainComponent() {
         <Routes>
           <Route path="/" element={<Navigate to="/bestiary" replace />} />
           <Route path="/bestiary" element={<MonsterSmall/>} />
-          <Route path=":uuid/bestiary" element={<MonsterSmall/>} />
           <Route path="/bestiary/:id" element={<Monster/>} />
           <Route path="/items" element={<ItemSmall/>} />
           <Route path="/items/:id" element={<Item/>} />
           <Route path="/spells" element={<SpellSmall />} /> 
           <Route path="/spells/:id" element={<Spell/>} />
           <Route path="/combat-calculator" element={<CombatCalculator/>} />
-          <Route path="/characters" element={<Characters/>} />
-          <Route path="/characters/:id" element={<Character/>} />
-          <Route path="/create-character" element={<CreateCharacter/>} />
-          <Route path="/create-character/:uuid" element={<CreateCharacterSpells/>} />
+          <Route path="/:userid/bestiary" element={<MonsterSmall/>} />
+          <Route path="/:userid/bestiary/:id" element={<Monster/>} />
+          <Route path="/:userid/items" element={<ItemSmall/>} />
+          <Route path="/:userid/items/:id" element={<Item/>} />
+          <Route path="/:userid/spells" element={<SpellSmall />} /> 
+          <Route path="/:userid/spells/:id" element={<Spell/>} />
+          <Route path="/:userid/combat-calculator" element={<CombatCalculator/>} />
+          <Route path="/:userid/characters" element={<Characters/>} />
+          <Route path="/:userid/characters/:id" element={<Character/>} />
+          <Route path="/:userid/create-character" element={<CreateCharacter/>} />
+          <Route path="/:userid/create-character/:uuid" element={<CreateCharacterSpells/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<Signup/>} />
         </Routes>

@@ -43,6 +43,7 @@ const getBonus = (value) => {
 }
 
 function CreateCharacterSpells() {
+    const { userid } = useParams();
     const { uuid } = useParams();
     const navigate = useNavigate();
     
