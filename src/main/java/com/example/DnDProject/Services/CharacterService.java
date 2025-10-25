@@ -4,6 +4,7 @@ import com.example.DnDProject.Entities.Character.Character;
 import com.example.DnDProject.Entities.Class.ClassAbility;
 import com.example.DnDProject.Entities.Class.SpellSlots;
 import com.example.DnDProject.Entities.Item.Item;
+import com.example.DnDProject.Entities.Item.SubType;
 import com.example.DnDProject.Entities.Race.RaceAbility;
 import com.example.DnDProject.Entities.Spell.Spell;
 import com.example.DnDProject.Repositories.Character.CharacterRepository;
@@ -25,12 +26,16 @@ public class CharacterService {
     @Autowired
     private ItemRepository itemRepo;
 
-    public Map<String, List<Map<String, Object>>> charactersInfo() {
+    public Map<String, List<Map<String, Object>>> charactersInfo(int userId) {
         List<Character> characters = characterRepo.findAll();
 
         Map<String, List<Map<String, Object>>> result = new HashMap<>();
 
         for (Character character : characters) {
+            if (character.getUser() == null || character.getUser().getId() != userId) {
+                continue;
+            }
+
             Map<String, Object> charInfo = new HashMap<>();
             charInfo.put("id", character.getId());
             charInfo.put("name", character.getName());
@@ -66,26 +71,43 @@ public class CharacterService {
             charInfo.put("class", character.getCharClass().getName());
             if(character.getCharClass().getParentClass() != null){
                 charInfo.put("parentClass", character.getCharClass().getParentClass().getName());
-            } else if (character.getCharClass().getAbilityList()!=null) {
-                Map<String,Object> abilitiesInfo = new HashMap<>();
-                for(ClassAbility ability : character.getCharClass().getAbilityList()){
-                    abilitiesInfo.put("ability", ability.getName());
-                    abilitiesInfo.put("level", ability.getLevel());
-                    abilitiesInfo.put("description", ability.getDescription());
+            } else {
+                if (character.getCharClass().getAbilityList() != null) {
+                    List<Map<String, Object>> abilities = new ArrayList<>();
+                    for (ClassAbility ability : character.getCharClass().getAbilityList()) {
+                        Map<String, Object> abilitiesInfo = new HashMap<>();
+                        abilitiesInfo.put("name", ability.getName());
+                        abilitiesInfo.put("level", ability.getLevel());
+                        abilitiesInfo.put("description", ability.getDescription());
+                        abilities.add(abilitiesInfo);
+                    }
+                    charInfo.put("class_abilities", abilities);
                 }
-                charInfo.put("abilities", abilitiesInfo);
+
+                if (character.getCharClass().getSubtype_classList() != null) {
+                    List<Map<String, Object>> proficiencies = new ArrayList<>();
+                    for (SubType prof : character.getCharClass().getSubtype_classList()) {
+                        Map<String, Object> profInfo = new HashMap<>();
+                        profInfo.put("name", prof.getName());
+                        proficiencies.add(profInfo);
+                    }
+                    charInfo.put("proficiencies", proficiencies);
+                }
             }
         }
         if (character.getRace() != null) {
             charInfo.put("race", character.getRace().getName());
             Map<String, Object> raceInfo = new HashMap<>();
             if (character.getRace().getAbilities() != null) {
+                List<Map<String,Object>> abilities = new ArrayList<>();
                for(RaceAbility ability : character.getRace().getAbilities()) {
-                   raceInfo.put("abilityName", ability.getName());
-                   raceInfo.put("description", ability.getDescription());
+                   raceInfo.put("name", ability.getName());
+                   raceInfo.put("description",ability.getDescription());
+                   abilities.add(raceInfo);
                }
+               charInfo.put("race_abilities", abilities);
             }
-            charInfo.put("raceInfo", raceInfo);
+
         }
         charInfo.put("backstory", character.getBackstory().getName());
 
@@ -105,6 +127,7 @@ public class CharacterService {
                 Map<String, Object> spellInfo = new HashMap<>();
                 spellInfo.put("name", spell.getName());
                 spellInfo.put("level", spell.getLevel());
+                spellInfo.put("description", spell.getDescription());
                 spells.add(spellInfo);
             }
             charInfo.put("spells", spells);
@@ -112,30 +135,27 @@ public class CharacterService {
 
         if (character.getItem_charList() != null) {
             List<Map<String, Object>> ownedItems = new ArrayList<>();
-
             for (Item item : character.getItem_charList()) {
                 Map<String, Object> itemInfo = new HashMap<>();
                 itemInfo.put("name", item.getName());
-                itemInfo.put("type", item.getItemType().getName());
+                itemInfo.put("rarity", item.getRarity().getName());
+                itemInfo.put("description", item.getDescription());
                 ownedItems.add(itemInfo);
             }
+            charInfo.put("ownedItems", ownedItems);
 
-            charInfo.put("items", ownedItems);
-
-            List<Item> allItems = itemRepo.findAll();
-            List<Item> notOwnedItems = new ArrayList<>(allItems);
-            notOwnedItems.removeAll(character.getItem_charList());
-
-            List<Map<String, Object>> availableItems = new ArrayList<>();
-            for (Item item : notOwnedItems) {
+            List<Item> allItemsFromDb = itemRepo.findAll();
+            List<Map<String, Object>> allItems = new ArrayList<>();
+            for (Item item : allItemsFromDb) {
                 Map<String, Object> itemInfo = new HashMap<>();
                 itemInfo.put("name", item.getName());
-                itemInfo.put("type", item.getItemType().getName());
-                availableItems.add(itemInfo);
+                itemInfo.put("rarity", item.getRarity().getName());
+                itemInfo.put("description", item.getDescription());
+                allItems.add(itemInfo);
             }
-
-            charInfo.put("allItems", availableItems);
+            charInfo.put("allItems", allItems);
         }
+
 
         SpellSlots slots = character.getCharClass().getSpellSlotsList().stream()
                 .filter(slot -> slot.getLevel() == character.getLevel()

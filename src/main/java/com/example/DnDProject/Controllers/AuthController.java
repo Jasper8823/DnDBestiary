@@ -25,17 +25,22 @@ public class AuthController {
     public String login(@RequestBody LoginDTO dto) {
         Login login = authService.login(dto.getEmail(), dto.getPassword());
         if (login != null) {
-            System.out.println("wqdas");
-            return sessionManager.createSession(TIMEOUT_SECONDS);
+            return sessionManager.createSession(login.getUser().getId(), TIMEOUT_SECONDS);
         }
-        System.out.println("asdaasddad");
         return "1";
     }
 
     @PostMapping("/signup")
     public String signup(@RequestBody SignUpDTO dto) {
-        authService.signup(dto.getEmail(), dto.getPassword(), dto.getUsername());
-        return sessionManager.createSession(TIMEOUT_SECONDS);
+        Login login = authService.signup(dto.getEmail(), dto.getPassword(), dto.getUsername());
+        return sessionManager.createSession(login.getUser().getId(), TIMEOUT_SECONDS);
+    }
+
+
+    @GetMapping("/current")
+    public String currentUser(@RequestParam String sessionId) {
+        int userId = sessionManager.getUserId(sessionId);
+        return userId != -1 ? "LoggedIn: " + userId : "Guest";
     }
 
     @PostMapping("/logout")
@@ -44,15 +49,9 @@ public class AuthController {
         return "Logged out";
     }
 
-    @GetMapping("/current")
-    public String currentUser(@RequestParam String sessionId) {
-        return sessionManager.isValid(sessionId) ? "LoggedIn" : "Guest";
-    }
-
     @PostMapping("/prolong")
     @ResponseBody
     public String prolongSession(@RequestParam("userid") String sessionId) {
-        System.out.println("wkjhebfkwjefwfew");
         return sessionManager.prolong(sessionId, TIMEOUT_SECONDS);
     }
 }

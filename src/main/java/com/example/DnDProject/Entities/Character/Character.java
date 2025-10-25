@@ -242,5 +242,11 @@ public class Character {
         this.backstory = backstory;
     }
 
+    public User getUser() {
+        return user;
+    }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

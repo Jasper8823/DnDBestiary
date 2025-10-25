@@ -1,5 +1,6 @@
 package com.example.DnDProject.Services;
 
+import com.example.DnDProject.Entities.Login.UserSession;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -8,20 +9,18 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class SessionManager {
 
-    private final ConcurrentHashMap<String, Instant> sessions = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, UserSession> sessions = new ConcurrentHashMap<>();
 
-    public String createSession(long timeoutSeconds) {
+    public String createSession(int userId, long timeoutSeconds) {
         String sessionId = java.util.UUID.randomUUID().toString();
-        Instant endTime = Instant.now().plusSeconds(timeoutSeconds);
-        sessions.put(sessionId, endTime);
+        UserSession userSession = new UserSession(userId, Instant.now().plusSeconds(timeoutSeconds));
+        sessions.put(sessionId, userSession);
         return sessionId;
     }
 
     public boolean isValid(String sessionId) {
-        Instant endTime = sessions.get(sessionId);
-        if (endTime == null) return false;
-
-        if (Instant.now().isAfter(endTime)) {
+        UserSession session = sessions.get(sessionId);
+        if (session == null || session.isExpired()) {
             sessions.remove(sessionId);
             return false;
         }
@@ -29,14 +28,25 @@ public class SessionManager {
     }
 
     public String prolong(String sessionId, long timeoutSeconds) {
-        if (!isValid(sessionId)) return "1";
-
-        Instant newEndTime = Instant.now().plusSeconds(timeoutSeconds);
-        sessions.put(sessionId, newEndTime);
+        UserSession session = sessions.get(sessionId);
+        if (session == null || session.isExpired()) {
+            sessions.remove(sessionId);
+            return "1";
+        }
+        session.prolong(timeoutSeconds);
         return "0";
     }
 
     public void removeSession(String sessionId) {
         sessions.remove(sessionId);
+    }
+
+    public int getUserId(String sessionId) {
+        UserSession session = sessions.get(sessionId);
+        if (session == null || session.isExpired()) {
+            sessions.remove(sessionId);
+            return -1;
+        }
+        return session.getUserId();
     }
 }

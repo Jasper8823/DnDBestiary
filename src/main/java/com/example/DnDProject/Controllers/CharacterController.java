@@ -7,8 +7,8 @@ import com.example.DnDProject.DTOs.CharacterDtos.CharacterWSpellsDTO;
 import com.example.DnDProject.Entities.Character.Character;
 import com.example.DnDProject.Services.CharacterService;
 import com.example.DnDProject.Services.DatafillService;
+import com.example.DnDProject.Services.SessionManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,12 +28,16 @@ public class CharacterController{
     @Autowired
     private CharacterCache cache;
 
+    @Autowired
+    private SessionManager sessionManager;
 
     @GetMapping("/getCharacters")
     @ResponseBody
-    public Map<String, List<Map<String, Object>>> getCharacters(){
-        return characterService.charactersInfo();
+    public Map<String, List<Map<String, Object>>> getCharacters(@RequestParam("userid") String sessionId) {
+        int userId = sessionManager.getUserId(sessionId);
+        return characterService.charactersInfo(userId);
     }
+
 
     @GetMapping("/getCharacter")
     @ResponseBody
