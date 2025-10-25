@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import Mstyle from '../mainStyle.module.css';
 import CustomDropdown from '../CustomDropdown.jsx';
@@ -87,6 +88,7 @@ const dangerOptions = new Map([
 
 function MonsterSearchBar() {
     const navigate = useNavigate();
+    const { userid } = useParams();
 
     const [formData, setFormData] = useState({
         name: '',
@@ -157,7 +159,11 @@ function MonsterSearchBar() {
         danger: dangers
         });
         const query = new URLSearchParams(formData).toString();
-        navigate(`/bestiary?${query}`);
+        if(userid){
+            navigate(`/${userid}/bestiary?${query}`);
+        }else{
+            navigate(`/bestiary?${query}`);
+        }
     };
 
     const handleReset = () => {

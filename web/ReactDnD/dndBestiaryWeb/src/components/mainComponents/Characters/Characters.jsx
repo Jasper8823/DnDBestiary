@@ -30,16 +30,16 @@ function Characters() {
     }
 
     const handleClickCreate = () => {
-        navigate(`/create-character`);
+        navigate(`/${userid}/create-character`);
     };
 
     const handleClick = (char) => {
-        navigate(`/characters/${char.id}`);
+        navigate(`/${userid}/characters/${char.id}`);
     };
 
     useEffect(() => {
             const query = location.search;
-            fetch(`http://localhost:8080/getCharacters`, {
+            fetch(`http://localhost:8080/getCharacters?userid=${userid}`, {
             method: 'GET',
             })
             .then(res => res.json())

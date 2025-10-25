@@ -154,7 +154,7 @@ function CreateCharacterSpells() {
                 },
                 body: JSON.stringify(data),
             });
-            navigate(`/characters`);
+            navigate(`/${userid}/characters`);
         } catch (error) {
             console.error("Error:", error);
             alert("Error while sending request.");

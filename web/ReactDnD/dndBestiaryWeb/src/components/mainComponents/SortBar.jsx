@@ -14,6 +14,12 @@ function SortBar() {
           <Route path="/items/:id" element={<ItemSearchBar/>} />
           <Route path="/spells" element={<SpellSearchBar/>} />
           <Route path="/spells/:id" element={<SpellSearchBar/>} />
+          <Route path="/:userid/bestiary" element={<MonsterSearchBar/>} />
+          <Route path="/:userid/bestiary/:id" element={<MonsterSearchBar/>} />
+          <Route path="/:userid/items" element={<ItemSearchBar/>} />
+          <Route path="/:userid/items/:id" element={<ItemSearchBar/>} />
+          <Route path="/:userid/spells" element={<SpellSearchBar/>} />
+          <Route path="/:userid/spells/:id" element={<SpellSearchBar/>} />
         </Routes>
       </div>
     );

@@ -127,7 +127,7 @@ function CreateCharacter() {
             });
             const rawText = await response.text();
             if(rawText){
-                navigate(`/create-character/${rawText}`);
+                navigate(`/${userid}/create-character/${rawText}`);
             }
         } catch (error) {
             console.error("Error:", error);

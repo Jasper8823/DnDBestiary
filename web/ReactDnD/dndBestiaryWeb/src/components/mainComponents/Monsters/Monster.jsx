@@ -11,7 +11,7 @@ function Monster(){
     const [calculatedHp, setCalculatedHp] = useState('');
 
     if(userid){
-        const updateUserId = (async () =>{
+         const updateUserId = (async () =>{
 
             try {
                 const response = await fetch(`http://localhost:8080/prolong?userid=${userid}`, {

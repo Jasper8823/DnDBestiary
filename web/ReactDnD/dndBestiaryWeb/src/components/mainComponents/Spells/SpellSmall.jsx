@@ -31,7 +31,11 @@ function SpellSmall() {
         }
 
         const handleClick = (spell) => {
-          navigate(`/spells/${spell.name}`);
+          if(userid){
+            navigate(`/${userid}/spells/${spell.name}`);
+          }else{
+            navigate(`/spells/${spell.name}`);
+          }
         };
 
         useEffect(() => {

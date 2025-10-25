@@ -49,6 +49,7 @@ function MainComponent() {
           <Route path="/spells" element={<SpellSmall />} /> 
           <Route path="/spells/:id" element={<Spell/>} />
           <Route path="/combat-calculator" element={<CombatCalculator/>} />
+
           <Route path="/:userid/bestiary" element={<MonsterSmall/>} />
           <Route path="/:userid/bestiary/:id" element={<Monster/>} />
           <Route path="/:userid/items" element={<ItemSmall/>} />
@@ -60,6 +61,7 @@ function MainComponent() {
           <Route path="/:userid/characters/:id" element={<Character/>} />
           <Route path="/:userid/create-character" element={<CreateCharacter/>} />
           <Route path="/:userid/create-character/:uuid" element={<CreateCharacterSpells/>} />
+          
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<Signup/>} />
         </Routes>

@@ -40,8 +40,11 @@ export default function Login() {
                     body: JSON.stringify(data),
                 });
                 const rawText = await response.text();
-                console.log(rawText);
-                if(rawText){
+                if(rawText === "1"){
+                    let err = {};
+                    err.password = "Password doesn't match or login doesn't exist";
+                    setErrors(err);
+                }else{
                     navigate(`/${rawText}/bestiary`);
                 }
             } catch (error) {

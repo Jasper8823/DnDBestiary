@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import style from './items.module.css';
 import Mstyle from '../mainStyle.module.css';
@@ -32,6 +33,7 @@ const configOptions = {
 
 function ItemSearchBar() {
   const navigate = useNavigate();
+  const { userid } = useParams();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -82,7 +84,11 @@ function ItemSearchBar() {
       needsAdjustment: configs
     });
     const query = new URLSearchParams(formData).toString();
-    navigate(`/items?${query}`);
+    if(userid){
+      navigate(`/${userid}/items?${query}`);
+    }else{
+      navigate(`/items?${query}`);
+    }
   };
 
   const handleReset = () => {

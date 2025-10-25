@@ -19,6 +19,10 @@ function Header() {
         navigate(`/signup`);
     };
 
+    const logout = () => {
+        navigate(`/`);
+    };
+
     let bool = false; 
 
     if (pathParts[0] === "bestiary") {
@@ -33,22 +37,22 @@ function Header() {
         pageName = "Characters";
     } else if (pathParts[0] === "create-character") {
         pageName = "Create";
-    } else if (pathParts[1] === "bestiary" && pathParts.length === 3) {
+    } else if (pathParts[1] === "bestiary") {
         pageName = "Bestiary";
         bool = true;
-    } else if (pathParts[1] === "combat-calculator" && pathParts.length === 3) {
+    } else if (pathParts[1] === "combat-calculator") {
         pageName = "Combat Calculator";
         bool = true;
-    } else if (pathParts[1] === "items" && pathParts.length === 3) {
+    } else if (pathParts[1] === "items") {
         pageName = "Items";
         bool = true;
-    } else if (pathParts[1] === "spells" && pathParts.length === 3) {
+    } else if (pathParts[1] === "spells") {
         pageName = "Spells";
         bool = true;
-    } else if (pathParts[1] === "characters" && pathParts.length === 3) {
+    } else if (pathParts[1] === "characters") {
         pageName = "Characters";
         bool = true;
-    } else if (pathParts[1] === "create-character" && pathParts.length === 3) {
+    } else if (pathParts[1] === "create-character") {
         pageName = "Create";
         bool = true;
     } else {
@@ -59,8 +63,8 @@ function Header() {
         <div className={style.header}>
         <p className={style.headerText}><b>DnD</b> | {pageName}</p>
             <div className={style.loginDiv}>
-                { bool===false &&  <> <p className={style.link} onClick={loginRouter}>Log in</p> <p className={style.link} onClick={signinRouter}>Sign up</p> </>}
-                {bool === true && <> <p className={style.link}>Log out</p> </>}
+                {bool===false &&  <> <p className={style.link} onClick={loginRouter}>Log in</p> <p className={style.link} onClick={signinRouter}>Sign up</p> </>}
+                {bool === true && <> <p className={style.link} onClick={logout}>Log out</p> </>}
             </div>
         </div>
     );

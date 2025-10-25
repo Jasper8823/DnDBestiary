@@ -30,7 +30,11 @@ function MonsterSmall() {
     }
 
     const handleClick = (monster) => {
-        navigate(`/bestiary/${monster.id}`);
+        if(userid){
+            navigate(`/${userid}/bestiary/${monster.id}`);
+        }else{
+            navigate(`/bestiary/${monster.id}`);
+        }
     };
 
     useEffect(() => {

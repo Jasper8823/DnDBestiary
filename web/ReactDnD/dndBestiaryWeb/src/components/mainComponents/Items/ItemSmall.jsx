@@ -16,32 +16,37 @@ const rarity = ['common', 'uncommon', 'rare', 'veryRare', 'legendary', 'artifact
 
 function ItemSmall() {
         const { userid } = useParams();
-      const navigate = useNavigate();
+        const navigate = useNavigate();
         const [items, setItems] = useState(null);
 
-      const handleClick = (item) => {
-        navigate(`/items/${item.name}`);
-      };
+        if(userid){
+            const updateUserId = (async () =>{
 
-    if(userid){
-        const updateUserId = (async () =>{
-
-            try {
-                const response = await fetch(`http://localhost:8080/prolong?userid=${userid}`, {
-                    method: "POST",
-                });
-                const rawText = await response.text();
-                if(rawText == "1"){
-                    navigate(`/`);
+                try {
+                    const response = await fetch(`http://localhost:8080/prolong?userid=${userid}`, {
+                        method: "POST",
+                    });
+                    const rawText = await response.text();
+                    if(rawText == "1"){
+                        navigate(`/`);
+                    }
+                } catch (error) {
+                    console.error("Error:", error);
+                    alert("Error while sending request.");
                 }
-            } catch (error) {
-                console.error("Error:", error);
-                alert("Error while sending request.");
-            }
-        })
+            })
 
-        updateUserId();
-    }
+            updateUserId();
+        }
+
+        const handleClick = (item) => {
+            console.log(userid);
+            if(userid){            
+                navigate(`/${userid}/items/${item.name}`);
+            }else{
+                navigate(`/items/${item.name}`);
+            }
+        };
 
 
       useEffect(() => {

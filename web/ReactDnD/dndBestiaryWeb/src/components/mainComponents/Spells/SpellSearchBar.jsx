@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import style from './spells.module.css';
 import Mstyle from '../mainStyle.module.css';
@@ -39,6 +40,7 @@ const typeOptions = {
 
 function SpellSearchBar() {
   const navigate = useNavigate();
+  const { userid } = useParams();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -89,7 +91,11 @@ function SpellSearchBar() {
       type: types
     });
     const query = new URLSearchParams(formData).toString();
-    navigate(`/spells?${query}`);
+    if(userid){
+      navigate(`/${userid}/spells?${query}`);
+    }else{
+      navigate(`/spells?${query}`);
+    }
   };
 
   const handleReset = () => {
