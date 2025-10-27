@@ -113,11 +113,11 @@ function CreateCharacter() {
             race: form.race.value,
             backstory: form.backstory.value,
             archetype: form.archetype.value,
-            stats: getFinalStats()
+            stats: getFinalStats(),
+            sessionid: userid
         };
 
         try {
-            console.log(data);
             const response = await fetch("http://localhost:8080/create-character", {
                 method: "POST",
                 headers: {
