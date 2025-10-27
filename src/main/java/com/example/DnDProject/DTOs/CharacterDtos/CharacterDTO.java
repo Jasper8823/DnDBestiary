@@ -7,6 +7,7 @@ public class CharacterDTO {
     private int level;
     private String race;
     private String backstory;
+    private String sessionId;
 
     @JsonProperty("class")
     private String clazz;
@@ -14,6 +15,14 @@ public class CharacterDTO {
     private String archetype;
 
     private int[] stats;
+
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
 
     public String getName() {
         return name;
