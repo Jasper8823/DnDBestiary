@@ -5,11 +5,14 @@ import com.example.DnDProject.Entities.Character.Character;
 import com.example.DnDProject.DTOs.CharacterDtos.CharacterDTO;
 import com.example.DnDProject.Entities.Class.CharacterClass;
 import com.example.DnDProject.Entities.Class.SpellSlots;
+import com.example.DnDProject.Entities.Login.User;
 import com.example.DnDProject.Entities.Spell.Spell;
 import com.example.DnDProject.Repositories.BackStory.BackStoryRepository;
 import com.example.DnDProject.Repositories.Class.CharacterClassRepository;
+import com.example.DnDProject.Repositories.Login.UserRepository;
 import com.example.DnDProject.Repositories.Race.RaceRepository;
 import com.example.DnDProject.Services.DatafillService;
+import com.example.DnDProject.Services.SessionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +30,10 @@ public class CharacterCache {
     private BackStoryRepository backstoryRepo;
     @Autowired
     private RaceRepository raceRepo;
+    @Autowired
+    private SessionManager sessionManager;
+    @Autowired
+    private UserRepository userRepo;
 
     private static final Map<String, Integer> maxHP = Map.ofEntries(
             Map.entry("Barbarian", 12), Map.entry("Fighter", 10), Map.entry("Paladin", 10),
@@ -86,6 +93,10 @@ public class CharacterCache {
         character.setIntelligence(dto.getStats()[3]);
         character.setWisdom(dto.getStats()[4]);
         character.setCharisma(dto.getStats()[5]);
+
+        int userId = sessionManager.getUserId(dto.getSessionId());
+        User user = userRepo.findById(userId).orElse(null);
+        character.setUser(user);
 
         character.setSpeed(getSpeed(dto.getClazz(),dto.getLevel()));
         character.setHp(getHp(dto.getClazz(), dto.getLevel(),dto.getStats()[2]));
