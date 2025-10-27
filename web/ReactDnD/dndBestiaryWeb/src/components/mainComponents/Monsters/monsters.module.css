@@ -108,19 +108,3 @@
 .picture:hover{
     filter: brightness(0) saturate(100%) invert(12%) sepia(94%) saturate(2555%) hue-rotate(-7deg) brightness(91%) contrast(101%);
 }
-
-#searchInput{
-    width: 20%;
-}
-
-.searchSelect{
-    width: 19%;
-}
-
-#searchType{
-    width: 10%;
-}
-
-#searchWV{
-    width: 13.37%;
-}

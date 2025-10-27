@@ -4,6 +4,7 @@ import style from './calculator.module.css';
 import Mstyle from '../mainStyle.module.css';
 import CustomDropdown from '../CustomDropdown.jsx';
 import {useEffect, useState} from 'react';
+import SingleDropdown from '../SingleDropdown.jsx';
 
 const classes = [
   "Barbarian","Bard","Cleric","Druid",
@@ -52,19 +53,31 @@ function CombatCalculator() {
   const [players, setPlayers] = useState([]);
   const [monsters, setMonsters] = useState([]);
 
-  const [playerCount, setPlayerCount] = useState('');
-  const [playerLevel, setPlayerLevel] = useState('');
+  const [playerCount, setPlayerCount] = useState("");
+  const [playerLevel, setPlayerLevel] = useState("");
 
   const [monsterDL, setMonsterDL] = useState('');
-  const [monsterCount, setMonsterCount] = useState('');
 
-  const [selectedClass, setSelectedClass] = useState('');
-  const [characterLevel, setCharacterLevel] = useState('');
+  const [selectedClass, setSelectedClass] = useState("");
+  const [characterLevel, setCharacterLevel] = useState("");
+  const [selectedTopo, setSelectedTopo] = useState("");
 
-  const [selectedTopo, setSelectedTopo] = useState('');
+  const [monsterList, setMonsterList] = useState([]);
+  const [charactersList, setCharactersList] = useState([]);
 
-  const [monsterList, setMonsterList] = useState('');
-  const [charactersList, setCharactersList] = useState('');
+  const [selectedMonster, setSelectedMonster] = useState("");
+  const [monsterCountI, setMonsterCountI] = useState("");
+  const [monsterCount, setMonsterCount] = useState("");
+  const [selectedCharacter, setSelectedCharacter] = useState("");
+
+  const addCharacter = () => {
+    const level = parseInt(characterLevel);
+    if (selectedClass && !isNaN(level) && level > 0 && level < 21) {
+      setPlayers([...players, { className: selectedClass, level: level }]);
+      setSelectedClass('');
+      setCharacterLevel('');
+    }
+  };
 
   if(userid){
     useEffect(() => {
@@ -86,7 +99,9 @@ function CombatCalculator() {
                 method: 'GET',
                 })
                 .then(res => res.json())
-                .then(data => setMonsterList(data.monsters))
+                .then(data => {
+                  setMonsterList(data.monsters);
+                })
                 .catch(err => console.error('Failed to load items:', err));
     }, [location.search]);
   }
@@ -94,19 +109,44 @@ function CombatCalculator() {
   const resetAll = () => {
     setPlayers([]);
     setMonsters([]);
-    setPlayerCount('');
-    setPlayerLevel('');
-    setMonsterDL('');
-    setMonsterCount('');
-    setSelectedClass('');
-    setCharacterLevel('');
-    setSelectedTopo('');
+    setPlayerCount("");
+    setPlayerLevel("");
+    setSelectedClass("");
+    setCharacterLevel("");
+    setSelectedTopo("");
+    setSelectedMonster("");
+    setMonsterCount("");
+    setSelectedCharacter("");
   };
+
+  const handleCharacterSelect = (name, value) => {
+    if (!value) return;
+    const char = charactersList.find(c => c.id == value);
+    if (!char) return;
+    if (players.some(p => p.id === char.id)) return;
+    setPlayers([...players, { id: char.id, name: char.name, level: char.level }]);
+    setSelectedCharacter("");
+  };
+
+  const handleMonsterSelect = (name, value) => {
+    setSelectedMonster(value);
+  };
+
+  const handleMonsterAddI = () => {
+    if (!selectedMonster || !monsterCountI) return;
+    const count = parseInt(monsterCountI);
+    if (isNaN(count) || count < 1 || count > 5) return;
+    const mon = monsterList.find(m => m.id == selectedMonster);
+    if (!mon) return;
+    setMonsters([...monsters, { id: mon.id, name: mon.name, danger: mon.danger, count }]);
+    setSelectedMonster("");
+    setMonsterCount("");
+  }
 
   const addPlayer = () => {
     const count = parseInt(playerCount);
     const level = parseInt(playerLevel);
-    if (!isNaN(count) && !isNaN(level) && count > 0 && level > 0 && level < 21) {
+    if (!isNaN(count) && !isNaN(level) && count > 0 && count < 21 && level > 0 && level < 21) {
       setPlayers([...players, { count, level }]);
       setPlayerCount('');
       setPlayerLevel('');
@@ -120,7 +160,7 @@ function CombatCalculator() {
     ];
     const isValidCR = validMonsterCRs.includes(monsterDL);
     const count = parseInt(monsterCount);
-    if (isValidCR && count > 0) {
+    if (isValidCR && count > 0 && count < 21) {
       setMonsters([...monsters, { cr: monsterDL, count }]);
       setMonsterDL('');
       setMonsterCount('');
@@ -128,25 +168,29 @@ function CombatCalculator() {
   };
 
   const removePlayer = (index) => {
-    const newList = [...players];
-    newList.splice(index, 1);
-    setPlayers(newList);
+    const list = [...players];
+    list.splice(index, 1);
+    setPlayers(list);
   };
 
   const removeMonster = (index) => {
-    const newList = [...monsters];
-    newList.splice(index, 1);
-    setMonsters(newList);
+    const list = [...monsters];
+    list.splice(index, 1);
+    setMonsters(list);
   };
 
-  const addCharacter = () => {
-    const level = parseInt(characterLevel);
-    if (selectedClass && !isNaN(level) && level > 0 && level < 21) {
-      setPlayers([...players, { className: selectedClass, level: level }]);
-      setSelectedClass('');
-      setCharacterLevel('');
-    }
-  };
+  let characterOptions;
+
+  if(charactersList){
+    characterOptions = Object.fromEntries(
+      charactersList.map(c => [c.id, `${c.name} (Lv ${c.level})`])
+    );
+  }
+
+  const monsterOptions = Object.fromEntries(
+    monsterList.map(m => [m.id, `${m.name} (Danger ${m.danger > 100 ? `1/${m.danger-100}` : m.danger})`])
+  );
+
 
   const submit = async () => {
     if (players.length > 0 && monsters.length > 0) {
@@ -198,6 +242,7 @@ function CombatCalculator() {
             <ul>
               {players.map((p, i) => (
                 <li key={i}>
+                  {p.name && <>{p.name} (${p.level} level)</>}
                   {p.count && <>{p.count} characters with {p.level} level</>}
                   {p.className && <>{p.className} (level {p.level})</>}
                   <button
@@ -228,10 +273,10 @@ function CombatCalculator() {
               />
               <button className={style.addButton} onClick={addMonster}>Add</button>
             </div>
-            <ul>
+            <ul> 
               {monsters.map((m, i) => (
                 <li key={i}>
-                  {m.count} {m.count !== 1 ? "Monsters" : "Monster"} of {m.cr} danger level
+                  {m.name ? <>{m.count} of {m.name}</> : <>{m.count} {m.count !== 1 ? "Monsters" : "Monster"} of {m.cr} danger level</>}
                   <button
                     className={style.removeButton}
                     onClick={() => removeMonster(i)}
@@ -277,6 +322,14 @@ function CombatCalculator() {
             </select>
           </div>
         </div>
+
+        <div className={style.ImpMonsterBox}>
+          <SingleDropdown name="monster" options={monsterOptions} selectedValue={selectedMonster} onChange={handleMonsterSelect} placeholder="Select monster" idName="monsterDropdown"/>
+          <input type="number" id={style.numberOfImpMonster} name="level" min="1" max="5" onChange={(e) => setMonsterCountI(e.target.value)} required/>
+          <button id={style.numberOfImpMonsterB} className={style.addButton} onClick={handleMonsterAddI}>Add</button>
+        </div>
+
+        {userid && <SingleDropdown name="character" options={characterOptions} selectedValue={selectedCharacter} onChange={handleCharacterSelect} placeholder="Select saved character" idName="characterDropdown"/>}
 
         <p id="diff" className={style.diff}></p>
         <button onClick={submit} className={style.specButton} id={style.calcButton}>Calculate</button>

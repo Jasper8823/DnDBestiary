@@ -114,8 +114,8 @@ li {
 }
 
 .specButton {
-    position: relative;
-    bottom: 1px;
+    position: absolute;
+    bottom: 20px;
     padding: 10px 20px;
     margin: 5px;
     font-size: 1.3em;
@@ -126,6 +126,11 @@ li {
     cursor: pointer;
     transition: all 0.3s ease;
 }
+
+#resetButton{
+  left: 170px;
+}
+
 .specButton:hover {
   background: linear-gradient(to bottom, #5b40287c, #3a2718fd);
 }
@@ -150,10 +155,29 @@ li {
 
 #topographyBox{
   position: absolute;
-  top: 170px;
+  top: 220px;
   right: 11%;
   width: 30%;
   border-radius: 10px;
   background: rgba(250, 242, 219, 0.9);
   border: 1px solid rgba(60,40,20,0.7);
+}
+
+.ImpMonsterBox{
+  position: absolute;
+  width: 32%;
+  right: 11%;
+  top: 420px;
+  border-radius: 10px;
+  background: rgba(250, 242, 219, 0.9);
+}
+
+#numberOfImpMonster{
+  margin: 5px;
+  font-size: 1em;
+  height: 30px;
+}
+
+#numberOfImpMonsterB{
+  height: 44px;
 }

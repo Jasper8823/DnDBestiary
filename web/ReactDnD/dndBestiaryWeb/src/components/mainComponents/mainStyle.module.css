@@ -343,3 +343,31 @@
     margin: 10px;
     padding: 15px;
 }
+
+.searchSelectS{
+    font-size: 1em;
+    border-radius: 10px;
+    background: rgba(250, 242, 219, 0.815);
+    width: 70%;
+    margin: 10px;
+}
+
+.searchInputS{
+    background: rgba(255, 238, 188, 0.815);
+    font-size: 1em;
+    width: 90%;
+    padding: 5px;
+    margin: 5px;
+}
+
+.dropdownList{
+    background: rgba(255, 248, 225, 0.815);
+}
+
+#characterDropdown{
+    width: 32%;
+    position: absolute;
+    right: 10.4%;
+    top: 550px;
+    z-index: 0;
+}

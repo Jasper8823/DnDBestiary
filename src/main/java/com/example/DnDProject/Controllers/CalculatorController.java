@@ -4,6 +4,7 @@ import com.example.DnDProject.DTOs.Calculator.GeneralCalcDTO;
 import com.example.DnDProject.Services.CharacterService;
 import com.example.DnDProject.Services.DataService;
 import com.example.DnDProject.Services.EncounterCalculator.Orchestrator;
+import com.example.DnDProject.Services.SessionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,9 @@ public class CalculatorController {
     @Autowired
     private CharacterService charService;
 
+    @Autowired
+    private SessionManager sessionManager;
+
     @PostMapping("/calculate")
     @ResponseBody
     public Map<String, String> calculate(@RequestBody GeneralCalcDTO dto) {
@@ -35,13 +39,13 @@ public class CalculatorController {
     @GetMapping("/getCombatCalculator")
     @ResponseBody
     public Map<String, Object> getCombatCalculator(
-            @RequestParam(value = "userid", required = false) Integer userId) {
+            @RequestParam(value = "userid", required = false) String userId) {
 
         Map<String, Object> result = new HashMap<>();
         result.put("monsters", dataService.getAllMonstersBasicInfo());
 
         if (userId != null) {
-            result.put("characters", charService.getAllCharactersBasicInfo(userId));
+            result.put("characters", charService.getAllCharactersBasicInfo(sessionManager.getUserId(userId)));
         } else {
             result.put("characters", new HashMap<>());
         }
