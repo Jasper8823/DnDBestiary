@@ -184,7 +184,7 @@ function Character() {
                     className={style.searchInput}
                     />
                     <div className={style.dropdownList}>
-                    {allItems.map(item => (
+                    {availableItems.map(item => (
                         <div
                         key={item.name}
                         className={style.dropdownOption}
@@ -193,7 +193,7 @@ function Character() {
                         {item.name}
                         </div>
                     ))}
-                    {allItems.length === 0 && <p>No items found</p>}
+                    {availableItems.length === 0 && <p>No items found</p>}
                     </div>
                 </div>
                 ) : (
