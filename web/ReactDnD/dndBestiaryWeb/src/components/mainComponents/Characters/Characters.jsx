@@ -66,7 +66,7 @@ function Characters() {
                             <div key={char.id} onClick={() => handleClick(char)} className={Mstyle.bestiaryBox}>
                             <p className={style.charLevel}>{char.level}</p>
                             <p className={style.charName}>
-                                {char.name.length > 14 ? char.name.substring(0, 14) + "..." : char.name}
+                                {char.name.length > 12 ? char.name.substring(0, 12) + "..." : char.name}
                             </p>
                             </div>
                     )});

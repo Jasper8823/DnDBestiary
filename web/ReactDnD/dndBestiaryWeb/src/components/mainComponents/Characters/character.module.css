@@ -301,6 +301,10 @@
   margin-bottom: 5px;
 }
 
+#charNameBig{
+    font-size: 2em;
+}
+
 .selectBox select {
   padding: 8px 12px;
   font-size: 0.9rem;
@@ -314,4 +318,34 @@
   outline: none;
   border-color: #6b4c2a;
   box-shadow: 0 0 5px rgba(107, 76, 42, 0.5);
+}
+
+#spellDescription{
+    font-size: 1em;
+    margin-top: -20px;
+    margin-bottom: 30px;
+}
+
+#spellName{
+    margin-top: 0px;
+}
+
+#spells{
+    font-size: 2em;
+    margin-bottom: 0px;
+}
+
+#abilities{
+    margin-top: 50px;
+    margin-bottom: 0px;
+    font-size: 2em;
+}
+
+#raceAName{
+    margin-bottom: 0px;
+}
+
+#raceADescription{
+    margin-top: 5px;
+    font-size: 1.1em;
 }

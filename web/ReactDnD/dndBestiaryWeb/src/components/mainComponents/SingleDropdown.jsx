@@ -34,9 +34,7 @@ function SingleDropdown({ name, options, selectedValue, onChange, placeholder, i
       id={`${style[idName]}`}
     >
       <div className={style.dropdownHeader} onClick={() => setOpen(!open)}>
-        {selectedValue
-          ? options[selectedValue]
-          : placeholder}
+        {selectedValue ? options[selectedValue] : placeholder}
         <span className={style.arrow}>{open ? "▲" : "▼"}</span>
       </div>
 
@@ -53,9 +51,7 @@ function SingleDropdown({ name, options, selectedValue, onChange, placeholder, i
             filteredOptions.map(([value, label]) => (
               <div
                 key={value}
-                className={`${style.dropdownOption} ${
-                  selectedValue === value ? style.selectedOption : ""
-                }`}
+                className={`${style.dropdownOption} ${selectedValue === value ? style.selectedOption : ""}`}
                 onClick={() => handleSelect(value)}
               >
                 {label}

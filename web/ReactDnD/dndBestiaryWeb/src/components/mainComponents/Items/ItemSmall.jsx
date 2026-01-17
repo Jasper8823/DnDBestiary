@@ -89,7 +89,7 @@ function ItemSmall() {
                         item.type === "wonderful item" ? <FontAwesomeIcon icon={faGem} className={style.icon}/> :
                         <p className={style.itemName}>Error</p>}
                         <p className={style.itemName}>
-                            {item.name.length > 14 ? item.name.substring(0, 20) + "..." : item.name}
+                            {item.name.length > 12 ? item.name.substring(0, 12) + "..." : item.name}
                         </p>
                     </div>
                   );

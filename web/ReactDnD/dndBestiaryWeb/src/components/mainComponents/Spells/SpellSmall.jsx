@@ -70,7 +70,7 @@ function SpellSmall() {
                       <div key={spell.id} onClick={() => handleClick(spell)} className={Mstyle.bestiaryBox}>
                           <p className={style.spellLevel}>{spell.level}</p>
                           <p className={style.spellName}>
-                              {spell.name.length > 14 ? spell.name.substring(0, 20) + "..." : spell.name}
+                              {spell.name.length > 12 ? spell.name.substring(0, 12) + "..." : spell.name}
                           </p>
                       </div>
                     );

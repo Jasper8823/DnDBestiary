@@ -298,7 +298,7 @@ function CreateCharacter() {
                     <option>Human</option>
                     <option>High Elf</option>
                     <option>Wood Elf</option>
-                    <option>Drow (Dark Elf)</option>
+                    <option>Dark Elf</option>
                     <option>Hill Dwarf</option>
                     <option>Mountain Dwarf</option>
                     <option>Lightfoot Halfling</option>
