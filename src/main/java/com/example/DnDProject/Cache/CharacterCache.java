@@ -94,7 +94,7 @@ public class CharacterCache {
         character.setWisdom(dto.getStats()[4]);
         character.setCharisma(dto.getStats()[5]);
 
-        int userId = sessionManager.getUserId(dto.getSessionId());
+        int userId = sessionManager.getUserId(dto.getSessionid());
         User user = userRepo.findById(userId).orElse(null);
         character.setUser(user);
 

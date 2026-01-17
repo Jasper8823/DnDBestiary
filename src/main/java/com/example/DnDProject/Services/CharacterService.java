@@ -195,8 +195,10 @@ public class CharacterService {
                 orElseThrow(() -> new RuntimeException("Character not found with id: " + characterId));
         Item item = itemRepo.findById(itemId).
                 orElseThrow(() -> new RuntimeException("Item not found with id: " + itemId));
-        character.getItem_charList().add(item);
-        characterRepo.save(character);
+        if(!character.getItem_charList().contains(item)) {
+            character.getItem_charList().add(item);
+            characterRepo.save(character);
+        }
     }
 
     @Transactional

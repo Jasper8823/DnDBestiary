@@ -17,4 +17,14 @@ public class CharacterDTO {
 
     public String getClassName() { return className; }
     public void setClassName(String className) { this.className = className; }
+
+    @Override
+    public String toString() {
+        return "CharacterDTO{" +
+                "id=" + id +
+                ", count=" + count +
+                ", level=" + level +
+                ", className='" + className + '\'' +
+                '}';
+    }
 }

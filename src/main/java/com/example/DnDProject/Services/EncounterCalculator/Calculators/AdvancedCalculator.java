@@ -3,13 +3,20 @@ package com.example.DnDProject.Services.EncounterCalculator.Calculators;
 import com.example.DnDProject.DTOs.Calculator.CharacterDTO;
 import com.example.DnDProject.DTOs.Calculator.GeneralCalcDTO;
 import com.example.DnDProject.DTOs.Calculator.MonsterDTO;
+import com.example.DnDProject.Entities.Character.Character;
 import com.example.DnDProject.Entities.Class.CharacterClass;
+import com.example.DnDProject.Entities.Item.Item;
 import com.example.DnDProject.Entities.Monster.Monster;
 import com.example.DnDProject.Entities.Monster.Topography.Topography;
+import com.example.DnDProject.Entities.MtoMConnections.Item_DamageType;
+import com.example.DnDProject.Repositories.Character.CharacterRepository;
 import com.example.DnDProject.Repositories.Monster.MonsterRepository;
+import com.example.DnDProject.UtilMethods.DataFetchUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
+
+import java.util.Arrays;
 
 import static com.example.DnDProject.Services.EncounterCalculator.EncounterXPData.*;
 
@@ -19,6 +26,8 @@ import static com.example.DnDProject.Services.EncounterCalculator.EncounterXPDat
 public class AdvancedCalculator {
     @Autowired
     private MonsterRepository monsterRepo;
+
+
 
     public String calculate(GeneralCalcDTO dto) {
         if (dto == null || dto.getPlayers() == null || dto.getPlayers().isEmpty() ||
@@ -62,30 +71,31 @@ public class AdvancedCalculator {
                 top.setName(dto.getTopography());
 
                 if (monster.getTopographyAdvList().contains(top)) {
-                    modifier *= 0.9;
+                    modifier *= 0.66;
                 }
                 if (monster.getTopographyWeakList().contains(top)) {
-                    modifier *= 1.1;
+                    modifier *= 1.5;
                 }
             }
-
 
             if (monster != null) {
                 for (CharacterDTO player : dto.getPlayers()) {
                     if (player.getClassName() == null) continue;
-
-                    CharacterClass charClass = new CharacterClass();
-                    charClass.setName(player.getClassName());
-
-                    if (monster.getClassAdvList().contains(charClass)) {
-                        modifier *= 0.7;
+                    String className = player.getClassName().toLowerCase();
+                    for(CharacterClass charClass : monster.getClassAdvList()){
+                        if (charClass.getName().equals(className)) {
+                            modifier *= 1.5;
+                        }
                     }
-                    if (monster.getClassWeakList().contains(charClass)) {
-                        modifier *= 1.3;
+
+                    for(CharacterClass charClass : monster.getClassWeakList()){
+                        if (charClass.getName().equals(className)) {
+                            modifier *= 0.66;
+                        }
                     }
+
                 }
             }
-
             totalMonsterXP += baseXP * count * modifier;
             totalMonsters += count;
         }

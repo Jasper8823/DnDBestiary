@@ -190,7 +190,7 @@ VALUES
 ('rod'),
 ('scroll'),
 ('staff'),
-('wonderful item'),;
+('wonderful item');
 
 INSERT INTO dbo.class (name, hp_dice, parent_name)
 VALUES

@@ -21,7 +21,6 @@ public class SimpleCalculator {
         int mediumThreshold = 0;
         int hardThreshold = 0;
         int deadlyThreshold = 0;
-
         for (CharacterDTO player : dto.getPlayers()) {
             int level = player.getLevel();
             int count = player.getCount() != null ? player.getCount() : 1;

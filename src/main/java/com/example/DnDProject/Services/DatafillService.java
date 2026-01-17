@@ -102,10 +102,6 @@ public class DatafillService {
         monster.setSwim_speed(dto.getSwim_speed());
         monster.setFly_speed(dto.getFly_speed());
 
-        // Set HP fields
-        monster.setAvg_HP(dfu.calculateAvgHP(dto.getNumberofdice(), dto.getDicetype(), dto.getPassivebonus()));
-        monster.setCalc_HP(dfu.formatHPCalculation(dto.getNumberofdice(), dto.getDicetype(), dto.getPassivebonus()));
-
         // Set monster attributes
         monster.setStrength(dto.getStrength());
         monster.setDexterity(dto.getDexterity());
@@ -113,10 +109,6 @@ public class DatafillService {
         monster.setIntelligence(dto.getIntelligence());
         monster.setWisdom(dto.getWisdom());
         monster.setConstitution(dto.getBodybuild());
-
-        // Set other fields
-        monster.setPerception(dto.getPerception());
-        monster.setSkill_bonus(dto.getSkill_bonus());
 
         // Set bonuses
         monster.setStrength_bonus(dto.getStrength_bonus());
@@ -129,11 +121,17 @@ public class DatafillService {
         // Set features and description
         monster.setFeatures(dto.getFeatures());
         monster.setDescription(dto.getDescription());
-
+        // Set HP fields
+        monster.setAvg_HP(dfu.calculateAvgHP(dto.getNumberofdice(), dto.getDicetype(), dto.getPassivebonus()));
+        monster.setCalc_HP(dfu.formatHPCalculation(dto.getNumberofdice(), dto.getDicetype(), dto.getPassivebonus()));
         monster.setDanger(dangerRepo.findById(dto.getDanger()).get());
         monster.setType(dfu.fetchEntity(typeRepo,dto.getType()));
         monster.setSize(dfu.fetchEntity(sizeRepo,dto.getSize()));
         monster.setWorldview(dfu.fetchEntity(worldviewRepo,dto.getWorldview()));
+
+        // Set perception
+        monster.setPerception(dto.getPerception());
+        monster.setSkill_bonus(dto.getSkill_bonus());
 
         monster.setResistanceList(dfu.fetchList(dto.getResistanceList(),damageTypeRepo));
         monster.setVulnerabilityList(dfu.fetchList(dto.getVulnerabilityList(),damageTypeRepo));

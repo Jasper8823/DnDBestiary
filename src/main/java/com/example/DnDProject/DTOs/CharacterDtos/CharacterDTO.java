@@ -2,12 +2,14 @@ package com.example.DnDProject.DTOs.CharacterDtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Arrays;
+
 public class CharacterDTO {
     private String name;
     private int level;
     private String race;
     private String backstory;
-    private String sessionId;
+    private String sessionid;
 
     @JsonProperty("class")
     private String clazz;
@@ -16,12 +18,12 @@ public class CharacterDTO {
 
     private int[] stats;
 
-    public String getSessionId() {
-        return sessionId;
+    public String getSessionid() {
+        return sessionid;
     }
 
-    public void setSessionId(String sessionId) {
-        this.sessionId = sessionId;
+    public void setSessionId(String sessionid) {
+        this.sessionid = sessionid;
     }
 
     public String getName() {
@@ -81,5 +83,19 @@ public class CharacterDTO {
             throw new IllegalArgumentException("Stats array must have exactly 6 elements.");
         }
         this.stats = stats;
+    }
+
+    @Override
+    public String toString() {
+        return "CharacterDTO{" +
+                "name='" + name + '\'' +
+                ", level=" + level +
+                ", race='" + race + '\'' +
+                ", backstory='" + backstory + '\'' +
+                ", sessionid='" + sessionid + '\'' +
+                ", clazz='" + clazz + '\'' +
+                ", archetype='" + archetype + '\'' +
+                ", stats=" + Arrays.toString(stats) +
+                '}';
     }
 }

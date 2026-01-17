@@ -26,13 +26,12 @@ public class Orchestrator {
         MonsterType monType = detectMonsterType(dto);
 
         if (charType == CharacterType.CREATED && monType == MonsterType.COMPLEX) {
-//            return expertCalc.calculate(dto);
+            return expertCalc.calculate(dto);
         } else if (charType == CharacterType.ADVANCED && monType == MonsterType.COMPLEX) {
             return advancedCalc.calculate(dto);
         } else {
             return simpleCalc.calculate(dto);
         }
-        return null;
     }
 
     private CharacterType detectCharacterType(GeneralCalcDTO dto) {

@@ -18,25 +18,6 @@ public class SessionManager {
         return sessionId;
     }
 
-    public boolean isValid(String sessionId) {
-        UserSession session = sessions.get(sessionId);
-        if (session == null || session.isExpired()) {
-            sessions.remove(sessionId);
-            return false;
-        }
-        return true;
-    }
-
-    public String prolong(String sessionId, long timeoutSeconds) {
-        UserSession session = sessions.get(sessionId);
-        if (session == null || session.isExpired()) {
-            sessions.remove(sessionId);
-            return "1";
-        }
-        session.prolong(timeoutSeconds);
-        return "0";
-    }
-
     public void removeSession(String sessionId) {
         sessions.remove(sessionId);
     }
@@ -49,4 +30,27 @@ public class SessionManager {
         }
         return session.getUserId();
     }
+
+    public String prolong(String sessionId, long timeoutSeconds) {
+        UserSession session = sessions.get(sessionId);
+        if (session == null || session.isExpired()) {
+            sessions.remove(sessionId);
+            return "1";
+        }
+        session.prolong(timeoutSeconds);
+        return "0";
+    }
+
+    public boolean isValid(String sessionId) {
+        UserSession session = sessions.get(sessionId);
+        if (session == null || session.isExpired()) {
+            sessions.remove(sessionId);
+            return false;
+        }
+        return true;
+    }
+
+
+
+
 }
