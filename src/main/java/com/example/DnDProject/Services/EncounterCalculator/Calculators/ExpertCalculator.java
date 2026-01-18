@@ -9,6 +9,8 @@ import com.example.DnDProject.Entities.Item.Item;
 import com.example.DnDProject.Entities.Monster.Monster;
 import com.example.DnDProject.Entities.Monster.Topography.Topography;
 import com.example.DnDProject.Entities.MtoMConnections.Item_DamageType;
+import com.example.DnDProject.Entities.MtoMConnections.Spell_DamageType;
+import com.example.DnDProject.Entities.Spell.Spell;
 import com.example.DnDProject.Repositories.Character.CharacterRepository;
 import com.example.DnDProject.Repositories.Monster.MonsterRepository;
 import com.example.DnDProject.UtilMethods.DataFetchUtil;
@@ -83,16 +85,27 @@ public class ExpertCalculator {
             }
             double totalItemEfficiency = 0;
             int characterCount = 0;
+            int supportCount = 0;
+
+
             if (monster != null) {
 
                 for (CharacterDTO player : dto.getPlayers()) {
-                    Character character = null;
+                    Character character;
 
                     if (player.getId() != null) {
                         character = characterRepo.findById(player.getId()).orElse(null);
                         if (character == null) continue;
+                    } else {
+                        character = null;
                     }
+                    String className = character.getCharClass().getName().toLowerCase();
 
+                    boolean isSupportClass =
+                            className.equals("bard") ||
+                                    className.equals("cleric") ||
+                                    className.equals("paladin");
+                    if (isSupportClass) supportCount++;
 
                     String[] dexterityWeapons = {
                             "dagger", "rapier", "short sword", "scimitar",
@@ -105,7 +118,7 @@ public class ExpertCalculator {
                     double bestEffectiveDamage = 0;
 
 
-                    for (Item item : character.getItem_charList()) {
+                    for (Item item : character.getItem_charList()){
                         if (!item.getItemType().getName().equals("weapon")) continue;
 
                         String itemName = item.getSubType().getName().toLowerCase();
@@ -117,8 +130,8 @@ public class ExpertCalculator {
                                         .anyMatch(rp -> rp.getName().equals(item.getSubType().getName()));
 
                         int abilityModifier = (isDexWeapon && character.getDexterity() >= character.getStrength()) ?
-                                (character.getDexterity() - 10) / 2 :
-                                (character.getStrength() - 10) / 2;
+                                (character.getDexterity()-10) / 2 :
+                                (character.getStrength()-10) / 2;
 
                         int attackModifier = abilityModifier + (isProficient ? character.getProficiencyBonus() : 0);
 
@@ -138,6 +151,18 @@ public class ExpertCalculator {
                             if (monster.getVulnerabilityList().contains(idt.getDamageType())) avgDamage *= 2;
                             if (monster.getResistanceList().contains(idt.getDamageType())) avgDamage /= 2;
 
+                            boolean hasExtraAttack =
+                                    (className.equals("fighter") ||
+                                            className.equals("paladin") ||
+                                            className.equals("ranger") ||
+                                            className.equals("barbarian") ||
+                                            className.equals("monk"))
+                                            && character.getLevel() >= 5;
+
+                            if (hasExtraAttack) {
+                                avgDamage*=2;
+                            }
+
                             double effectiveDamage = avgDamage * hitChance;
 
                             double efficiencyScore;
@@ -151,11 +176,8 @@ public class ExpertCalculator {
                                 bestEffectiveDamage = efficiencyScore;
                             }
 
-                            // Internal per-damage-type fields
                             System.out.println("---- ITEM DAMAGE TYPE ----");
                             System.out.println("Item Name: " + item.getName());
-                            System.out.println("Item Type: " + item.getItemType().getName());
-                            System.out.println("SubType: " + item.getSubType().getName());
                             System.out.println("IsDexWeapon: " + isDexWeapon);
                             System.out.println("Proficient: " + isProficient);
                             System.out.println("AbilityModifier: " + abilityModifier);
@@ -163,18 +185,95 @@ public class ExpertCalculator {
                             System.out.println("NeededRoll: " + neededRoll);
                             System.out.println("HitChance: " + hitChance);
                             System.out.println("DamageType: " + idt.getDamageType().getName());
-                            System.out.println("Raw AvgDamage: " + DataFetchUtil.calculateAvgHP(Integer.parseInt(parts[0]),
-                                    Integer.parseInt(parts[1]),
-                                    Integer.parseInt(parts[2])));
+                            System.out.println("Raw AvgDamage: " + DataFetchUtil.calculateAvgHP(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]), Integer.parseInt(parts[2])));
                             System.out.println("Adjusted AvgDamage: " + avgDamage);
                             System.out.println("EffectiveDamage: " + effectiveDamage);
+                            System.out.println("EfficiencyScore: " + efficiencyScore);
+                            System.out.println("ExtraAttackApplied: " + hasExtraAttack);
                         }
                     }
 
-                    double efficiencyModifier = Math.min(Math.max(bestEffectiveDamage * 2, 0), 2);
+                    double bestSpellEfficiency = 0;
+
+                    for (Spell spell : character.getSpell_charList()) {
+                        int spellAttackModifier = 0;
+
+                        switch (className) {
+                            case "wizard":
+                                spellAttackModifier = getAbilityMod(character.getIntelligence());
+                                break;
+                            case "sorcerer":
+                            case "bard":
+                            case "warlock":
+                            case "paladin":
+                                spellAttackModifier = getAbilityMod(character.getCharisma());
+                                break;
+                            case "druid":
+                            case "cleric":
+                            case "ranger":
+                                spellAttackModifier = getAbilityMod(character.getWisdom());
+                                break;
+                            default:
+                                spellAttackModifier = 0;
+                        }
+
+
+                        int neededRoll = monster.getArmor_class() - spellAttackModifier;
+                        double hitChance = Math.max(0, Math.min(1, (21.0 - neededRoll) / 20.0));
+
+                        for (Spell_DamageType sdt : spell.getSpellDamageTypeList()) {
+
+                            if (monster.getImmunityList().contains(sdt.getDamageType())) continue;
+
+                            String[] parts = sdt.getDamageDice().split("[d+]");
+                            double avgDamage = DataFetchUtil.calculateAvgHP(
+                                    Integer.parseInt(parts[0]),
+                                    Integer.parseInt(parts[1]),
+                                    Integer.parseInt(parts[2])
+                            );
+
+                            if (monster.getVulnerabilityList().contains(sdt.getDamageType())) avgDamage *= 2;
+                            if (monster.getResistanceList().contains(sdt.getDamageType())) avgDamage /= 2;
+
+                            double effectiveDamage = avgDamage * hitChance;
+
+                            double efficiencyScore;
+                            if (effectiveDamage <= monster.getAvg_HP()) {
+                                efficiencyScore = effectiveDamage / monster.getAvg_HP();
+                            } else {
+                                efficiencyScore = monster.getAvg_HP() / effectiveDamage;
+                            }
+
+                            if (efficiencyScore > bestSpellEfficiency) {
+                                bestSpellEfficiency = efficiencyScore;
+                            }
+                            System.out.println("---- SPELL DAMAGE TYPE ----");
+                            System.out.println("Spell Name: " + spell.getName());
+                            System.out.println("Caster Class: " + className);
+                            System.out.println("Spellcasting Ability Modifier: " + spellAttackModifier);
+                            System.out.println("NeededRoll: " + neededRoll);
+                            System.out.println("HitChance: " + hitChance);
+                            System.out.println("DamageType: " + sdt.getDamageType().getName());
+                            System.out.println("Raw AvgDamage: " + DataFetchUtil.calculateAvgHP(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]), Integer.parseInt(parts[2])));
+                            System.out.println("Adjusted AvgDamage: " + avgDamage);
+                            System.out.println("EffectiveDamage: " + effectiveDamage);
+                            System.out.println("EfficiencyScore: " + efficiencyScore);
+
+                        }
+                    }
+
+                    double bestOverallEfficiency = Math.max(bestEffectiveDamage, bestSpellEfficiency);
+
+
+                    double efficiencyModifier = Math.min(
+                            Math.max(bestOverallEfficiency * 2, 0),
+                            2
+                    );
 
                     totalItemEfficiency += efficiencyModifier;
                     characterCount++;
+
+
 
                     System.out.println("==== CHARACTER / MONSTER SUMMARY ====");
                     System.out.println("Character Name: " + character.getName());
@@ -191,16 +290,18 @@ public class ExpertCalculator {
                     System.out.println("Monster Resistances: " + monster.getResistanceList());
                     System.out.println("Best Effective Damage: " + bestEffectiveDamage);
                     System.out.println("Efficiency Modifier: " + efficiencyModifier);
+
+
                 }
             }
             double avgCenteredEfficiency = totalItemEfficiency / characterCount;
 
+            double supportModifier = 1.0 + Math.min(0.1 * supportCount, 0.3);
 
-            totalMonsterXP += baseXP * count * modifier/avgCenteredEfficiency;
+            totalMonsterXP += baseXP * count * modifier / (avgCenteredEfficiency * supportModifier);
             totalMonsters += count;
+
         }
-
-
 
         double multiplier = getEncounterMultiplier(
                 totalMonsters,
@@ -223,4 +324,8 @@ public class ExpertCalculator {
             return "Deadly";
         }
     }
+    int getAbilityMod(int stat) {
+        return (stat - 10) / 2;
+    }
+
 }
