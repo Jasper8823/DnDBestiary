@@ -77,6 +77,7 @@ function CreateCharacter() {
     const navigate = useNavigate();
     const [characters, setCharacters] = useState(null);
 
+
     if(userid){
         const updateUserId = (async () =>{
 
@@ -114,8 +115,9 @@ function CreateCharacter() {
             backstory: form.backstory.value,
             archetype: form.archetype.value,
             stats: getFinalStats(),
-            sessionid: userid
+            sessionId: userid
         };
+        console.log(data);
 
         try {
             const response = await fetch("http://localhost:8080/create-character", {
@@ -243,7 +245,12 @@ function CreateCharacter() {
     const getFinalStats = () => {
         let fstat = []
         for(let i=0; i<6; i++){
-            fstat[i] = raceBonusList[i]+statList[i];
+            console.log(raceBonusList+""+i);
+            if(raceBonusList){
+                fstat[i] = raceBonusList[i]+statList[i];
+            }else{
+                fstat[i] = statList[i];
+            }
         }
         return fstat;
     }
@@ -291,7 +298,7 @@ function CreateCharacter() {
                     <option>Human</option>
                     <option>High Elf</option>
                     <option>Wood Elf</option>
-                    <option>Drow (Dark Elf)</option>
+                    <option>Dark Elf</option>
                     <option>Hill Dwarf</option>
                     <option>Mountain Dwarf</option>
                     <option>Lightfoot Halfling</option>

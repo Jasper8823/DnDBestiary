@@ -4,28 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eeda4e98-7652-44ba-bd2f-85e06e0692d9" name="Changes" comment="Extended data on user show method, specified characters to particular user">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/DTOs/Calculator/CharacterDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/DTOs/Calculator/GeneralCalcDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/DTOs/Calculator/MonsterDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Enums/CharacterType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Enums/MonsterType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/EncounterCalculator/Calculators/AdvancedCalculator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/EncounterCalculator/Calculators/ExpertCalculator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/EncounterCalculator/Calculators/SimpleCalculator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/EncounterCalculator/Orchestrator.java" afterDir="false" />
+    <list default="true" id="eeda4e98-7652-44ba-bd2f-85e06e0692d9" name="Changes" comment="commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Configurations/WebPageOpener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Configurations/WebPageOpener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/CalculatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Controllers/CalculatorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/DTOs/CalcDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/CharacterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/CharacterService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/DataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/DataService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/EncounterCalculator/CombatCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/EncounterCalculator/CombatCalculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Services/EncounterCalculator/Difficulty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/DnDProject/Enums/Difficulty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/ReactDnD.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Characters/CreateCharacterSpells.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Characters/CreateCharacterSpells.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Characters/Character.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Characters/Character.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Characters/Characters.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Characters/Characters.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Characters/CreateCharacter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Characters/CreateCharacter.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Characters/character.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Characters/character.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/CombatCalculator/CombatCalculator.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/CombatCalculator/CombatCalculator.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/MainComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/MainComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/CombatCalculator/calculator.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/CombatCalculator/calculator.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Items/ItemSmall.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Items/ItemSmall.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Monsters/MonsterSmall.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Monsters/MonsterSmall.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/SingleDropdown.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/SingleDropdown.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Spells/SpellSmall.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/Spells/SpellSmall.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/mainStyle.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/ReactDnD/dndBestiaryWeb/src/components/mainComponents/mainStyle.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,9 +43,6 @@
     &quot;assignee&quot;: &quot;Jasper8823&quot;
   }
 }</component>
-  <component name="GithubDefaultAccount">
-    <option name="defaultAccountId" value="d0fb5252-fed7-4f14-86ac-6f0eb1e979f0" />
-  </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Jasper8823/DnDBestiary.git&quot;,
@@ -74,7 +63,7 @@
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="2l1jWyw7bW4YEOtNiA3GbCdnJIQ" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -99,7 +88,7 @@
     &quot;Spring Boot.DnDProjectApplication.executor&quot;: &quot;Run&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/kerya/IdeaProjects/DnDBestiary/web&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/kerya/AppData/Roaming/.minecraft/mods&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -192,8 +181,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
-        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.419" />
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.419" />
       </set>
     </attachedChunks>
   </component>
@@ -309,6 +298,21 @@
       <workItem from="1754232941920" duration="63000" />
       <workItem from="1754233898812" duration="1234000" />
       <workItem from="1754319062708" duration="6472000" />
+      <workItem from="1761563400890" duration="3391000" />
+      <workItem from="1761601935264" duration="104000" />
+      <workItem from="1761664360124" duration="657000" />
+      <workItem from="1766835384243" duration="1000" />
+      <workItem from="1766835394754" duration="5720000" />
+      <workItem from="1766873390301" duration="2938000" />
+      <workItem from="1766877487174" duration="301000" />
+      <workItem from="1766926649650" duration="1676000" />
+      <workItem from="1766928511234" duration="362000" />
+      <workItem from="1766928881095" duration="628000" />
+      <workItem from="1766930207715" duration="3881000" />
+      <workItem from="1766945533979" duration="800000" />
+      <workItem from="1767135002173" duration="116000" />
+      <workItem from="1767893334802" duration="1474000" />
+      <workItem from="1768671271500" duration="4638000" />
     </task>
     <task id="LOCAL-00001" summary="Fixes">
       <option name="closed" value="true" />
@@ -670,7 +674,31 @@
       <option name="project" value="LOCAL" />
       <updated>1761401455665</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Combat calculator finished">
+      <option name="closed" value="true" />
+      <created>1761601975200</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1761601975200</updated>
+    </task>
+    <task id="LOCAL-00047" summary="session id passed">
+      <option name="closed" value="true" />
+      <created>1761602019448</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1761602019448</updated>
+    </task>
+    <task id="LOCAL-00048" summary="commit">
+      <option name="closed" value="true" />
+      <created>1768671538780</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1768671538780</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -688,9 +716,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added buttons to fillDBMonster" />
-    <MESSAGE value="added Spell, Item and Ability fillers" />
-    <MESSAGE value="js files added for item, spell and ability, also some sql inserts" />
     <MESSAGE value="front side of fillDBAbility.html, fillDBItem.html and fillDBSpell.html works" />
     <MESSAGE value="fixed error that occurred while opening other filling pages" />
     <MESSAGE value="." />
@@ -713,6 +738,9 @@
     <MESSAGE value="Added simple calculator logic. Added character Controller." />
     <MESSAGE value="Login system initially works" />
     <MESSAGE value="Extended data on user show method, specified characters to particular user" />
-    <option name="LAST_COMMIT_MESSAGE" value="Extended data on user show method, specified characters to particular user" />
+    <MESSAGE value="Combat calculator finished" />
+    <MESSAGE value="session id passed" />
+    <MESSAGE value="commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit" />
   </component>
 </project>

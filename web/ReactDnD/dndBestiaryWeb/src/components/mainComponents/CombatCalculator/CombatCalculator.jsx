@@ -242,7 +242,7 @@ function CombatCalculator() {
             <ul>
               {players.map((p, i) => (
                 <li key={i}>
-                  {p.name && <>{p.name} (${p.level} level)</>}
+                  {p.name && <>{p.name} ({p.level} level)</>}
                   {p.count && <>{p.count} characters with {p.level} level</>}
                   {p.className && <>{p.className} (level {p.level})</>}
                   <button

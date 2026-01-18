@@ -44,8 +44,8 @@ function Character() {
             if (data.allItems) {
                 setItems(data.allItems);
             }
-            if (data.items) {
-                setCharacterItems(data.items);
+            if (data.ownedItems) {
+                setCharacterItems(data.ownedItems);
             }
             })
         .catch(error => console.error('Error fetching data:', error));
@@ -115,7 +115,7 @@ function Character() {
  
     return (
         <div className={style.mainBox}>
-            <p id={style.charName}><b>{character.name}</b>{" ("+character.level+") " + character.backstory}</p>
+            <p id={style.charNameBig}><b>{character.name}</b>{" ("+character.level+") " + character.backstory}</p>
             
             <StatBox name = {"Str"} value = {character.stats["strength"]} isGrey = {true}/>
             <StatBox name = {"Dxt"} value = {character.stats["dexterity"]} isGrey = {false}/>
@@ -143,18 +143,34 @@ function Character() {
 
             {character.spells && character.spells.length > 0 && (
                 <>
-                    <h3>Spells</h3>
+                    <h3 id={style.spells}>Spells</h3>
                     {Array.from({ length: 10 }, (_, lvl) => (
                     <div key={lvl}>
                         <ul>
                         {character.spells
                             .filter(spell => spell.level === lvl)
                             .map((spell, index) => (
-                            <li key={index}>{spell.level+" "+spell.name}</li>
+                                <div>
+                                    <p key={index} id={style.spellName}>{spell.name} ({spell.level} level)</p>
+                                    <p id={style.spellDescription}>{spell.description}</p>
+                                </div>
                             ))}
                         </ul>
                     </div>
                     ))}
+                </>
+            )}
+
+            {character.race_abilities && (
+                <>
+                    <h3 id={style.abilities}>Race abilities</h3>
+                        {character.race_abilities
+                            .map((raceA, index) => (
+                                <div>
+                                    <p key={index} id={style.raceAName}>{raceA.name}</p>
+                                    <p id={style.raceADescription}>{raceA.description}</p>
+                                </div>
+                            ))}
                 </>
             )}
             <div className={style.itemsSection}>

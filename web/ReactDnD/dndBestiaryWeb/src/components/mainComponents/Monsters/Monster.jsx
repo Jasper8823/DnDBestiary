@@ -159,7 +159,7 @@ function Monster(){
             {dmgR.length !== 0 &&   <p><b>Resistances</b> {dmgR} </p>}
             {dmgI.length !== 0 &&   <p><b>Immunities</b> {dmgI} </p>}
             {isNaN(habitats) && <p><b>Habitats </b>{habitats}</p>}
-            <p><b>Danger</b> {monster.danger.degree} ({monster.danger.expGain})</p>
+            <p><b>Danger</b> {monster.danger.degree} ({monster.danger.expGain} exp)</p>
             <p><b>Skill bonus +{monster.skill_bonus}</b></p>
             {isNaN(monster.features) && <p className = {style.rows}><b>Features</b></p>}
             <p>{monster.features}</p>

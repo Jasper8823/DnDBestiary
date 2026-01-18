@@ -71,12 +71,10 @@ function MonsterSmall() {
                         className={Mstyle.bestiaryBox}
                     >
                         <p className={style.monsterLevel}>
-                            {monster.danger > 100 ? "1/" + (monster.danger - 100) : monster.danger}
+                            {monster.danger > 100 ? "1/" + (monster.danger - 100) : monster.danger == 100 ? "0" : monster.danger}
                         </p>
                         <p className={style.monsterName}>
-                            {monster.name.length > 14
-                                ? monster.name.substring(0, 20) + "..."
-                                : monster.name}
+                            {monster.name.length > 12? monster.name.substring(0, 12) + "...": monster.name}
                         </p>
                     </div>
                 );
