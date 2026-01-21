@@ -48,10 +48,6 @@ public class CharacterController{
     @PostMapping("/create-character")
     @ResponseBody
     public String createCharacter(@RequestBody CharacterDTO dto) {
-        System.out.println(dto.getSessionid());
-        System.out.println(dto.getArchetype());
-        System.out.println(dto.getBackstory());
-        System.out.println(dto.getName());
         return cache.createCharacter(dto);
     }
 

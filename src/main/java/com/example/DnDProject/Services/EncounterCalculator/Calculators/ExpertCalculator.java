@@ -123,7 +123,6 @@ public class ExpertCalculator {
 
                         String itemName = item.getSubType().getName().toLowerCase();
                         boolean isDexWeapon = Arrays.asList(dexterityWeapons).contains(itemName);
-
                         boolean isProficient = character.getCharClass().getSubtype_classList().stream()
                                 .anyMatch(cp -> cp.getName().equals(item.getSubType().getName())) ||
                                 character.getRace().getRaceProfList().stream()

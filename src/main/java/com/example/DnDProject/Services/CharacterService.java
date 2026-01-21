@@ -97,18 +97,21 @@ public class CharacterService {
         }
         if (character.getRace() != null) {
             charInfo.put("race", character.getRace().getName());
-            Map<String, Object> raceInfo = new HashMap<>();
-            if (character.getRace().getAbilities() != null) {
-                List<Map<String,Object>> abilities = new ArrayList<>();
-               for(RaceAbility ability : character.getRace().getAbilities()) {
-                   raceInfo.put("name", ability.getName());
-                   raceInfo.put("description",ability.getDescription());
-                   abilities.add(raceInfo);
-               }
-               charInfo.put("race_abilities", abilities);
-            }
 
+            if (character.getRace().getAbilities() != null) {
+                List<Map<String, Object>> abilities = new ArrayList<>();
+
+                for (RaceAbility ability : character.getRace().getAbilities()) {
+                    Map<String, Object> raceInfo = new HashMap<>();
+                    raceInfo.put("name", ability.getName());
+                    raceInfo.put("description", ability.getDescription());
+                    abilities.add(raceInfo);
+                }
+
+                charInfo.put("race_abilities", abilities);
+            }
         }
+
         charInfo.put("backstory", character.getBackstory().getName());
 
         Map<String, Object> stats = new HashMap<>();
