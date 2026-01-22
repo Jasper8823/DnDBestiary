@@ -126,9 +126,6 @@ function Character() {
             
             {character.race && <p><b>Race:</b> {character.race}</p>}
             {character.class && <p><b>Class:</b> {character.class}</p>}
-            
-            {/* {character.slots && character.slots["spell_num"] && <p>Number of spells: {character.slots["spell_num"]}</p>}
-            {character.slots && character.slots["plot_num"] && <p>Number of plots: {character.slots["plot_num"]}</p>} */}
             {character.slots && 
                 <><SpellSlotBox name = {"I"} value = {character.slots["lvl1"]} isGrey = {true}/>
                 <SpellSlotBox name = {"II"} value = {character.slots["lvl2"]} isGrey = {false}/>
