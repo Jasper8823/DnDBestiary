@@ -50,5 +50,4 @@ public class Orchestrator {
         }
         return MonsterType.REGULAR;
     }
-
 }

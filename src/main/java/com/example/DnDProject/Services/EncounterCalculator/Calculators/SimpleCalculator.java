@@ -4,6 +4,9 @@ import static com.example.DnDProject.Services.EncounterCalculator.EncounterXPDat
 import com.example.DnDProject.DTOs.Calculator.CharacterDTO;
 import com.example.DnDProject.DTOs.Calculator.GeneralCalcDTO;
 import com.example.DnDProject.DTOs.Calculator.MonsterDTO;
+import com.example.DnDProject.Entities.Monster.Monster;
+import com.example.DnDProject.Repositories.Monster.MonsterRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -11,9 +14,11 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 public class SimpleCalculator {
 
+    @Autowired
+    private MonsterRepository monsterRepo;
     public String calculate(GeneralCalcDTO dto) {
         if (dto == null || dto.getPlayers() == null || dto.getPlayers().isEmpty() ||
-                dto.getMonsters() == null || dto.getMonsters().isEmpty()) {
+        dto.getMonsters() == null || dto.getMonsters().isEmpty()) {
             return "No players or monsters";
         }
 
@@ -34,9 +39,20 @@ public class SimpleCalculator {
         int totalMonsterXP = 0;
         int totalMonsters = 0;
 
-        for (MonsterDTO monster : dto.getMonsters()) {
-            String cr = monster.getCr();
-            int count = monster.getCount() != null ? monster.getCount() : 1;
+        for (MonsterDTO monsterDTO : dto.getMonsters()) {
+
+            int count = monsterDTO.getCount() != null ? monsterDTO.getCount() : 1;
+            String cr;
+
+            if (monsterDTO.getId() != null) {
+                Monster dbMonster = monsterRepo.findById(monsterDTO.getId()).orElse(null);
+                if (dbMonster == null) continue;
+
+                cr = String.valueOf(dbMonster.getDanger().getDegree());
+            } else {
+                cr = monsterDTO.getCr();
+            }
+
             int xp = CR_XP.getOrDefault(cr, 0);
             totalMonsterXP += xp * count;
             totalMonsters += count;

@@ -20,8 +20,7 @@ import org.springframework.validation.annotation.Validated;
 
 import java.util.Arrays;
 
-import static com.example.DnDProject.Services.EncounterCalculator.EncounterXPData.LEVEL_THRESHOLDS;
-import static com.example.DnDProject.Services.EncounterCalculator.EncounterXPData.getEncounterMultiplier;
+import static com.example.DnDProject.Services.EncounterCalculator.EncounterXPData.*;
 
 @Service
 @Validated
@@ -44,12 +43,18 @@ public class ExpertCalculator {
         int easyThreshold = 0, mediumThreshold = 0, hardThreshold = 0, deadlyThreshold = 0;
         for (CharacterDTO player : dto.getPlayers()) {
             int level = player.getLevel();
-            int count = 1;
             int[] thresholds = LEVEL_THRESHOLDS.get(level);
-            easyThreshold += thresholds[0] * count;
-            mediumThreshold += thresholds[1] * count;
-            hardThreshold += thresholds[2] * count;
-            deadlyThreshold += thresholds[3] * count;
+            if(player.getCount()!=null) {
+                easyThreshold += player.getCount() * thresholds[0];
+                mediumThreshold += player.getCount() * thresholds[1];
+                hardThreshold += player.getCount() * thresholds[2];
+                deadlyThreshold += player.getCount() * thresholds[3];
+            }else{
+                easyThreshold += thresholds[0];
+                mediumThreshold += thresholds[1];
+                hardThreshold += thresholds[2];
+                deadlyThreshold += thresholds[3];
+            }
         }
 
         double totalMonsterXP = 0;
@@ -61,18 +66,49 @@ public class ExpertCalculator {
             if (monsterDTO.getId() != null) {
                 monster = monsterRepo.findById(monsterDTO.getId()).orElse(null);
                 if (monster == null) continue;
+            }else{
+                double simple_mod = 1;
+                int playerCount = 0;
+
+                for (CharacterDTO player : dto.getPlayers()) {
+                        int monster_index = switch (monsterDTO.getCr()) {
+                            case "1/4" -> 1;
+                            case "1/2" -> 2;
+                            case "1/8" -> 0;
+                            default -> Integer.parseInt(monsterDTO.getCr()) + 3;
+                        };
+                        if(player.getId()!=null) {
+                            playerCount++;
+                            Character character = characterRepo.findById(player.getId()).orElse(null);
+                            simple_mod += simple_thresholds[character.getLevel()][monster_index] * LEVEL_THRESHOLDS.get(character.getLevel())[0]/easyThreshold;
+                        }else if(player.getClassName()!=null) {
+                            playerCount++;
+                            simple_mod += simple_thresholds[player.getLevel()][monster_index] * LEVEL_THRESHOLDS.get(player.getLevel())[0]/easyThreshold;
+                        }else{
+                            playerCount += player.getCount();
+                            simple_mod += player.getCount() * simple_thresholds[player.getLevel()][monster_index] * LEVEL_THRESHOLDS.get(player.getLevel())[0]/easyThreshold;
+                        }
+                }
+                int xp = CR_XP.getOrDefault(monsterDTO.getCr(), 0);
+                System.out.println("b-b "+xp+" "+getEncounterMultiplier(monsterDTO.getCount(),playerCount)+" "+simple_mod);
+                double temp = 0;
+                temp = xp * getEncounterMultiplier(monsterDTO.getCount(),playerCount) / simple_mod;
+                if(temp>xp){
+                    temp = xp;
+                }
+                totalMonsterXP += temp;
+                System.out.println(totalMonsterXP);
+                totalMonsters += monsterDTO.getCount();
+
+                continue;
             }
 
             int count = 1;
             int baseXP = 0;
 
-            if(monster!= null) {
-                baseXP = monster.getDanger().getExpGain();
-            }
-
             double modifier = 1.0;
 
-            if (monster != null && dto.getTopography() != null) {
+            if (dto.getTopography() != null) {
                 Topography top = new Topography();
                 top.setName(dto.getTopography());
 
@@ -92,6 +128,41 @@ public class ExpertCalculator {
 
                 for (CharacterDTO player : dto.getPlayers()) {
                     Character character;
+                    if (player.getId() != null) {
+                        character = characterRepo.findById(player.getId()).orElse(null);
+                        if (character == null) continue;
+                    } else{
+                        double simple_mod = 1;
+                        int monster_index = switch (monster.getDanger().getDegree()) {
+                            case 108 -> 1;
+                            case 104 -> 2;
+                            case 102 -> 0;
+                            default -> monster.getDanger().getDegree() + 3;
+                        };
+                        simple_mod = simple_thresholds[player.getLevel()][monster_index];
+                        System.out.println("b-c "+CR_XP.getOrDefault(String.valueOf(monster.getDanger().getDegree()), 0)+" "+getEncounterMultiplier(monsterDTO.getCount(),dto.getPlayers().size())+" "+simple_mod);
+                        double temp = 0;
+                        temp = CR_XP.getOrDefault(String.valueOf(monster.getDanger().getDegree()), 0) * getEncounterMultiplier(monsterDTO.getCount(),dto.getPlayers().size()) / simple_mod;
+                        if(temp>CR_XP.getOrDefault(String.valueOf(monster.getDanger().getDegree()),0)){
+                            temp = CR_XP.getOrDefault(String.valueOf(monster.getDanger().getDegree()),0);
+                        }
+                        totalMonsterXP += temp;
+                        System.out.println(totalMonsterXP);
+                        if(player.getClassName()!=null){
+                            for(CharacterClass charClass : monster.getClassAdvList()){
+                                if (charClass.getName().equals(player.getClassName())) {
+                                    modifier *= 1.5;
+                                }
+                            }
+
+                            for(CharacterClass charClass : monster.getClassWeakList()){
+                                if (charClass.getName().equals(player.getClassName())) {
+                                    modifier *= 0.66;
+                                }
+                            }
+                        }
+                        continue;
+                    }
 
                     if (player.getId() != null) {
                         character = characterRepo.findById(player.getId()).orElse(null);
@@ -174,21 +245,6 @@ public class ExpertCalculator {
                             if (efficiencyScore > bestEffectiveDamage) {
                                 bestEffectiveDamage = efficiencyScore;
                             }
-
-                            System.out.println("---- ITEM DAMAGE TYPE ----");
-                            System.out.println("Item Name: " + item.getName());
-                            System.out.println("IsDexWeapon: " + isDexWeapon);
-                            System.out.println("Proficient: " + isProficient);
-                            System.out.println("AbilityModifier: " + abilityModifier);
-                            System.out.println("AttackModifier: " + attackModifier);
-                            System.out.println("NeededRoll: " + neededRoll);
-                            System.out.println("HitChance: " + hitChance);
-                            System.out.println("DamageType: " + idt.getDamageType().getName());
-                            System.out.println("Raw AvgDamage: " + DataFetchUtil.calculateAvgHP(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]), Integer.parseInt(parts[2])));
-                            System.out.println("Adjusted AvgDamage: " + avgDamage);
-                            System.out.println("EffectiveDamage: " + effectiveDamage);
-                            System.out.println("EfficiencyScore: " + efficiencyScore);
-                            System.out.println("ExtraAttackApplied: " + hasExtraAttack);
                         }
                     }
 
@@ -233,7 +289,6 @@ public class ExpertCalculator {
 
                             if (monster.getVulnerabilityList().contains(sdt.getDamageType())) avgDamage *= 2;
                             if (monster.getResistanceList().contains(sdt.getDamageType())) avgDamage /= 2;
-
                             double effectiveDamage = avgDamage * hitChance;
 
                             double efficiencyScore;
@@ -246,18 +301,6 @@ public class ExpertCalculator {
                             if (efficiencyScore > bestSpellEfficiency) {
                                 bestSpellEfficiency = efficiencyScore;
                             }
-                            System.out.println("---- SPELL DAMAGE TYPE ----");
-                            System.out.println("Spell Name: " + spell.getName());
-                            System.out.println("Caster Class: " + className);
-                            System.out.println("Spellcasting Ability Modifier: " + spellAttackModifier);
-                            System.out.println("NeededRoll: " + neededRoll);
-                            System.out.println("HitChance: " + hitChance);
-                            System.out.println("DamageType: " + sdt.getDamageType().getName());
-                            System.out.println("Raw AvgDamage: " + DataFetchUtil.calculateAvgHP(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]), Integer.parseInt(parts[2])));
-                            System.out.println("Adjusted AvgDamage: " + avgDamage);
-                            System.out.println("EffectiveDamage: " + effectiveDamage);
-                            System.out.println("EfficiencyScore: " + efficiencyScore);
-
                         }
                     }
 
@@ -271,35 +314,25 @@ public class ExpertCalculator {
 
                     totalItemEfficiency += efficiencyModifier;
                     characterCount++;
-
-
-
-                    System.out.println("==== CHARACTER / MONSTER SUMMARY ====");
-                    System.out.println("Character Name: " + character.getName());
-                    System.out.println("Character Class: " + character.getCharClass().getName());
-                    System.out.println("Character Race: " + character.getRace().getName());
-                    System.out.println("Strength: " + character.getStrength() + ", Dexterity: " + character.getDexterity());
-                    System.out.println("ProficiencyBonus: " + character.getProficiencyBonus());
-                    System.out.println("Monster Name: " + monster.getName());
-                    System.out.println("Monster Armor Class: " + monster.getArmor_class());
-                    System.out.println("Monster Avg HP: " + monster.getAvg_HP());
-                    System.out.println("Monster HP var: " + monster.getAvg_HP());
-                    System.out.println("Monster Immunities: " + monster.getImmunityList());
-                    System.out.println("Monster Vulnerabilities: " + monster.getVulnerabilityList());
-                    System.out.println("Monster Resistances: " + monster.getResistanceList());
-                    System.out.println("Best Effective Damage: " + bestEffectiveDamage);
-                    System.out.println("Efficiency Modifier: " + efficiencyModifier);
-
-
                 }
             }
             double avgCenteredEfficiency = totalItemEfficiency / characterCount;
 
             double supportModifier = 1.0 + Math.min(0.1 * supportCount, 0.3);
+            System.out.println(1+" "+ totalMonsterXP);
+            baseXP = CR_XP.getOrDefault(String.valueOf(monster.getDanger().getDegree()),0);
 
-            totalMonsterXP += baseXP * count * modifier / (avgCenteredEfficiency * supportModifier);
-            totalMonsters += count;
-
+            System.out.println("c-c"+baseXP+" "+count+" "+modifier+" "+avgCenteredEfficiency+" "+supportModifier);
+            if(avgCenteredEfficiency==0){
+                avgCenteredEfficiency=0.1;
+            }
+            double temp = baseXP * count * modifier / (avgCenteredEfficiency * supportModifier);
+            if(temp > baseXP){
+                temp=baseXP;
+            }
+            totalMonsterXP += temp;
+            System.out.println(totalMonsterXP);
+            totalMonsters += monsterDTO.getCount();
         }
 
         double multiplier = getEncounterMultiplier(
@@ -326,5 +359,4 @@ public class ExpertCalculator {
     int getAbilityMod(int stat) {
         return (stat - 10) / 2;
     }
-
 }
